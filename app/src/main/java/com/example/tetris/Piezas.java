@@ -3,7 +3,7 @@ package com.example.tetris;
 
 import java.util.ArrayList;
 
-public class Pieces {
+public class Piezas {
 
     public int [][] matriz = new int [4][4];
     public int identificador = 7 ;
