@@ -22,6 +22,13 @@ public class Juego extends View implements View.OnClickListener {
         botonIzda = mainActivity.getBotonIzda();
         puntos = mainActivity.getPuntos();
 
+        Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
+
+        botonDcha.setOnClickListener(this);
+        botonBajar.setOnClickListener(this);
+        botonIzda.setOnClickListener(this);
+        botonRotar.setOnClickListener(this);
+
     }
 
     @Override
@@ -29,16 +36,16 @@ public class Juego extends View implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.botonDcha:
-                Toast.makeText(getContext(), "hola", Toast.LENGTH_LONG).show();
+                Toast.makeText(mainActivity, "Derecha", Toast.LENGTH_LONG).show();
                 break;
             case R.id.botonBajar:
-                puntos.setText("1");
+                Toast.makeText(mainActivity, "Bajar", Toast.LENGTH_LONG).show();
                 break;
             case R.id.botonIzda:
-                puntos.setText("1");
+                Toast.makeText(mainActivity, "Izquierda", Toast.LENGTH_LONG).show();
                 break;
             case R.id.botonRotar:
-                puntos.setText("1");
+                Toast.makeText(mainActivity, "Rotar", Toast.LENGTH_LONG).show();
                 break;
         }
     }
