@@ -13,35 +13,30 @@ public class Tablero{
     private final int anchuraTablero=10;
     private int tablero[][]=new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
-    private ArrayList<Piezas> listaPiecesses = new ArrayList<Piezas>();
-    private  final int numeroPiecess = 7;
+    private ArrayList<Piezas> listaPiezas = new ArrayList<Piezas>();
+    private  final int numeroPiezas = 7;
 
 
 
     //genera dos Piecess random (1.actual, 2.siguiente)
 
     public Tablero() {
-        Piezas pieza = new Piezas();
-        listaPiecesses.add(random.nextInt(numeroPiecess)+1);
-        listaPiecesses.add(new Piezas(random.nextInt(numeroPiecess)+1));
+        listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
     }
 
      //transforma numeros de matriz a color
 
-    public int parseaColor(int x, int y) {
-
-        if(tablero[x][y]==0) return Color.parseColor("#00FFFF"); ; // I piece Cyan
-        if(tablero[x][y]==1) return Color.parseColor("#0000FF"); ; // J piece Blue
-        if(tablero[x][y]==2) return Color.parseColor("#FF0000"); ; // Z piece Red
-        if(tablero[x][y]==3) return Color.parseColor("#ffbf00"); ; // L piece Orange
-        if(tablero[x][y]==4) return Color.parseColor("#00FF00"); ; // S Green
-        if(tablero[x][y]==5) return Color.parseColor("#FFFF00"); ; // cuadrado yellow
-        if(tablero[x][y]==6) return Color.parseColor("#572364"); ; //  T piece Morado
-        if(tablero[x][y]==7) return Color.parseColor("#BEBEBE");  // gris fondo
-
-
+    public void parseaColor(int x, int y) {
+        if(tablero[x][y]==0)  Color.parseColor("#00FFFF"); ; // I piece Cyan
+        if(tablero[x][y]==1)  Color.parseColor("#0000FF"); ; // J piece Blue
+        if(tablero[x][y]==2)  Color.parseColor("#FF0000"); ; // Z piece Red
+        if(tablero[x][y]==3)  Color.parseColor("#ffbf00"); ; // L piece Orange
+        if(tablero[x][y]==4)  Color.parseColor("#00FF00"); ; // S Green
+        if(tablero[x][y]==5)  Color.parseColor("#FFFF00"); ; // cuadrado yellow
+        if(tablero[x][y]==6)  Color.parseColor("#572364"); ; //  T piece Morado
+        if(tablero[x][y]==7)  Color.parseColor("#BEBEBE");  // gris fondo
     }
-
 
     //todas las posiciones a 7
     public void limpiarTablero() {
@@ -52,49 +47,42 @@ public class Tablero{
         }
     }
 
-
     public  ArrayList<Piezas> getListaPiecesses(){
-
-        return listaPiecesses;
-
+        return listaPiezas;
     }
 
     //coge la Piezas actual
     public Piezas getPieces()  {
-
-        return listaPiecesses.get(listaPiecesses.size() - 2);
-
+        return listaPiezas.get(listaPiezas.size() - 2);
     }
 
     //coge siguiente Piezas
     public Piezas getSiguientePieces() {
-
-        return listaPiecesses.get(listaPiecesses.size()-1);
-
+        return listaPiezas.get(listaPiezas.size()-1);
     }
 
     //crear en clase Piezas atributo entero colorCode
 
-    private void colocaPieces(Piezas piezasActual) {
-        tablero[piezasActual.x1][piezasActual.y1] = piezasActual.colorCode;
-        tablero[piezasActual.x2][piezasActual.y2] = piezasActual.colorCode;
-        tablero[piezasActual.x3][piezasActual.y3] = piezasActual.colorCode;
-        tablero[piezasActual.x4][piezasActual.y4] = piezasActual.colorCode;
+    private void colocaPieza(Piezas piezasActual) {
+        tablero[piezasActual.x1][piezasActual.y1] = piezasActual.identificador;
+        tablero[piezasActual.x2][piezasActual.y2] = piezasActual.identificador;
+        tablero[piezasActual.x3][piezasActual.y3] = piezasActual.identificador;
+        tablero[piezasActual.x4][piezasActual.y4] = piezasActual.identificador;
     }
 
     //coordenadas Piezas = 0
-    private void borraPieces(Piezas piezasActual) {
-        tablero[piezasActual.x1][piezasActual.y1] = 0;
-        tablero[piezasActual.x2][piezasActual.y2] = 0;
-        tablero[piezasActual.x3][piezasActual.y3] = 0;
-        tablero[piezasActual.x4][piezasActual.y4] = 0;
+    private void borraPieza(Piezas piezasActual) {
+        tablero[piezasActual.x1][piezasActual.y1] = 7;
+        tablero[piezasActual.x2][piezasActual.y2] = 7;
+        tablero[piezasActual.x3][piezasActual.y3] = 7;
+        tablero[piezasActual.x4][piezasActual.y4] = 7;
     }
 
 
     //comprueba si la Piezas puede moverse,
     // copia la Piezas y la mueve, devuelve true si puede moverse
 
-    private boolean checkMoverPieces(Piezas piezasActual, int x, int y) {
+    private boolean checkMoverPieza(Piezas piezasActual, int x, int y) {
         int tmp =0;
         /*
         copia las coordenadas
@@ -109,15 +97,15 @@ public class Tablero{
         Point tmp3 = new Point(piezasActual.x3+x, piezasActual.y3+y);  //destino Piezas
         Point tmp4 = new Point(piezasActual.x4+x, piezasActual.y4+y);
 
-        ArrayList<Point> tmpPieceCoordinates = new ArrayList<Point>();
+        ArrayList<Point> tmpPiezaCoordenadas = new ArrayList<Point>();
 
-        tmpPieceCoordinates.add(tmp1);
-        tmpPieceCoordinates.add(tmp2);
-        tmpPieceCoordinates.add(tmp3);
-        tmpPieceCoordinates.add(tmp4);
+        tmpPiezaCoordenadas.add(tmp1);
+        tmpPiezaCoordenadas.add(tmp2);
+        tmpPiezaCoordenadas.add(tmp3);
+        tmpPiezaCoordenadas.add(tmp4);
 
 
-        for(Point p : tmpPieceCoordinates ) {
+        for(Point p : tmpPiezaCoordenadas ) {
 
             if(p.x< alturaTablero && p.y>=0 && p.y< anchuraTablero && tablero[p.x][p.y]==0) {
                 tmp++;
@@ -182,7 +170,7 @@ public class Tablero{
 
     //comprueba movimiento a la izq
     private  boolean checkIzq(Piezas piezasActual) {
-        if(piece_Can_Move(piezasActual, 0, -1)==true) {
+        if(pieza_Can_Move(piezasActual, 0, -1)==true) {
             return true;
         }
         return false;
@@ -190,7 +178,7 @@ public class Tablero{
 
     //comprueba movimiento a la dcha
     private boolean checkDcha(Piezas piezasActual){
-        if(piece_Can_Move(piezasActual, 0,1) == true) {
+        if(pieza_Can_Move(piezasActual, 0,1) == true) {
             return true;
         }
         return false;
@@ -198,7 +186,7 @@ public class Tablero{
 
     //comprueba movimiento hacia abajo
     public boolean checkAbajo(Piezas piezasActual) {
-        if(piece_Can_Move(piezasActual, 1,0)==true) {
+        if(pieza_Can_Move(piezasActual, 1,0)==true) {
             return true;
         }
         return false;
@@ -206,52 +194,52 @@ public class Tablero{
 
     //realiza los movimientos
 
-    private void moverPieces(Piezas piezasActual, int x, int y)   {
-        borraPieces(piezasActual);
+    private void moverPieza(Piezas piezasActual, int x, int y)   {
+        borraPieza(piezasActual);
         piezasActual.move(x, y);
-        colocaPieces(piezasActual);
+        colocaPieza(piezasActual);
     }
 
     public void moverDcha(Piezas piezasActual){
         if(can_Move_Right(piezasActual)==true) {
-            moverPieces(piezasActual, 0, 1);
+            moverPieza(piezasActual, 0, 1);
         }
     }
 
     public  void moverIzq(Piezas piezasActual){
         if(can_Move_Left(piezasActual)==true) {
-            moverPieces(piezasActual, 0, -1);
+            moverPieza(piezasActual, 0, -1);
         }
     }
 
     public  void moverAbajo(Piezas piezasActual) {
         if(can_Move_Down(piezasActual)==true) {
-            moverPieces(piezasActual, 1, 0);
+            moverPieza(piezasActual, 1, 0);
         }
     }
 
     //borra la Piezas y la coloca los mas abajo que pueda
         public void fastDrop(Piezas piezasActual) {
-        borraPieces(piezasActual);
+        borraPieza(piezasActual);
 
         while(can_Move_Down(piezasActual)==true) {
             moverAbajo(piezasActual);
         }
-        colocaPieces(piezasActual);
+        colocaPieza(piezasActual);
     }
 
        /*
    gira todas las Piecess menos el cuadrado(colorCode=1
      */
 
-    public void rotarPieces(Piezas piezasActual) {
+    public void rotarPieza(Piezas piezasActual) {
 
-        if(piece_Can_Rotate(piezasActual)==true && piezasActual.colorCode!=1) {
-            borraPieces(piezasActual);
-            piezasActual.turnPiece();
-            colocaPieces(piezasActual);
+        if(pieza_Can_Rotate(piezasActual)==true && piezasActual.colorCode!=1) {
+            borraPieza(piezasActual);
+            piezasActual.turnPieza();
+            colocaPieza(piezasActual);
         }
-        colocaPieces(piezasActual);
+        colocaPieza(piezasActual);
     }
 
     public int clearRows() {
@@ -308,14 +296,10 @@ public class Tablero{
     }
 
     public  int getAlturaTablero() {
-
         return this.alturaTablero;
-
     }
 
     public int getAnchoTablero() {
-
         return this.anchuraTablero;
-
     }
 }
