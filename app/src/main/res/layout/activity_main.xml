@@ -18,89 +18,86 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
-            android:id="@+id/relativelayout"
+            android:id="@+id/layoutprincipal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3">
+            android:layout_weight="0.3"
+            android:textAlignment="center">
 
             <ImageButton
-                android:id="@+id/rightButton"
-                android:layout_width="90dp"
-                android:layout_height="79dp"
+                android:id="@+id/botonDcha"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="11dp"
+                android:layout_marginEnd="17dp"
                 android:layout_marginRight="17dp"
-                android:layout_marginBottom="-5dp" />
+                android:layout_marginBottom="7dp" />
 
             <ImageButton
-                android:id="@+id/downButton"
-                android:layout_width="90dp"
-                android:layout_height="79dp"
+                android:id="@+id/botonBajar"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="96dp"
-                android:layout_marginRight="96dp"
-                android:layout_marginBottom="-5dp"/>
+                android:layout_marginEnd="99dp"
+                android:layout_marginRight="99dp"
+                android:layout_marginBottom="7dp" />
 
             <ImageButton
-                android:id="@+id/leftButton"
-                android:layout_width="90dp"
-                android:layout_height="79dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
+                android:id="@+id/botonIzda"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="17dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginEnd="181dp"
-                android:layout_marginRight="181dp"
-                android:layout_marginBottom="-5dp"
-                android:scaleType="fitCenter"
-                android:src="?attr/homeAsUpIndicator" />
+                android:layout_marginEnd="188dp"
+                android:layout_marginRight="188dp"
+                android:layout_marginBottom="6dp"/>
 
             <TextView
-                android:id="@+id/textViewPunkte"
-                android:layout_width="61dp"
+                android:id="@+id/puntosLabel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_toStartOf="@+id/textViewPunkte2"
-                android:layout_toLeftOf="@+id/textViewPunkte2"
-                android:text="Points:"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_toLeftOf="@+id/puntosText"
+                android:text="Puntos:"
                 android:textSize="13dp" />
 
             <TextView
-                android:id="@+id/levelText"
-                android:layout_width="55dp"
+                android:id="@+id/nivelLabel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textViewPunkte"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="182dp"
-                android:text="Level:"
-                android:layout_alignLeft="@+id/textViewPunkte" />
+                android:layout_marginStart="196dp"
+                android:layout_marginLeft="196dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginBottom="173dp"
+                android:layout_toLeftOf="@+id/nivelText"
+                android:text="Nivel:" />
 
             <ImageButton
-                android:id="@+id/rotateButton"
-                android:layout_width="90dp"
-                android:layout_height="79dp"
-                android:layout_above="@+id/downButton"
+                android:id="@+id/botonRotar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_above="@+id/botonBajar"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="95dp"
-                android:layout_marginRight="95dp"
-                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="106dp"
+                android:layout_marginRight="106dp"
+                android:layout_marginBottom="11dp"
                 android:background="#81D4FA"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/stat_notify_sync_noanim" />
 
             <TextView
-                android:id="@+id/textViewPunkte2"
+                android:id="@+id/puntosText"
                 android:layout_width="73dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -112,19 +109,19 @@
                 android:textSize="13dp" />
 
             <TextView
-                android:id="@+id/levelText2"
-                android:layout_width="75dp"
+                android:id="@+id/nivelText"
+                android:layout_width="37dp"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textViewPunkte"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="63dp"
-                android:layout_marginBottom="182dp"
-                android:layout_marginLeft="63dp"
-                android:layout_alignLeft="@+id/textViewPunkte" />
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="173dp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/relativelayout1"
+            android:id="@+id/layoutlateral"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.7"
