@@ -20,27 +20,25 @@ public class Juego extends View implements View.OnClickListener {
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
-
         puntos = mainActivity.getPuntos();
-
-
 
     }
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.botonDcha:
-                puntos.setText("1 Millon");
+                Toast.makeText(getContext(), "hola", Toast.LENGTH_LONG).show();
                 break;
             case R.id.botonBajar:
-                puntos.setText("2 Millones");
+                puntos.setText("1");
                 break;
             case R.id.botonIzda:
-                puntos.setText("3 Millones");
+                puntos.setText("1");
                 break;
             case R.id.botonRotar:
-                puntos.setText("4 Millones");
+                puntos.setText("1");
                 break;
         }
     }

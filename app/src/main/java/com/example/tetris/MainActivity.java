@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         Juego juego = new Juego(this);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(480, 900);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
-        RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutprincipal);
+        RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
         juego.setBackgroundColor(Color.YELLOW);
         relativeTetris.addView(juego);
     }

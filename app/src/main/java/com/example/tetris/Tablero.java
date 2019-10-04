@@ -1,3 +1,5 @@
+package com.example.tetris;
+
 import android.graphics.Color;
 import android.graphics.Point;
 import java.util.ArrayList;
@@ -11,21 +13,21 @@ public class Tablero{
     private final int anchuraTablero=10;
     private int tablero[][]=new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
-    private ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
-    private  final int numeroPiezas = 7;
+    private ArrayList<Pieces> listaPiecess = new ArrayList<Pieces>();
+    private  final int numeroPiecess = 7;
 
 
 
-    //genera dos piezas random (1.actual, 2.siguiente)
+    //genera dos Piecess random (1.actual, 2.siguiente)
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
+        listaPiecess.add(new Pieces(random.nextInt(numeroPiecess)+1));
+        listaPiecess.add(new Pieces(random.nextInt(numeroPiecess)+1));
     }
 
      //transforma numeros de matriz a color
 
-    public void parseaColor(int x, int y) {
+    public int parseaColor(int x, int y) {
 
         if(tablero[x][y]==0) return Color.parseColor("#FFFF00");  // Yellow
         if(tablero[x][y]==1) return Color.parseColor("#00FF00"); ; // Square Green
@@ -49,61 +51,61 @@ public class Tablero{
     }
 
 
-    public  ArrayList<Pieza> getListaPiezas(){
+    public  ArrayList<Pieces> getListaPiecess(){
 
-        return listaPiezas;
-
-    }
-
-    //coge la pieza actual
-    public Pieza getPieza()  {
-
-        return listaPiezas.get(listaPiezas.size() - 2);
+        return listaPiecess;
 
     }
 
-    //coge siguiente pieza
-    public Pieza getSiguientePieza() {
+    //coge la Pieces actual
+    public Pieces getPieces()  {
 
-        return listaPiezas.get(listaPiezas.size()-1);
+        return listaPiecess.get(listaPiecess.size() - 2);
 
     }
 
-    //crear en clase pieza atributo entero colorCode
+    //coge siguiente Pieces
+    public Pieces getSiguientePieces() {
 
-    private void colocaPieza(Pieza piezaActual) {
-        tablero[piezaActual.x1][piezaActual.y1] = piezaActual.colorCode;
-        tablero[piezaActual.x2][piezaActual.y2] = piezaActual.colorCode;
-        tablero[piezaActual.x3][piezaActual.y3] = piezaActual.colorCode;
-        tablero[piezaActual.x4][piezaActual.y4] = piezaActual.colorCode;
+        return listaPiecess.get(listaPiecess.size()-1);
+
     }
 
-    //coordenadas pieza = 0
-    private void borraPieza(Pieza piezaActual) {
-        tablero[piezaActual.x1][piezaActual.y1] = 0;
-        tablero[piezaActual.x2][piezaActual.y2] = 0;
-        tablero[piezaActual.x3][piezaActual.y3] = 0;
-        tablero[piezaActual.x4][piezaActual.y4] = 0;
+    //crear en clase Pieces atributo entero colorCode
+
+    private void colocaPieces(Pieces PiecesActual) {
+        tablero[PiecesActual.x1][PiecesActual.y1] = PiecesActual.colorCode;
+        tablero[PiecesActual.x2][PiecesActual.y2] = PiecesActual.colorCode;
+        tablero[PiecesActual.x3][PiecesActual.y3] = PiecesActual.colorCode;
+        tablero[PiecesActual.x4][PiecesActual.y4] = PiecesActual.colorCode;
+    }
+
+    //coordenadas Pieces = 0
+    private void borraPieces(Pieces PiecesActual) {
+        tablero[PiecesActual.x1][PiecesActual.y1] = 0;
+        tablero[PiecesActual.x2][PiecesActual.y2] = 0;
+        tablero[PiecesActual.x3][PiecesActual.y3] = 0;
+        tablero[PiecesActual.x4][PiecesActual.y4] = 0;
     }
 
 
-    //comprueba si la pieza puede moverse,
-    // copia la pieza y la mueve, devuelve true si puede moverse
+    //comprueba si la Pieces puede moverse,
+    // copia la Pieces y la mueve, devuelve true si puede moverse
 
-    private boolean checkMoverPieza(Pieza piezaActual, int x, int y) {
+    private boolean checkMoverPieces(Pieces PiecesActual, int x, int y) {
         int tmp =0;
         /*
         copia las coordenadas
          */
-        Point p1 = new Point(piezaActual.x1, piezaActual.y1);
-        Point p2 = new Point(piezaActual.x2, piezaActual.y2);
-        Point p3 = new Point(piezaActual.x3, piezaActual.y3);   //pieza actual
-        Point p4 = new Point(piezaActual.x4, piezaActual.y4);
+        Point p1 = new Point(PiecesActual.x1, PiecesActual.y1);
+        Point p2 = new Point(PiecesActual.x2, PiecesActual.y2);
+        Point p3 = new Point(PiecesActual.x3, PiecesActual.y3);   //Pieces actual
+        Point p4 = new Point(PiecesActual.x4, PiecesActual.y4);
 
-        Point tmp1 = new Point(piezaActual.x1+x, piezaActual.y1+y);
-        Point tmp2 = new Point(piezaActual.x2+x, piezaActual.y2+y);
-        Point tmp3 = new Point(piezaActual.x3+x, piezaActual.y3+y);  //destino pieza
-        Point tmp4 = new Point(piezaActual.x4+x, piezaActual.y4+y);
+        Point tmp1 = new Point(PiecesActual.x1+x, PiecesActual.y1+y);
+        Point tmp2 = new Point(PiecesActual.x2+x, PiecesActual.y2+y);
+        Point tmp3 = new Point(PiecesActual.x3+x, PiecesActual.y3+y);  //destino Pieces
+        Point tmp4 = new Point(PiecesActual.x4+x, PiecesActual.y4+y);
 
         ArrayList<Point> tmpPieceCoordinates = new ArrayList<Point>();
 
@@ -131,20 +133,20 @@ public class Tablero{
     }
 
  /*
-     copiar la pieza actual y comprobar si puede rotar
+     copiar la Pieces actual y comprobar si puede rotar
      si puede devuelve true
       */
 
-    private boolean rotarPieza(Pieza piezaActual) {
+    private boolean rotarPieces(Pieces PiecesActual) {
         int tmp =0;
         ArrayList<Point> tmpPieceCoordinates = new ArrayList<Point>();
 
         Piece tmpStein = new Piece(currentPiece);
 
-        Point p1 = new Point(piezaActual.x1, piezaActual.y1);
-        Point p2 = new Point(piezaActual.x2, piezaActual.y2);
-        Point p3 = new Point(piezaActual.x3, piezaActual.y3);
-        Point p4 = new Point(piezaActual.x4, piezaActual.y4);
+        Point p1 = new Point(PiecesActual.x1, PiecesActual.y1);
+        Point p2 = new Point(PiecesActual.x2, PiecesActual.y2);
+        Point p3 = new Point(PiecesActual.x3, PiecesActual.y3);
+        Point p4 = new Point(PiecesActual.x4, PiecesActual.y4);
 
         tmpStein.turnPiece();
 
@@ -177,24 +179,24 @@ public class Tablero{
 
 
     //comprueba movimiento a la izq
-    private  boolean checkIzq(Pieza piezaActual) {
-        if(piece_Can_Move(piezaActual, 0, -1)==true) {
+    private  boolean checkIzq(Pieces PiecesActual) {
+        if(piece_Can_Move(PiecesActual, 0, -1)==true) {
             return true;
         }
         return false;
     }
 
     //comprueba movimiento a la dcha
-    private boolean checkDcha(Pieza piezaActual){
-        if(piece_Can_Move(piezaActual, 0,1) == true) {
+    private boolean checkDcha(Pieces PiecesActual){
+        if(piece_Can_Move(PiecesActual, 0,1) == true) {
             return true;
         }
         return false;
     }
 
     //comprueba movimiento hacia abajo
-    public boolean checkAbajo(Pieza piezaActual) {
-        if(piece_Can_Move(piezaActual, 1,0)==true) {
+    public boolean checkAbajo(Pieces PiecesActual) {
+        if(piece_Can_Move(PiecesActual, 1,0)==true) {
             return true;
         }
         return false;
@@ -202,52 +204,52 @@ public class Tablero{
 
     //realiza los movimientos
 
-    private void moverPieza(Pieza piezaActual, int x, int y)   {
-        borraPieza(piezaActual);
-        piezaActual.move(x, y);
-        colocaPieza(piezaActual);
+    private void moverPieces(Pieces PiecesActual, int x, int y)   {
+        borraPieces(PiecesActual);
+        PiecesActual.move(x, y);
+        colocaPieces(PiecesActual);
     }
 
-    public void moverDcha(Pieza piezaActual){
-        if(can_Move_Right(piezaActual)==true) {
-            moverPieza(piezaActual, 0, 1);
+    public void moverDcha(Pieces PiecesActual){
+        if(can_Move_Right(PiecesActual)==true) {
+            moverPieces(PiecesActual, 0, 1);
         }
     }
 
-    public  void moverIzq(Pieza piezaActual){
-        if(can_Move_Left(piezaActual)==true) {
-            moverPieza(piezaActual, 0, -1);
+    public  void moverIzq(Pieces PiecesActual){
+        if(can_Move_Left(PiecesActual)==true) {
+            moverPieces(PiecesActual, 0, -1);
         }
     }
 
-    public  void moverAbajo(Pieza piezaActual) {
-        if(can_Move_Down(piezaActual)==true) {
-            moverPieza(piezaActual, 1, 0);
+    public  void moverAbajo(Pieces PiecesActual) {
+        if(can_Move_Down(PiecesActual)==true) {
+            moverPieces(PiecesActual, 1, 0);
         }
     }
 
-    //borra la pieza y la coloca los mas abajo que pueda
-        public void fastDrop(Pieza piezaActual) {
-        borraPieza(piezaActual);
+    //borra la Pieces y la coloca los mas abajo que pueda
+        public void fastDrop(Pieces PiecesActual) {
+        borraPieces(PiecesActual);
 
-        while(can_Move_Down(piezaActual)==true) {
-            moverAbajo(piezaActual);
+        while(can_Move_Down(PiecesActual)==true) {
+            moverAbajo(PiecesActual);
         }
-        colocaPieza(piezaActual);
+        colocaPieces(PiecesActual);
     }
 
        /*
-   gira todas las piezas menos el cuadrado(colorCode=1
+   gira todas las Piecess menos el cuadrado(colorCode=1
      */
 
-    public void rotarPieza(Pieza piezaActual) {
+    public void rotarPieces(Pieces PiecesActual) {
 
-        if(piece_Can_Rotate(piezaActual)==true && piezaActual.colorCode!=1) {
-            borraPieza(piezaActual);
-            piezaActual.turnPiece();
-            colocaPieza(piezaActual);
+        if(piece_Can_Rotate(PiecesActual)==true && PiecesActual.colorCode!=1) {
+            borraPieces(PiecesActual);
+            PiecesActual.turnPiece();
+            colocaPieces(PiecesActual);
         }
-        colocaPieza(piezaActual);
+        colocaPieces(PiecesActual);
     }
 
     public int clearRows() {
@@ -295,7 +297,7 @@ public class Tablero{
         }
     }
 
-    public boolean compruebaFinJuego(Pieza spielStein) {
+    public boolean compruebaFinJuego(Pieces spielStein) {
         if(can_Move_Down(spielStein) == false && spielStein.getMinXCoordinate(
                 spielStein.x1, spielStein.x2, spielStein.x3, spielStein.x4)<=1) {
             return true;
