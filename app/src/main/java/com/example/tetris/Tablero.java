@@ -29,14 +29,15 @@ public class Tablero{
 
     public int parseaColor(int x, int y) {
 
-        if(tablero[x][y]==0) return Color.parseColor("#BEBEBE");  // Yellow
-        if(tablero[x][y]==1) return Color.parseColor("#00FF00"); ; // Square Green
-        if(tablero[x][y]==2) return Color.parseColor("#FF00FF"); ; //  Z piece Magenta
-        if(tablero[x][y]==3) return Color.parseColor("#0000FF"); ; // I piece Blue
-        if(tablero[x][y]==4) return Color.parseColor("#00FFFF"); ; // T piece Cyan
-        if(tablero[x][y]==5) return Color.parseColor("#ffbf00"); ; // S piece Orange
-        if(tablero[x][y]==6) return Color.parseColor("#FFFF00"); ; // J piece gray
-        if(tablero[x][y]==7) return Color.parseColor("#FF0000"); ; // L piece Red
+        if(tablero[x][y]==0) return Color.parseColor("#00FFFF"); ; // I piece Cyan
+        if(tablero[x][y]==1) return Color.parseColor("#0000FF"); ; // J piece Blue
+        if(tablero[x][y]==2) return Color.parseColor("#FF0000"); ; // Z piece Red
+        if(tablero[x][y]==3) return Color.parseColor("#ffbf00"); ; // L piece Orange
+        if(tablero[x][y]==4) return Color.parseColor("#00FF00"); ; // S Green
+        if(tablero[x][y]==5) return Color.parseColor("#FFFF00"); ; // cuadrado yellow
+        if(tablero[x][y]==6) return Color.parseColor("#572364"); ; //  T piece Morado
+        if(tablero[x][y]==7) return Color.parseColor("#BEBEBE");  // gris fondo
+
 
     }
 
