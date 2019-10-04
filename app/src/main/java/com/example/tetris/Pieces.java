@@ -90,33 +90,20 @@ public class Pieces {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = I_Piece.pos0;
+                        matriz = S_Piece.pos0;
                         break;
                     case 1:
-                        matriz = I_Piece.pos1;
+                        matriz = S_Piece.pos1;
                         break;
                 }
                 break;
 
             case 5:
-                if (posicionPieza==1) {
-                    posicionPieza=0;
-                } else {
-                    posicionPieza++;
-                }
 
-                switch(posicionPieza){
-                    case 0:
-                        matriz = I_Piece.pos0;
-                        break;
-                    case 1:
-                        matriz = I_Piece.pos1;
-                        break;
-                }
                 break;
 
             case 6:
-                if (posicionPieza==1) {
+                if (posicionPieza==3) {
                     posicionPieza=0;
                 } else {
                     posicionPieza++;
@@ -124,10 +111,16 @@ public class Pieces {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = I_Piece.pos0;
+                        matriz = T_Piece.pos0;
                         break;
                     case 1:
-                        matriz = I_Piece.pos1;
+                        matriz = T_Piece.pos1;
+                        break;
+                    case 2:
+                        matriz = T_Piece.pos2;
+                        break;
+                    case 3:
+                        matriz = T_Piece.pos3;
                         break;
                 }
                 break;
@@ -201,12 +194,12 @@ public class Pieces {
                 {7,7,7,7}};
 
     }
-    public class S_Piece{
-        public int [] [] pos0 = {{7,4,4,7},
+    public static class S_Piece{
+        public static int [] [] pos0 = {{7,4,4,7},
                 {4,4,7,7},
                 {7,7,7,7},
                 {7,7,7,7}};
-        public int [] [] pos1 = {{7,4,7,7},
+        public static int [] [] pos1 = {{7,4,7,7},
                 {7,4,4,7},
                 {7,7,4,7},
                 {7,7,7,7}};
@@ -221,20 +214,20 @@ public class Pieces {
 
 
     }
-    public class T_Piece{
-        public int [] [] pos0 = {{7,7,6,7},
+    public static class T_Piece{
+        public static int [] [] pos0 = {{7,7,6,7},
                 {7,6,6,6},
                 {7,7,7,7},
                 {7,7,7,7}};
-        public int [] [] pos1 = {{7,6,7,7},
+        public static  int [] [] pos1 = {{7,6,7,7},
                 {7,6,6,7},
                 {7,6,7,7},
                 {7,7,7,7}};
-        public int [] [] pos2 = {{7,6,6,6},
+        public static int [] [] pos2 = {{7,6,6,6},
                 {7,7,6,7},
                 {7,7,7,7},
                 {7,7,7,7}};
-        public int [] [] pos3 = {{7,7,6,7},
+        public static int [] [] pos3 = {{7,7,6,7},
                 {7,6,6,7},
                 {7,7,6,7},
                 {7,7,7,7}};
