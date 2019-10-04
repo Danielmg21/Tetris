@@ -25,14 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton botonDcha = findViewById(R.id.botonDcha);
-        ImageButton botonIzda = findViewById(R.id.botonIzda);
-        ImageButton botonBajar = findViewById(R.id.botonBajar);
-        ImageButton botonRotar = findViewById(R.id.botonRotar);
-
-        TextView puntos = findViewById(R.id.puntosText);
-        TextView nivel = findViewById(R.id.nivelText);
-
+        ImageButton botonDcha = (ImageButton) findViewById(R.id.botonDcha);
+        ImageButton botonIzda = (ImageButton) findViewById(R.id.botonIzda);
+        ImageButton botonBajar = (ImageButton) findViewById(R.id.botonBajar);
+        ImageButton botonRotar =(ImageButton) findViewById(R.id.botonRotar);
+        TextView puntos = (TextView) findViewById(R.id.puntosText);
+        TextView nivel = (TextView) findViewById(R.id.nivelText);
 
         Juego juego = new Juego(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -42,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         relativeTetris.addView(juego);
     }
 
-    public ImageButton getBotonDcha() { return botonDcha;}
-    public ImageButton getBotonBajar() { return botonBajar;}
-    public ImageButton getBotonIzda() { return botonIzda;}
-    public ImageButton getBotonRotar() { return botonRotar;}
-    public TextView getPuntos() { return puntos; }
+    public ImageButton getBotonDcha() { return findViewById(R.id.botonDcha);}
+    public ImageButton getBotonBajar() { return findViewById(R.id.botonBajar);}
+    public ImageButton getBotonIzda() { return findViewById(R.id.botonIzda);}
+    public ImageButton getBotonRotar() { return findViewById(R.id.botonRotar);}
+    public TextView getPuntos() { return findViewById(R.id.puntosText); }
 
 
 }
