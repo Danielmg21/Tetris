@@ -4,28 +4,27 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Juego extends View implements View.OnClickListener {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     private TextView puntos;
-    private MainActivity MainActivity;
+    private MainActivity mainActivity;
 
     public Juego(Context context) {
         super(context);
-        this.MainActivity = (MainActivity) context;
 
-        botonRotar = MainActivity.getBotonRotar();
-        botonDcha = MainActivity.getBotonDcha();
-        botonBajar = MainActivity.getBotonBajar();
-        botonIzda = MainActivity.getBotonIzda();
+        this.mainActivity = (MainActivity) context;
 
-        puntos = MainActivity.getPuntos();
-        puntos.setText("54 Millones");
+        botonRotar = mainActivity.getBotonRotar();
+        botonDcha = mainActivity.getBotonDcha();
+        botonBajar = mainActivity.getBotonBajar();
+        botonIzda = mainActivity.getBotonIzda();
 
-        botonRotar.setOnClickListener(this);
-        botonDcha.setOnClickListener(this);
-        botonIzda.setOnClickListener(this);
-        botonBajar.setOnClickListener(this);
+        puntos = mainActivity.getPuntos();
+
+
+
     }
 
     @Override

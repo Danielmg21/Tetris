@@ -18,7 +18,6 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     TextView puntos;
-    private Juego juego;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
         TextView puntos = findViewById(R.id.puntosText);
         TextView nivel = findViewById(R.id.nivelText);
 
-        juego = new Juego(this);
+
+        Juego juego = new Juego(this);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(480, 900);
+        juego.setLayoutParams(params);
+        RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutprincipal);
+        juego.setBackgroundColor(Color.YELLOW);
+        relativeTetris.addView(juego);
     }
 
     public ImageButton getBotonDcha() { return botonDcha;}
