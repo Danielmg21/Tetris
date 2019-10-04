@@ -8,7 +8,35 @@ public class Piezas {
     public int [][] matriz = new int [4][4];
     public int identificador = 7 ;
 
-    public void Girar (int [][] m, int id,  int [] l){
+    public Piezas(int identificador) {
+        this.identificador = identificador;
+        switch (identificador) {
+            case 0:
+                I_Piece pieza0 = new I_Piece();
+                break;
+            case 1:
+                J_Piece pieza1 = new J_Piece();
+                break;
+            case 2:
+                Z_Piece pieza2 = new Z_Piece();
+                break;
+            case 3:
+                L_Piece pieza3 = new L_Piece();
+                break;
+            case 4:
+                S_Piece pieza4 = new S_Piece();
+                break;
+            case 5:
+                O_Piece pieza5 = new O_Piece();
+                break;
+            case 6:
+                T_Piece pieza6 = new T_Piece();
+                break;
+
+        }
+    }
+
+    public void Girar (int [][] m, int id, int [] l){
         int val = id;
         int posPieza;
         int posicionPieza = l[val];
@@ -137,6 +165,9 @@ public class Piezas {
                 }
                 break;
         }
+
+
+
     }
 
     /* public int [] [] posx = {{7,7,7,7},
