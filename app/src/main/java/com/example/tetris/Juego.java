@@ -18,6 +18,7 @@ import static java.lang.Integer.parseInt;
 public class Juego extends View implements View.OnClickListener {
 
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
+    TextView puntuacion;
     private int puntos;
     private MainActivity mainActivity;
     private Tablero tablero;
@@ -35,7 +36,9 @@ public class Juego extends View implements View.OnClickListener {
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
-        puntos = mainActivity.getPuntos();
+        puntuacion = mainActivity.getPuntos();
+        String valor = puntuacion.toString();
+        int puntos = Integer.parseInt(valor);
 
         Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
 

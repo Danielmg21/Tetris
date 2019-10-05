@@ -47,10 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton getBotonBajar() { return findViewById(R.id.botonBajar);}
     public ImageButton getBotonIzda() { return findViewById(R.id.botonIzda);}
     public ImageButton getBotonRotar() { return findViewById(R.id.botonRotar);}
-    public int getPuntos() {
-        TextView val = (TextView)findViewById(R.id.puntosText);
-        int puntos = Integer.parseInt(val.toString());
-        return puntos;
+    public TextView getPuntos(){return findViewById(R.id.puntosText);
     }
 
 
