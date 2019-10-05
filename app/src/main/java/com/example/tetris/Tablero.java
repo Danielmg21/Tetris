@@ -193,10 +193,24 @@ public class Tablero{
 
     //comprueba movimiento a la izq
     private  boolean compruebaIzq(Piezas piezasActual) {
-        if(pieza_Puede_Moverse(piezasActual, 0, -1)==true) {
-            return true;
-        }
-        return false;
+        ArrayList<Coordenada> l = new ArrayList<>();
+        l = piezasActual.ObtenerPosiciones(piezasActual);
+        boolean problema = false;
+        int posyahellegado=0;
+        while (problema==false)  {
+            if (posyahellegado==4) {
+                return true;
+            }
+            else{
+                Coordenada aux = l.get(posyahellegado);
+                if((aux.getValX()==0)&&(this.tablero[aux.getValX()][aux.getValY()]!=7)){
+                    return false;
+                }
+                else{
+                    posyahellegado++;
+                }
+            }
+        }return true;
     }
 
     //comprueba movimiento a la dcha
