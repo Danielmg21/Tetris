@@ -3,6 +3,14 @@ package com.example.tetris;
 
 import java.util.ArrayList;
 
+import static com.example.tetris.PiezaI.getPosicionI;
+import static com.example.tetris.PiezaJ.getPosicionJ;
+import static com.example.tetris.PiezaZ.getPosicionZ;
+import static com.example.tetris.PiezaL.getPosicionL;
+import static com.example.tetris.PiezaSS.getPosicionS;
+import static com.example.tetris.PiezaO.getPosicionO;
+import static com.example.tetris.PiezaT.getPosicionT;
+
 public class Piezas {
 
     public int [][] matriz = new int [4][4];
@@ -12,33 +20,35 @@ public class Piezas {
         this.identificador = identificador;
         switch (identificador) {
             case 0:
-                I_Piece pieza0 = new I_Piece();
+                this.matriz = getPosicionI(0);
                 break;
             case 1:
-                J_Piece pieza1 = new J_Piece();
+                this.matriz = getPosicionJ(0);
                 break;
             case 2:
-                Z_Piece pieza2 = new Z_Piece();
+                this.matriz = getPosicionZ(0);
                 break;
             case 3:
-                L_Piece pieza3 = new L_Piece();
+                this.matriz = getPosicionL(0);
                 break;
             case 4:
-                S_Piece pieza4 = new S_Piece();
+                this.matriz = getPosicionS(0);
                 break;
             case 5:
-                O_Piece pieza5 = new O_Piece();
+                this.matriz = getPosicionO(0);
                 break;
             case 6:
-                T_Piece pieza6 = new T_Piece();
+                this.matriz = getPosicionT(0);
                 break;
-
         }
+    }
+
+    public Piezas() {
+
     }
 
     public void Girar (int [][] m, int id, int [] l){
         int val = id;
-        int posPieza;
         int posicionPieza = l[val];
         switch (val) {
             case 0://pieza en forma de I
@@ -50,10 +60,10 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = I_Piece.pos0;
+                        matriz = getPosicionI(0);
                         break;
                     case 1:
-                        matriz = I_Piece.pos1;
+                        matriz = getPosicionI(1);
                         break;
                 }
                 break;
@@ -67,16 +77,16 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = J_Piece.pos0;
+                        matriz = getPosicionJ(0);
                         break;
                     case 1:
-                        matriz = J_Piece.pos1;
+                        matriz = getPosicionJ(1);
                         break;
                     case 2:
-                        matriz = J_Piece.pos2;
+                        matriz = getPosicionJ(2);
                         break;
                     case 3:
-                        matriz = J_Piece.pos3;
+                        matriz = getPosicionJ(3);
                         break;
                 }
                 break;
@@ -90,10 +100,10 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = Z_Piece.pos0;
+                        matriz = getPosicionZ(0);
                         break;
                     case 1:
-                        matriz = Z_Piece.pos1;
+                        matriz = getPosicionZ(1);
                         break;
                 }
                 break;
@@ -107,16 +117,16 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = L_Piece.pos0;
+                        matriz = getPosicionL(0);
                         break;
                     case 1:
-                        matriz = L_Piece.pos1;
+                        matriz = getPosicionL(1);
                         break;
                     case 2:
-                        matriz = L_Piece.pos2;
+                        matriz = getPosicionL(2);
                         break;
                     case 3:
-                        matriz = L_Piece.pos3;
+                        matriz = getPosicionL(3);
                         break;
                 }
                 break;
@@ -130,10 +140,10 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = S_Piece.pos0;
+                        matriz = getPosicionS(0);
                         break;
                     case 1:
-                        matriz = S_Piece.pos1;
+                        matriz = getPosicionS(1);
                         break;
                 }
                 break;
@@ -151,16 +161,16 @@ public class Piezas {
 
                 switch(posicionPieza){
                     case 0:
-                        matriz = T_Piece.pos0;
+                        matriz = getPosicionT(0);
                         break;
                     case 1:
-                        matriz = T_Piece.pos1;
+                        matriz = getPosicionT(1);
                         break;
                     case 2:
-                        matriz = T_Piece.pos2;
+                        matriz = getPosicionT(2);
                         break;
                     case 3:
-                        matriz = T_Piece.pos3;
+                        matriz = getPosicionT(3);
                         break;
                 }
                 break;
@@ -177,104 +187,5 @@ public class Piezas {
 
      */
 
-    public static class I_Piece{
-        public static int [] [] pos0 = {{7,7,7,7},
-                {0,0,0,0},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos1 = {{7,0,7,7},
-                {7,0,7,7},
-                {7,0,7,7},
-                {7,0,7,7}};
-
-    }
-    public static class J_Piece{
-        public static int [] [] pos0 = {{7,1,7,7},
-                {7,1,1,1},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos1 = {{7,1,1,7},
-                {7,1,7,7},
-                {7,1,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos2 = {{1,1,1,7},
-                {7,7,1,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos3 = {{7,7,1,7},
-                {7,7,1,7},
-                {7,1,1,7},
-                {7,7,7,7}};
-
-    }
-    public static class Z_Piece{
-        public static int [] [] pos0 = {{7,2,2,7},
-                {7,7,2,2},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos1 = {{7,7,2,7},
-                {7,2,2,7},
-                {7,2,7,7},
-                {7,7,7,7}};
-
-    }
-    public static class L_Piece{
-        public static int [] [] pos0 = {{7,7,3,7},
-                {3,3,3,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos1 = {{7,3,7,7},
-                {7,3,7,7},
-                {7,3,3,7},
-                {7,7,7,7}};
-        public static int [] [] pos2 = {{7,3,3,3},
-                {7,3,7,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos3 = {{7,3,3,7},
-                {7,7,3,7},
-                {7,7,3,7},
-                {7,7,7,7}};
-
-    }
-    public static class S_Piece{
-        public static int [] [] pos0 = {{7,4,4,7},
-                {4,4,7,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos1 = {{7,4,7,7},
-                {7,4,4,7},
-                {7,7,4,7},
-                {7,7,7,7}};
-
-
-    }
-    public class O_Piece{
-        public int [] [] posx = {{7,5,5,7},
-                {7,5,5,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-
-
-    }
-    public static class T_Piece{
-        public static int [] [] pos0 = {{7,7,6,7},
-                {7,6,6,6},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static  int [] [] pos1 = {{7,6,7,7},
-                {7,6,6,7},
-                {7,6,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos2 = {{7,6,6,6},
-                {7,7,6,7},
-                {7,7,7,7},
-                {7,7,7,7}};
-        public static int [] [] pos3 = {{7,7,6,7},
-                {7,6,6,7},
-                {7,7,6,7},
-                {7,7,7,7}};
-
-    }
 
 }
