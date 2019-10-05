@@ -11,9 +11,9 @@ public class Tablero{
 
     private final int alturaTablero =20;
     private final int anchuraTablero=10;
-    private int tablero[][]=new int[alturaTablero][anchuraTablero];
+    public int tab[][]=new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
-    private ArrayList<Piezas> listaPiezas = new ArrayList<Piezas>();
+    public ArrayList<Piezas> listaPiezas = new ArrayList<Piezas>();
     private  final int numeroPiezas = 7;
 
 
@@ -21,29 +21,54 @@ public class Tablero{
     //genera dos Piezas random (1.actual, 2.siguiente)
 
     public Tablero() {
-        listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
+        this.limpiarTablero();
+        generarPieza();
+        generarPieza();
+    }
+    public void  generarPieza (){
         listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
     }
 
+    public void borrarPieza(){
+        listaPiezas.remove(0);
+    }
      //transforma numeros de matriz a color
 
     public int parseaColor(int x, int y) {
-        if(tablero[x][y]==0)  Color.parseColor("#00FFFF"); ; // I piece Cyan
-        if(tablero[x][y]==1)  Color.parseColor("#0000FF"); ; // J piece Blue
-        if(tablero[x][y]==2)  Color.parseColor("#FF0000"); ; // Z piece Red
-        if(tablero[x][y]==3)  Color.parseColor("#ffbf00"); ; // L piece Orange
-        if(tablero[x][y]==4)  Color.parseColor("#00FF00"); ; // S Green
-        if(tablero[x][y]==5)  Color.parseColor("#FFFF00"); ; // cuadrado yellow
-        if(tablero[x][y]==6)  Color.parseColor("#572364"); ; //  T piece Morado
-        if(tablero[x][y]==7)  Color.parseColor("#BEBEBE");  // gris fondo
+        if(tab[x][y]==0)  Color.parseColor("#00FFFF"); ; // I piece Cyan
+        if(tab[x][y]==1)  Color.parseColor("#0000FF"); ; // J piece Blue
+        if(tab[x][y]==2)  Color.parseColor("#FF0000"); ; // Z piece Red
+        if(tab[x][y]==3)  Color.parseColor("#ffbf00"); ; // L piece Orange
+        if(tab[x][y]==4)  Color.parseColor("#00FF00"); ; // S Green
+        if(tab[x][y]==5)  Color.parseColor("#FFFF00"); ; // cuadrado yellow
+        if(tab[x][y]==6)  Color.parseColor("#572364"); ; //  T piece Morado
+        if(tab[x][y]==7)  Color.parseColor("#BEBEBE");  // gris fondo
         return -1;
+    }
+    public void bajarFila (Tablero T, int y){
+        int x;
+        int filaVacio=0;
+        boolean vacio = false;
+        while ((y != 20)&&(!vacio)){
+            for (x=0;x<10;x++) {
+                T.tab[x][y] = T.tab [x][y+1];
+                if (T.tab[x][y+1] == 7){
+                    filaVacio ++;
+                }
+            }
+            y++;
+            if(filaVacio == 10){
+                vacio = true;
+            }
+            filaVacio =0;
+        }
     }
 
     //todas las posiciones a 7
     public void limpiarTablero() {
         for(int i=0; i<alturaTablero; i++) {
             for(int j=0; j<anchuraTablero; j++) {
-                tablero[i][j]= 7;
+                tab[i][j]= 7;
             }
         }
     }
@@ -112,7 +137,7 @@ public class Tablero{
             }
             else{
                 Coordenada aux = l.get(posyahellegado);
-                if((aux.getValX()==0)||(this.tablero[aux.getValX()-1][aux.getValY()]!=7)){
+                if((aux.getValX()==0)||(this.tab[aux.getValX()-1][aux.getValY()]!=7)){
                     return false;
                 }
                 else{
@@ -134,7 +159,7 @@ public class Tablero{
             }
             else{
                 Coordenada aux = l.get(posyahellegado);
-                if((aux.getValX()==10)||(this.tablero[aux.getValX()+1][aux.getValY()]!=7)){
+                if((aux.getValX()==10)||(this.tab[aux.getValX()+1][aux.getValY()]!=7)){
                     return false;
                 }
                 else{
@@ -145,7 +170,7 @@ public class Tablero{
     }
 
     //comprueba movimiento hacia abajo
-    private  boolean compruebaAbajo(Piezas piezasActual) {
+    public  boolean compruebaAbajo(Piezas piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
@@ -156,7 +181,7 @@ public class Tablero{
             }
             else{
                 Coordenada aux = l.get(posyahellegado);
-                if((aux.getValY()==0)||(this.tablero[aux.getValX()][aux.getValY()-1]!=7)){
+                if((aux.getValY()==0)||(this.tab[aux.getValX()][aux.getValY()-1]!=7)){
                     return false;
                 }
                 else{
