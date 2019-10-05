@@ -22,7 +22,7 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos;
     private MainActivity mainActivity;
     private Tablero tablero;
-    private ArrayList<Piezas> listaPiezas;
+    private ArrayList<PiezasAll> listaPiezas;
     private Random random = new Random();
     private int nivel=0;
 
@@ -55,7 +55,7 @@ public class Juego extends View implements View.OnClickListener {
             int deletedRows = tablero.clearRows();
             tablero.clearRows();
             listaPiezas.remove(tablero.getPieces());
-            listaPiezas.add(new Piezas(random.nextInt(7) + 1));
+            listaPiezas.add(new PiezasAll(random.nextInt(7) + 1));
 
             if (deletedRows > 0) {
                 puntos = (puntos + deletedRows * 30);

@@ -13,7 +13,7 @@ public class Tablero{
     private final int anchuraTablero=10;
     private int tablero[][]=new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
-    private ArrayList<Piezas> listaPiezas = new ArrayList<Piezas>();
+    private ArrayList<PiezasAll> listaPiezas = new ArrayList<PiezasAll>();
     private  final int numeroPiezas = 7;
 
 
@@ -21,8 +21,8 @@ public class Tablero{
     //genera dos Piezas random (1.actual, 2.siguiente)
 
     public Tablero() {
-        listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
-        listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new PiezasAll(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new PiezasAll(random.nextInt(numeroPiezas)+1));
     }
 
      //transforma numeros de matriz a color
@@ -48,23 +48,23 @@ public class Tablero{
         }
     }
 
-    public  ArrayList<Piezas> getListaPiezas(){
+    public  ArrayList<PiezasAll> getListaPiezas(){
         return listaPiezas;
     }
 
     //coge la Piezas actual
-    public Piezas getPieza()  {
+    public PiezasAll getPieza()  {
         return listaPiezas.get(listaPiezas.size() - 2);
     }
 
     //coge siguiente Piezas
-    public Piezas getSiguientePieza() {
+    public PiezasAll getSiguientePieza() {
         return listaPiezas.get(listaPiezas.size()-1);
     }
 
     //crear en clase Piezas atributo entero colorCode
 
-    private void colocaPieza(Piezas piezasActual) {
+    private void colocaPieza(PiezasAll piezasActual) {
         //tablero[piezasActual.x1][piezasActual.y1] = piezasActual.identificador;
         //tablero[piezasActual.x2][piezasActual.y2] = piezasActual.identificador;
         //tablero[piezasActual.x3][piezasActual.y3] = piezasActual.identificador;
@@ -78,7 +78,7 @@ public class Tablero{
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
-    private void moverPiezas(Piezas piezasActual, char x ){
+    private void moverPiezas(PiezasAll piezasActual, char x ){
         switch (x){
             case 'i':
                 if (compruebaIzq(piezasActual)){
@@ -101,7 +101,7 @@ public class Tablero{
 
 
     //comprueba movimiento a la izq
-    private  boolean compruebaIzq(Piezas piezasActual) {
+    private  boolean compruebaIzq(PiezasAll piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
@@ -123,7 +123,7 @@ public class Tablero{
     }
 
     //comprueba movimiento a la dcha
-    private  boolean compruebaDcha(Piezas piezasActual) {
+    private  boolean compruebaDcha(PiezasAll piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
@@ -145,7 +145,7 @@ public class Tablero{
     }
 
     //comprueba movimiento hacia abajo
-    private  boolean compruebaAbajo(Piezas piezasActual) {
+    private  boolean compruebaAbajo(PiezasAll piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;

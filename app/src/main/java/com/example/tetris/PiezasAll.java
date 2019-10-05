@@ -7,17 +7,17 @@ import static com.example.tetris.PiezaI.getPosicionI;
 import static com.example.tetris.PiezaJ.getPosicionJ;
 import static com.example.tetris.PiezaZ.getPosicionZ;
 import static com.example.tetris.PiezaL.getPosicionL;
-import static com.example.tetris.PiezaSS.getPosicionS;
+import static com.example.tetris.PiezaS.getPosicionS;
 import static com.example.tetris.PiezaO.getPosicionO;
 import static com.example.tetris.PiezaT.getPosicionT;
 
-public class Piezas {
+public class PiezasAll {
 
     protected int [][] matriz = new int [4][4];
     protected int identificador = 7 ;
     protected Coordenada coor = new Coordenada(0,0);
 
-    public ArrayList<Coordenada> ObtenerPosiciones(Piezas p){
+    public ArrayList<Coordenada> ObtenerPosiciones(PiezasAll p){
         ArrayList<Coordenada> l = new ArrayList<>();
         for (int y=0;y<4;y++){
             for (int x=0;x <4;x++){
@@ -30,7 +30,7 @@ public class Piezas {
         return l;
     }
 
-    public Piezas(int identificador) {
+    public PiezasAll(int identificador) {
         this.identificador = identificador;
         switch (identificador) {
             case 0:
@@ -57,7 +57,7 @@ public class Piezas {
         }
     }
 
-    public Piezas() {
+    public PiezasAll() {
 
     }
 
