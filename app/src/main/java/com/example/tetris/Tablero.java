@@ -18,7 +18,7 @@ public class Tablero{
 
 
 
-    //genera dos Piecess random (1.actual, 2.siguiente)
+    //genera dos Piezas random (1.actual, 2.siguiente)
 
     public Tablero() {
         listaPiezas.add(new Piezas(random.nextInt(numeroPiezas)+1));
@@ -47,17 +47,17 @@ public class Tablero{
         }
     }
 
-    public  ArrayList<Piezas> getListaPiecesses(){
+    public  ArrayList<Piezas> getListaPiezas(){
         return listaPiezas;
     }
 
     //coge la Piezas actual
-    public Piezas getPieces()  {
+    public Piezas getPieza()  {
         return listaPiezas.get(listaPiezas.size() - 2);
     }
 
     //coge siguiente Piezas
-    public Piezas getSiguientePieces() {
+    public Piezas getSiguientePieza() {
         return listaPiezas.get(listaPiezas.size()-1);
     }
 
@@ -82,7 +82,7 @@ public class Tablero{
     //comprueba si la Piezas puede moverse,
     // copia la Piezas y la mueve, devuelve true si puede moverse
 
-    private boolean checkMoverPieza(Piezas piezasActual, int x, int y) {
+    private boolean compruebaMovimientoPieza(Piezas piezasActual, int x, int y) {
         int tmp =0;
         /*
         copia las coordenadas
@@ -169,24 +169,24 @@ public class Tablero{
     */
 
     //comprueba movimiento a la izq
-    private  boolean checkIzq(Piezas piezasActual) {
-        if(pieza_Can_Move(piezasActual, 0, -1)==true) {
+    private  boolean compruebaIzq(Piezas piezasActual) {
+        if(pieza_Puede_Moverse(piezasActual, 0, -1)==true) {
             return true;
         }
         return false;
     }
 
     //comprueba movimiento a la dcha
-    private boolean checkDcha(Piezas piezasActual){
-        if(pieza_Can_Move(piezasActual, 0,1) == true) {
+    private boolean compruebaDcha(Piezas piezasActual){
+        if(pieza_Puede_Moverse(piezasActual, 0,1) == true) {
             return true;
         }
         return false;
     }
 
     //comprueba movimiento hacia abajo
-    public boolean checkAbajo(Piezas piezasActual) {
-        if(pieza_Can_Move(piezasActual, 1,0)==true) {
+    public boolean compruebaAbajo(Piezas piezasActual) {
+        if(pieza_Puede_Moverse(piezasActual, 1,0)==true) {
             return true;
         }
         return false;
@@ -201,42 +201,42 @@ public class Tablero{
     }
 
     public void moverDcha(Piezas piezasActual){
-        if(can_Move_Right(piezasActual)==true) {
+        if(puede_Moverse_Dcha(piezasActual)==true) {
             moverPieza(piezasActual, 0, 1);
         }
     }
 
     public  void moverIzq(Piezas piezasActual){
-        if(can_Move_Left(piezasActual)==true) {
+        if(puede_Moverse_Izq(piezasActual)==true) {
             moverPieza(piezasActual, 0, -1);
         }
     }
 
     public  void moverAbajo(Piezas piezasActual) {
-        if(can_Move_Down(piezasActual)==true) {
+        if(puede_Moverse_Abj(piezasActual)==true) {
             moverPieza(piezasActual, 1, 0);
         }
     }
 
     //borra la Piezas y la coloca los mas abajo que pueda
-        public void fastDrop(Piezas piezasActual) {
+        public void caidaRapida(Piezas piezasActual) {
         borraPieza(piezasActual);
 
-        while(can_Move_Down(piezasActual)==true) {
+        while(puede_Moverse_Abajo(piezasActual)==true) {
             moverAbajo(piezasActual);
         }
         colocaPieza(piezasActual);
     }
 
        /*
-   gira todas las Piecess menos el cuadrado(colorCode=1
+   gira todas las Piezas menos el cuadrado(colorCode=1
      */
 
     public void rotarPieza(Piezas piezasActual) {
 
-        if(pieza_Can_Rotate(piezasActual)==true && piezasActual.colorCode!=1) {
+        if(pieza_Puede_Rotar(piezasActual)==true && piezasActual.colorCode!=1) {
             borraPieza(piezasActual);
-            piezasActual.turnPieza();
+            piezasActual.girarPieza();
             colocaPieza(piezasActual);
         }
         colocaPieza(piezasActual);
@@ -244,8 +244,8 @@ public class Tablero{
 
     public int clearRows() {
 
-        int deletedRowIndex;
-        int deletedRows=0;
+        int borrarFilaIndice;
+        int borrarFilas=0;
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
         for (int i = 0; i < alturaTablero; i++) {
@@ -255,15 +255,15 @@ public class Tablero{
                     break;
                 }
                 if (j == 0) {
-                    deletedRowIndex = i;
-                    arrayList.add(deletedRowIndex);
-                    deletedRows++;
-                    deleteRow(deletedRowIndex);
+                    borrarFilaIndice = i;
+                    arrayList.add(borrarFilaIndice);
+                    borrarFilas++;
+                    borrarFila(borrarFilaIndice);
                 }
             }
         }
 
-        if (deletedRows >= 1) {
+        if (borrarFilas >= 1) {
             int highestRow = Collections.min(arrayList); // highest Row which can be cleared
             int[][] copiaTablero = new int[highestRow][anchuraTablero];
 
@@ -274,11 +274,11 @@ public class Tablero{
             }
             for (int i = 0; i < copiaTablero.length; i++) {
                 for (int j = 0; j < copiaTablero[1].length; j++) {
-                    tablero[i+deletedRows][j] = copiaTablero[i][j];
+                    tablero[i+borrarFilas][j] = copiaTablero[i][j];
                 }
             }
         }
-        return deletedRows;
+        return borrarFilas;
     }
 
     public void borraFila(int r){
@@ -288,7 +288,7 @@ public class Tablero{
     }
 
     public boolean compruebaFinJuego(Piezas spielStein) {
-        if(can_Move_Down(spielStein) == false && spielStein.getMinXCoordinate(
+        if(puede_Moverse_Abajo(spielStein) == false && spielStein.getMinXCoordinate(
                 spielStein.x1, spielStein.x2, spielStein.x3, spielStein.x4)<=1) {
             return true;
         }
