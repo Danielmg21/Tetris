@@ -27,7 +27,7 @@ public class Tablero{
 
      //transforma numeros de matriz a color
 
-    public void parseaColor(int x, int y) {
+    public int parseaColor(int x, int y) {
         if(tablero[x][y]==0)  Color.parseColor("#00FFFF"); ; // I piece Cyan
         if(tablero[x][y]==1)  Color.parseColor("#0000FF"); ; // J piece Blue
         if(tablero[x][y]==2)  Color.parseColor("#FF0000"); ; // Z piece Red
@@ -36,6 +36,7 @@ public class Tablero{
         if(tablero[x][y]==5)  Color.parseColor("#FFFF00"); ; // cuadrado yellow
         if(tablero[x][y]==6)  Color.parseColor("#572364"); ; //  T piece Morado
         if(tablero[x][y]==7)  Color.parseColor("#BEBEBE");  // gris fondo
+        return -1;
     }
 
     //todas las posiciones a 7

@@ -91,17 +91,24 @@
             android:layout_height="match_parent"
             android:layout_weight="0.7"
             android:background="#423F3F">
+            <RelativeLayout
+                android:id="@+id/ventanaSig"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimaryDark"
+
+                ></RelativeLayout>
 
             <TextView
                 android:id="@+id/puntosText"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/ventanaSig"
                 android:textColor="#FFF"
                 android:textSize="15dp" />
 
@@ -112,6 +119,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/puntosText"
+                android:layout_below="@+id/ventanaSig"
                 android:text="Puntos:"
                 android:textColor="#FFF"
                 android:textSize="15dp" />
@@ -123,7 +131,7 @@
                 android:layout_below="@+id/puntosLabel"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="55dp"
                 android:layout_marginRight="50dp"
                 android:layout_toLeftOf="@+id/nivelText"
