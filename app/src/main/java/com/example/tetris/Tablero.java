@@ -105,11 +105,11 @@ public class Tablero{
     //comprueba si la Piezas puede moverse,
     // copia la Piezas y la mueve, devuelve true si puede moverse
 
-    private boolean compruebaMovimientoPieza(Piezas piezasActual, int x, int y) {
+    /*private boolean compruebaMovimientoPieza(Piezas piezasActual, int x, int y) {
         int tmp =0;
-        /*
+
         copia las coordenadas
-         */
+
         Point p1 = new Point(piezasActual.x1, piezasActual.y1);
         Point p2 = new Point(piezasActual.x2, piezasActual.y2);
         Point p3 = new Point(piezasActual.x3, piezasActual.y3);   //Piezas actual
@@ -143,7 +143,7 @@ public class Tablero{
             return true;
         }
         return false;
-    }
+    }*/
 
  /*
      copiar la Piezas actual y comprobar si puede rotar
@@ -190,10 +190,13 @@ public class Tablero{
         return false;
     }
     */
-
+    /*estas tres comprobaciones comprueban si no toca limites del tablero la pieza y si no toca
+    otras piezas, la unica excepcion es la que baja porque en el momento que choque ya no se podra
+    mover mas y ya se cambiara de pieza
+     */
     //comprueba movimiento a la izq
     private  boolean compruebaIzq(Piezas piezasActual) {
-        ArrayList<Coordenada> l = new ArrayList<>();
+        ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
         int posyahellegado=0;
@@ -215,7 +218,7 @@ public class Tablero{
 
     //comprueba movimiento a la dcha
     private  boolean compruebaDcha(Piezas piezasActual) {
-        ArrayList<Coordenada> l = new ArrayList<>();
+        ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
         int posyahellegado=0;
@@ -237,7 +240,7 @@ public class Tablero{
 
     //comprueba movimiento hacia abajo
     private  boolean compruebaAbajo(Piezas piezasActual) {
-        ArrayList<Coordenada> l = new ArrayList<>();
+        ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
         int posyahellegado=0;
@@ -247,7 +250,7 @@ public class Tablero{
             }
             else{
                 Coordenada aux = l.get(posyahellegado);
-                if((this.tablero[aux.getValX()][aux.getValY()-1]!=7)){
+                if((aux.getValY()==0)||(this.tablero[aux.getValX()][aux.getValY()-1]!=7)){
                     return false;
                 }
                 else{
@@ -265,23 +268,7 @@ public class Tablero{
         colocaPieza(piezasActual);
     }
 
-    public void moverDcha(Piezas piezasActual){
-        if(puede_Moverse_Dcha(piezasActual)==true) {
-            moverPieza(piezasActual, 0, 1);
-        }
-    }
 
-    public  void moverIzq(Piezas piezasActual){
-        if(puede_Moverse_Izq(piezasActual)==true) {
-            moverPieza(piezasActual, 0, -1);
-        }
-    }
-
-    public  void moverAbajo(Piezas piezasActual) {
-        if(puede_Moverse_Abj(piezasActual)==true) {
-            moverPieza(piezasActual, 1, 0);
-        }
-    }
 
     //borra la Piezas y la coloca los mas abajo que pueda
         public void caidaRapida(Piezas piezasActual) {
