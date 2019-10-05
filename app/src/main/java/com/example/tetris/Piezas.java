@@ -13,8 +13,22 @@ import static com.example.tetris.PiezaT.getPosicionT;
 
 public class Piezas {
 
-    public int [][] matriz = new int [4][4];
-    public int identificador = 7 ;
+    protected int [][] matriz = new int [4][4];
+    protected int identificador = 7 ;
+    protected Coordenada coor = new Coordenada(0,0);
+
+    public ArrayList<Coordenada> ObtenerPosiciones(Piezas p){
+        ArrayList<Coordenada> l = new ArrayList<>();
+        for (int y=0;y<4;y++){
+            for (int x=0;x <4;x++){
+                if (p.matriz[x][y]!= 7){
+                    Coordenada pepe = new Coordenada(x,y);
+                    l.add(pepe);
+                }
+            }
+        }
+        return l;
+    }
 
     public Piezas(int identificador) {
         this.identificador = identificador;
