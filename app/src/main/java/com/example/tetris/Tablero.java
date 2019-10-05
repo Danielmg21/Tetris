@@ -65,20 +65,42 @@ public class Tablero{
     //crear en clase Piezas atributo entero colorCode
 
     private void colocaPieza(Piezas piezasActual) {
-        tablero[piezasActual.x1][piezasActual.y1] = piezasActual.identificador;
-        tablero[piezasActual.x2][piezasActual.y2] = piezasActual.identificador;
-        tablero[piezasActual.x3][piezasActual.y3] = piezasActual.identificador;
-        tablero[piezasActual.x4][piezasActual.y4] = piezasActual.identificador;
+        //tablero[piezasActual.x1][piezasActual.y1] = piezasActual.identificador;
+        //tablero[piezasActual.x2][piezasActual.y2] = piezasActual.identificador;
+        //tablero[piezasActual.x3][piezasActual.y3] = piezasActual.identificador;
+        //tablero[piezasActual.x4][piezasActual.y4] = piezasActual.identificador;
+        piezasActual.coor.setValX(4);
+        piezasActual.coor.setValY(20);
+
+    }
+    /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char
+    que le pasen, para ello usamos comprueba y el tipo de movimiento y en comprueba hay que
+    comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
+    Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
+     */
+    private void moverPiezas(Piezas piezasActual, char x ){
+        switch (x){
+            case 'i':
+                if (compruebaIzq(piezasActual)){
+                    piezasActual.coor.setValX(piezasActual.coor.getValX()-1);
+                }
+                break;
+            case 'd':
+                if (compruebaDcha(piezasActual)){
+                    piezasActual.coor.setValX(piezasActual.coor.getValX()+1);
+                }
+                break;
+            case 'a':
+                if (compruebaAbajo(piezasActual)){
+                    piezasActual.coor.setValY(piezasActual.coor.getValY()-1);
+                }
+                break;
+        }
+
     }
 
-    //coordenadas Piezas = 0
-    private void borraPieza(Piezas piezasActual) {
-        tablero[piezasActual.x1][piezasActual.y1] = 7;
-        tablero[piezasActual.x2][piezasActual.y2] = 7;
-        tablero[piezasActual.x3][piezasActual.y3] = 7;
-        tablero[piezasActual.x4][piezasActual.y4] = 7;
-    }
-
+    //movimiento piezas mediante matriz auxiliar
+    //usar referencia de clase piezas para obtener movimiento de todas
 
     //comprueba si la Piezas puede moverse,
     // copia la Piezas y la mueve, devuelve true si puede moverse
