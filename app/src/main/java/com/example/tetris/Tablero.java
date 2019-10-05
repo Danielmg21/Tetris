@@ -203,7 +203,7 @@ public class Tablero{
             }
             else{
                 Coordenada aux = l.get(posyahellegado);
-                if((aux.getValX()==0)&&(this.tablero[aux.getValX()][aux.getValY()]!=7)){
+                if((aux.getValX()==0)||(this.tablero[aux.getValX()-1][aux.getValY()]!=7)){
                     return false;
                 }
                 else{
@@ -214,19 +214,47 @@ public class Tablero{
     }
 
     //comprueba movimiento a la dcha
-    private boolean compruebaDcha(Piezas piezasActual){
-        if(pieza_Puede_Moverse(piezasActual, 0,1) == true) {
-            return true;
-        }
-        return false;
+    private  boolean compruebaDcha(Piezas piezasActual) {
+        ArrayList<Coordenada> l = new ArrayList<>();
+        l = piezasActual.ObtenerPosiciones(piezasActual);
+        boolean problema = false;
+        int posyahellegado=0;
+        while (problema==false)  {
+            if (posyahellegado==4) {
+                return true;
+            }
+            else{
+                Coordenada aux = l.get(posyahellegado);
+                if((aux.getValX()==10)||(this.tablero[aux.getValX()+1][aux.getValY()]!=7)){
+                    return false;
+                }
+                else{
+                    posyahellegado++;
+                }
+            }
+        }return true;
     }
 
     //comprueba movimiento hacia abajo
-    public boolean compruebaAbajo(Piezas piezasActual) {
-        if(pieza_Puede_Moverse(piezasActual, 1,0)==true) {
-            return true;
-        }
-        return false;
+    private  boolean compruebaAbajo(Piezas piezasActual) {
+        ArrayList<Coordenada> l = new ArrayList<>();
+        l = piezasActual.ObtenerPosiciones(piezasActual);
+        boolean problema = false;
+        int posyahellegado=0;
+        while (problema==false)  {
+            if (posyahellegado==4) {
+                return true;
+            }
+            else{
+                Coordenada aux = l.get(posyahellegado);
+                if((this.tablero[aux.getValX()][aux.getValY()-1]!=7)){
+                    return false;
+                }
+                else{
+                    posyahellegado++;
+                }
+            }
+        }return true;
     }
 
     //realiza los movimientos
