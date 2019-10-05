@@ -16,9 +16,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
-    TextView puntos;
+    private TextView puntos;
+    private Tablero tablero=new Tablero();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         TextView puntos = (TextView) findViewById(R.id.puntosText);
         TextView nivel = (TextView) findViewById(R.id.nivelText);
 
-        Juego juego = new Juego(this);
+        Juego juego = new Juego(this,tablero);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
-        juego.setBackgroundColor(Color.YELLOW);
+        juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
     }
 
@@ -44,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton getBotonBajar() { return findViewById(R.id.botonBajar);}
     public ImageButton getBotonIzda() { return findViewById(R.id.botonIzda);}
     public ImageButton getBotonRotar() { return findViewById(R.id.botonRotar);}
-    public TextView getPuntos() { return findViewById(R.id.puntosText); }
+    public TextView getPuntos(){return findViewById(R.id.puntosText);
+    }
 
 
 }
