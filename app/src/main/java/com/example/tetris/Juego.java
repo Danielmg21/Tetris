@@ -50,20 +50,33 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void run() {
-
-        if (tablero.checkAbajo(tablero.getPieces()) == false) {
-            int deletedRows = tablero.clearRows();
-            tablero.clearRows();
-            listaPiezas.remove(tablero.getPieces());
-            listaPiezas.add(new PiezasAll(random.nextInt(7) + 1));
-
-            if (deletedRows > 0) {
-                puntos = (puntos + deletedRows * 30);
+        Tablero tablero = new Tablero();
+        do{
+            while 
+            tablero.borrarPieza();
+            tablero.generarPieza();
+            int x = 0;
+            int y = 0;
+            int filaVacio = 0;
+            boolean vacio = false;
+            while ((y != 20)&&(!vacio)){
+                while (x !=10){
+                    if (tablero.tab[x][y] == 7){
+                        filaVacio ++;
+                    }
+                }
+                if(filaVacio == 0){
+                    tablero.bajarFila(tablero,y);
+                }
+                else if(filaVacio == 10){
+                    vacio = true;
+                }
+                filaVacio = 0;
             }
+        }while (tablero.compruebaAbajo(tablero.getPieza()));
 
-            invalidate();
-        }
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -85,15 +98,19 @@ public class Juego extends View implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.botonDcha:
                 Toast.makeText(mainActivity, "Derecha", Toast.LENGTH_LONG).show();
+                char Derecha = 'd';
                 break;
             case R.id.botonBajar:
                 Toast.makeText(mainActivity, "Bajar", Toast.LENGTH_LONG).show();
+                char Abajo = 'a';
                 break;
             case R.id.botonIzda:
                 Toast.makeText(mainActivity, "Izquierda", Toast.LENGTH_LONG).show();
+                char Izquierda = 'i';
                 break;
             case R.id.botonRotar:
                 Toast.makeText(mainActivity, "Rotar", Toast.LENGTH_LONG).show();
+                char Rotar = 'r';
                 break;
         }
     }
