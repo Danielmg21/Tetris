@@ -35,14 +35,14 @@ public class Tablero{
      //transforma numeros de matriz a color
 
     public int parseaColor(int x, int y) {
-        if(tab[x][y]==0)  Color.parseColor("#00FFFF"); ; // I piece Cyan
-        if(tab[x][y]==1)  Color.parseColor("#0000FF"); ; // J piece Blue
-        if(tab[x][y]==2)  Color.parseColor("#FF0000"); ; // Z piece Red
-        if(tab[x][y]==3)  Color.parseColor("#ffbf00"); ; // L piece Orange
-        if(tab[x][y]==4)  Color.parseColor("#00FF00"); ; // S Green
-        if(tab[x][y]==5)  Color.parseColor("#FFFF00"); ; // cuadrado yellow
-        if(tab[x][y]==6)  Color.parseColor("#572364"); ; //  T piece Morado
-        if(tab[x][y]==7)  Color.parseColor("#BEBEBE");  // gris fondo
+        if(tab[x][y]==0) return Color.parseColor("#00FFFF"); ; // I piece Cyan
+        if(tab[x][y]==1) return Color.parseColor("#0000FF"); ; // J piece Blue
+        if(tab[x][y]==2) return  Color.parseColor("#FF0000"); ; // Z piece Red
+        if(tab[x][y]==3) return Color.parseColor("#ffbf00"); ; // L piece Orange
+        if(tab[x][y]==4) return Color.parseColor("#00FF00"); ; // S Green
+        if(tab[x][y]==5) return Color.parseColor("#FFFF00"); ; // cuadrado yellow
+        if(tab[x][y]==6) return Color.parseColor("#572364"); ; //  T piece Morado
+        if(tab[x][y]==7) return  Color.parseColor("#BEBEBE");  // gris fondo
         return -1;
     }
     public void bajarFila (Tablero T, int y){

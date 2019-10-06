@@ -46,13 +46,15 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        run();
+        run2();
+    }
+    public void run2(){
+        tablero.moverPiezas(tablero.getPieza(),'a');
     }
 
-    public void run() {
-        Tablero tablero = new Tablero();
+    public void run1() {
         do{
-            while 
+
             tablero.borrarPieza();
             tablero.generarPieza();
             int x = 0;
@@ -88,7 +90,7 @@ public class Juego extends View implements View.OnClickListener {
 
                 int color  = tablero.parseaColor(x,y);
                 pintar.setColor(color);
-                canvas.drawRect(y*30, x*30, y*30+30, x*30+30,pintar);
+                canvas.drawRect(y, x*90, y*90+90, x*90+90,pintar);
             }
         }
     }
@@ -97,16 +99,16 @@ public class Juego extends View implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.botonDcha:
-                Toast.makeText(mainActivity, "Derecha", Toast.LENGTH_LONG).show();
                 char Derecha = 'd';
+                tablero.moverPiezas(tablero.getPieza(),Derecha);
                 break;
             case R.id.botonBajar:
-                Toast.makeText(mainActivity, "Bajar", Toast.LENGTH_LONG).show();
                 char Abajo = 'a';
+                tablero.moverPiezas(tablero.getPieza(),Abajo);
                 break;
             case R.id.botonIzda:
-                Toast.makeText(mainActivity, "Izquierda", Toast.LENGTH_LONG).show();
                 char Izquierda = 'i';
+                tablero.moverPiezas(tablero.getPieza(),Izquierda);
                 break;
             case R.id.botonRotar:
                 Toast.makeText(mainActivity, "Rotar", Toast.LENGTH_LONG).show();
