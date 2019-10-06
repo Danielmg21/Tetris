@@ -24,7 +24,8 @@ public class Juego extends View implements View.OnClickListener {
     private Tablero tablero;
     private ArrayList<PiezasAll> listaPiezas;
     private Random random = new Random();
-    private int nivel=0;
+    private int nivel = 0;
+    private int puntos = 0;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -68,7 +69,7 @@ public class Juego extends View implements View.OnClickListener {
                 }
                 if(filaVacio == 0){
                     tablero.bajarFila(tablero,y);
-                    puntuacion = puntuacion + 100;
+                    setPuntos(100);
                 }
                 else if(filaVacio == 10){
                     vacio = true;
@@ -115,6 +116,9 @@ public class Juego extends View implements View.OnClickListener {
                 char Rotar = 'r';
                 break;
         }
+    }
+    public void setPuntos(int puntos){
+        this.puntos = this.puntos + puntos;
     }
 
 }
