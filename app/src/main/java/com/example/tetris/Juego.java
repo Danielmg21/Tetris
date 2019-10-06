@@ -183,7 +183,7 @@ public class Juego extends View implements View.OnClickListener {
                         pCuadrado.setColor(Color.parseColor("#BEBEBE"));
                         break;
                 }
-                canvas.drawRect((x*ancho/10),(y*alto/10),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
+                canvas.drawRect((x*ancho/10),(y*alto/20),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
             }
         }
     }
