@@ -24,7 +24,7 @@ public class Juego extends View implements View.OnClickListener {
     private ArrayList<PiezasAll> listaPiezas;
     private Random random = new Random();
     private int puntos = 0;
-    private int nivelvar = 0;
+    private int nivelvar = 1;
 
     public Juego(Context context, Tablero tablero) {
         super(context);

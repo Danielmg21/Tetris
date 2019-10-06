@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     private TextView puntosTextView, nivelTextView;
+    private Juego juego;
     private Tablero tablero = new Tablero();
 
     @Override
