@@ -19,13 +19,13 @@ public class Juego extends View implements View.OnClickListener {
 
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     TextView puntuacion;
-    private int puntos;
     private MainActivity mainActivity;
     private Tablero tablero;
     private ArrayList<PiezasAll> listaPiezas;
     private Random random = new Random();
     private int nivel = 0;
     private int puntos = 0;
+
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -58,7 +58,6 @@ public class Juego extends View implements View.OnClickListener {
             tablero.generarPieza();
             int x = 0;
             int y = 0;
-            int puntuacion = 0;
             int filaVacio = 0;
             boolean vacio = false;
             while ((y != 20)&&(!vacio)){
