@@ -94,6 +94,7 @@ public class Juego extends View implements View.OnClickListener {
 
                 int color  = tablero.parseaColor(x,y);
                 pintar.setColor(color);
+                pintar.setStyle(Paint.Style.FILL);
                 canvas.drawRect(y, x*90, y*90+90, x*90+90,pintar);
             }
         }
