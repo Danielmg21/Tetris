@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -99,6 +100,7 @@ public class Juego extends View implements View.OnClickListener {
 
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -113,8 +115,6 @@ public class Juego extends View implements View.OnClickListener {
         pBorde.setColor(Color.BLACK);
         pBorde.setStrokeWidth(2);
 
-        //Paint pCuadrado = new Paint();
-        //pCuadrado.setColor(Color.RED());
 
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
@@ -128,8 +128,6 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(8*ancho/10, 0, 8*ancho/10, alto, pBorde);
                 canvas.drawLine(9*ancho/10, 0, 9*ancho/10, alto, pBorde);
                 canvas.drawLine(10*ancho/10, 0, 10*ancho/10, alto, pBorde);*/
-
-                //canvas.drawRect((x*ancho/10),(y*alto/10),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
 
                 canvas.drawLine(0, (y+1)*alto/20, ancho, (y+1)*alto/20, pBorde);
                 /*canvas.drawLine(0, 2*alto/20, ancho, 2*alto/20, pBorde);
@@ -146,6 +144,11 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawRect(0, 0, ancho, alto, pBorde);
             }
        }
+    }
+    public void pintarPieza(Canvas canvas){
+        PiezasAll p = tablero.getPieza();
+        ArrayList<Coordenada> coor = p.obtenerPosiciones(p);
+
     }
     @Override
     public void onClick(View v) {

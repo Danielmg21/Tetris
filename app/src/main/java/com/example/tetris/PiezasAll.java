@@ -21,7 +21,7 @@ public class PiezasAll {
     protected Coordenada coor = new Coordenada(0,0);
     protected int rotacion;
 
-    public ArrayList<Coordenada> ObtenerPosiciones(PiezasAll p){
+    public ArrayList<Coordenada> obtenerPosiciones(PiezasAll p){
         ArrayList<Coordenada> l = new ArrayList<>();
         for (int y=0;y<4;y++){
             for (int x=0;x <4;x++){
