@@ -34,7 +34,7 @@
                 android:layout_below="@+id/layoutTablero"
                 android:layout_marginTop="-160dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000000" />
+                android:background="#423F3F" />
 
             <RelativeLayout
                 android:id="@+id/layoutTablero"
