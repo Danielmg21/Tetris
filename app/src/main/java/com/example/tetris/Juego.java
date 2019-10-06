@@ -113,6 +113,9 @@ public class Juego extends View implements View.OnClickListener {
         pBorde.setColor(Color.BLACK);
         pBorde.setStrokeWidth(2);
 
+        //Paint pCuadrado = new Paint();
+        //pCuadrado.setColor(Color.RED());
+
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
                 canvas.drawLine((x+1)*ancho/10, 0, (x+1)*ancho/10, alto, pBorde);
@@ -125,6 +128,8 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(8*ancho/10, 0, 8*ancho/10, alto, pBorde);
                 canvas.drawLine(9*ancho/10, 0, 9*ancho/10, alto, pBorde);
                 canvas.drawLine(10*ancho/10, 0, 10*ancho/10, alto, pBorde);*/
+
+                //canvas.drawRect((x*ancho/10),(y*alto/10),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
 
                 canvas.drawLine(0, (y+1)*alto/20, ancho, (y+1)*alto/20, pBorde);
                 /*canvas.drawLine(0, 2*alto/20, ancho, 2*alto/20, pBorde);
