@@ -26,16 +26,24 @@
             android:layout_weight="0.3"
             android:textAlignment="center">
 
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_above="@+id/botonRotar"
+                android:layout_below="@+id/layoutTablero"
+                android:layout_marginTop="-160dp"
+                android:layout_marginBottom="10dp"
+                android:background="#000000" />
+
             <RelativeLayout
                 android:id="@+id/layoutTablero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/botonRotar"
-                android:layout_marginBottom="20dp">
-
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="160dp">
 
             </RelativeLayout>
-
 
             <ImageButton
                 android:id="@+id/botonDcha"
@@ -187,6 +195,7 @@
                 android:layout_marginRight="13dp"
                 android:textColor="#FFF"
                 android:textSize="15sp" />
+
         </RelativeLayout>
     </LinearLayout>
 
