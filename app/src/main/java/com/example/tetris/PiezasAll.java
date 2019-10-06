@@ -16,6 +16,7 @@ public class PiezasAll {
     protected int [][] matriz = new int [4][4];
     protected int identificador = 7 ;
     protected Coordenada coor = new Coordenada(0,0);
+    protected int rotacion;
 
     public ArrayList<Coordenada> ObtenerPosiciones(PiezasAll p){
         ArrayList<Coordenada> l = new ArrayList<>();
@@ -32,6 +33,7 @@ public class PiezasAll {
 
     public PiezasAll(int identificador) {
         this.identificador = identificador;
+        this.rotacion=0;
         switch (identificador) {
             case 0:
                 this.matriz = getPosicionI(0);
@@ -61,9 +63,8 @@ public class PiezasAll {
 
     }
 
-    public void Girar (int [][] m, int id, int [] l){
+    public void Girar (int [][] m, int id, int posicionPieza){
         int val = id;
-        int posicionPieza = l[val];
         switch (val) {
             case 0://pieza en forma de I
                 if (posicionPieza==1) {

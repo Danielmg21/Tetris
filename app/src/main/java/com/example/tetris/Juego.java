@@ -48,26 +48,26 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        run2();
+        run1();
     }
-    public void run2(){
+    /*public void run2(){
         tablero.moverPiezas(tablero.getPieza(),'a');
-    }
+    }*/
 
     public void run1() {
         do{
             Tablero tablero = new Tablero();
-            tablero.borrarPieza();
-            tablero.generarPieza();
             int x = 0;
             int y = 0;
             int filaVacio = 0;
             boolean vacio = false;
-            while ((y != 20)&&(!vacio)){
-                while (x !=10){
+            while ((y < 20)&&(!vacio)){
+                while (x < 10){
                     if (tablero.tab[x][y] == 7){
                         filaVacio ++;
+
                     }
+                    x++;
                 }
                 if(filaVacio == 0){
                     tablero.bajarFila(tablero,y);
@@ -78,7 +78,10 @@ public class Juego extends View implements View.OnClickListener {
                     vacio = true;
                 }
                 filaVacio = 0;
+                y++;
             }
+            tablero.borrarPieza();
+            tablero.generarPieza();
         }while (tablero.compruebaAbajo(tablero.getPieza()));
 
     }
@@ -115,7 +118,7 @@ public class Juego extends View implements View.OnClickListener {
                 tablero.moverPiezas(tablero.getPieza(),Izquierda);
                 break;
             case R.id.botonRotar:
-                Toast.makeText(mainActivity, "Rotar", Toast.LENGTH_LONG).show();
+                tablero.getPieza().Girar(tablero.getPieza().matriz,tablero.getPieza().identificador,tablero.getPieza().rotacion);
                 char Rotar = 'r';
                 break;
         }
