@@ -20,7 +20,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
-    private TextView puntos;
+    private TextView puntosTextView, nivelTextView;
+    private Juego juego;
     private Tablero tablero = new Tablero();
 
     @Override
@@ -28,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton botonDcha = (ImageButton) findViewById(R.id.botonDcha);
-        ImageButton botonIzda = (ImageButton) findViewById(R.id.botonIzda);
-        ImageButton botonBajar = (ImageButton) findViewById(R.id.botonBajar);
-        ImageButton botonRotar =(ImageButton) findViewById(R.id.botonRotar);
-        TextView puntos = (TextView) findViewById(R.id.puntosText);
-        TextView nivel = (TextView) findViewById(R.id.nivelText);
+        botonDcha = (ImageButton) findViewById(R.id.botonDcha);
+        botonIzda = (ImageButton) findViewById(R.id.botonIzda);
+        botonBajar = (ImageButton) findViewById(R.id.botonBajar);
+        botonRotar =(ImageButton) findViewById(R.id.botonRotar);
+        puntosTextView = (TextView) findViewById(R.id.puntosText);
+        nivelTextView = (TextView) findViewById(R.id.nivelText);
 
         Juego juego = new Juego(this,tablero);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -47,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton getBotonBajar() { return findViewById(R.id.botonBajar);}
     public ImageButton getBotonIzda() { return findViewById(R.id.botonIzda);}
     public ImageButton getBotonRotar() { return findViewById(R.id.botonRotar);}
-    public TextView getPuntos(){return findViewById(R.id.puntosText);
-    }
-
-
+    public TextView getPuntos(){return puntosTextView;}
+    public TextView getNivel() {return nivelTextView;}
 }
