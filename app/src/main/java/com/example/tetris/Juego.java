@@ -12,6 +12,8 @@ import android.widget.Toast;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static java.lang.Integer.parseInt;
 
@@ -53,6 +55,17 @@ public class Juego extends View implements View.OnClickListener {
     /*public void run2(){
         tablero.moverPiezas(tablero.getPieza(),'a');
     }*/
+    Timer timer = new Timer();
+    TimerTask bajar = new TimerTask() {
+        @Override
+        public void run() {
+            if(tablero.compruebaAbajo(tablero.getPieza())){
+                tablero.moverPiezas(tablero.getPieza(),'a');
+            }else{
+                timer.cancel();
+            }
+        }
+    };
 
     public void run1() {
         do{
@@ -65,7 +78,7 @@ public class Juego extends View implements View.OnClickListener {
                 while (x < 10){
                     if (tablero.tab[x][y] == 7){
                         filaVacio ++;
-
+                        timer.schedule(bajar,0,1000);
                     }
                     x++;
                 }
