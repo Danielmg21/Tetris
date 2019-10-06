@@ -54,6 +54,7 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        run1();
     }
 
     /*public void run2(){
@@ -98,7 +99,7 @@ public class Juego extends View implements View.OnClickListener {
             }
             tablero.borrarPieza();
             tablero.generarPieza();
-            pintarPieza(canvas);
+            pintarTablero(canvas);
         }while (tablero.compruebaAbajo(tablero.getPieza()));
 
     }
@@ -149,7 +150,7 @@ public class Juego extends View implements View.OnClickListener {
         Paint pintar = new Paint();
 
     }
-    public void pintarPieza(Canvas canvas){
+    public void pintarTablero(Canvas canvas){
         int alto = getMeasuredHeight();
         int ancho = getMeasuredWidth();
         Paint pCuadrado = new Paint();
