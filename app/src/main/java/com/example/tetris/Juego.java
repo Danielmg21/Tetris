@@ -30,6 +30,7 @@ public class Juego extends View implements View.OnClickListener {
     private Random random = new Random();
     private int puntos = 0;
     private int nivelvar = 1;
+    private Canvas canvas;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -143,12 +144,10 @@ public class Juego extends View implements View.OnClickListener {
         canvas.drawLine(0, 10*alto/20, ancho, 10*alto/20, pBorde);*/
             }
         }
-                //Marco
-                canvas.drawRect(0, 0, ancho, alto, pBorde);
-                Paint pintar = new Paint();
+        //Marco
+        canvas.drawRect(0, 0, ancho, alto, pBorde);
+        Paint pintar = new Paint();
 
-            }
-       }
     }
     public void pintarPieza(Canvas canvas){
         int alto = getMeasuredHeight();
@@ -187,10 +186,7 @@ public class Juego extends View implements View.OnClickListener {
             }
         }
     }
-    @Override
-    public void onClick(View v) {
 
-            }
             @Override
             public void onClick (View v){
 
