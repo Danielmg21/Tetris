@@ -159,7 +159,7 @@ public class Juego extends View implements View.OnClickListener {
                 tablero.moverPiezas(tablero.getPieza(),Izquierda);
                 break;
             case R.id.botonRotar:
-                tablero.getPieza().Girar(tablero.getPieza().matriz,tablero.getPieza().identificador,tablero.getPieza().rotacion);
+                tablero.getPieza().Girar(tablero.getPieza());
                 char Rotar = 'r';
                 break;
         }
