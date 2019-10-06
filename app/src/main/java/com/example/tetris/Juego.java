@@ -147,7 +147,7 @@ public class Juego extends View implements View.OnClickListener {
     }
     public void pintarPieza(Canvas canvas){
         PiezasAll p = tablero.getPieza();
-        ArrayList<Coordenada> coor = p.obtenerPosiciones(p);
+        ArrayList<Coordenada> coor = p.ObtenerPosiciones(p);
 
     }
     @Override
