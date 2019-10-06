@@ -1,6 +1,6 @@
 package com.example.tetris;
 
-public class PiezaSS extends Piezas {
+public class PiezaS extends PiezasAll {
     public static int [] [] pos0 = {{7,4,4,7},
             {4,4,7,7},
             {7,7,7,7},
@@ -9,7 +9,7 @@ public class PiezaSS extends Piezas {
             {7,4,4,7},
             {7,7,4,7},
             {7,7,7,7}};
-    public PiezaSS (int identificador, int posicion){
+    public PiezaS(int identificador, int posicion){
         super(identificador);
         setPosicionS(posicion);
     }

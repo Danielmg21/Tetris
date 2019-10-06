@@ -7,17 +7,33 @@ import static com.example.tetris.PiezaI.getPosicionI;
 import static com.example.tetris.PiezaJ.getPosicionJ;
 import static com.example.tetris.PiezaZ.getPosicionZ;
 import static com.example.tetris.PiezaL.getPosicionL;
-import static com.example.tetris.PiezaSS.getPosicionS;
+import static com.example.tetris.PiezaS.getPosicionS;
 import static com.example.tetris.PiezaO.getPosicionO;
 import static com.example.tetris.PiezaT.getPosicionT;
 
-public class Piezas {
+public class PiezasAll {
 
-    public int [][] matriz = new int [4][4];
-    public int identificador = 7 ;
+    protected int [][] matriz = new int [4][4];
+    protected int identificador = 7 ;
+    protected Coordenada coor = new Coordenada(0,0);
+    protected int rotacion;
 
-    public Piezas(int identificador) {
+    public ArrayList<Coordenada> ObtenerPosiciones(PiezasAll p){
+        ArrayList<Coordenada> l = new ArrayList<>();
+        for (int y=0;y<4;y++){
+            for (int x=0;x <4;x++){
+                if (p.matriz[x][y]!= 7){
+                    Coordenada pepe = new Coordenada(x,y);
+                    l.add(pepe);
+                }
+            }
+        }
+        return l;
+    }
+
+    public PiezasAll(int identificador) {
         this.identificador = identificador;
+        this.rotacion=0;
         switch (identificador) {
             case 0:
                 this.matriz = getPosicionI(0);
@@ -43,13 +59,12 @@ public class Piezas {
         }
     }
 
-    public Piezas() {
+    public PiezasAll() {
 
     }
 
-    public void Girar (int [][] m, int id, int [] l){
+    public void Girar (int [][] m, int id, int posicionPieza){
         int val = id;
-        int posicionPieza = l[val];
         switch (val) {
             case 0://pieza en forma de I
                 if (posicionPieza==1) {
