@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     private TextView puntos;
-    private Tablero tablero=new Tablero();
+    private Tablero tablero = new Tablero();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

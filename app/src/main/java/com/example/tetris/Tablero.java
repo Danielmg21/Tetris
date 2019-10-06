@@ -79,7 +79,7 @@ public class Tablero{
 
     //coge la Piezas actual
     public PiezasAll getPieza()  {
-        return listaPiezas.get(listaPiezas.size() - 2);
+        return listaPiezas.get(0);
     }
 
     //coge siguiente Piezas
@@ -90,10 +90,6 @@ public class Tablero{
     //crear en clase Piezas atributo entero colorCode
 
     private void colocaPieza(PiezasAll piezasActual) {
-        //tablero[piezasActual.x1][piezasActual.y1] = piezasActual.identificador;
-        //tablero[piezasActual.x2][piezasActual.y2] = piezasActual.identificador;
-        //tablero[piezasActual.x3][piezasActual.y3] = piezasActual.identificador;
-        //tablero[piezasActual.x4][piezasActual.y4] = piezasActual.identificador;
         piezasActual.coor.setValX(4);
         piezasActual.coor.setValY(20);
 
