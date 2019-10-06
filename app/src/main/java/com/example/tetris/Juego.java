@@ -105,6 +105,7 @@ public class Juego extends View implements View.OnClickListener {
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
+<<<<<<< HEAD
        // Paint pintar = new Paint();
         int alto = getMeasuredHeight();
         int ancho = getMeasuredWidth();
@@ -142,6 +143,17 @@ public class Juego extends View implements View.OnClickListener {
 
                 //Marco
                 canvas.drawRect(0, 0, ancho, alto, pBorde);
+=======
+        Paint pintar = new Paint();
+
+        for (int x = 0; x < tablero.getAlturaTablero(); x++) {
+            for (int y = 0; y < tablero.getAnchoTablero(); y++) {
+
+                int color  = tablero.parseaColor(x,y);
+                pintar.setColor(color);
+                pintar.setStyle(Paint.Style.FILL);
+                canvas.drawRect(y, x*90, y*90+90, x*90+90,pintar);
+>>>>>>> Feature-Puntuacion
             }
        }
     }
