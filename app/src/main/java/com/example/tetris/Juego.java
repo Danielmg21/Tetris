@@ -2,6 +2,7 @@ package com.example.tetris;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.ImageButton;
@@ -48,7 +49,6 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        run1();
     }
     /*public void run2(){
         tablero.moverPiezas(tablero.getPieza(),'a');
@@ -90,16 +90,44 @@ public class Juego extends View implements View.OnClickListener {
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
-        Paint pintar = new Paint();
+       // Paint pintar = new Paint();
+        int alto = getMeasuredHeight();
+        int ancho = getMeasuredWidth();
 
-        for (int x = 0; x < tablero.getAlturaTablero(); x++) {
-            for (int y = 0; y < tablero.getAnchoTablero(); y++) {
+        int color  = tablero.parseaColor(1,1);
+        Paint pBorde = new Paint();
+        pBorde.setStyle(Paint.Style.STROKE);
+        pBorde.setColor(Color.BLACK);
+        pBorde.setStrokeWidth(2);
 
-                int color  = tablero.parseaColor(x,y);
-                pintar.setColor(color);
-                canvas.drawRect(y, x*90, y*90+90, x*90+90,pintar);
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 20; y++) {
+                canvas.drawLine((x+1)*ancho/10, 0, (x+1)*ancho/10, alto, pBorde);
+                /*canvas.drawLine(2*ancho/10, 0, 2*ancho/10, alto, pBorde);
+                canvas.drawLine(3*ancho/10, 0, 3*ancho/10, alto, pBorde);
+                canvas.drawLine(4*ancho/10, 0, 4*ancho/10, alto, pBorde);
+                canvas.drawLine(5*ancho/10, 0, 5*ancho/10, alto, pBorde);
+                canvas.drawLine(6*ancho/10, 0, 6*ancho/10, alto, pBorde);
+                canvas.drawLine(7*ancho/10, 0, 7*ancho/10, alto, pBorde);
+                canvas.drawLine(8*ancho/10, 0, 8*ancho/10, alto, pBorde);
+                canvas.drawLine(9*ancho/10, 0, 9*ancho/10, alto, pBorde);
+                canvas.drawLine(10*ancho/10, 0, 10*ancho/10, alto, pBorde);*/
+
+                canvas.drawLine(0, (y+1)*alto/20, ancho, (y+1)*alto/20, pBorde);
+                /*canvas.drawLine(0, 2*alto/20, ancho, 2*alto/20, pBorde);
+        canvas.drawLine(0, 3*alto/20, ancho, 3*alto/20, pBorde);
+        canvas.drawLine(0, 4*alto/20, ancho, 4*alto/20, pBorde);
+        canvas.drawLine(0, 5*alto/20, ancho, 5*alto/20, pBorde);
+        canvas.drawLine(0, 6*alto/20, ancho, 6*alto/20, pBorde);
+        canvas.drawLine(0, 7*alto/20, ancho, 7*alto/20, pBorde);
+        canvas.drawLine(0, 8*alto/20, ancho, 8*alto/20, pBorde);
+        canvas.drawLine(0, 9*alto/20, ancho, 9*alto/20, pBorde);
+        canvas.drawLine(0, 10*alto/20, ancho, 10*alto/20, pBorde);*/
+
+                //Marco
+                canvas.drawRect(0, 0, ancho, alto, pBorde);
             }
-        }
+       }
     }
     @Override
     public void onClick(View v) {
