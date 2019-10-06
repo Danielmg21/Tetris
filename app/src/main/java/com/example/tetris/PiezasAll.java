@@ -1,6 +1,9 @@
 package com.example.tetris;
 
 
+import android.content.Context;
+import android.view.View;
+
 import java.util.ArrayList;
 
 import static com.example.tetris.PiezaI.getPosicionI;
@@ -87,7 +90,6 @@ public class PiezasAll {
     }
 
     public PiezasAll() {
-
     }
 
     public void Girar (PiezasAll pieza){
