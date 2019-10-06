@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.graphics.Color;
 
 import static java.lang.Integer.parseInt;
 
@@ -96,7 +97,8 @@ public class Juego extends View implements View.OnClickListener {
             }
             tablero.borrarPieza();
             tablero.generarPieza();
-        } while (tablero.compruebaAbajo(tablero.getPieza()));
+            pintarPieza(canvas);
+        }while (tablero.compruebaAbajo(tablero.getPieza()));
 
     }
 
@@ -146,10 +148,47 @@ public class Juego extends View implements View.OnClickListener {
                 Paint pintar = new Paint();
 
             }
-
-            public void pintarPieza (Canvas canvas){
-                PiezasAll p = tablero.getPieza();
-                ArrayList<Coordenada> coor = p.ObtenerPosiciones(p);
+       }
+    }
+    public void pintarPieza(Canvas canvas){
+        int alto = getMeasuredHeight();
+        int ancho = getMeasuredWidth();
+        Paint pCuadrado = new Paint();
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 20; y++) {
+                int val =this.tablero.tab[x][y];
+                switch(val){
+                    case 0:
+                        pCuadrado.setColor(Color.parseColor("#00FFFF"));
+                        break;
+                    case 1:
+                        pCuadrado.setColor(Color.parseColor("#0000FF"));
+                        break;
+                    case 2:
+                        pCuadrado.setColor(Color.parseColor("#FF0000"));
+                        break;
+                    case 3:
+                        pCuadrado.setColor(Color.parseColor("#FFBF00"));
+                        break;
+                    case 4:
+                        pCuadrado.setColor(Color.parseColor("#00FF00"));
+                        break;
+                    case 5:
+                        pCuadrado.setColor(Color.parseColor("#FFFF00"));
+                        break;
+                    case 6:
+                        pCuadrado.setColor(Color.parseColor("#572364"));
+                        break;
+                    case 7:
+                        pCuadrado.setColor(Color.parseColor("#BEBEBE"));
+                        break;
+                }
+                canvas.drawRect((x*ancho/10),(y*alto/10),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
+            }
+        }
+    }
+    @Override
+    public void onClick(View v) {
 
             }
             @Override
