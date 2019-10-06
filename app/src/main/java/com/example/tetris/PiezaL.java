@@ -18,12 +18,14 @@ public class PiezaL extends PiezasAll {
             {7,7,3,7},
             {7,7,7,7}};
 
-    public PiezaL (int identificador, int posicion){
+    public PiezaL (int identificador, int rotacion){
         super(identificador);
-        setPosicionL(posicion);
+        setRotacion(rotacion);
     }
-    public void setPosicionL(int posicion){
-        switch(posicion){
+    @Override
+    public void setRotacion(int rotacion){
+        this.rotacion = rotacion;
+        switch(rotacion){
             case 0:
                 this.matriz = pos0;
                 break;

@@ -9,18 +9,11 @@ public class PiezaO extends PiezasAll{
         super(identificador);
         setPosicionO(posicion);
     }
-    public void setPosicionO(int posicion){
-        switch(posicion){
-            case 0:
-                this.matriz = posx;
-                break;
-        }
+    public void setPosicionO(int rotacion){
+        this.rotacion = rotacion;
+        this.matriz = posx;
     }
-    public static int [][] getPosicionO(int posicion){
-        switch(posicion){
-            case 0:
-                return posx;
-        }
+    public static int [][] getPosicionO(){
         return posx;
     }
 }

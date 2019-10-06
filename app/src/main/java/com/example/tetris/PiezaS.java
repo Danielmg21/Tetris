@@ -9,12 +9,13 @@ public class PiezaS extends PiezasAll {
             {7,4,4,7},
             {7,7,4,7},
             {7,7,7,7}};
-    public PiezaS(int identificador, int posicion){
+    public PiezaS(int identificador, int rotacion){
         super(identificador);
-        setPosicionS(posicion);
+        setRotacion(rotacion);
     }
-    public void setPosicionS(int posicion){
-        switch(posicion){
+    @Override
+    public void setRotacion(int rotacion){
+        switch(rotacion){
             case 0:
                 this.matriz = pos0;
                 break;
