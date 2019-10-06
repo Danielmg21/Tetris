@@ -3,5 +3,6 @@
 
     <string name="botones_mov_fichas"></string>
 
-
+    <string name="text_puntos">Puntos:</string>
+    <string name="text_nivel">Nivel:</string>
 </resources>
