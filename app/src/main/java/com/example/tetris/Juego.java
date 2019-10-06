@@ -61,8 +61,8 @@ public class Juego extends View implements View.OnClickListener {
             int y = 0;
             int filaVacio = 0;
             boolean vacio = false;
-            while ((y != 20)&&(!vacio)){
-                while (x !=10){
+            while ((y < 20)&&(!vacio)){
+                while (x < 10){
                     if (tablero.tab[x][y] == 7){
                         filaVacio ++;
 
