@@ -52,11 +52,12 @@ public class Juego extends View implements View.OnClickListener {
 
     public void run1() {
         do{
-
+            Tablero tablero = new Tablero();
             tablero.borrarPieza();
             tablero.generarPieza();
             int x = 0;
             int y = 0;
+            int puntuacion = 0;
             int filaVacio = 0;
             boolean vacio = false;
             while ((y != 20)&&(!vacio)){
@@ -67,6 +68,7 @@ public class Juego extends View implements View.OnClickListener {
                 }
                 if(filaVacio == 0){
                     tablero.bajarFila(tablero,y);
+                    puntuacion = puntuacion + 100;
                 }
                 else if(filaVacio == 10){
                     vacio = true;

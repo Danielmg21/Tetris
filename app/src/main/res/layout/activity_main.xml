@@ -33,6 +33,7 @@
 
 
             </RelativeLayout>
+
             <ImageButton
                 android:id="@+id/botonDcha"
                 android:layout_width="70dp"
@@ -42,7 +43,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="17dp"
                 android:layout_marginRight="17dp"
-                android:layout_marginBottom="7dp" />
+                android:layout_marginBottom="7dp"
+                android:src="@android:drawable/ic_media_ff" />
 
             <ImageButton
                 android:id="@+id/botonBajar"
@@ -53,7 +55,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="99dp"
                 android:layout_marginRight="99dp"
-                android:layout_marginBottom="7dp" />
+                android:layout_marginBottom="7dp"
+                android:src="@android:drawable/arrow_down_float" />
 
             <ImageButton
                 android:id="@+id/botonIzda"
@@ -64,7 +67,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="188dp"
                 android:layout_marginRight="188dp"
-                android:layout_marginBottom="6dp"/>
+                android:layout_marginBottom="6dp"
+                android:src="@android:drawable/ic_media_rew" />
 
 
             <ImageButton
