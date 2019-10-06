@@ -103,7 +103,7 @@ public class Tablero{
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
-    private void moverPiezas(PiezasAll piezasActual, char x ){
+    public void moverPiezas(PiezasAll piezasActual, char x ){
         switch (x){
             case 'i':
                 if (compruebaIzq(piezasActual)){

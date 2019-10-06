@@ -37,8 +37,6 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
         puntuacion = mainActivity.getPuntos();
-        String valor = puntuacion.toString();
-        int puntos = Integer.parseInt(valor);
 
         Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
 
