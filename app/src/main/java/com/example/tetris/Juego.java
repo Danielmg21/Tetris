@@ -18,14 +18,13 @@ import static java.lang.Integer.parseInt;
 public class Juego extends View implements View.OnClickListener {
 
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
-    TextView puntuacion;
+    private TextView puntuacion, nivel;
     private MainActivity mainActivity;
     private Tablero tablero;
     private ArrayList<PiezasAll> listaPiezas;
     private Random random = new Random();
-    private int nivel = 0;
     private int puntos = 0;
-
+    private int nivelvar = 0;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -38,6 +37,10 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
         puntuacion = mainActivity.getPuntos();
+        nivel = mainActivity.getNivel();
+
+        puntuacion.append(" 0");
+        nivel.append(" 1");
 
         Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
 
@@ -69,6 +72,7 @@ public class Juego extends View implements View.OnClickListener {
                 if(filaVacio == 0){
                     tablero.bajarFila(tablero,y);
                     setPuntos(100);
+                    puntuacion.setText(getPuntos());
                 }
                 else if(filaVacio == 10){
                     vacio = true;
@@ -118,6 +122,12 @@ public class Juego extends View implements View.OnClickListener {
     }
     public void setPuntos(int puntos){
         this.puntos = this.puntos + puntos;
+    }
+    public int getPuntos(){
+        return this.puntos;
+    }
+    public int getNivel(){
+        return this.nivelvar;
     }
 
 }
