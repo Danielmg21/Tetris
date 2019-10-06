@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tetris</string>
+
+    <string name="botones_mov_fichas"></string>
+
+
 </resources>
