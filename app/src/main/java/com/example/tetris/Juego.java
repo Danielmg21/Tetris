@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.graphics.Color;
 
 import static java.lang.Integer.parseInt;
@@ -31,6 +32,7 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos = 0;
     private int nivelvar = 1;
     private Canvas canvas;
+    private Pieza[] Piezas;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -98,8 +100,8 @@ public class Juego extends View implements View.OnClickListener {
             }
             tablero.borrarPieza();
             tablero.generarPieza();
-            pintarTablero(canvas);
-        }while (tablero.compruebaAbajo(tablero.getPieza()));
+            setPincelPiezas(canvas);
+        } while (tablero.compruebaAbajo(tablero.getPieza()));
 
     }
 
@@ -112,51 +114,38 @@ public class Juego extends View implements View.OnClickListener {
         int alto = getMeasuredHeight();
         int ancho = getMeasuredWidth();
 
-        int color = tablero.parseaColor(1, 1);
         Paint pBorde = new Paint();
         pBorde.setStyle(Paint.Style.STROKE);
         pBorde.setColor(Color.BLACK);
         pBorde.setStrokeWidth(2);
 
-
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
                 canvas.drawLine((x + 1) * ancho / 10, 0, (x + 1) * ancho / 10, alto, pBorde);
-                /*canvas.drawLine(2*ancho/10, 0, 2*ancho/10, alto, pBorde);
-                canvas.drawLine(3*ancho/10, 0, 3*ancho/10, alto, pBorde);
-                canvas.drawLine(4*ancho/10, 0, 4*ancho/10, alto, pBorde);
-                canvas.drawLine(5*ancho/10, 0, 5*ancho/10, alto, pBorde);
-                canvas.drawLine(6*ancho/10, 0, 6*ancho/10, alto, pBorde);
-                canvas.drawLine(7*ancho/10, 0, 7*ancho/10, alto, pBorde);
-                canvas.drawLine(8*ancho/10, 0, 8*ancho/10, alto, pBorde);
-                canvas.drawLine(9*ancho/10, 0, 9*ancho/10, alto, pBorde);
-                canvas.drawLine(10*ancho/10, 0, 10*ancho/10, alto, pBorde);*/
-
                 canvas.drawLine(0, (y + 1) * alto / 20, ancho, (y + 1) * alto / 20, pBorde);
-                /*canvas.drawLine(0, 2*alto/20, ancho, 2*alto/20, pBorde);
-        canvas.drawLine(0, 3*alto/20, ancho, 3*alto/20, pBorde);
-        canvas.drawLine(0, 4*alto/20, ancho, 4*alto/20, pBorde);
-        canvas.drawLine(0, 5*alto/20, ancho, 5*alto/20, pBorde);
-        canvas.drawLine(0, 6*alto/20, ancho, 6*alto/20, pBorde);
-        canvas.drawLine(0, 7*alto/20, ancho, 7*alto/20, pBorde);
-        canvas.drawLine(0, 8*alto/20, ancho, 8*alto/20, pBorde);
-        canvas.drawLine(0, 9*alto/20, ancho, 9*alto/20, pBorde);
-        canvas.drawLine(0, 10*alto/20, ancho, 10*alto/20, pBorde);*/
             }
         }
-        //Marco
-        canvas.drawRect(0, 0, ancho, alto, pBorde);
-        Paint pintar = new Paint();
+        //Dibujar una pieza
+        Paint pincel = new Paint();
+        pincel.setColor(Color.YELLOW);
+        for(int x=0;x<10;x++){
+            for(int y=0;y<20;y++){
+                canvas.drawRect((ancho/10)*4,(alto/20)-(alto/20),(ancho/10)*5,(alto/20),pincel);
+                canvas.drawRect((ancho/10)*3,(alto/20),(ancho/10)*6,(alto/20)*2,pincel);
+        }
+        }
+
 
     }
-    public void pintarTablero(Canvas canvas){
+
+    public void setPincelPiezas(Canvas canvas) {
         int alto = getMeasuredHeight();
         int ancho = getMeasuredWidth();
         Paint pCuadrado = new Paint();
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
-                int val =this.tablero.tab[x][y];
-                switch(val){
+                int val = this.tablero.tab[x][y];
+                switch (val) {
                     case 0:
                         pCuadrado.setColor(Color.parseColor("#00FFFF"));
                         break;
@@ -182,43 +171,46 @@ public class Juego extends View implements View.OnClickListener {
                         pCuadrado.setColor(Color.parseColor("#BEBEBE"));
                         break;
                 }
-                canvas.drawRect((x*ancho/10),(y*alto/20),((x+1)*ancho-ancho),((y+1)*alto-alto),pCuadrado);
+                canvas.drawRect((x * ancho / 10), (y * alto / 20), ((x + 1) * ancho - ancho), ((y + 1) * alto - alto), pCuadrado);
             }
         }
     }
 
-            @Override
-            public void onClick (View v){
+    @Override
+    public void onClick(View v) {
 
-                switch (v.getId()) {
-                    case R.id.botonDcha:
-                        char Derecha = 'd';
-                        tablero.moverPiezas(tablero.getPieza(), Derecha);
-                        break;
-                    case R.id.botonBajar:
-                        char Abajo = 'a';
-                        tablero.moverPiezas(tablero.getPieza(), Abajo);
-                        break;
-                    case R.id.botonIzda:
-                        char Izquierda = 'i';
-                        tablero.moverPiezas(tablero.getPieza(), Izquierda);
-                        break;
-                    case R.id.botonRotar:
-                        tablero.getPieza().Girar(tablero.getPieza());
-                        char Rotar = 'r';
-                        break;
-                }
-            }
-            public void setPuntos ( int puntos){
-                this.puntos = this.puntos + puntos;
-            }
-            public int getPuntos () {
-                return this.puntos;
-            }
-            public int getNivel () {
-                return this.nivelvar;
-            }
-
+        switch (v.getId()) {
+            case R.id.botonDcha:
+                char Derecha = 'd';
+                tablero.moverPiezas(tablero.getPieza(), Derecha);
+                break;
+            case R.id.botonBajar:
+                char Abajo = 'a';
+                tablero.moverPiezas(tablero.getPieza(), Abajo);
+                break;
+            case R.id.botonIzda:
+                char Izquierda = 'i';
+                tablero.moverPiezas(tablero.getPieza(), Izquierda);
+                break;
+            case R.id.botonRotar:
+                tablero.getPieza().Girar(tablero.getPieza());
+                char Rotar = 'r';
+                break;
         }
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = this.puntos + puntos;
+    }
+
+    public int getPuntos() {
+        return this.puntos;
+    }
+
+    public int getNivel() {
+        return this.nivelvar;
+    }
+
+}
 
 
