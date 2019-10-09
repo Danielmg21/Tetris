@@ -33,6 +33,8 @@ public class Juego extends View implements View.OnClickListener {
     private int nivelvar = 1;
     private Canvas canvas;
     private Pieza[] Piezas;
+    private Timer timer;
+    private Piece pieceActual;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -56,69 +58,23 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        pieceActual = new Piece(4);
     }
 
-    /*public void run2(){
-        tablero.moverPiezas(tablero.getPieza(),'a');
-    }*/
-    Timer timer = new Timer();
-    TimerTask bajar = new TimerTask() {
-        @Override
-        public void run() {
-            if (tablero.compruebaAbajo(tablero.getPieza())) {
-                tablero.moverPiezas(tablero.getPieza(), 'a');
-            } else {
-                timer.cancel();
-            }
-        }
-    };
+    public void pintaPieza(Canvas canvas){
 
-    public void run1() {
-        do {
-            Tablero tablero = new Tablero();
-            int x = 0;
-            int y = 0;
-            int filaVacio = 0;
-            boolean vacio = false;
-            while ((y < 20) && (!vacio)) {
-                while (x < 10) {
-                    if (tablero.tab[x][y] == 7) {
-                        filaVacio++;
-                        timer.schedule(bajar, 0, 1000);
-                    }
-                    x++;
-                }
-                if (filaVacio == 0) {
-                    tablero.bajarFila(tablero, y);
-                    setPuntos(100);
-                    puntuacion.setText(getPuntos());
-                } else if (filaVacio == 10) {
-                    vacio = true;
-                }
-                filaVacio = 0;
-                y++;
-            }
-            tablero.borrarPieza();
-            tablero.generarPieza();
-            setPincelPiezas(canvas);
-        } while (tablero.compruebaAbajo(tablero.getPieza()));
-
-    }
-
-
+}
     @Override
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
         // Paint pintar = new Paint();
-        int alto = getMeasuredHeight();
-        int ancho = getMeasuredWidth();
-
         Paint pBorde = new Paint();
         pBorde.setStyle(Paint.Style.STROKE);
         pBorde.setColor(Color.BLACK);
         pBorde.setStrokeWidth(2);
-
+        int alto = getMeasuredHeight();
+        int ancho = getMeasuredWidth();
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
                 canvas.drawLine((x + 1) * ancho / 10, 0, (x + 1) * ancho / 10, alto, pBorde);
@@ -130,50 +86,15 @@ public class Juego extends View implements View.OnClickListener {
         pincel.setColor(Color.YELLOW);
         for(int x=0;x<10;x++){
             for(int y=0;y<20;y++){
-                canvas.drawRect((ancho/10)*4,(alto/20)-(alto/20),(ancho/10)*5,(alto/20),pincel);
-                canvas.drawRect((ancho/10)*3,(alto/20),(ancho/10)*6,(alto/20)*2,pincel);
-        }
-        }
-
-
-    }
-
-    public void setPincelPiezas(Canvas canvas) {
-        int alto = getMeasuredHeight();
-        int ancho = getMeasuredWidth();
-        Paint pCuadrado = new Paint();
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 20; y++) {
-                int val = this.tablero.tab[x][y];
-                switch (val) {
-                    case 0:
-                        pCuadrado.setColor(Color.parseColor("#00FFFF"));
-                        break;
-                    case 1:
-                        pCuadrado.setColor(Color.parseColor("#0000FF"));
-                        break;
-                    case 2:
-                        pCuadrado.setColor(Color.parseColor("#FF0000"));
-                        break;
-                    case 3:
-                        pCuadrado.setColor(Color.parseColor("#FFBF00"));
-                        break;
-                    case 4:
-                        pCuadrado.setColor(Color.parseColor("#00FF00"));
-                        break;
-                    case 5:
-                        pCuadrado.setColor(Color.parseColor("#FFFF00"));
-                        break;
-                    case 6:
-                        pCuadrado.setColor(Color.parseColor("#572364"));
-                        break;
-                    case 7:
-                        pCuadrado.setColor(Color.parseColor("#BEBEBE"));
-                        break;
-                }
-                canvas.drawRect((x * ancho / 10), (y * alto / 20), ((x + 1) * ancho - ancho), ((y + 1) * alto - alto), pCuadrado);
+                canvas.drawRect((ancho/10)*pieceActual.x1,
+                        (alto/20)*pieceActual.y1,
+                        (ancho/10)*pieceActual.x2,
+                        (alto/20)*pieceActual.y2,
+                        pincel);
+                canvas.drawRect((ancho/10)*pieceActual.x3,(alto/20)*pieceActual.y3,(ancho/10)*pieceActual.x4,(alto/20)*pieceActual.y4,pincel);
             }
         }
+
     }
 
     @Override
