@@ -27,14 +27,13 @@ public class Juego extends View implements View.OnClickListener {
     private TextView puntuacion, nivel;
     private MainActivity mainActivity;
     private Tablero tablero;
-    private ArrayList<PiezasAll> listaPiezas;
+    private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
     private int puntos = 0;
     private int nivelvar = 1;
     private Canvas canvas;
     private Pieza[] Piezas;
     private Timer timer;
-    private Piece pieceActual;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
