@@ -32,7 +32,6 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos = 0;
     private int nivelvar = 1;
     private Canvas canvas;
-    private Pieza[] Piezas;
     private Timer timer;
 
     public Juego(Context context, Tablero tablero) {
@@ -57,7 +56,6 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        pieceActual = new Piece(4);
     }
 
     public void pintaPieza(Canvas canvas){
@@ -85,12 +83,12 @@ public class Juego extends View implements View.OnClickListener {
         pincel.setColor(Color.YELLOW);
         for(int x=0;x<10;x++){
             for(int y=0;y<20;y++){
-                canvas.drawRect((ancho/10)*pieceActual.x1,
-                        (alto/20)*pieceActual.y1,
-                        (ancho/10)*pieceActual.x2,
-                        (alto/20)*pieceActual.y2,
+                canvas.drawRect((ancho/10)*4,
+                        (alto/20)*1,
+                        (ancho/10)*3,
+                        (alto/20)*2,
                         pincel);
-                canvas.drawRect((ancho/10)*pieceActual.x3,(alto/20)*pieceActual.y3,(ancho/10)*pieceActual.x4,(alto/20)*pieceActual.y4,pincel);
+                canvas.drawRect((ancho/10)*4,(alto/20)*2,(ancho/10)*3,(alto/20)*3,pincel);
             }
         }
 

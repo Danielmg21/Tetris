@@ -13,59 +13,13 @@ public class Tablero{
     private final int anchuraTablero=10;
     public int tab[][]=new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
-    public ArrayList<PiezasAll> listaPiezas = new ArrayList<PiezasAll>();
+    public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
     private  final int numeroPiezas = 7;
 
 
-    public final static int BEHAVIOR_IS_FIXED = 2, BEHAVIOR_IS_FALLING = 1, BEHAVIOR_NOTHING = 0;
-    private int state, color, behavior;
-    // state = 0 means free cell, state = 1 means occupied cell
-
-    public Tablero() {
-        state = 0;
-        color = Color.BLACK;
-        behavior = BEHAVIOR_NOTHING;
-    }
-
-    public Tablero(int state, int color) {
-        this.state = state;
-        this.color = color;
-        this.behavior = BEHAVIOR_NOTHING;
-    }
-
-    public Tablero(int state, int color, int behavior) {
-        this.state = state;
-        this.color = color;
-        this.behavior = behavior;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public int getBehavior() {
-        return behavior;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public void setBehavior(int behavior) {
-        this.behavior = behavior;
-    }
-    //genera dos Piezas random (1.actual, 2.siguiente)
 
     public void  generarPieza (){
-        listaPiezas.add(new PiezasAll(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
     }
 
     public void borrarPieza(){
@@ -112,33 +66,41 @@ public class Tablero{
         }
     }
 
-    public  ArrayList<PiezasAll> getListaPiezas(){
+    public  ArrayList<Pieza> getListaPiezas(){
         return listaPiezas;
     }
 
     //coge la Piezas actual
-    public PiezasAll getPieza()  {
+    public Pieza getPieza()  {
         return listaPiezas.get(0);
     }
 
     //coge siguiente Piezas
-    public PiezasAll getSiguientePieza() {
+    public Pieza getSiguientePieza() {
         return listaPiezas.get(listaPiezas.size()-1);
     }
 
     //crear en clase Piezas atributo entero colorCode
 
-    private void colocaPieza(PiezasAll piezasActual) {
-        piezasActual.coor.setValX(4);
-        piezasActual.coor.setValY(20);
 
+    private void ponerPieza(Pieza pieza) {
+        tab[pieza.x1][pieza.y1] = pieza.idColor;
+        tab[pieza.x2][pieza.y2] = pieza.idColor;
+        tab[pieza.x3][pieza.y3] = pieza.idColor;
+        tab[pieza.x4][pieza.y4] = pieza.idColor;
+    }
+    private void borrarPieza(Pieza pieza) {
+        tab[pieza.x1][pieza.y1] = 0;
+        tab[pieza.x2][pieza.y2] = 0;
+        tab[pieza.x3][pieza.y3] = 0;
+        tab[pieza.x4][pieza.y4] = 0;
     }
     /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char
     que le pasen, para ello usamos comprueba y el tipo de movimiento y en comprueba hay que
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
-    public void moverPiezas(PiezasAll piezasActual, char x ){
+    public void moverPiezas(Pieza piezasActual, char x ){
         switch (x){
             case 'i':
                 if (compruebaIzq(piezasActual)){
@@ -161,7 +123,7 @@ public class Tablero{
 
 
     //comprueba movimiento a la izq
-    private  boolean compruebaIzq(PiezasAll piezasActual) {
+    private  boolean compruebaIzq(Pieza piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
@@ -183,7 +145,7 @@ public class Tablero{
     }
 
     //comprueba movimiento a la dcha
-    private  boolean compruebaDcha(PiezasAll piezasActual) {
+    private  boolean compruebaDcha(Pieza piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
@@ -205,7 +167,7 @@ public class Tablero{
     }
 
     //comprueba movimiento hacia abajo
-    public  boolean compruebaAbajo(PiezasAll piezasActual) {
+    public  boolean compruebaAbajo(Pieza piezasActual) {
         ArrayList<Coordenada> l;
         l = piezasActual.ObtenerPosiciones(piezasActual);
         boolean problema = false;
