@@ -2,82 +2,90 @@ package com.example.tetris;
 
 import android.graphics.Color;
 import android.graphics.Point;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 
-public class Tablero{
+public class Tablero {
 
-    private final int alturaTablero =20;
-    private final int anchuraTablero=10;
-    public int tab[][]=new int[alturaTablero][anchuraTablero];
+    private final int alturaTablero = 20;
+    private final int anchuraTablero = 10;
+    public int tab[][] = new int[alturaTablero][anchuraTablero];
     private final Random random = new Random();
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
-    private  final int numeroPiezas = 7;
+    private final int numeroPiezas = 7;
 
 
-
-    public void  generarPieza (){
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
+    public void generarPieza() {
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
 
-    public void borrarPieza(){
+    public void borrarPieza() {
         listaPiezas.remove(0);
     }
-     //transforma numeros de matriz a color
+    //transforma numeros de matriz a color
 
     public int parseaColor(int x, int y) {
-        if(tab[x][y]==0) return Color.parseColor("#00FFFF"); ; // I piece Cyan
-        if(tab[x][y]==1) return Color.parseColor("#0000FF"); ; // J piece Blue
-        if(tab[x][y]==2) return  Color.parseColor("#FF0000"); ; // Z piece Red
-        if(tab[x][y]==3) return Color.parseColor("#ffbf00"); ; // L piece Orange
-        if(tab[x][y]==4) return Color.parseColor("#00FF00"); ; // S Green
-        if(tab[x][y]==5) return Color.parseColor("#FFFF00"); ; // cuadrado yellow
-        if(tab[x][y]==6) return Color.parseColor("#572364"); ; //  T piece Morado
-        if(tab[x][y]==7) return  Color.parseColor("#BEBEBE");  // gris fondo
+        if (tab[x][y] == 0) return Color.parseColor("#00FFFF");
+        ; // I piece Cyan
+        if (tab[x][y] == 1) return Color.parseColor("#0000FF");
+        ; // J piece Blue
+        if (tab[x][y] == 2) return Color.parseColor("#FF0000");
+        ; // Z piece Red
+        if (tab[x][y] == 3) return Color.parseColor("#ffbf00");
+        ; // L piece Orange
+        if (tab[x][y] == 4) return Color.parseColor("#00FF00");
+        ; // S Green
+        if (tab[x][y] == 5) return Color.parseColor("#FFFF00");
+        ; // cuadrado yellow
+        if (tab[x][y] == 6) return Color.parseColor("#572364");
+        ; //  T piece Morado
+        if (tab[x][y] == 7) return Color.parseColor("#BEBEBE");  // gris fondo
         return -1;
     }
-    public void bajarFila (Tablero T, int y){
+
+    public void bajarFila(Tablero T, int y) {
         int x;
-        int filaVacio=0;
+        int filaVacio = 0;
         boolean vacio = false;
-        while ((y != 20)&&(!vacio)){
-            for (x=0;x<10;x++) {
-                T.tab[x][y] = T.tab [x][y+1];
-                if (T.tab[x][y+1] == 7){
-                    filaVacio ++;
+        while ((y != 20) && (!vacio)) {
+            for (x = 0; x < 10; x++) {
+                T.tab[x][y] = T.tab[x][y + 1];
+                if (T.tab[x][y + 1] == 7) {
+                    filaVacio++;
                 }
             }
             y++;
-            if(filaVacio == 10){
+            if (filaVacio == 10) {
                 vacio = true;
             }
-            filaVacio =0;
+            filaVacio = 0;
         }
     }
 
     //todas las posiciones a 7
     public void limpiarTablero() {
-        for(int i=0; i<alturaTablero; i++) {
-            for(int j=0; j<anchuraTablero; j++) {
-                tab[i][j]= 7;
+        for (int i = 0; i < alturaTablero; i++) {
+            for (int j = 0; j < anchuraTablero; j++) {
+                tab[i][j] = 7;
             }
         }
     }
 
-    public  ArrayList<Pieza> getListaPiezas(){
+    public ArrayList<Pieza> getListaPiezas() {
         return listaPiezas;
     }
 
     //coge la Piezas actual
-    public Pieza getPieza()  {
+    public Pieza getPieza() {
         return listaPiezas.get(0);
     }
 
     //coge siguiente Piezas
     public Pieza getSiguientePieza() {
-        return listaPiezas.get(listaPiezas.size()-1);
+        return listaPiezas.get(listaPiezas.size() - 1);
     }
 
     //crear en clase Piezas atributo entero colorCode
@@ -89,103 +97,69 @@ public class Tablero{
         tab[pieza.x3][pieza.y3] = pieza.idColor;
         tab[pieza.x4][pieza.y4] = pieza.idColor;
     }
+
     private void borrarPieza(Pieza pieza) {
         tab[pieza.x1][pieza.y1] = 0;
         tab[pieza.x2][pieza.y2] = 0;
         tab[pieza.x3][pieza.y3] = 0;
         tab[pieza.x4][pieza.y4] = 0;
     }
+
     /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char
     que le pasen, para ello usamos comprueba y el tipo de movimiento y en comprueba hay que
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
-    public void moverPiezas(Pieza piezasActual, char x ){
-        switch (x){
+    public void moverPiezas(Pieza piezasActual, char x) {
+        switch (x) {
             case 'i':
-                if (compruebaIzq(piezasActual)){
-                    piezasActual.coor.setValX(piezasActual.coor.getValX()-1);
+                if (compruebaIzq(piezasActual)) {
+                    piezasActual.coor.setValX(piezasActual.coor.getValX() - 1);
                 }
                 break;
             case 'd':
-                if (compruebaDcha(piezasActual)){
-                    piezasActual.coor.setValX(piezasActual.coor.getValX()+1);
+                if (compruebaDcha(piezasActual)) {
+                    piezasActual.coor.setValX(piezasActual.coor.getValX() + 1);
                 }
                 break;
             case 'a':
-                if (compruebaAbajo(piezasActual)){
-                    piezasActual.coor.setValY(piezasActual.coor.getValY()-1);
+                if (compruebaAbajo(piezasActual)) {
+                    piezasActual.coor.setValY(piezasActual.coor.getValY() - 1);
                 }
                 break;
         }
 
     }
 
+    public boolean puedeMoverse(Pieza pieza, int x, int y) {
+        int n = 0; //contador para saber si la pieza entera puede moverse
+        Point xy1 = new Point(pieza.x1, pieza.y1);
+        Point xy2 = new Point(pieza.x2, pieza.y2);
+        Point xy3 = new Point(pieza.x3, pieza.y3);
+        Point xy4 = new Point(pieza.x4, pieza.y4);
 
-    //comprueba movimiento a la izq
-    private  boolean compruebaIzq(Pieza piezasActual) {
-        ArrayList<Coordenada> l;
-        l = piezasActual.ObtenerPosiciones(piezasActual);
-        boolean problema = false;
-        int posyahellegado=0;
-        while (problema==false)  {
-            if (posyahellegado==4) {
-                return true;
-            }
-            else{
-                Coordenada aux = l.get(posyahellegado);
-                if((aux.getValX()==0)||(this.tab[aux.getValX()-1][aux.getValY()]!=7)){
-                    return false;
-                }
-                else{
-                    posyahellegado++;
-                }
-            }
-        }return true;
-    }
+        Point aux1 = new Point(pieza.x1 + x, pieza.y1 + y);
+        Point aux2 = new Point(pieza.x2 + x, pieza.y2 + y);
+        Point aux3 = new Point(pieza.x3 + x, pieza.y3 + y);
+        Point aux4 = new Point(pieza.x4 + x, pieza.y4 + y);
 
-    //comprueba movimiento a la dcha
-    private  boolean compruebaDcha(Pieza piezasActual) {
-        ArrayList<Coordenada> l;
-        l = piezasActual.ObtenerPosiciones(piezasActual);
-        boolean problema = false;
-        int posyahellegado=0;
-        while (problema==false)  {
-            if (posyahellegado==4) {
-                return true;
-            }
-            else{
-                Coordenada aux = l.get(posyahellegado);
-                if((aux.getValX()==10)||(this.tab[aux.getValX()+1][aux.getValY()]!=7)){
-                    return false;
-                }
-                else{
-                    posyahellegado++;
-                }
-            }
-        }return true;
-    }
+        //Creamos un array con los puntos posibles donde se puede mover
+        ArrayList<Point> puntos = new ArrayList<Point>();
 
-    //comprueba movimiento hacia abajo
-    public  boolean compruebaAbajo(Pieza piezasActual) {
-        ArrayList<Coordenada> l;
-        l = piezasActual.ObtenerPosiciones(piezasActual);
-        boolean problema = false;
-        int posyahellegado=0;
-        while (problema==false)  {
-            if (posyahellegado==4) {
-                return true;
+        //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
+        for (Point a : puntos) {
+            if (a.x < alturaTablero && a.y >= 0 && a.y < anchuraTablero && tab[a.x][a.y] == 0) {
+                n++;
             }
-            else{
-                Coordenada aux = l.get(posyahellegado);
-                if((aux.getValY()==0)||(this.tab[aux.getValX()][aux.getValY()-1]!=7)){
-                    return false;
-                }
-                else{
-                    posyahellegado++;
-                }
+            else if(a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
+                n++;
             }
-        }return true;
+        }
+        if (n == 4) {
+            return true;
+        }
+
+        return false;
     }
 
     /*
@@ -197,7 +171,7 @@ public class Tablero{
         return false;
     }
     */
-    public  int getAlturaTablero() {
+    public int getAlturaTablero() {
         return this.alturaTablero;
     }
 
