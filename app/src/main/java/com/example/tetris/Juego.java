@@ -33,6 +33,7 @@ public class Juego extends View implements View.OnClickListener {
     private int nivelvar = 1;
     private Canvas canvas;
     private Timer timer;
+    Pieza p;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -58,20 +59,24 @@ public class Juego extends View implements View.OnClickListener {
         botonRotar.setOnClickListener(this);
     }
 
-    public void pintaPieza(Canvas canvas){
-
-}
     @Override
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
-        // Paint pintar = new Paint();
+        Paint pincel = new Paint();
+        int alto = getMeasuredHeight();
+        int ancho = getMeasuredWidth();
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 20; y++) {
+                int color = tablero.parseaColor(x, y);
+                pincel.setColor(color);
+                canvas.drawRect(x * ancho, y * alto, x * ancho + ancho, y * alto + alto, pincel);
+            }
+        }
         Paint pBorde = new Paint();
         pBorde.setStyle(Paint.Style.STROKE);
         pBorde.setColor(Color.BLACK);
         pBorde.setStrokeWidth(2);
-        int alto = getMeasuredHeight();
-        int ancho = getMeasuredWidth();
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
                 canvas.drawLine((x + 1) * ancho / 10, 0, (x + 1) * ancho / 10, alto, pBorde);
@@ -79,40 +84,42 @@ public class Juego extends View implements View.OnClickListener {
             }
         }
         //Dibujar una pieza
-        Paint pincel = new Paint();
-        pincel.setColor(Color.YELLOW);
+        /*Paint pint = new Paint();
+        pint.setColor(Color.YELLOW);
         for(int x=0;x<10;x++){
             for(int y=0;y<20;y++){
-                canvas.drawRect((ancho/10)*4,
-                        (alto/20)*1,
-                        (ancho/10)*3,
-                        (alto/20)*2,
-                        pincel);
-                canvas.drawRect((ancho/10)*4,(alto/20)*2,(ancho/10)*3,(alto/20)*3,pincel);
+
+                canvas.drawRect((ancho/10)*p.x1,
+                        (alto/20)*p.y1,
+                        (ancho/10)*p.x2,
+                        (alto/20)*p.y2,
+                        pint);
+                canvas.drawRect((ancho/10)*p.x3,
+                        (alto/20)*p.y3,
+                        (ancho/10)*p.x4,
+                        (alto/20)*p.y4,
+                        pint);
             }
-        }
+        }*/
 
     }
+
+
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.botonDcha:
-                char Derecha = 'd';
-                tablero.moverPiezas(tablero.getPieza(), Derecha);
+                tablero.moverPiezas(tablero.getPieza(), 'd');
                 break;
             case R.id.botonBajar:
-                char Abajo = 'a';
-                tablero.moverPiezas(tablero.getPieza(), Abajo);
+                tablero.moverPiezas(tablero.getPieza(), 'a');
                 break;
             case R.id.botonIzda:
-                char Izquierda = 'i';
-                tablero.moverPiezas(tablero.getPieza(), Izquierda);
+                tablero.moverPiezas(tablero.getPieza(), 'i');
                 break;
             case R.id.botonRotar:
-                tablero.getPieza().Girar(tablero.getPieza());
-                char Rotar = 'r';
                 break;
         }
     }

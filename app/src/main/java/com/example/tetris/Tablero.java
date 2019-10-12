@@ -10,14 +10,15 @@ import java.util.Random;
 
 public class Tablero {
 
-    private final int alturaTablero = 20;
-    private final int anchuraTablero = 10;
-    public int tab[][] = new int[alturaTablero][anchuraTablero];
+    private final int alturaTablero = 25;
+    private final int anchuraTablero = 15;
+    public int tab[][] = new int[anchuraTablero][alturaTablero];
     private final Random random = new Random();
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
     private final int numeroPiezas = 7;
 
-
+    public Tablero(){
+    }
     public void generarPieza() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
@@ -28,21 +29,14 @@ public class Tablero {
     //transforma numeros de matriz a color
 
     public int parseaColor(int x, int y) {
-        if (tab[x][y] == 0) return Color.parseColor("#00FFFF");
-        ; // I piece Cyan
+        if (tab[x][y] == 0) return Color.parseColor("#BEBEBE");// gris fondo
         if (tab[x][y] == 1) return Color.parseColor("#0000FF");
-        ; // J piece Blue
         if (tab[x][y] == 2) return Color.parseColor("#FF0000");
-        ; // Z piece Red
         if (tab[x][y] == 3) return Color.parseColor("#ffbf00");
-        ; // L piece Orange
         if (tab[x][y] == 4) return Color.parseColor("#00FF00");
-        ; // S Green
         if (tab[x][y] == 5) return Color.parseColor("#FFFF00");
-        ; // cuadrado yellow
         if (tab[x][y] == 6) return Color.parseColor("#572364");
-        ; //  T piece Morado
-        if (tab[x][y] == 7) return Color.parseColor("#BEBEBE");  // gris fondo
+        if (tab[x][y] == 7) return Color.parseColor("#000000");
         return -1;
     }
 
@@ -91,7 +85,7 @@ public class Tablero {
     //crear en clase Piezas atributo entero colorCode
 
 
-    private void ponerPieza(Pieza pieza) {
+    public void ponerPieza(Pieza pieza) {
         tab[pieza.x1][pieza.y1] = pieza.idColor;
         tab[pieza.x2][pieza.y2] = pieza.idColor;
         tab[pieza.x3][pieza.y3] = pieza.idColor;
@@ -99,10 +93,10 @@ public class Tablero {
     }
 
     private void borrarPieza(Pieza pieza) {
-        tab[pieza.x1][pieza.y1] = 0;
-        tab[pieza.x2][pieza.y2] = 0;
-        tab[pieza.x3][pieza.y3] = 0;
-        tab[pieza.x4][pieza.y4] = 0;
+        tab[pieza.x1][pieza.y1] = 7;
+        tab[pieza.x2][pieza.y2] = 7;
+        tab[pieza.x3][pieza.y3] = 7;
+        tab[pieza.x4][pieza.y4] = 7;
     }
 
     /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char
@@ -110,21 +104,24 @@ public class Tablero {
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
-    public void moverPiezas(Pieza piezasActual, char x) {
+    public void moverPiezas(Pieza pieza, char x) {
         switch (x) {
             case 'i':
-                if (compruebaIzq(piezasActual)) {
-                    piezasActual.coor.setValX(piezasActual.coor.getValX() - 1);
+                if (puedeMoverse(pieza,-1,0)) {
+                    borrarPieza(pieza);
+                    pieza.x1=pieza.x1-1;
+                    pieza.x2=pieza.x2-1;
+                    pieza.x3=pieza.x3-1;
+                    pieza.x4=pieza.x4-1;
+                    ponerPieza(pieza);
                 }
                 break;
             case 'd':
-                if (compruebaDcha(piezasActual)) {
-                    piezasActual.coor.setValX(piezasActual.coor.getValX() + 1);
+                if (puedeMoverse(pieza,1,0)) {
                 }
                 break;
             case 'a':
-                if (compruebaAbajo(piezasActual)) {
-                    piezasActual.coor.setValY(piezasActual.coor.getValY() - 1);
+                if (puedeMoverse(pieza,0,1)) {
                 }
                 break;
         }
@@ -145,7 +142,8 @@ public class Tablero {
 
         //Creamos un array con los puntos posibles donde se puede mover
         ArrayList<Point> puntos = new ArrayList<Point>();
-
+        
+        
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
             if (a.x < alturaTablero && a.y >= 0 && a.y < anchuraTablero && tab[a.x][a.y] == 0) {

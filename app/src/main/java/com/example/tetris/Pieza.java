@@ -23,19 +23,19 @@ public class Pieza {
     public Pieza(int f) {
         switch (f) { // Cuadrado
             case 1:
-                x1 = 0; y1 = 7;
-                x2 = 0; y2 = 8;
-                x3 = 1; y3 = 7;
-                x4 = 1; y4 = 8;
+                x1 = 1; y1 = 7;
+                x2 = 1; y2 = 8;
+                x3 = 2; y3 = 7;
+                x4 = 2; y4 = 8;
 
                 idColor = 1;
                 break;
 
             case 2:    // z Pieza
-                x1 = 0;y1 = 7;
-                x2 = 0;y2 = 8;
-                x3 = 1;y3 = 8;
-                x4 = 1;y4 = 9;
+                x1 = 1;y1 = 7;
+                x2 = 1;y2 = 8;
+                x3 = 2;y3 = 8;
+                x4 = 2;y4 = 9;
 
                 idColor = 2;
                 break;
