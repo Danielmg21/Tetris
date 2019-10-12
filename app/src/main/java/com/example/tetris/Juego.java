@@ -1,6 +1,7 @@
 package com.example.tetris;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -31,15 +32,15 @@ public class Juego extends View implements View.OnClickListener {
     private Random random = new Random();
     private int puntos = 0;
     private int nivelvar = 1;
-    private Canvas canvas;
-    private Timer timer;
+    private Timer timer = new Timer();
     Pieza p;
     private int timerPeriod = 250;
     int alto = getMeasuredHeight();
     int ancho = getMeasuredWidth();
+    int level = 0;
+
     public Juego(Context context, Tablero tablero) {
         super(context);
-
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
 
@@ -59,15 +60,31 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        run();
+        tablero.generarPieza();
+        tablero.generarPieza();
+        gameLoop();
     }
-    public void run(){
-        p= new Pieza(1);
-        tablero.ponerPieza(p);
-        invalidate();
-        tablero.moverPiezas(p,'a');
-        tablero.ponerPieza(p);
-        postInvalidate(0,0,tablero.getAnchoTablero(),tablero.getAlturaTablero());
+
+    public void run1() {
+        tablero.moverPiezas(tablero.getPieza(), 'a');
+    }
+
+    public void gameLoop() {
+
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                mainActivity.runOnUiThread(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        run1();
+                        invalidate();
+                    }
+                });
+            }
+        }, 0, timerPeriod);
     }
 
 
@@ -129,18 +146,18 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.botonDcha:
                 Toast.makeText(mainActivity, "HOLA PRUEBA", Toast.LENGTH_SHORT).show();
                 tablero.moverPiezas(tablero.getPieza(), 'd');
-                invalidate();
+                postInvalidate(0, 0, alto, ancho);
                 break;
             case R.id.botonBajar:
                 tablero.moverPiezas(tablero.getPieza(), 'a');
-                invalidate();
+                postInvalidate(0, 0, alto, ancho);
                 break;
             case R.id.botonIzda:
                 tablero.moverPiezas(tablero.getPieza(), 'i');
-                invalidate();
+                postInvalidate(0, 0, alto, ancho);
                 break;
             case R.id.botonRotar:
-                invalidate();
+                postInvalidate(0, 0, alto, ancho);
                 break;
         }
     }
