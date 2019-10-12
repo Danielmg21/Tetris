@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class Tablero {
 
-    private final int alturaTablero = 25;
-    private final int anchuraTablero = 15;
+    private final int alturaTablero = 20;
+    private final int anchuraTablero = 10;
     public int tab[][] = new int[anchuraTablero][alturaTablero];
     private final Random random = new Random();
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
@@ -109,19 +109,22 @@ public class Tablero {
             case 'i':
                 if (puedeMoverse(pieza,-1,0)) {
                     borrarPieza(pieza);
-                    pieza.x1=pieza.x1-1;
-                    pieza.x2=pieza.x2-1;
-                    pieza.x3=pieza.x3-1;
-                    pieza.x4=pieza.x4-1;
+                    pieza.mover(-1,0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'd':
                 if (puedeMoverse(pieza,1,0)) {
+                    borrarPieza(pieza);
+                    pieza.mover(1,0);
+                    ponerPieza(pieza);
                 }
                 break;
             case 'a':
                 if (puedeMoverse(pieza,0,1)) {
+                    borrarPieza(pieza);
+                    pieza.mover(0,-1);
+                    ponerPieza(pieza);
                 }
                 break;
         }

@@ -34,7 +34,9 @@ public class Juego extends View implements View.OnClickListener {
     private Canvas canvas;
     private Timer timer;
     Pieza p;
-
+    private int timerPeriod = 250;
+    int alto = getMeasuredHeight();
+    int ancho = getMeasuredWidth();
     public Juego(Context context, Tablero tablero) {
         super(context);
 
@@ -57,15 +59,27 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        run();
     }
+    public void run(){
+        p= new Pieza(1);
+        tablero.ponerPieza(p);
+        invalidate();
+        tablero.moverPiezas(p,'a');
+        tablero.ponerPieza(p);
+        postInvalidate(0,0,tablero.getAnchoTablero(),tablero.getAlturaTablero());
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
-        Paint pincel = new Paint();
+
         int alto = getMeasuredHeight();
         int ancho = getMeasuredWidth();
+        //Pintamos el tablero back
+        Paint pincel = new Paint();
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
                 int color = tablero.parseaColor(x, y);
@@ -73,6 +87,8 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawRect(x * ancho, y * alto, x * ancho + ancho, y * alto + alto, pincel);
             }
         }
+
+        //Pintamos el tablero front
         Paint pBorde = new Paint();
         pBorde.setStyle(Paint.Style.STROKE);
         pBorde.setColor(Color.BLACK);
@@ -83,6 +99,7 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(0, (y + 1) * alto / 20, ancho, (y + 1) * alto / 20, pBorde);
             }
         }
+
         //Dibujar una pieza
         /*Paint pint = new Paint();
         pint.setColor(Color.YELLOW);
@@ -105,12 +122,12 @@ public class Juego extends View implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.botonDcha:
+                Toast.makeText(mainActivity, "HOLA PRUEBA", Toast.LENGTH_SHORT).show();
                 tablero.moverPiezas(tablero.getPieza(), 'd');
                 invalidate();
                 break;
