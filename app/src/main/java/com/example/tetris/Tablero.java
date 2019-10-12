@@ -93,10 +93,10 @@ public class Tablero {
     }
 
     private void borrarPieza(Pieza pieza) {
-        tab[pieza.x1][pieza.y1] = 7;
-        tab[pieza.x2][pieza.y2] = 7;
-        tab[pieza.x3][pieza.y3] = 7;
-        tab[pieza.x4][pieza.y4] = 7;
+        tab[pieza.x1][pieza.y1] = 0;
+        tab[pieza.x2][pieza.y2] = 0;
+        tab[pieza.x3][pieza.y3] = 0;
+        tab[pieza.x4][pieza.y4] = 0;
     }
 
     /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char

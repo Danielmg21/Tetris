@@ -130,6 +130,29 @@ public class Pieza {
         return y1 - x + x1;
     }
 
+    public void GirarPieza(){
+        //gira la pieza en funcion de las coordenadas x1,y1
+        //cada bloque gira un cuadradito
+
+        int x_falsa; int y_falsa;
+
+
+        x_falsa=giraX1(x2);
+        y_falsa=giraY1(y2);
+        x2=x_falsa;
+        y2=y_falsa;
+
+        x_falsa=giraX1(x3);
+        y_falsa=giraY1(y3);
+        x2=x_falsa;
+        y2=y_falsa;
+
+        x_falsa=giraX1(x4);
+        y_falsa=giraY1(y4);
+        x2=x_falsa;
+        y2=y_falsa;
+    }
+
     // ni idea que hace esto
     public int getMinXCoordinate(int x1, int x2, int x3, int x4) {
         return Math.min(Math.min(x1,x2),Math.min(x3,x4));

@@ -112,14 +112,18 @@ public class Juego extends View implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.botonDcha:
                 tablero.moverPiezas(tablero.getPieza(), 'd');
+                invalidate();
                 break;
             case R.id.botonBajar:
                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                invalidate();
                 break;
             case R.id.botonIzda:
                 tablero.moverPiezas(tablero.getPieza(), 'i');
+                invalidate();
                 break;
             case R.id.botonRotar:
+                invalidate();
                 break;
         }
     }
