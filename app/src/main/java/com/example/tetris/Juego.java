@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -23,7 +24,7 @@ public class Juego extends View implements View.OnClickListener {
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
     private int puntos = 5;
-    int cont=0;
+    int cont = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     Pieza p;
@@ -67,19 +68,16 @@ public class Juego extends View implements View.OnClickListener {
                     @Override
                     public void run() {
                         run1();
-                        if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
-                            tablero.moverPiezas(tablero.getPieza(),'a');
-                            timer.cancel();
-                            timer = new Timer();
-                            run1();
-                            gameLoop();
-                            cont++;
-                        }
+                        timer.cancel();
+                        timer = new Timer();
+                        gameLoop();
+                        cont++;
                         invalidate();
                     }
                 });
             }
-        }, 0, timerPeriod);Toast.makeText(mainActivity, "Loop "+ cont, Toast.LENGTH_SHORT).show();
+        }, 0, timerPeriod);
+        Toast.makeText(mainActivity, "Loop " + cont, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -93,10 +91,10 @@ public class Juego extends View implements View.OnClickListener {
         for (int x = 0; x < tablero.getAnchoTablero(); x++) {
             for (int y = 0; y < tablero.getAlturaTablero(); y++) {
 
-                int color  = tablero.parseaColor(x,y);
+                int color = tablero.parseaColor(x, y);
                 pincel.setColor(color);
-                canvas.drawRect(x*getMeasuredWidth()/10, y*getMeasuredHeight()/20, x*getMeasuredWidth()+getMeasuredWidth()/10,
-                        y*getMeasuredHeight()+getMeasuredHeight()/20,pincel);
+                canvas.drawRect(x * getMeasuredWidth() / 10, y * getMeasuredHeight() / 20, x * getMeasuredWidth() + getMeasuredWidth() / 10,
+                        y * getMeasuredHeight() + getMeasuredHeight() / 20, pincel);
             }
         }
 
@@ -111,7 +109,7 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 20, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 20, pBorde);
             }
         }
-         invalidate();
+        invalidate();
         //Dibujar una pieza
         /*Paint pint = new Paint();
         pint.setColor(Color.YELLOW);
@@ -132,7 +130,8 @@ public class Juego extends View implements View.OnClickListener {
         }*/
 
     }
-    protected void reDraw (){
+
+    protected void reDraw() {
         this.invalidate();
     }
 
@@ -142,12 +141,14 @@ public class Juego extends View implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.botonDcha:
                 Toast.makeText(mainActivity, "HOLA PRUEBA", Toast.LENGTH_SHORT).show();
-                tablero.moverPiezas(tablero.getPieza(),'d');
+                tablero.moverPiezas(tablero.getPieza(), 'd');
                 invalidate();
                 break;
             case R.id.botonBajar:
+                tablero.moverPiezas(tablero.getPieza(), 'a');
                 break;
             case R.id.botonIzda:
+                tablero.moverPiezas(tablero.getPieza(), 'i');
                 break;
             case R.id.botonRotar:
                 break;

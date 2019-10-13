@@ -147,7 +147,10 @@ public class Tablero {
 
         //Creamos un array con los puntos posibles donde se puede mover
         ArrayList<Point> puntos = new ArrayList<Point>();
-
+        puntos.add(aux1);
+        puntos.add(aux2);
+        puntos.add(aux3);
+        puntos.add(aux4);
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
