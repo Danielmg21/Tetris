@@ -23,64 +23,64 @@ public class Pieza {
     public Pieza(int f) {
         switch (f) { // Cuadrado
             case 1:
-                x1 = 4; y1 = 1;
-                x2 = 5; y2 = 1;
-                x3 = 4; y3 = 2;
-                x4 = 5; y4 = 2;
+                x1 = 4; y1 = 0;
+                x2 = 5; y2 = 0;
+                x3 = 4; y3 = 1;
+                x4 = 5; y4 = 1;
 
                 idColor = 1;
                 break;
 
             case 2:    // z Pieza
-                x1 = 4;y1 = 1;
-                x2 = 5;y2 = 1;
-                x3 = 5;y3 = 2;
-                x4 = 6;y4 = 2;
+                x1 = 4;y1 = 0;
+                x2 = 5;y2 = 0;
+                x3 = 5;y3 = 1;
+                x4 = 6;y4 = 1;
 
                 idColor = 2;
                 break;
 
             case 3: // I Pieza
-                x1 = 4;y1 = 1;
-                x2 = 4;y2 = 2;
-                x3 = 4;y3 = 3;
-                x4 = 4;y4 = 4;
+                x1 = 4;y1 = 0;
+                x2 = 4;y2 = 1;
+                x3 = 4;y3 = 2;
+                x4 = 4;y4 = 3;
 
                 idColor = 3;
                 break;
 
             case 4: // T Pieza
-                x1 = 5;y1 = 1;
-                x2 = 4;y2 = 2;
-                x3 = 5;y3 = 2;
-                x4 = 6;y4 = 2;
+                x1 = 5;y1 = 0;
+                x2 = 4;y2 = 1;
+                x3 = 5;y3 = 1;
+                x4 = 6;y4 = 1;
 
                 idColor = 4;
                 break;
 
             case 5: // S Pieza
-                x1 = 5;y1 = 1;
-                x2 = 6;y2 = 1;
-                x3 = 4;y3 = 2;
-                x4 = 5;y4 = 2;
+                x1 = 5;y1 = 0;
+                x2 = 6;y2 = 0;
+                x3 = 4;y3 = 1;
+                x4 = 5;y4 = 1;
 
                 idColor = 5;
                 break;
 
             case 6:  // J Pieza
-                x1 = 6;y1 = 1;
-                x2 = 6;y2 = 2;
-                x3 = 5;y3 = 3;
-                x4 = 6;y4 = 3;
+                x1 = 6;y1 = 0;
+                x2 = 6;y2 = 1;
+                x3 = 5;y3 = 2;
+                x4 = 6;y4 = 2;
 
                 idColor = 6;
                 break;
 
             case 7:  //  L Pieza
-                x1 = 5;y1 = 1;
-                x2 = 5;y2 = 2;
-                x3 = 5;y3 = 3;
-                x4 = 6;y4 = 3;
+                x1 = 5;y1 = 0;
+                x2 = 5;y2 = 1;
+                x3 = 5;y3 = 2;
+                x4 = 6;y4 = 2;
 
                 idColor = 7;
                 break;
