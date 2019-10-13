@@ -70,20 +70,23 @@ public class Juego extends View implements View.OnClickListener {
                     public void run() {
                         run1();
                         if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
+                            tablero.moverPiezas(tablero.getPieza(),'a');
                             timer.cancel();
                             timer = new Timer();
                             gameLoop();
                             cont++;
-                            invalidate();
                         }
                         else {
-                            //llamar pantalla end game
+                            tablero.listaPiezas.remove(tablero.getPieza());
+                            tablero.generarPieza();
+                            tablero.ponerPieza(tablero.getPieza());
                         }
+                        invalidate();
                     }
+
                 });
             }
-        }, 0, timerPeriod);
-        Toast.makeText(mainActivity, "Loop " + cont, Toast.LENGTH_SHORT).show();
+        }, 1000, timerPeriod);
     }
 
 
@@ -115,26 +118,6 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 20, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 20, pBorde);
             }
         }
-        invalidate();
-        //Dibujar una pieza
-        /*Paint pint = new Paint();
-        pint.setColor(Color.YELLOW);
-        for(int x=0;x<10;x++){
-            for(int y=0;y<20;y++){
-
-                canvas.drawRect((getMeasuredWidth()/10)*p.x1,
-                        (getMeasuredHeight()/20)*p.y1,
-                        (getMeasuredWidth()/10)*p.x2,
-                        (getMeasuredHeight()/20)*p.y2,
-                        pint);
-                canvas.drawRect((getMeasuredWidth()/10)*p.x3,
-                        (getMeasuredHeight()/20)*p.y3,
-                        (getMeasuredWidth()/10)*p.x4,
-                        (getMeasuredHeight()/20)*p.y4,
-                        pint);
-            }
-        }*/
-
     }
 
     protected void reDraw() {
@@ -146,17 +129,19 @@ public class Juego extends View implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.botonDcha:
-                Toast.makeText(mainActivity, "HOLA PRUEBA", Toast.LENGTH_SHORT).show();
                 tablero.moverPiezas(tablero.getPieza(), 'd');
                 invalidate();
                 break;
             case R.id.botonBajar:
                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                invalidate();
                 break;
             case R.id.botonIzda:
                 tablero.moverPiezas(tablero.getPieza(), 'i');
+                invalidate();
                 break;
             case R.id.botonRotar:
+                invalidate();
                 break;
         }
     }
