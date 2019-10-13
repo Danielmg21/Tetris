@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Tablero {
 
-    private final int alturaTablero = 21;
+    private final int alturaTablero = 20;
     private final int anchuraTablero = 10;
     public int tab[][] = new int[anchuraTablero][alturaTablero];
     private final Random random = new Random();
@@ -155,7 +155,7 @@ public class Tablero {
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero-1 && tab[a.x][a.y] == 0) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
                 n++;
