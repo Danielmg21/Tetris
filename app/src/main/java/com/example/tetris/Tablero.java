@@ -17,7 +17,9 @@ public class Tablero {
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
     private final int numeroPiezas = 7;
 
-    public Tablero(){
+    public Tablero() {
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
     }
     public void generarPieza() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
@@ -40,14 +42,14 @@ public class Tablero {
         return -1;
     }
 
-    public void bajarFila(Tablero T, int y) {
+    public void bajarFila(int y) {
         int x;
         int filaVacio = 0;
         boolean vacio = false;
         while ((y != 20) && (!vacio)) {
             for (x = 0; x < 10; x++) {
-                T.tab[x][y] = T.tab[x][y + 1];
-                if (T.tab[x][y + 1] == 7) {
+                this.tab[x][y] = this.tab[x][y + 1];
+                if (this.tab[x][y + 1] == 7) {
                     filaVacio++;
                 }
             }
@@ -123,7 +125,7 @@ public class Tablero {
             case 'a':
                 if (puedeMoverse(pieza,0,1)) {
                     borrarPieza(pieza);
-                    pieza.mover(0,-1);
+                    pieza.mover(0,1);
                     ponerPieza(pieza);
                 }
                 break;
@@ -145,8 +147,8 @@ public class Tablero {
 
         //Creamos un array con los puntos posibles donde se puede mover
         ArrayList<Point> puntos = new ArrayList<Point>();
-        
-        
+
+
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
             if (a.x < alturaTablero && a.y >= 0 && a.y < anchuraTablero && tab[a.x][a.y] == 0) {

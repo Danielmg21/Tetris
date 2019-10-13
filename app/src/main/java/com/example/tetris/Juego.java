@@ -1,25 +1,17 @@
 package com.example.tetris;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import android.graphics.Color;
-
-import static java.lang.Integer.parseInt;
 
 
 public class Juego extends View implements View.OnClickListener {
@@ -30,14 +22,12 @@ public class Juego extends View implements View.OnClickListener {
     private Tablero tablero;
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
-    private int puntos = 0;
+    private int puntos = 5;
+    int cont=0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     Pieza p;
     private int timerPeriod = 250;
-    int alto = getMeasuredHeight();
-    int ancho = getMeasuredWidth();
-    int level = 0;
 
     public Juego(Context context, Tablero tablero) {
         super(context);
@@ -60,17 +50,14 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        tablero.generarPieza();
-        tablero.generarPieza();
         gameLoop();
     }
 
     public void run1() {
-        tablero.moverPiezas(tablero.getPieza(), 'a');
+        tablero.ponerPieza(tablero.getPieza());
     }
 
     public void gameLoop() {
-
         timer.schedule(new TimerTask() {
 
             @Override
@@ -80,28 +67,36 @@ public class Juego extends View implements View.OnClickListener {
                     @Override
                     public void run() {
                         run1();
+                        if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
+                            tablero.moverPiezas(tablero.getPieza(),'a');
+                            timer.cancel();
+                            timer = new Timer();
+                            run1();
+                            gameLoop();
+                            cont++;
+                        }
                         invalidate();
                     }
                 });
             }
-        }, 0, timerPeriod);
+        }, 0, timerPeriod);Toast.makeText(mainActivity, "Loop "+ cont, Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
-
         super.onDraw(canvas);
 
-        int alto = getMeasuredHeight();
-        int ancho = getMeasuredWidth();
         //Pintamos el tablero back
         Paint pincel = new Paint();
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 20; y++) {
-                int color = tablero.parseaColor(x, y);
+
+        for (int x = 0; x < tablero.getAnchoTablero(); x++) {
+            for (int y = 0; y < tablero.getAlturaTablero(); y++) {
+
+                int color  = tablero.parseaColor(x,y);
                 pincel.setColor(color);
-                canvas.drawRect(x * ancho, y * alto, x * ancho + ancho, y * alto + alto, pincel);
+                canvas.drawRect(x*getMeasuredWidth()/10, y*getMeasuredHeight()/20, x*getMeasuredWidth()+getMeasuredWidth()/10,
+                        y*getMeasuredHeight()+getMeasuredHeight()/20,pincel);
             }
         }
 
@@ -112,32 +107,34 @@ public class Juego extends View implements View.OnClickListener {
         pBorde.setStrokeWidth(2);
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
-                canvas.drawLine((x + 1) * ancho / 10, 0, (x + 1) * ancho / 10, alto, pBorde);
-                canvas.drawLine(0, (y + 1) * alto / 20, ancho, (y + 1) * alto / 20, pBorde);
+                canvas.drawLine((x + 1) * getMeasuredWidth() / 10, 0, (x + 1) * getMeasuredWidth() / 10, getMeasuredHeight(), pBorde);
+                canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 20, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 20, pBorde);
             }
         }
-
+         invalidate();
         //Dibujar una pieza
         /*Paint pint = new Paint();
         pint.setColor(Color.YELLOW);
         for(int x=0;x<10;x++){
             for(int y=0;y<20;y++){
 
-                canvas.drawRect((ancho/10)*p.x1,
-                        (alto/20)*p.y1,
-                        (ancho/10)*p.x2,
-                        (alto/20)*p.y2,
+                canvas.drawRect((getMeasuredWidth()/10)*p.x1,
+                        (getMeasuredHeight()/20)*p.y1,
+                        (getMeasuredWidth()/10)*p.x2,
+                        (getMeasuredHeight()/20)*p.y2,
                         pint);
-                canvas.drawRect((ancho/10)*p.x3,
-                        (alto/20)*p.y3,
-                        (ancho/10)*p.x4,
-                        (alto/20)*p.y4,
+                canvas.drawRect((getMeasuredWidth()/10)*p.x3,
+                        (getMeasuredHeight()/20)*p.y3,
+                        (getMeasuredWidth()/10)*p.x4,
+                        (getMeasuredHeight()/20)*p.y4,
                         pint);
             }
         }*/
 
     }
-
+    protected void reDraw (){
+        this.invalidate();
+    }
 
     @Override
     public void onClick(View v) {
@@ -145,19 +142,14 @@ public class Juego extends View implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.botonDcha:
                 Toast.makeText(mainActivity, "HOLA PRUEBA", Toast.LENGTH_SHORT).show();
-                tablero.moverPiezas(tablero.getPieza(), 'd');
-                postInvalidate(0, 0, alto, ancho);
+                tablero.moverPiezas(tablero.getPieza(),'d');
+                invalidate();
                 break;
             case R.id.botonBajar:
-                tablero.moverPiezas(tablero.getPieza(), 'a');
-                postInvalidate(0, 0, alto, ancho);
                 break;
             case R.id.botonIzda:
-                tablero.moverPiezas(tablero.getPieza(), 'i');
-                postInvalidate(0, 0, alto, ancho);
                 break;
             case R.id.botonRotar:
-                postInvalidate(0, 0, alto, ancho);
                 break;
         }
     }
