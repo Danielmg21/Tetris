@@ -18,9 +18,10 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas)+1));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
+
     public void generarPieza() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
@@ -109,23 +110,23 @@ public class Tablero {
     public void moverPiezas(Pieza pieza, char x) {
         switch (x) {
             case 'i':
-                if (puedeMoverse(pieza,-1,0)) {
+                if (puedeMoverse(pieza, -1, 0)) {
                     borrarPieza(pieza);
-                    pieza.mover(-1,0);
+                    pieza.mover(-1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'd':
-                if (puedeMoverse(pieza,1,0)) {
+                if (puedeMoverse(pieza, 1, 0)) {
                     borrarPieza(pieza);
-                    pieza.mover(1,0);
+                    pieza.mover(1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'a':
-                if (puedeMoverse(pieza,0,1)) {
+                if (puedeMoverse(pieza, 0, 1)) {
                     borrarPieza(pieza);
-                    pieza.mover(0,1);
+                    pieza.mover(0, 1);
                     ponerPieza(pieza);
                 }
                 break;
@@ -154,10 +155,9 @@ public class Tablero {
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
                 n++;
-            }
-            else if(a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
+            } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
                 n++;
             }
         }
