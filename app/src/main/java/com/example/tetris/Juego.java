@@ -68,19 +68,17 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
+                        run1();
                         if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
-                            run1();
                             timer.cancel();
                             timer = new Timer();
                             gameLoop();
                             cont++;
-
-                        }else{
-                            listaPiezas.remove(tablero.getPieza());
-                            tablero.generarPieza();
-                            run1();
+                            invalidate();
                         }
-                        invalidate();
+                        else {
+                            //llamar pantalla end game
+                        }
                     }
                 });
             }
