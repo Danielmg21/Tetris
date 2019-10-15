@@ -1,6 +1,7 @@
 package com.example.tetris;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -54,7 +55,7 @@ public class Juego extends View implements View.OnClickListener {
         gameLoop();
     }
 
-    public void run1(){
+    public void run1() {
         tablero.ponerPieza(tablero.getPieza());
 
     }
@@ -68,35 +69,25 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        run1();
-                        /*if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
-                            tablero.moverPiezas(tablero.getPieza(),'a');
-                            timer.cancel();
-                            timer = new Timer();
-                            gameLoop();
-                            cont++;
+                        if (!tablero.puedeMoverse(tablero.getPieza(),0,1)&&tablero.getPieza().getAltura()==0){
+                            mainActivity.finish();
+                        }else{
+                            run1();
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1)) {
+                                tablero.moverPiezas(tablero.getPieza(), 'a');
+                                timer.cancel();
+                                timer = new Timer();
+                                gameLoop();
+                                cont++;
+                            } else {
+                                tablero.listaPiezas.remove(tablero.getPieza());
+                                tablero.generarPieza();
+                                tablero.ponerPieza(tablero.getPieza());
+                            }
+                            invalidate();
                         }
-                        else {
-                            tablero.listaPiezas.remove(tablero.getPieza());
-                            tablero.generarPieza();
-                            tablero.ponerPieza(tablero.getPieza());
-                        }
-                        invalidate();*/
-                        tablero.listaPiezas.remove(tablero.getPieza());
-                        tablero.generarPieza();
-                        tablero.ponerPieza(tablero.getPieza());
-                        if(tablero.puedeMoverse(tablero.getPieza(),0,1)) {
-                            tablero.moverPiezas(tablero.getPieza(),'a');
-                            timer.cancel();
-                            timer = new Timer();
-                            gameLoop();
-                            cont++;
-                        }
-                        invalidate();
-                        //creo que asi va a funcionar lo de comprobar que el jugador pierda, si
-                        //no puede moverse en cuanto coloco la pieza entonces ha perdido y habria
-                        //que redirigir a pantallas creo que va asi
-                        
+
+
                     }
 
                 });

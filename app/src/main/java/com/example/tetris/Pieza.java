@@ -120,7 +120,9 @@ public class Pieza {
         y4 = y4 + y;
     }
 
-
+    public int getAltura(){
+        return this.y1;
+    }
 
     public int giraX1(int y) {
         return x1 + y - y1;
