@@ -133,6 +133,33 @@ public class Tablero {
         }
 
     }
+    //las x anteriores son las y siguientes
+    //las y anteriores son las x siguientes
+    /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
+    y crear el puede rotar
+     */
+    /*public void RotaPiezas(Pieza p){
+        int aux1;int aux2;
+        aux1=p.y1;
+        aux2=p.x1;
+        p.x1=aux1;
+        p.y1=aux2;
+
+        aux1=p.y2;
+        aux2=p.x2;
+        p.x2=aux1;
+        p.y2=aux2;
+
+        aux1=p.y3;
+        aux2=p.x3;
+        p.x3=aux1;
+        p.y3=aux2;
+
+        aux1=p.y4;
+        aux2=p.x4;
+        p.x4=aux1;
+        p.y4=aux2;
+    }*/
 
     public boolean puedeMoverse(Pieza pieza, int x, int y) {
         int n = 0; //contador para saber si la pieza entera puede moverse

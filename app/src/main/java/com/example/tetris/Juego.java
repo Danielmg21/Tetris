@@ -79,7 +79,8 @@ public class Juego extends View implements View.OnClickListener {
                                 timer = new Timer();
                                 gameLoop();
                                 cont++;
-                            } else {
+                            }
+                            else {
                                 tablero.listaPiezas.remove(tablero.getPieza());
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
@@ -147,6 +148,7 @@ public class Juego extends View implements View.OnClickListener {
                 invalidate();
                 break;
             case R.id.botonRotar:
+                //tablero.RotaPiezas(tablero.getPieza());
                 invalidate();
                 break;
         }
