@@ -138,7 +138,7 @@ public class Tablero {
     /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
     y crear el puede rotar
      */
-    /*public void RotaPiezas(Pieza p){
+    public void RotaPiezas(Pieza p){
         int aux1;int aux2;
         aux1=p.y1;
         aux2=p.x1;
@@ -159,7 +159,7 @@ public class Tablero {
         aux2=p.x4;
         p.x4=aux1;
         p.y4=aux2;
-    }*/
+    }
 
     public boolean puedeMoverse(Pieza pieza, int x, int y) {
         int n = 0; //contador para saber si la pieza entera puede moverse
