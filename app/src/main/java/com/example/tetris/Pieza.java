@@ -8,6 +8,7 @@ public class Pieza {
     public int x3, y3;
     public int x4, y4;
     private Pieza pieza;
+    public int pos;
 
 
     public Pieza(Pieza pieza) {
@@ -29,15 +30,17 @@ public class Pieza {
                 x4 = 5; y4 = 1;
 
                 idColor = 1;
+                pos=0;
                 break;
 
-            case 2:    // z Pieza
+            case 2:    // Z Pieza
                 x1 = 4;y1 = 0;
                 x2 = 5;y2 = 0;
                 x3 = 5;y3 = 1;
                 x4 = 6;y4 = 1;
 
                 idColor = 2;
+                pos=0;
                 break;
 
             case 3: // I Pieza
@@ -47,6 +50,7 @@ public class Pieza {
                 x4 = 4;y4 = 3;
 
                 idColor = 3;
+                pos=0;
                 break;
 
             case 4: // T Pieza
@@ -56,6 +60,7 @@ public class Pieza {
                 x4 = 6;y4 = 1;
 
                 idColor = 4;
+                pos=0;
                 break;
 
             case 5: // S Pieza
@@ -65,6 +70,7 @@ public class Pieza {
                 x4 = 5;y4 = 1;
 
                 idColor = 5;
+                pos=0;
                 break;
 
             case 6:  // J Pieza
@@ -74,15 +80,17 @@ public class Pieza {
                 x4 = 6;y4 = 2;
 
                 idColor = 6;
+                pos=0;
                 break;
 
-            case 7:  //  L Pieza
+            case 7:  // L Pieza
                 x1 = 5;y1 = 0;
                 x2 = 5;y2 = 1;
                 x3 = 5;y3 = 2;
                 x4 = 6;y4 = 2;
 
                 idColor = 7;
+                pos=0;
                 break;
         }
     }
@@ -158,5 +166,15 @@ public class Pieza {
     // ni idea que hace esto
     public int getMinXCoordinate(int x1, int x2, int x3, int x4) {
         return Math.min(Math.min(x1,x2),Math.min(x3,x4));
+    }
+
+    public void copiarPieza(Pieza pieza,Pieza pieza2){
+        pieza.x1=pieza2.x1;
+        pieza.x2=pieza2.x2;
+        pieza.x3=pieza2.x3;
+        pieza.x4=pieza2.x4;
+
+        pieza.pos=pieza2.pos;
+
     }
 }

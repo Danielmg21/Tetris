@@ -102,6 +102,187 @@ public class Tablero {
         tab[pieza.x4][pieza.y4] = 0;
     }
 
+
+    public Pieza alfredoAux (Pieza pieza){
+        Pieza P = new Pieza(pieza.idColor);
+        pieza.copiarPieza(P,pieza);
+        alfredo(P);
+        return P;
+    }
+
+
+    /*Este metodo por favor no lo toqueis ni borreis porque os crujo
+    servira para hacer las rotaciones en un futuro no muy lejano
+     */
+
+    //añadir el cambio de la posicion de la pieza
+
+    public void alfredo(Pieza p){
+        switch (p.idColor){
+
+            case 1:
+                //Cuadrado uso salpicadura
+                //No tuvo ningun efecto
+                break;
+
+            case 2:
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2+1;
+                        p.x3=p.x3-1;p.y3=p.y3+0;
+                        p.x4=p.x4-2;p.y4=p.y4+1;
+                        break;
+
+                    case 1:
+                        p.y1=p.y1-1;p.x1=p.x1+0;
+                        p.y2=p.y2+0;p.x1=p.x2-1;
+                        p.y3=p.y3+1;p.x3=p.x3+0;
+                        p.y4=p.y4+2;p.x4=p.x4-1;
+                        break;
+                }
+                break;
+
+            case 3://
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2+1;p.y1=p.y2-1;
+                        p.x3=p.x3+2;p.y3=p.y3-2;
+                        p.x4=p.x4+3;p.y4=p.y4-3;
+                        break;
+
+                    case 1:
+                        p.y1=p.y1+0;p.x1=p.x1+0;
+                        p.y2=p.y2+1;p.x1=p.x2-1;
+                        p.y3=p.y3+2;p.x3=p.x3-2;
+                        p.y4=p.y4+3;p.x4=p.x4-3;
+                        break;
+                }
+                break;
+
+            case 4:
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2+1;p.y1=p.y2-1;
+                        p.x3=p.x3+1;p.y3=p.y3-1;
+                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        break;
+
+                    case 1:
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2+1;
+                        p.x3=p.x3-2;p.y3=p.y3+1;
+                        p.x4=p.x4+0;p.y4=p.y4+1;
+                        break;
+
+                    case 2:
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        break;
+
+                    case 3:
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x4=p.x4-2;p.y4=p.y4+1;
+                        break;
+
+                }
+
+                break;
+
+            case 5:
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+2;p.y1=p.y1+0;
+                        p.x2=p.x2+1;p.y1=p.y2+1;
+                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x4=p.x4-1;p.y4=p.y4+1;
+                        break;
+
+                    case 1:
+                        p.y1=p.y1+2;p.x1=p.x1+0;
+                        p.y2=p.y2+1;p.x1=p.x2-1;
+                        p.y3=p.y3+0;p.x3=p.x3+0;
+                        p.y4=p.y4-1;p.x4=p.x4-1;
+                        break;
+                }
+                break;
+
+            case 6:
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+2;p.y1=p.y1+1;
+                        p.x2=p.x2+1;p.y1=p.y2+2;
+                        p.x3=p.x3+1;p.y3=p.y3+0;
+                        p.x4=p.x4+0;p.y4=p.y4+1;
+                        break;
+
+                    case 1:
+                        p.x1=p.x1-2;p.y1=p.y1-1;
+                        p.x2=p.x2-1;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        break;
+
+                    case 2:
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y1=p.y2-1;
+                        p.x3=p.x3+0;p.y3=p.y3+1;
+                        p.x4=p.x4+1;p.y4=p.y4+2;
+                        break;
+
+                    case 3:
+                        p.x1=p.x1+0;p.y1=p.y1-2;
+                        p.x2=p.x2+1;p.y1=p.y2-1;
+                        p.x3=p.x3-1;p.y3=p.y3-1;
+                        p.x4=p.x4-2;p.y4=p.y4+0;
+                        break;
+
+                }
+
+                break;
+
+            case 7:
+                switch (p.pos){
+                    case 0:
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2+1;
+                        p.x3=p.x3-1;p.y3=p.y3+0;
+                        p.x4=p.x4-2;p.y4=p.y4-1;
+                        break;
+
+                    case 1:
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+1;
+                        p.x4=p.x4+2;p.y4=p.y4+1;
+                        break;
+
+                    case 2:
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2-1;
+                        p.x3=p.x3-1;p.y3=p.y3-2;
+                        p.x4=p.x4-2;p.y4=p.y4-1;
+                        break;
+
+                    case 3:
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2+1;p.y1=p.y2+0;
+                        p.x3=p.x3+2;p.y3=p.y3+1;
+                        p.x4=p.x4+2;p.y4=p.y4+1;
+                        break;
+
+                }
+
+                break;
+        }
+    }
+
     /*este metodo mueve la pieza despues de comprobarlo abajo,izquierda o derecha segun el char
     que le pasen, para ello usamos comprueba y el tipo de movimiento y en comprueba hay que
     comprobar que la PIEZA  no se salga del tablero y que no choque con otras.
