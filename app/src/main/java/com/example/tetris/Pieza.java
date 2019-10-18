@@ -34,10 +34,10 @@ public class Pieza {
                 break;
 
             case 2:    // Z Pieza
-                x1 = 4;y1 = 0;
-                x2 = 5;y2 = 0;
-                x3 = 5;y3 = 1;
-                x4 = 6;y4 = 1;
+                x1 = 5;y1 = 0;
+                x2 = 6;y2 = 0;
+                x3 = 6;y3 = 1;
+                x4 = 7;y4 = 1;
 
                 idColor = 2;
                 pos=0;
@@ -75,19 +75,19 @@ public class Pieza {
 
             case 6:  // J Pieza
                 x1 = 6;y1 = 0;
-                x2 = 6;y2 = 1;
-                x3 = 5;y3 = 2;
-                x4 = 6;y4 = 2;
+                x2 = 7;y2 = 0;
+                x3 = 7;y3 = 1;
+                x4 = 7;y4 = 2;
 
                 idColor = 6;
                 pos=0;
                 break;
 
             case 7:  // L Pieza
-                x1 = 5;y1 = 0;
-                x2 = 5;y2 = 1;
-                x3 = 5;y3 = 2;
-                x4 = 6;y4 = 2;
+                x1 = 4;y1 = 0;
+                x2 = 5;y2 = 0;
+                x3 = 4;y3 = 1;
+                x4 = 4;y4 = 2;
 
                 idColor = 7;
                 pos=0;

@@ -141,6 +141,12 @@ public class Tablero {
                         p.y4=p.y4+2;p.x4=p.x4-1;
                         break;
                 }
+                if(p.pos==1){
+                    p.pos=0;
+                }else{
+                    p.pos++;
+                }
+
                 break;
 
             case 3://
@@ -158,6 +164,11 @@ public class Tablero {
                         p.y3=p.y3+2;p.x3=p.x3-2;
                         p.y4=p.y4+3;p.x4=p.x4-3;
                         break;
+                }
+                if(p.pos==1){
+                    p.pos=0;
+                }else{
+                    p.pos++;
                 }
                 break;
 
@@ -192,7 +203,11 @@ public class Tablero {
                         break;
 
                 }
-
+                if(p.pos==3){
+                    p.pos=0;
+                }else{
+                    p.pos++;
+                }
                 break;
 
             case 5:
@@ -210,6 +225,11 @@ public class Tablero {
                         p.y3=p.y3+0;p.x3=p.x3+0;
                         p.y4=p.y4-1;p.x4=p.x4-1;
                         break;
+                }
+                if(p.pos==1){
+                    p.pos=0;
+                }else{
+                    p.pos++;
                 }
                 break;
 
@@ -244,7 +264,11 @@ public class Tablero {
                         break;
 
                 }
-
+                if(p.pos==3){
+                    p.pos=0;
+                }else{
+                    p.pos++;
+                }
                 break;
 
             case 7:
@@ -278,7 +302,11 @@ public class Tablero {
                         break;
 
                 }
-
+                if(p.pos==3){
+                    p.pos=0;
+                }else{
+                    p.pos++;
+                }
                 break;
         }
     }

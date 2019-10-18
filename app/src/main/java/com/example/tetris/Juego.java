@@ -146,7 +146,7 @@ public class Juego extends View implements View.OnClickListener {
                 break;
             case R.id.botonRotar:
                 Pieza p = tablero.getPieza();
-                tablero.borrarPieza();
+                tablero.borrarPieza(p);
                 p=tablero.alfredoAux(p);
                 tablero.ponerPieza(p);
                 invalidate();
