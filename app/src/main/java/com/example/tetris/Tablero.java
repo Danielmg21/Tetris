@@ -345,34 +345,12 @@ public class Tablero {
         }
 
     }
-    //las x anteriores son las y siguientes
-    //las y anteriores son las x siguientes
-    /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
-    y crear el puede rotar
-     */
-    public void rotaPiezas(Pieza p){
-        int aux1;int aux2;
 
-        aux1=p.y1;
-        aux2=p.x1;
-        p.x1=aux1;
-        p.y1=aux2;
 
-        aux1=p.y2;
-        aux2=p.x2;
-        p.x2=aux1;
-        p.y2=aux2;
-
-        aux1=p.y3;
-        aux2=p.x3;
-        p.x3=aux1;
-        p.y3=aux2;
-
-        aux1=p.y4;
-        aux2=p.x4;
-        p.x4=aux1;
-        p.y4=aux2;
-    }
+    //puede moverse controla tanto movimientos como rotaciones o al menos esa es la intencion
+    //pero todavia falla no permite hacer rotaciones en los bordes como es logico pero una vez
+    // choca con un borde y le pides rotar y luego lo mueves y si esta en condiciones de rotar
+    // ya no rota, no se como arreglarlo
 
     public boolean puedeMoverse(Pieza pieza, int x, int y) {
         int n = 0; //contador para saber si la pieza entera puede moverse
@@ -381,10 +359,23 @@ public class Tablero {
         Point xy3 = new Point(pieza.x3, pieza.y3);
         Point xy4 = new Point(pieza.x4, pieza.y4);
 
-        Point aux1 = new Point(pieza.x1 + x, pieza.y1 + y);
-        Point aux2 = new Point(pieza.x2 + x, pieza.y2 + y);
-        Point aux3 = new Point(pieza.x3 + x, pieza.y3 + y);
-        Point aux4 = new Point(pieza.x4 + x, pieza.y4 + y);
+        Point aux1;Point aux2; Point aux3; Point aux4;
+
+        if((x==0)&&(y==0)){
+            Pieza aux = alfredoAux(pieza);
+            aux1 = new Point(aux.x1 , aux.y1 );
+            aux2 = new Point(aux.x2 , aux.y2 );
+            aux3 = new Point(aux.x3 , aux.y3 );
+            aux4 = new Point(aux.x4 , aux.y4 );
+
+        }else{
+            aux1 = new Point(pieza.x1 + x, pieza.y1 + y);
+            aux2 = new Point(pieza.x2 + x, pieza.y2 + y);
+            aux3 = new Point(pieza.x3 + x, pieza.y3 + y);
+            aux4 = new Point(pieza.x4 + x, pieza.y4 + y);
+        }
+
+
 
         //Creamos un array con los puntos posibles donde se puede mover
         ArrayList<Point> puntos = new ArrayList<Point>();
@@ -407,41 +398,8 @@ public class Tablero {
 
         return false;
     }
-    public boolean puedeRotar(Pieza pieza){
-        Pieza piezaaux = alfredoAux(pieza);
-        int n = 0;
 
-        Point xy1 = new Point(piezaaux.x1, piezaaux.y1);
-        Point xy2 = new Point(piezaaux.x2, piezaaux.y2);
-        Point xy3 = new Point(piezaaux.x3, piezaaux.y3);
-        Point xy4 = new Point(piezaaux.x4, piezaaux.y4);
 
-        Point aux1 = new Point(piezaaux.x1 , pieza.y1 );
-        Point aux2 = new Point(piezaaux.x2 , pieza.y2 );
-        Point aux3 = new Point(piezaaux.x3 , pieza.y3 );
-        Point aux4 = new Point(piezaaux.x4 , pieza.y4 );
-
-        //Creamos un array con los puntos posibles donde se puede mover
-        ArrayList<Point> puntos = new ArrayList<Point>();
-        puntos.add(aux1);
-        puntos.add(aux2);
-        puntos.add(aux3);
-        puntos.add(aux4);
-
-        //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
-        for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
-                n++;
-            } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
-                n++;
-            }
-        }
-        if (n == 4) {
-            return true;
-        }
-
-        return false;
-    }
 
     /*
     public boolean compruebaFinJuego(Piezas spielStein) {

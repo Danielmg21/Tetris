@@ -147,13 +147,13 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.botonRotar:
                 Pieza p = tablero.getPieza();
                 if(p.idColor!=1){
-                    tablero.borrarPieza(p);
-                    tablero.alfredo(p);
-                    tablero.ponerPieza(p);
-                }else{
-                    //no hace nada
-                }
+                    if(tablero.puedeMoverse(p,0,0)){
+                        tablero.borrarPieza(p);
+                        tablero.alfredo(p);
+                        tablero.ponerPieza(p);
+                    }
 
+                }
                 invalidate();
                 break;
         }
