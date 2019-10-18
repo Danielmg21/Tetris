@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         puntosTextView = (TextView) findViewById(R.id.puntosText);
         nivelTextView = (TextView) findViewById(R.id.nivelText);
         Pieza p = new Pieza(0);
+
         VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         siguientePieza.setLayoutParams(params1);

@@ -27,8 +27,9 @@ public class VentanaNext extends View {
 
     public void runVentanaNext(Pieza p) {
         limpiarVentana();
-        getPieza(p);
-        ventana.ponerPieza(p);
+        Pieza aux = new Pieza(p.idColor);
+        getPieza(aux);
+        ventana.ponerPieza(aux);
     }
 
     public void limpiarVentana() {
@@ -39,108 +40,108 @@ public class VentanaNext extends View {
         }
     }
 
-    public Pieza getPieza(Pieza p) {
+    public Pieza getPieza(Pieza aux) {
 
-        switch (p.idColor) { // Cuadrado
+        switch (aux.idColor) { // Cuadrado
             case 1:
-                p.x1 = 1;
-                p.y1 = 1;
-                p.x2 = 2;
-                p.y2 = 1;
-                p.x3 = 1;
-                p.y3 = 2;
-                p.x4 = 2;
-                p.y4 = 2;
+                aux.x1 = 1;
+                aux.y1 = 1;
+                aux.x2 = 2;
+                aux.y2 = 1;
+                aux.x3 = 1;
+                aux.y3 = 2;
+                aux.x4 = 2;
+                aux.y4 = 2;
 
-                p.idColor = 1;
-                p.pos = 0;
+                aux.idColor = 1;
+                aux.pos = 0;
                 break;
 
-            case 2:    // Z Pieza
-                p.x1 = 0;
-                p.y1 = 1;
-                p.x2 = 1;
-                p.y2 = 1;
-                p.x3 = 1;
-                p.y3 = 2;
-                p.x4 = 2;
-                p.y4 = 2;
+            case 2:    // Z auxieza
+                aux.x1 = 0;
+                aux.y1 = 1;
+                aux.x2 = 1;
+                aux.y2 = 1;
+                aux.x3 = 1;
+                aux.y3 = 2;
+                aux.x4 = 2;
+                aux.y4 = 2;
 
-                p.idColor = 2;
-                p.pos = 0;
+                aux.idColor = 2;
+                aux.pos = 0;
                 break;
 
-            case 3: // I Pieza
-                p.x1 = 1;
-                p.y1 = 0;
-                p.x2 = 1;
-                p.y2 = 1;
-                p.x3 = 1;
-                p.y3 = 2;
-                p.x4 = 1;
-                p.y4 = 3;
+            case 3: // I auxieza
+                aux.x1 = 1;
+                aux.y1 = 0;
+                aux.x2 = 1;
+                aux.y2 = 1;
+                aux.x3 = 1;
+                aux.y3 = 2;
+                aux.x4 = 1;
+                aux.y4 = 3;
 
-                p.idColor = 3;
-                p.pos = 0;
+                aux.idColor = 3;
+                aux.pos = 0;
                 break;
 
-            case 4: // T Pieza
-                p.x1 = 1;
-                p.y1 = 1;
-                p.x2 = 0;
-                p.y2 = 2;
-                p.x3 = 1;
-                p.y3 = 2;
-                p.x4 = 2;
-                p.y4 = 2;
+            case 4: // T auxieza
+                aux.x1 = 1;
+                aux.y1 = 1;
+                aux.x2 = 0;
+                aux.y2 = 2;
+                aux.x3 = 1;
+                aux.y3 = 2;
+                aux.x4 = 2;
+                aux.y4 = 2;
 
-                p.idColor = 4;
-                p.pos = 0;
+                aux.idColor = 4;
+                aux.pos = 0;
                 break;
 
-            case 5: // S Pieza
-                p.x1 = 1;
-                p.y1 = 1;
-                p.x2 = 2;
-                p.y2 = 1;
-                p.x3 = 0;
-                p.y3 = 2;
-                p.x4 = 1;
-                p.y4 = 2;
+            case 5: // S auxieza
+                aux.x1 = 1;
+                aux.y1 = 1;
+                aux.x2 = 2;
+                aux.y2 = 1;
+                aux.x3 = 0;
+                aux.y3 = 2;
+                aux.x4 = 1;
+                aux.y4 = 2;
 
-                p.idColor = 5;
-                p.pos = 0;
+                aux.idColor = 5;
+                aux.pos = 0;
                 break;
 
-            case 6:  // J Pieza
-                p.x1 = 2;
-                p.y1 = 1;
-                p.x2 = 2;
-                p.y2 = 2;
-                p.x3 = 1;
-                p.y3 = 3;
-                p.x4 = 2;
-                p.y4 = 3;
+            case 6:  // J auxieza
+                aux.x1 = 2;
+                aux.y1 = 1;
+                aux.x2 = 2;
+                aux.y2 = 2;
+                aux.x3 = 1;
+                aux.y3 = 3;
+                aux.x4 = 2;
+                aux.y4 = 3;
 
-                p.idColor = 6;
-                p.pos = 0;
+                aux.idColor = 6;
+                aux.pos = 0;
                 break;
 
-            case 7:  // L Pieza
-                p.x1 = 1;
-                p.y1 = 1;
-                p.x2 = 1;
-                p.y2 = 2;
-                p.x3 = 1;
-                p.y3 = 3;
-                p.x4 = 2;
-                p.y4 = 3;
+            case 7:  // L auxieza
+                aux.x1 = 1;
+                aux.y1 = 1;
+                aux.x2 = 1;
+                aux.y2 = 2;
+                aux.x3 = 1;
+                aux.y3 = 3;
+                aux.x4 = 2;
+                aux.y4 = 3;
 
-                p.idColor = 7;
-                p.pos = 0;
+                aux.idColor = 7;
+                aux.pos = 0;
                 break;
         }
-        return pieza;
+        return aux;
     }
 
     @Override
