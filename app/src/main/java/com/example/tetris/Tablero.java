@@ -18,7 +18,8 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
+        //listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
+        listaPiezas.add(new Pieza(5));
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
 
@@ -129,16 +130,16 @@ public class Tablero {
                 switch (p.pos){
                     case 0:
                         p.x1=p.x1+1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y1=p.y2+1;
+                        p.x2=p.x2+0;p.y2=p.y2+1;
                         p.x3=p.x3-1;p.y3=p.y3+0;
                         p.x4=p.x4-2;p.y4=p.y4+1;
                         break;
 
                     case 1:
-                        p.y1=p.y1-1;p.x1=p.x1+0;
-                        p.y2=p.y2+0;p.x1=p.x2-1;
-                        p.y3=p.y3+1;p.x3=p.x3+0;
-                        p.y4=p.y4+2;p.x4=p.x4-1;
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y2=p.y2-1;
+                        p.x3=p.x3+1;p.y3=p.y3+0;
+                        p.x4=p.x4+2;p.y4=p.y4-1;
                         break;
                 }
                 if(p.pos==1){
@@ -153,14 +154,14 @@ public class Tablero {
                 switch (p.pos){
                     case 0:
                         p.x1=p.x1+0;p.y1=p.y1+0;
-                        p.x2=p.x2+1;p.y1=p.y2-1;
+                        p.x2=p.x2+1;p.y2=p.y2-1;
                         p.x3=p.x3+2;p.y3=p.y3-2;
                         p.x4=p.x4+3;p.y4=p.y4-3;
                         break;
 
                     case 1:
                         p.y1=p.y1+0;p.x1=p.x1+0;
-                        p.y2=p.y2+1;p.x1=p.x2-1;
+                        p.y2=p.y2+1;p.x2=p.x2-1;
                         p.y3=p.y3+2;p.x3=p.x3-2;
                         p.y4=p.y4+3;p.x4=p.x4-3;
                         break;
@@ -174,33 +175,35 @@ public class Tablero {
 
             case 4:
                 switch (p.pos){
+
                     case 0:
-                        p.x1=p.x1+0;p.y1=p.y1+0;
-                        p.x2=p.x2+1;p.y1=p.y2-1;
-                        p.x3=p.x3+1;p.y3=p.y3-1;
-                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y2=p.y2+1;
+                        p.x3=p.x3-1;p.y3=p.y3+2;
+                        p.x4=p.x4-1;p.y4=p.y4+0;
                         break;
 
                     case 1:
-                        p.x1=p.x1+1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y1=p.y2+1;
-                        p.x3=p.x3-2;p.y3=p.y3+1;
-                        p.x4=p.x4+0;p.y4=p.y4+1;
-                        break;
-
-                    case 2:
-                        p.x1=p.x1+0;p.y1=p.y1+0;
-                        p.x2=p.x2-1;p.y1=p.y2+0;
-                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x1=p.x1+1;p.y1=p.y1+1;
+                        p.x2=p.x2+0;p.y2=p.y2+0;
+                        p.x3=p.x3-1;p.y3=p.y3-1;
                         p.x4=p.x4+1;p.y4=p.y4-1;
                         break;
 
-                    case 3:
-                        p.x1=p.x1-1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y1=p.y2+0;
-                        p.x3=p.x3+0;p.y3=p.y3+0;
-                        p.x4=p.x4-2;p.y4=p.y4+1;
+                    case 2:
+                        p.x1=p.x1-2;p.y1=p.y1+1;
+                        p.x2=p.x2-1;p.y2=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3-1;
+                        p.x4=p.x4+0;p.y4=p.y4+1;
                         break;
+
+                    case 3:
+                        p.x1=p.x1+0;p.y1=p.y1-2;
+                        p.x2=p.x2+1;p.y2=p.y2-1;
+                        p.x3=p.x3+2;p.y3=p.y3+0;
+                        p.x4=p.x4+0;p.y4=p.y4+0;
+                        break;
+
 
                 }
                 if(p.pos==3){
@@ -213,17 +216,17 @@ public class Tablero {
             case 5:
                 switch (p.pos){
                     case 0:
-                        p.x1=p.x1+2;p.y1=p.y1+0;
-                        p.x2=p.x2+1;p.y1=p.y2+1;
-                        p.x3=p.x3+0;p.y3=p.y3+0;
-                        p.x4=p.x4-1;p.y4=p.y4+1;
+                        p.x1=p.x1+0;p.y1=p.y1+1;
+                        p.x2=p.x2-1;p.y2=p.y2+2;
+                        p.x3=p.x3-1;p.y3=p.y3+0;
+                        p.x4=p.x4+0;p.y4=p.y4-1;
                         break;
 
                     case 1:
-                        p.y1=p.y1+2;p.x1=p.x1+0;
-                        p.y2=p.y2+1;p.x1=p.x2-1;
-                        p.y3=p.y3+0;p.x3=p.x3+0;
-                        p.y4=p.y4-1;p.x4=p.x4-1;
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y2=p.y2-1;
+                        p.x3=p.x3+1;p.y3=p.y3-1;
+                        p.x4=p.x4+2;p.y4=p.y4+0;
                         break;
                 }
                 if(p.pos==1){

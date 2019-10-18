@@ -148,7 +148,7 @@ public class Juego extends View implements View.OnClickListener {
                 Pieza p = tablero.getPieza();
                 if(p.idColor!=1){
                     tablero.borrarPieza(p);
-                    p=tablero.alfredoAux(p);
+                    tablero.alfredo(p);
                     tablero.ponerPieza(p);
                 }else{
                     //no hace nada

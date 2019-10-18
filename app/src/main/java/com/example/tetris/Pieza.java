@@ -64,10 +64,10 @@ public class Pieza {
                 break;
 
             case 5: // S Pieza
-                x1 = 4;y1 = 1;
-                x2 = 5;y2 = 1;
-                x3 = 5;y3 = 0;
-                x4 = 6;y4 = 0;
+                x1 = 5;y1 = 0;
+                x2 = 6;y2 = 0;
+                x3 = 5;y3 = 1;
+                x4 = 4;y4 = 1;
 
                 idColor = 5;
                 pos=0;
