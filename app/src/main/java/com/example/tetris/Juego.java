@@ -76,6 +76,7 @@ public class Juego extends View implements View.OnClickListener {
                         } else {
                             run1();
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1)) {
+
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 timer.cancel();
                                 timer = new Timer();
@@ -87,7 +88,6 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.ponerPieza(tablero.getPieza());
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
-                                //tablero.borrarFila();
                             }
                             invalidate();
                         }

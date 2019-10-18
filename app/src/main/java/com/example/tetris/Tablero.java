@@ -2,11 +2,9 @@ package com.example.tetris;
 
 import android.graphics.Color;
 import android.graphics.Point;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 
@@ -32,42 +30,7 @@ public class Tablero {
     public void borrarPieza() {
         listaPiezas.remove(0);
     }
-
     //transforma numeros de matriz a color
-    public void borrarFila() {
-        int i = 0, j = 0;
-        boolean filaVacia = false;
-        ArrayList<Integer> aBorrar = new ArrayList<Integer>();
-        Tablero aux = new Tablero();
-        for(int y = 0; y<getAlturaTablero();y++){
-            for(int x=0;x<getAnchoTablero();x++){
-                if(tab[x][y]==0){
-                    break;
-                }
-                if(x==0){
-                    aBorrar.add(y);
-                    vaciarFila(y);
-                }
-            }
-        }
-
-        for(int x=0;x<getAnchoTablero();x++){
-            for(int y=0;y<getAlturaTablero();y++){
-                aux.tab[x][y]=tab[x][y];
-            }
-        }
-        for(int y=0;y<getAlturaTablero();y++){
-            for(int x=0;x<getAnchoTablero();x++){
-                tab[x][y+aBorrar.size()]=aux.tab[x][y];
-            }
-        }
-    }
-
-    private void vaciarFila(int j) {
-        for (int i = 0; i < getAnchoTablero(); i++) {
-            tab[j][i] =0;
-        }
-    }
 
     public int parseaColor(int x, int y) {
         if (tab[x][y] == 0) return Color.parseColor("#BEBEBE");// gris fondo
@@ -141,9 +104,9 @@ public class Tablero {
     }
 
 
-    public Pieza alfredoAux(Pieza pieza) {
+    public Pieza alfredoAux (Pieza pieza){
         Pieza P = new Pieza(pieza.idColor);
-        pieza.copiarPieza(P, pieza);
+        pieza.copiarPieza(P,pieza);
         alfredo(P);
         return P;
     }
@@ -155,8 +118,8 @@ public class Tablero {
 
     //añadir el cambio de la posicion de la pieza
 
-    public void alfredo(Pieza p) {
-        switch (p.idColor) {
+    public void alfredo(Pieza p){
+        switch (p.idColor){
 
             case 1:
                 //Cuadrado uso salpicadura
@@ -164,7 +127,7 @@ public class Tablero {
                 break;
 
             case 2:
-                switch (p.pos) {
+                switch (p.pos){
                     case 0:
                         p.x1=p.x1+1;p.y1=p.y1+0;
                         p.x2=p.x2+0;p.y2=p.y2+1;
@@ -188,7 +151,7 @@ public class Tablero {
                 break;
 
             case 3://
-                switch (p.pos) {
+                switch (p.pos){
                     case 0:
                         p.x1=p.x1+0;p.y1=p.y1+0;
                         p.x2=p.x2+1;p.y2=p.y2-1;
@@ -251,7 +214,7 @@ public class Tablero {
                 break;
 
             case 5:
-                switch (p.pos) {
+                switch (p.pos){
                     case 0:
                         p.x1=p.x1+0;p.y1=p.y1+1;
                         p.x2=p.x2-1;p.y2=p.y2+2;
@@ -274,49 +237,33 @@ public class Tablero {
                 break;
 
             case 6:
-                switch (p.pos) {
+                switch (p.pos){
                     case 0:
-                        p.x1 = p.x1 + 2;
-                        p.y1 = p.y1 + 1;
-                        p.x2 = p.x2 + 1;
-                        p.y1 = p.y2 + 2;
-                        p.x3 = p.x3 + 1;
-                        p.y3 = p.y3 + 0;
-                        p.x4 = p.x4 + 0;
-                        p.y4 = p.y4 + 1;
+                        p.x1=p.x1+2;p.y1=p.y1+1;
+                        p.x2=p.x2+1;p.y1=p.y2+2;
+                        p.x3=p.x3+1;p.y3=p.y3+0;
+                        p.x4=p.x4+0;p.y4=p.y4+1;
                         break;
 
                     case 1:
-                        p.x1 = p.x1 - 2;
-                        p.y1 = p.y1 - 1;
-                        p.x2 = p.x2 - 1;
-                        p.y1 = p.y2 + 0;
-                        p.x3 = p.x3 + 0;
-                        p.y3 = p.y3 + 0;
-                        p.x4 = p.x4 + 1;
-                        p.y4 = p.y4 - 1;
+                        p.x1=p.x1-2;p.y1=p.y1-1;
+                        p.x2=p.x2-1;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+0;
+                        p.x4=p.x4+1;p.y4=p.y4-1;
                         break;
 
                     case 2:
-                        p.x1 = p.x1 + 0;
-                        p.y1 = p.y1 + 0;
-                        p.x2 = p.x2 - 1;
-                        p.y1 = p.y2 - 1;
-                        p.x3 = p.x3 + 0;
-                        p.y3 = p.y3 + 1;
-                        p.x4 = p.x4 + 1;
-                        p.y4 = p.y4 + 2;
+                        p.x1=p.x1+0;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y1=p.y2-1;
+                        p.x3=p.x3+0;p.y3=p.y3+1;
+                        p.x4=p.x4+1;p.y4=p.y4+2;
                         break;
 
                     case 3:
-                        p.x1 = p.x1 + 0;
-                        p.y1 = p.y1 - 2;
-                        p.x2 = p.x2 + 1;
-                        p.y1 = p.y2 - 1;
-                        p.x3 = p.x3 - 1;
-                        p.y3 = p.y3 - 1;
-                        p.x4 = p.x4 - 2;
-                        p.y4 = p.y4 + 0;
+                        p.x1=p.x1+0;p.y1=p.y1-2;
+                        p.x2=p.x2+1;p.y1=p.y2-1;
+                        p.x3=p.x3-1;p.y3=p.y3-1;
+                        p.x4=p.x4-2;p.y4=p.y4+0;
                         break;
 
                 }
@@ -328,49 +275,33 @@ public class Tablero {
                 break;
 
             case 7:
-                switch (p.pos) {
+                switch (p.pos){
                     case 0:
-                        p.x1 = p.x1 + 1;
-                        p.y1 = p.y1 + 0;
-                        p.x2 = p.x2 + 0;
-                        p.y1 = p.y2 + 1;
-                        p.x3 = p.x3 - 1;
-                        p.y3 = p.y3 + 0;
-                        p.x4 = p.x4 - 2;
-                        p.y4 = p.y4 - 1;
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2+1;
+                        p.x3=p.x3-1;p.y3=p.y3+0;
+                        p.x4=p.x4-2;p.y4=p.y4-1;
                         break;
 
                     case 1:
-                        p.x1 = p.x1 - 1;
-                        p.y1 = p.y1 + 0;
-                        p.x2 = p.x2 - 1;
-                        p.y1 = p.y2 + 0;
-                        p.x3 = p.x3 + 0;
-                        p.y3 = p.y3 + 1;
-                        p.x4 = p.x4 + 2;
-                        p.y4 = p.y4 + 1;
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2-1;p.y1=p.y2+0;
+                        p.x3=p.x3+0;p.y3=p.y3+1;
+                        p.x4=p.x4+2;p.y4=p.y4+1;
                         break;
 
                     case 2:
-                        p.x1 = p.x1 + 1;
-                        p.y1 = p.y1 + 0;
-                        p.x2 = p.x2 + 0;
-                        p.y1 = p.y2 - 1;
-                        p.x3 = p.x3 - 1;
-                        p.y3 = p.y3 - 2;
-                        p.x4 = p.x4 - 2;
-                        p.y4 = p.y4 - 1;
+                        p.x1=p.x1+1;p.y1=p.y1+0;
+                        p.x2=p.x2+0;p.y1=p.y2-1;
+                        p.x3=p.x3-1;p.y3=p.y3-2;
+                        p.x4=p.x4-2;p.y4=p.y4-1;
                         break;
 
                     case 3:
-                        p.x1 = p.x1 - 1;
-                        p.y1 = p.y1 + 0;
-                        p.x2 = p.x2 + 1;
-                        p.y1 = p.y2 + 0;
-                        p.x3 = p.x3 + 2;
-                        p.y3 = p.y3 + 1;
-                        p.x4 = p.x4 + 2;
-                        p.y4 = p.y4 + 1;
+                        p.x1=p.x1-1;p.y1=p.y1+0;
+                        p.x2=p.x2+1;p.y1=p.y2+0;
+                        p.x3=p.x3+2;p.y3=p.y3+1;
+                        p.x4=p.x4+2;p.y4=p.y4+1;
                         break;
 
                 }
@@ -414,35 +345,33 @@ public class Tablero {
         }
 
     }
-
     //las x anteriores son las y siguientes
     //las y anteriores son las x siguientes
     /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
     y crear el puede rotar
      */
-    public void rotaPiezas(Pieza p) {
-        int aux1;
-        int aux2;
+    public void rotaPiezas(Pieza p){
+        int aux1;int aux2;
 
-        aux1 = p.y1;
-        aux2 = p.x1;
-        p.x1 = aux1;
-        p.y1 = aux2;
+        aux1=p.y1;
+        aux2=p.x1;
+        p.x1=aux1;
+        p.y1=aux2;
 
-        aux1 = p.y2;
-        aux2 = p.x2;
-        p.x2 = aux1;
-        p.y2 = aux2;
+        aux1=p.y2;
+        aux2=p.x2;
+        p.x2=aux1;
+        p.y2=aux2;
 
-        aux1 = p.y3;
-        aux2 = p.x3;
-        p.x3 = aux1;
-        p.y3 = aux2;
+        aux1=p.y3;
+        aux2=p.x3;
+        p.x3=aux1;
+        p.y3=aux2;
 
-        aux1 = p.y4;
-        aux2 = p.x4;
-        p.x4 = aux1;
-        p.y4 = aux2;
+        aux1=p.y4;
+        aux2=p.x4;
+        p.x4=aux1;
+        p.y4=aux2;
     }
 
     public boolean puedeMoverse(Pieza pieza, int x, int y) {
@@ -523,10 +452,9 @@ public class Tablero {
         return false;
     }
     */
-    public Tablero getTablero() {
+    public Tablero getTablero(){
         return this;
     }
-
     public int getAlturaTablero() {
         return this.alturaTablero;
     }
