@@ -73,7 +73,7 @@ public class Pieza {
                 pos=0;
                 break;
 
-            case 6:  // J Pieza
+            case 6:  // L Pieza
                 x1 = 6;y1 = 0;
                 x2 = 7;y2 = 0;
                 x3 = 7;y3 = 1;
@@ -83,7 +83,7 @@ public class Pieza {
                 pos=0;
                 break;
 
-            case 7:  // L Pieza
+            case 7:  // J Pieza
                 x1 = 4;y1 = 0;
                 x2 = 5;y2 = 0;
                 x3 = 4;y3 = 1;
