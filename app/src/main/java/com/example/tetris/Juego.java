@@ -30,11 +30,14 @@ public class Juego extends View implements View.OnClickListener {
     private Timer timer = new Timer();
     Pieza p;
     private int timerPeriod = 250;
+    private VentanaNext ventana;
 
-    public Juego(Context context, Tablero tablero) {
+    public Juego(Context context, Tablero tablero, VentanaNext ventana) {
         super(context);
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
+        this.ventana=ventana;
+        this.listaPiezas=tablero.listaPiezas;
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
@@ -51,7 +54,6 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
-        tablero.generarPieza();
         gameLoop();
     }
 
@@ -80,9 +82,11 @@ public class Juego extends View implements View.OnClickListener {
                                 gameLoop();
                                 cont++;
                             } else {
-                                tablero.listaPiezas.remove(tablero.getPieza());
+                                tablero.borrarPieza();
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
+                                ventana.runVentanaNext(listaPiezas.get(1));
+                                ventana.invalidate();
                             }
                             invalidate();
                         }
@@ -160,9 +164,7 @@ public class Juego extends View implements View.OnClickListener {
     public int getNivel() {
         return this.nivelvar;
     }
-    public Tablero getTablero(){
-        return this.tablero;
-    }
+
 }
 
 

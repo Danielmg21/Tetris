@@ -66,7 +66,7 @@ public class Tablero {
     public void limpiarTablero() {
         for (int i = 0; i < alturaTablero; i++) {
             for (int j = 0; j < anchuraTablero; j++) {
-                tab[i][j] = 7;
+                tab[i][j] = 0;
             }
         }
     }
@@ -386,6 +386,9 @@ public class Tablero {
         return false;
     }
     */
+    public Tablero getTablero(){
+        return this;
+    }
     public int getAlturaTablero() {
         return this.alturaTablero;
     }
