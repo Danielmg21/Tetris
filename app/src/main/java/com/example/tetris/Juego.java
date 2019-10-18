@@ -62,6 +62,7 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void gameLoop() {
+        ventana.runVentanaNext(listaPiezas.get(1));
         timer.schedule(new TimerTask() {
 
             @Override
