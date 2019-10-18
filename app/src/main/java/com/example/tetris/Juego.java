@@ -35,7 +35,6 @@ public class Juego extends View implements View.OnClickListener {
         super(context);
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
-
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
@@ -52,12 +51,12 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        tablero.generarPieza();
         gameLoop();
     }
 
     public void run1() {
         tablero.ponerPieza(tablero.getPieza());
-
     }
 
     public void gameLoop() {
@@ -69,28 +68,25 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        if (!tablero.puedeMoverse(tablero.getPieza(),0,1)&&tablero.getPieza().getAltura()==0){
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1) && tablero.getPieza().getAltura() == 0) {
                             mainActivity.finish();
-                        }else{
+                        } else {
                             run1();
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1)) {
+
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 timer.cancel();
                                 timer = new Timer();
                                 gameLoop();
                                 cont++;
-                            }
-                            else {
+                            } else {
                                 tablero.listaPiezas.remove(tablero.getPieza());
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
                             }
                             invalidate();
                         }
-
-
                     }
-
                 });
             }
         }, 1000, timerPeriod);
@@ -125,10 +121,6 @@ public class Juego extends View implements View.OnClickListener {
                 canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 20, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 20, pBorde);
             }
         }
-    }
-
-    protected void reDraw() {
-        this.invalidate();
     }
 
     @Override
@@ -168,7 +160,9 @@ public class Juego extends View implements View.OnClickListener {
     public int getNivel() {
         return this.nivelvar;
     }
-
+    public Tablero getTablero(){
+        return this.tablero;
+    }
 }
 
 

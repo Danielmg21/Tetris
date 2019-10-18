@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView puntosTextView, nivelTextView;
     private Juego juego;
     private Tablero tablero = new Tablero();
+    private Tablero ventana = new Tablero();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
+
+        VentanaNext siguientePieza = new VentanaNext(this, ventana, juego);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        siguientePieza.setLayoutParams(params1);
+        RelativeLayout relativeNext = (RelativeLayout) findViewById(R.id.ventanaSig);
+        relativeNext.setBackgroundColor(Color.YELLOW);
+        relativeNext.addView(siguientePieza);
     }
 
     public ImageButton getBotonDcha() { return findViewById(R.id.botonDcha);}

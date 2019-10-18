@@ -95,7 +95,7 @@ public class Tablero {
         tab[pieza.x4][pieza.y4] = pieza.idColor;
     }
 
-    private void borrarPieza(Pieza pieza) {
+    public void borrarPieza(Pieza pieza) {
         tab[pieza.x1][pieza.y1] = 0;
         tab[pieza.x2][pieza.y2] = 0;
         tab[pieza.x3][pieza.y3] = 0;
@@ -319,8 +319,9 @@ public class Tablero {
     /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
     y crear el puede rotar
      */
-    public void RotaPiezas(Pieza p){
+    public void rotaPiezas(Pieza p){
         int aux1;int aux2;
+
         aux1=p.y1;
         aux2=p.x1;
         p.x1=aux1;
