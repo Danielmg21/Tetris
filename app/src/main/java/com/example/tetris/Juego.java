@@ -71,11 +71,11 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1) && tablero.getPieza().getAltura() == 0) {
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == 0) {
                             mainActivity.finish();
                         } else {
                             run1();
-                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1)) {
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
 
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 timer.cancel();
@@ -148,7 +148,7 @@ public class Juego extends View implements View.OnClickListener {
                 Pieza p = tablero.getPieza();
                 if(p.idColor!=1){
                     tablero.borrarPieza(p);
-                    tablero.alfredo(p);
+                    tablero.comprobarRotar(p);
                     tablero.ponerPieza(p);
                 }else{
                     //no hace nada

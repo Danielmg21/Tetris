@@ -322,21 +322,21 @@ public class Tablero {
     public void moverPiezas(Pieza pieza, char x) {
         switch (x) {
             case 'i':
-                if (puedeMoverse(pieza, -1, 0)) {
+                if (puedeMoverse(pieza, -1, 0,false)) {
                     borrarPieza(pieza);
                     pieza.mover(-1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'd':
-                if (puedeMoverse(pieza, 1, 0)) {
+                if (puedeMoverse(pieza, 1, 0,false)) {
                     borrarPieza(pieza);
                     pieza.mover(1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'a':
-                if (puedeMoverse(pieza, 0, 1)) {
+                if (puedeMoverse(pieza, 0, 1,false)) {
                     borrarPieza(pieza);
                     pieza.mover(0, 1);
                     ponerPieza(pieza);
@@ -374,7 +374,7 @@ public class Tablero {
         p.y4=aux2;
     }
 
-    public boolean puedeMoverse(Pieza pieza, int x, int y) {
+    public boolean puedeMoverse(Pieza pieza, int x, int y, boolean vengoDeRotar) {
         int n = 0; //contador para saber si la pieza entera puede moverse
         Point xy1 = new Point(pieza.x1, pieza.y1);
         Point xy2 = new Point(pieza.x2, pieza.y2);
@@ -398,7 +398,9 @@ public class Tablero {
             if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
-                n++;
+                if(!vengoDeRotar){
+                    n++;
+                }
             }
         }
         if (n == 4) {
@@ -461,5 +463,23 @@ public class Tablero {
 
     public int getAnchoTablero() {
         return this.anchuraTablero;
+    }
+
+    public void comprobarRotar(Pieza p) {
+        Pieza aux = new Pieza(p.idColor);
+        aux.pos=p.pos;
+        aux.x1=p.x1;
+        aux.y1=p.y1;
+        aux.x2=p.x2;
+        aux.y2=p.y2;
+        aux.x3=p.x3;
+        aux.y3=p.y3;
+        aux.x4=p.x4;
+        aux.y4=p.y4;
+
+        alfredo(aux);
+        if(puedeMoverse(aux,0,0,true)){
+            alfredo(p);
+        }
     }
 }
