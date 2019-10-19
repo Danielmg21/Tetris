@@ -71,11 +71,11 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1) && tablero.getPieza().getAltura() == 0) {
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == 0) {
                             mainActivity.finish();
                         } else {
                             run1();
-                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1)) {
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
 
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 timer.cancel();
@@ -84,6 +84,8 @@ public class Juego extends View implements View.OnClickListener {
                                 cont++;
                             } else {
                                 tablero.borrarPieza();
+                                tablero.elDestructor();
+                                invalidate();
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
                                 ventana.runVentanaNext(listaPiezas.get(1));
@@ -147,13 +149,13 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.botonRotar:
                 Pieza p = tablero.getPieza();
                 if(p.idColor!=1){
-                    if(tablero.puedeMoverse(p,0,0)){
-                        tablero.borrarPieza(p);
-                        tablero.alfredo(p);
-                        tablero.ponerPieza(p);
-                    }
-
+                    tablero.borrarPieza(p);
+                    tablero.comprobarRotar(p);
+                    tablero.ponerPieza(p);
+                }else{
+                    //no hace nada
                 }
+
                 invalidate();
                 break;
         }

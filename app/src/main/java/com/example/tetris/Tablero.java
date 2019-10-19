@@ -5,6 +5,7 @@ import android.graphics.Point;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
@@ -44,24 +45,81 @@ public class Tablero {
         return -1;
     }
 
-    public void bajarFila(int y) {
+    public void elDestructor(){
+        List<Integer> l = detectarFilas();
+        if(!l.isEmpty()){
+            for (int j : l) {
+                bajarFila(j);
+            }
+        }
+    }
+
+    /*public void bajarFila(int y) {
         int x;
         int filaVacio = 0;
         boolean vacio = false;
-        while ((y != 20) && (!vacio)) {
+        while ((y > 0) && (!vacio)) {
             for (x = 0; x < 10; x++) {
-                this.tab[x][y] = this.tab[x][y + 1];
-                if (this.tab[x][y + 1] == 7) {
+                this.tab[x][y] = this.tab[x][y - 1];
+                if (this.tab[x][y - 1] == 0) {
                     filaVacio++;
                 }
             }
-            y++;
+            y--;
             if (filaVacio == 10) {
                 vacio = true;
             }
             filaVacio = 0;
         }
+    }*/
+
+    public void ponerFila0 (int y){
+        for(int x=0;x<10;x++){
+            tab[x][y]=0;
+        }
     }
+
+    public void bajarFila(int y){
+        boolean fila0=false;
+        int contador0=0;
+        while((y>0)&&(fila0==false)){
+            for (int x=0;x<10;x++){
+                if(tab[x][y-1]==0){
+                    contador0++;
+
+                }else{
+                    tab[x][y]=tab[x][y-1];
+                }
+            }
+            if(contador0==10){
+                fila0=true;
+            }
+            y--;
+        }
+    }
+
+
+    public List<Integer> detectarFilas(){
+        int i;
+        int j=20;
+        int contador=0;
+        List<Integer> l = new ArrayList<>();
+        do{
+            i=0;
+            contador=0;
+            while((i<10)&&(tab[i][j]!=0)){
+                contador++;
+                i++;
+            }
+            if(contador==10){
+                l.add(j);
+                ponerFila0(j);
+            }
+            j--;
+        }while((contador!=0)&&(j>0));
+        return l;
+    }
+
 
     //todas las posiciones a 7
     public void limpiarTablero() {
@@ -322,21 +380,21 @@ public class Tablero {
     public void moverPiezas(Pieza pieza, char x) {
         switch (x) {
             case 'i':
-                if (puedeMoverse(pieza, -1, 0)) {
+                if (puedeMoverse(pieza, -1, 0,false)) {
                     borrarPieza(pieza);
                     pieza.mover(-1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'd':
-                if (puedeMoverse(pieza, 1, 0)) {
+                if (puedeMoverse(pieza, 1, 0,false)) {
                     borrarPieza(pieza);
                     pieza.mover(1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'a':
-                if (puedeMoverse(pieza, 0, 1)) {
+                if (puedeMoverse(pieza, 0, 1,false)) {
                     borrarPieza(pieza);
                     pieza.mover(0, 1);
                     ponerPieza(pieza);
@@ -345,37 +403,83 @@ public class Tablero {
         }
 
     }
+    //las x anteriores son las y siguientes
+    //las y anteriores son las x siguientes
+    /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
+    y crear el puede rotar
+     */
+    /*public void rotaPiezas(Pieza p){
+        int aux1;int aux2;
 
+        aux1=p.y1;
+        aux2=p.x1;
+        p.x1=aux1;
+        p.y1=aux2;
 
-    //puede moverse controla tanto movimientos como rotaciones o al menos esa es la intencion
-    //pero todavia falla no permite hacer rotaciones en los bordes como es logico pero una vez
-    // choca con un borde y le pides rotar y luego lo mueves y si esta en condiciones de rotar
-    // ya no rota, no se como arreglarlo
+        aux1=p.y2;
+        aux2=p.x2;
+        p.x2=aux1;
+        p.y2=aux2;
 
-    public boolean puedeMoverse(Pieza pieza, int x, int y) {
+        aux1=p.y3;
+        aux2=p.x3;
+        p.x3=aux1;
+        p.y3=aux2;
+
+        aux1=p.y4;
+        aux2=p.x4;
+        p.x4=aux1;
+        p.y4=aux2;
+    }*/
+
+    public boolean puedeMoverse(Pieza pieza, int x, int y, boolean vengoDeRotar) {
         int n = 0; //contador para saber si la pieza entera puede moverse
         Point xy1 = new Point(pieza.x1, pieza.y1);
         Point xy2 = new Point(pieza.x2, pieza.y2);
         Point xy3 = new Point(pieza.x3, pieza.y3);
         Point xy4 = new Point(pieza.x4, pieza.y4);
 
-        Point aux1;Point aux2; Point aux3; Point aux4;
+        Point aux1 = new Point(pieza.x1 + x, pieza.y1 + y);
+        Point aux2 = new Point(pieza.x2 + x, pieza.y2 + y);
+        Point aux3 = new Point(pieza.x3 + x, pieza.y3 + y);
+        Point aux4 = new Point(pieza.x4 + x, pieza.y4 + y);
 
-        if((x==0)&&(y==0)){
-            Pieza aux = alfredoAux(pieza);
-            aux1 = new Point(aux.x1 , aux.y1 );
-            aux2 = new Point(aux.x2 , aux.y2 );
-            aux3 = new Point(aux.x3 , aux.y3 );
-            aux4 = new Point(aux.x4 , aux.y4 );
+        //Creamos un array con los puntos posibles donde se puede mover
+        ArrayList<Point> puntos = new ArrayList<Point>();
+        puntos.add(aux1);
+        puntos.add(aux2);
+        puntos.add(aux3);
+        puntos.add(aux4);
 
-        }else{
-            aux1 = new Point(pieza.x1 + x, pieza.y1 + y);
-            aux2 = new Point(pieza.x2 + x, pieza.y2 + y);
-            aux3 = new Point(pieza.x3 + x, pieza.y3 + y);
-            aux4 = new Point(pieza.x4 + x, pieza.y4 + y);
+        //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
+        for (Point a : puntos) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
+                n++;
+            } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
+                if(!vengoDeRotar){
+                    n++;
+                }
+            }
+        }
+        if (n == 4) {
+            return true;
         }
 
+        return false;
+    }
+    /*public boolean puedeRotar(Pieza pieza){
+        Pieza piezaaux = alfredoAux(pieza);
+        int n = 0;
 
+        Point xy1 = new Point(piezaaux.x1, piezaaux.y1);
+        Point xy2 = new Point(piezaaux.x2, piezaaux.y2);
+        Point xy3 = new Point(piezaaux.x3, piezaaux.y3);
+        Point xy4 = new Point(piezaaux.x4, piezaaux.y4);
+
+        Point aux1 = new Point(piezaaux.x1 , pieza.y1 );
+        Point aux2 = new Point(piezaaux.x2 , pieza.y2 );
+        Point aux3 = new Point(piezaaux.x3 , pieza.y3 );
+        Point aux4 = new Point(piezaaux.x4 , pieza.y4 );
 
         //Creamos un array con los puntos posibles donde se puede mover
         ArrayList<Point> puntos = new ArrayList<Point>();
@@ -397,9 +501,7 @@ public class Tablero {
         }
 
         return false;
-    }
-
-
+    }*/
 
     /*
     public boolean compruebaFinJuego(Piezas spielStein) {
@@ -419,5 +521,23 @@ public class Tablero {
 
     public int getAnchoTablero() {
         return this.anchuraTablero;
+    }
+
+    public void comprobarRotar(Pieza p) {
+        Pieza aux = new Pieza(p.idColor);
+        aux.pos=p.pos;
+        aux.x1=p.x1;
+        aux.y1=p.y1;
+        aux.x2=p.x2;
+        aux.y2=p.y2;
+        aux.x3=p.x3;
+        aux.y3=p.y3;
+        aux.x4=p.x4;
+        aux.y4=p.y4;
+
+        alfredo(aux);
+        if(puedeMoverse(aux,0,0,true)){
+            alfredo(p);
+        }
     }
 }
