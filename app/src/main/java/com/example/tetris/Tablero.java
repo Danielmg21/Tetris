@@ -45,10 +45,9 @@ public class Tablero {
         return -1;
     }
 
-    public void elDestructor(){
-        List<Integer> l = detectarFilas();
-        if(!l.isEmpty()){
-            for (int j : l) {
+    public void elDestructor(List<Integer> lista){
+        if(!lista.isEmpty()){
+            for (int j : lista) {
                 bajarFila(j);
             }
         }
@@ -101,7 +100,7 @@ public class Tablero {
 
     public List<Integer> detectarFilas(){
         int i;
-        int j=20;
+        int j=19;
         int contador=0;
         List<Integer> l = new ArrayList<>();
         do{

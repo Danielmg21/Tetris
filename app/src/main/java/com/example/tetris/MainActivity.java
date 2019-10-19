@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         relativeNext.setBackgroundColor(Color.YELLOW);
         relativeNext.addView(siguientePieza);
 
-        Juego juego = new Juego(this, tablero,siguientePieza);
+        Juego juego = new Juego(this, tablero, siguientePieza);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);

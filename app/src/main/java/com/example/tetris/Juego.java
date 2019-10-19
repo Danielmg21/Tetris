@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,10 +25,11 @@ public class Juego extends View implements View.OnClickListener {
     private Tablero tablero;
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
-    private int puntos = 5;
+    private int puntos = 0;
     int cont = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
+    private List<Integer> filasPorBorrar;
     Pieza p;
     private int timerPeriod = 250;
     private VentanaNext ventana;
@@ -84,7 +86,10 @@ public class Juego extends View implements View.OnClickListener {
                                 cont++;
                             } else {
                                 tablero.borrarPieza();
-                                tablero.elDestructor();
+                                filasPorBorrar = tablero.detectarFilas();
+                                setPuntos(filasPorBorrar.size() * 30);
+                                puntuacion.setText( ""+ puntos);
+                                tablero.elDestructor(filasPorBorrar);
                                 invalidate();
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
