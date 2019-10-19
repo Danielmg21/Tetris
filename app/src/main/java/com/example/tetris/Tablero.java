@@ -83,6 +83,7 @@ public class Tablero {
         boolean fila0=false;
         int contador0=0;
         while((y>0)&&(fila0==false)){
+            contador0=0;
             for (int x=0;x<10;x++){
                 if(tab[x][y-1]==0){
                     contador0++;
@@ -101,7 +102,7 @@ public class Tablero {
 
     public List<Integer> detectarFilas(){
         int i;
-        int j=20;
+        int j=19;
         int contador=0;
         List<Integer> l = new ArrayList<>();
         do{

@@ -85,7 +85,6 @@ public class Juego extends View implements View.OnClickListener {
                             } else {
                                 tablero.borrarPieza();
                                 tablero.elDestructor();
-                                invalidate();
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
                                 ventana.runVentanaNext(listaPiezas.get(1));
