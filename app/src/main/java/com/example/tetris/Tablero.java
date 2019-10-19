@@ -78,6 +78,13 @@ public class Tablero {
         }
     }
 
+    public void bajarCuadrado(int x, int y){
+        while(tab[x][y]==0){
+            tab[x][y]=tab[x][y-1];
+            y++;
+        }
+    }
+
     public void bajarFila(int y){
         boolean fila0=false;
         int contador0=0;
@@ -86,10 +93,8 @@ public class Tablero {
             for (int x=0;x<10;x++){
                 if(tab[x][y-1]==0){
                     contador0++;
-
-                }else{
-                    tab[x][y]=tab[x][y-1];
                 }
+                bajarCuadrado(x,y);
             }
             if(contador0==10){
                 fila0=true;
