@@ -21,73 +21,73 @@ public class Pieza {
 
 
 
-    public Pieza(int f) {
+    public Pieza(int f, int a) {
         switch (f) { // Cuadrado
             case 1:
-                x1 = 4; y1 = 0;
-                x2 = 5; y2 = 0;
-                x3 = 4; y3 = 1;
-                x4 = 5; y4 = 1;
+                x1 = 4; y1 = 0+a;
+                x2 = 5; y2 = 0+a;
+                x3 = 4; y3 = 1+a;
+                x4 = 5; y4 = 1+a;
 
                 idColor = 1;
                 pos=0;
                 break;
 
             case 2:    // Z Pieza
-                x1 = 5;y1 = 0;
-                x2 = 6;y2 = 0;
-                x3 = 6;y3 = 1;
-                x4 = 7;y4 = 1;
+                x1 = 5;y1 = 0+a;
+                x2 = 6;y2 = 0+a;
+                x3 = 6;y3 = 1+a;
+                x4 = 7;y4 = 1+a;
 
                 idColor = 2;
                 pos=0;
                 break;
 
             case 3: // I Pieza
-                x1 = 4;y1 = 0;
-                x2 = 4;y2 = 1;
-                x3 = 4;y3 = 2;
-                x4 = 4;y4 = 3;
+                x1 = 4;y1 = 0+a;
+                x2 = 4;y2 = 1+a;
+                x3 = 4;y3 = 2+a;
+                x4 = 4;y4 = 3+a;
 
                 idColor = 3;
                 pos=0;
                 break;
 
             case 4: // T Pieza
-                x1 = 4;y1 = 0;
-                x2 = 5;y2 = 0;
-                x3 = 6;y3 = 0;
-                x4 = 5;y4 = 1;
+                x1 = 4;y1 = 0+a;
+                x2 = 5;y2 = 0+a;
+                x3 = 6;y3 = 0+a;
+                x4 = 5;y4 = 1+a;
 
                 idColor = 4;
                 pos=0;
                 break;
 
             case 5: // S Pieza
-                x1 = 5;y1 = 0;
-                x2 = 6;y2 = 0;
-                x3 = 5;y3 = 1;
-                x4 = 4;y4 = 1;
+                x1 = 5;y1 = 0+a;
+                x2 = 6;y2 = 0+a;
+                x3 = 5;y3 = 1+a;
+                x4 = 4;y4 = 1+a;
 
                 idColor = 5;
                 pos=0;
                 break;
 
             case 6:  // L Pieza
-                x1 = 6;y1 = 0;
-                x2 = 7;y2 = 0;
-                x3 = 7;y3 = 1;
-                x4 = 7;y4 = 2;
+                x1 = 6;y1 = 0+a;
+                x2 = 7;y2 = 0+a;
+                x3 = 7;y3 = 1+a;
+                x4 = 7;y4 = 2+a;
 
                 idColor = 6;
                 pos=0;
                 break;
 
             case 7:  // J Pieza
-                x1 = 4;y1 = 0;
-                x2 = 5;y2 = 0;
-                x3 = 4;y3 = 1;
-                x4 = 4;y4 = 2;
+                x1 = 4;y1 = 0+a;
+                x2 = 5;y2 = 0+a;
+                x3 = 4;y3 = 1+a;
+                x4 = 4;y4 = 2+a;
 
                 idColor = 7;
                 pos=0;
@@ -95,27 +95,6 @@ public class Pieza {
         }
     }
 
-
-    public void moverPieza() {
-        int new_x1, new_y1;
-        int new_x2, new_y2;
-        int new_x3, new_y3;
-
-        new_x1 = giraX1(y2);
-        new_y1 = giraY1(x2);
-        x2 = new_x1;
-        y2 = new_y1;
-
-        new_x2 = giraX1(y3);
-        new_y2 = giraY1(x3);
-        x3 = new_x2;
-        y3 = new_y2;
-
-        new_x3 = giraX1(y4);
-        new_y3 = giraY1(x4);
-        x4 = new_x3;
-        y4 = new_y3;
-    }
 
     public void mover(int x, int y) {
         x1 = x1 + x;
@@ -132,40 +111,11 @@ public class Pieza {
         return this.y1;
     }
 
-    public int giraX1(int y) {
-        return x1 + y - y1;
-    }
-
-    public int giraY1(int x) {
-        return y1 - x + x1;
-    }
-
-
-    public void GirarPieza(){
-        //gira la pieza en funcion de las coordenadas x1,y1
-        //cada bloque gira un cuadradito
-
-        int x_falsa; int y_falsa;
-
-
-        x_falsa=giraX1(y2);
-        y_falsa=giraY1(x2);
-        x2=x_falsa;
-        y2=y_falsa;
-
-        x_falsa=giraX1(y3);
-        y_falsa=giraY1(x3);
-        x2=x_falsa;
-        y2=y_falsa;
-
-        x_falsa=giraX1(y4);
-        y_falsa=giraY1(x4);
-        x2=x_falsa;
-        y2=y_falsa;
-    }
-    // ni idea que hace esto
-    public int getMinXCoordinate(int x1, int x2, int x3, int x4) {
-        return Math.min(Math.min(x1,x2),Math.min(x3,x4));
+    public void setAltura(int y){
+        this.pieza.y1+=y;
+        this.pieza.y2+=y;
+        this.pieza.y3+=y;
+        this.pieza.y4+=y;
     }
 
     public void copiarPieza(Pieza pieza,Pieza pieza2){

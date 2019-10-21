@@ -19,12 +19,12 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
     }
 
-    public void generarPieza() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
+    public void generarPieza(int a) {
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,a));
     }
 
     public void borrarPieza() {
@@ -75,7 +75,7 @@ public class Tablero {
         for (int y = 19; y >= 0; y--) {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
-                if (tab[x][y] != 0) {
+                if (tab[x][y] != 0 && tab[x][y]!=8) {
                     contador++;
                 }
             }
@@ -111,11 +111,11 @@ public class Tablero {
     //crear en clase Piezas atributo entero colorCode
 
 
-    public void ponerPieza(Pieza pieza,int y) {
-        tab[pieza.x1][pieza.y1+y] = pieza.idColor;
-        tab[pieza.x2][pieza.y2+y] = pieza.idColor;
-        tab[pieza.x3][pieza.y3+y] = pieza.idColor;
-        tab[pieza.x4][pieza.y4+y] = pieza.idColor;
+    public void ponerPieza(Pieza pieza) {
+        tab[pieza.x1][pieza.y1] = pieza.idColor;
+        tab[pieza.x2][pieza.y2] = pieza.idColor;
+        tab[pieza.x3][pieza.y3] = pieza.idColor;
+        tab[pieza.x4][pieza.y4] = pieza.idColor;
     }
 
     public void borrarPieza(Pieza pieza) {
@@ -123,14 +123,6 @@ public class Tablero {
         tab[pieza.x2][pieza.y2] = 0;
         tab[pieza.x3][pieza.y3] = 0;
         tab[pieza.x4][pieza.y4] = 0;
-    }
-
-
-    public Pieza alfredoAux(Pieza pieza) {
-        Pieza P = new Pieza(pieza.idColor);
-        pieza.copiarPieza(P, pieza);
-        alfredo(P);
-        return P;
     }
 
 
@@ -419,54 +411,26 @@ public class Tablero {
                 if (puedeMoverse(pieza, -1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(-1, 0);
-                    ponerPieza(pieza,0);
+                    ponerPieza(pieza);
                 }
                 break;
             case 'd':
                 if (puedeMoverse(pieza, 1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(1, 0);
-                    ponerPieza(pieza,0);
+                    ponerPieza(pieza);
                 }
                 break;
             case 'a':
                 if (puedeMoverse(pieza, 0, 1, false)) {
                     borrarPieza(pieza);
                     pieza.mover(0, 1);
-                    ponerPieza(pieza,0);
+                    ponerPieza(pieza);
                 }
                 break;
         }
 
     }
-    //las x anteriores son las y siguientes
-    //las y anteriores son las x siguientes
-    /*falta tocar el tema de borrar la pieza y ponerla con las nuevas posiciones
-    y crear el puede rotar
-     */
-    /*public void rotaPiezas(Pieza p){
-        int aux1;int aux2;
-
-        aux1=p.y1;
-        aux2=p.x1;
-        p.x1=aux1;
-        p.y1=aux2;
-
-        aux1=p.y2;
-        aux2=p.x2;
-        p.x2=aux1;
-        p.y2=aux2;
-
-        aux1=p.y3;
-        aux2=p.x3;
-        p.x3=aux1;
-        p.y3=aux2;
-
-        aux1=p.y4;
-        aux2=p.x4;
-        p.x4=aux1;
-        p.y4=aux2;
-    }*/
 
     public boolean puedeMoverse(Pieza pieza, int x, int y, boolean vengoDeRotar) {
         int n = 0; //contador para saber si la pieza entera puede moverse
@@ -503,54 +467,6 @@ public class Tablero {
 
         return false;
     }
-    /*public boolean puedeRotar(Pieza pieza){
-        Pieza piezaaux = alfredoAux(pieza);
-        int n = 0;
-
-        Point xy1 = new Point(piezaaux.x1, piezaaux.y1);
-        Point xy2 = new Point(piezaaux.x2, piezaaux.y2);
-        Point xy3 = new Point(piezaaux.x3, piezaaux.y3);
-        Point xy4 = new Point(piezaaux.x4, piezaaux.y4);
-
-        Point aux1 = new Point(piezaaux.x1 , pieza.y1 );
-        Point aux2 = new Point(piezaaux.x2 , pieza.y2 );
-        Point aux3 = new Point(piezaaux.x3 , pieza.y3 );
-        Point aux4 = new Point(piezaaux.x4 , pieza.y4 );
-
-        //Creamos un array con los puntos posibles donde se puede mover
-        ArrayList<Point> puntos = new ArrayList<Point>();
-        puntos.add(aux1);
-        puntos.add(aux2);
-        puntos.add(aux3);
-        puntos.add(aux4);
-
-        //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
-        for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
-                n++;
-            } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
-                n++;
-            }
-        }
-        if (n == 4) {
-            return true;
-        }
-
-        return false;
-    }*/
-
-    /*
-    public boolean compruebaFinJuego(Piezas spielStein) {
-        if(compruebaAbajo(spielStein) == false && spielStein.getMinXCoordinate(
-                spielStein.x1, spielStein.x2, spielStein.x3, spielStein.x4)<=1) {
-            return true;
-        }
-        return false;
-    }
-    */
-    public Tablero getTablero() {
-        return this;
-    }
 
     public int getAlturaTablero() {
         return this.alturaTablero;
@@ -561,7 +477,7 @@ public class Tablero {
     }
 
     public void comprobarRotar(Pieza p) {
-        Pieza aux = new Pieza(p.idColor);
+        Pieza aux = new Pieza(p.idColor,0);
         aux.pos = p.pos;
         aux.x1 = p.x1;
         aux.y1 = p.y1;

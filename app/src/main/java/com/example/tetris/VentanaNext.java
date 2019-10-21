@@ -15,9 +15,6 @@ import java.util.TimerTask;
 public class VentanaNext extends View {
     private MainActivity mainActivity;
     private Tablero ventana;
-    private Pieza pieza;
-    private Timer timer;
-    private int timerPeriod = 250;
 
     public VentanaNext(Context context, Tablero ventana, Pieza p) {
         super(context);
@@ -27,9 +24,9 @@ public class VentanaNext extends View {
 
     public void runVentanaNext(Pieza p) {
         limpiarVentana();
-        Pieza aux = new Pieza(p.idColor);
+        Pieza aux = new Pieza(p.idColor,0);
         getPieza(aux);
-        ventana.ponerPieza(aux,0);
+        ventana.ponerPieza(aux);
     }
 
     public void limpiarVentana() {

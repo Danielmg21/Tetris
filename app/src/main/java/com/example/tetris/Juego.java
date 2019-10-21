@@ -73,17 +73,19 @@ public class Juego extends View implements View.OnClickListener {
                     @Override
                     public void run() {
                         contadorRomper++;
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == 0) {
+                        if (restoContador==0){
+                            alturaVariable+=2;
+                        }
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == alturaVariable) {
                             mainActivity.finish();
                         } else {
-                            tablero.ponerPieza(tablero.getPieza(),alturaVariable);
+                            tablero.ponerPieza(tablero.getPieza());
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
                                 restoContador=contadorRomper%10;
-                                if (restoContador==0){
-                                    alturaVariable+=2;
+                                tablero.moverPiezas(tablero.getPieza(), 'a');
+                                if (restoContador==0) {
                                     tablero.comerTablero(alturaVariable);
                                 }
-                                tablero.moverPiezas(tablero.getPieza(), 'a');
                                 timer.cancel();
                                 timer = new Timer();
                                 gameLoop();
@@ -94,8 +96,8 @@ public class Juego extends View implements View.OnClickListener {
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
                                 invalidate();
-                                tablero.generarPieza();
-                                tablero.ponerPieza(tablero.getPieza(),alturaVariable);
+                                tablero.generarPieza(alturaVariable);
+                                tablero.ponerPieza(tablero.getPieza());
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
                             }
@@ -159,7 +161,7 @@ public class Juego extends View implements View.OnClickListener {
                 if(p.idColor!=1){
                     tablero.borrarPieza(p);
                     tablero.comprobarRotar(p);
-                    tablero.ponerPieza(p,0);
+                    tablero.ponerPieza(p);
                 }else{
                     //no hace nada
                 }

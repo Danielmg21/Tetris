@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         botonRotar = (ImageButton) findViewById(R.id.botonRotar);
         puntosTextView = (TextView) findViewById(R.id.puntosText);
         nivelTextView = (TextView) findViewById(R.id.nivelText);
-        Pieza p = new Pieza(0);
+        Pieza p = new Pieza(0,0);
 
         VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(400,400);
