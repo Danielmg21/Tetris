@@ -29,7 +29,7 @@ public class VentanaNext extends View {
         limpiarVentana();
         Pieza aux = new Pieza(p.idColor);
         getPieza(aux);
-        ventana.ponerPieza(aux);
+        ventana.ponerPieza(aux,0);
     }
 
     public void limpiarVentana() {
