@@ -152,22 +152,15 @@ public class VentanaNext extends View {
             for (int y = 0; y < 4; y++) {
 
                 int color = ventana.parseaColor(x, y);
+                if(color == Color.parseColor("#001c21")) {
+                    color = Color.parseColor("#423F3F");
+                }
                 pincel.setColor(color);
                 canvas.drawRect(x * getMeasuredWidth() / 4, y * getMeasuredHeight() / 4, x * getMeasuredWidth() + getMeasuredWidth() / 4,
                         y * getMeasuredHeight() + getMeasuredHeight() / 4, pincel);
             }
         }
 
-        //Pintamos el tablero front
-        Paint pBorde = new Paint();
-        pBorde.setStyle(Paint.Style.STROKE);
-        pBorde.setColor(Color.BLACK);
-        pBorde.setStrokeWidth(2);
-        for (int x = 0; x < 4; x++) {
-            for (int y = 0; y < 4; y++) {
-                canvas.drawLine((x + 1) * getMeasuredWidth() / 4, 0, (x + 1) * getMeasuredWidth() / 4, getMeasuredHeight(), pBorde);
-                canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 4, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 4, pBorde);
-            }
-        }
+
     }
 }

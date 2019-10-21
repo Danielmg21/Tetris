@@ -33,14 +33,14 @@ public class Tablero {
     //transforma numeros de matriz a color
 
     public int parseaColor(int x, int y) {
-        if (tab[x][y] == 0) return Color.parseColor("#BEBEBE");// gris fondo
-        if (tab[x][y] == 1) return Color.parseColor("#0000FF");
-        if (tab[x][y] == 2) return Color.parseColor("#FF0000");
-        if (tab[x][y] == 3) return Color.parseColor("#ffbf00");
-        if (tab[x][y] == 4) return Color.parseColor("#00FF00");
-        if (tab[x][y] == 5) return Color.parseColor("#FFFF00");
-        if (tab[x][y] == 6) return Color.parseColor("#000000");
-        if (tab[x][y] == 7) return Color.parseColor("#572364");
+        if (tab[x][y] == 0) return Color.parseColor("#001c21");// azul oscuro fondo
+        if (tab[x][y] == 1) return Color.parseColor("#f000ff"); //rosa
+        if (tab[x][y] == 2) return Color.parseColor("#4deeea"); //azul claro
+        if (tab[x][y] == 3) return Color.parseColor("#001eff"); //azul oscuro
+        if (tab[x][y] == 4) return Color.parseColor("#74ee15"); //verde
+        if (tab[x][y] == 5) return Color.parseColor("#FF8000"); //naranja
+        if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
+        if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
         return -1;
     }
 
