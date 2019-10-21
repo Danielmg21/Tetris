@@ -19,8 +19,7 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        //listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
-        listaPiezas.add(new Pieza(7));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1));
     }
 
@@ -45,88 +44,42 @@ public class Tablero {
         return -1;
     }
 
-    public void elDestructor(List<Integer> lista){
-        if(!lista.isEmpty()){
-            for (int j : lista) {
-                bajarFila(j);
-            }
-        }
-    }
-
-    /*public void bajarFila(int y) {
-        int x;
-        int filaVacio = 0;
-        boolean vacio = false;
-        while ((y > 0) && (!vacio)) {
-            for (x = 0; x < 10; x++) {
+    public void elDestructor(int fila) {
+        ponerFila0(fila);
+        for (int y = fila; y >= 1; y--) {
+            for (int x = 0; x < getAnchoTablero(); x++) {
                 this.tab[x][y] = this.tab[x][y - 1];
-                if (this.tab[x][y - 1] == 0) {
-                    filaVacio++;
-                }
             }
-            y--;
-            if (filaVacio == 10) {
-                vacio = true;
-            }
-            filaVacio = 0;
-        }
-    }*/
-
-    public void ponerFila0 (int y){
-        for(int x=0;x<10;x++){
-            tab[x][y]=0;
         }
     }
 
-    public void bajarCuadrado(int x, int y){
-        while(tab[x][y]==0){
-            tab[x][y]=tab[x][y-1];
-            y++;
+    public void ponerFila0(int y) {
+        for (int x = 0; x < 10; x++) {
+            tab[x][y] = 0;
         }
     }
 
-    public void bajarFila(int y){
-        boolean fila0=false;
-        int contador0=0;
-        while((y>0)&&(fila0==false)){
-            contador0=0;
-            for (int x=0;x<10;x++){
-                if(tab[x][y-1]==0){
-                    contador0++;
-                }
-                bajarCuadrado(x,y);
-            }
-            if(contador0==10){
-                fila0=true;
-            }
-            y--;
-        }
-    }
-
-
-    public List<Integer> detectarFilas(){
-        int i;
-        int j=19;
-        int contador=0;
+    public List<Integer> detectarFilas() {
+        int contador = 0;
         List<Integer> l = new ArrayList<>();
-        do{
-            i=0;
-            contador=0;
-            while((i<10)&&(tab[i][j]!=0)){
-                contador++;
-                i++;
+        for (int y = 19; y >= 0; y--) {
+            contador = 0;
+            for (int x = 0; x < getAnchoTablero(); x++) {
+                if (tab[x][y] != 0) {
+                    contador++;
+                }
             }
-            if(contador==10){
-                l.add(j);
-                ponerFila0(j);
+            if (contador == 10) {
+                l.add(y);
+                elDestructor(y);
+                y++;
             }
-            j--;
-        }while((contador!=0)&&(j>0));
+        }
         return l;
     }
 
 
-    //todas las posiciones a 7
+    //todas las posiciones a 0 para Thanos
     public void limpiarTablero() {
         for (int i = 0; i < alturaTablero; i++) {
             for (int j = 0; j < anchuraTablero; j++) {
@@ -144,10 +97,6 @@ public class Tablero {
         return listaPiezas.get(0);
     }
 
-    //coge siguiente Piezas
-    public Pieza getSiguientePieza() {
-        return listaPiezas.get(listaPiezas.size() - 1);
-    }
 
     //crear en clase Piezas atributo entero colorCode
 
@@ -167,9 +116,9 @@ public class Tablero {
     }
 
 
-    public Pieza alfredoAux (Pieza pieza){
+    public Pieza alfredoAux(Pieza pieza) {
         Pieza P = new Pieza(pieza.idColor);
-        pieza.copiarPieza(P,pieza);
+        pieza.copiarPieza(P, pieza);
         alfredo(P);
         return P;
     }
@@ -181,8 +130,8 @@ public class Tablero {
 
     //añadir el cambio de la posicion de la pieza
 
-    public void alfredo(Pieza p){
-        switch (p.idColor){
+    public void alfredo(Pieza p) {
+        switch (p.idColor) {
 
             case 1:
                 //Cuadrado uso salpicadura
@@ -190,187 +139,259 @@ public class Tablero {
                 break;
 
             case 2:
-                switch (p.pos){
+                switch (p.pos) {
                     case 0:
-                        p.x1=p.x1+1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y2=p.y2+1;
-                        p.x3=p.x3-1;p.y3=p.y3+0;
-                        p.x4=p.x4-2;p.y4=p.y4+1;
+                        p.x1 = p.x1 + 1;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 + 1;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 - 2;
+                        p.y4 = p.y4 + 1;
                         break;
 
                     case 1:
-                        p.x1=p.x1-1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y2=p.y2-1;
-                        p.x3=p.x3+1;p.y3=p.y3+0;
-                        p.x4=p.x4+2;p.y4=p.y4-1;
+                        p.x1 = p.x1 - 1;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 - 1;
+                        p.x3 = p.x3 + 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 2;
+                        p.y4 = p.y4 - 1;
                         break;
                 }
-                if(p.pos==1){
-                    p.pos=0;
-                }else{
+                if (p.pos == 1) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
 
                 break;
 
             case 3://
-                switch (p.pos){
+                switch (p.pos) {
                     case 0:
-                        p.x1=p.x1+0;p.y1=p.y1+0;
-                        p.x2=p.x2+1;p.y2=p.y2-1;
-                        p.x3=p.x3+2;p.y3=p.y3-2;
-                        p.x4=p.x4+3;p.y4=p.y4-3;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 1;
+                        p.y2 = p.y2 - 1;
+                        p.x3 = p.x3 + 2;
+                        p.y3 = p.y3 - 2;
+                        p.x4 = p.x4 + 3;
+                        p.y4 = p.y4 - 3;
                         break;
 
                     case 1:
-                        p.y1=p.y1+0;p.x1=p.x1+0;
-                        p.y2=p.y2+1;p.x2=p.x2-1;
-                        p.y3=p.y3+2;p.x3=p.x3-2;
-                        p.y4=p.y4+3;p.x4=p.x4-3;
+                        p.y1 = p.y1 + 0;
+                        p.x1 = p.x1 + 0;
+                        p.y2 = p.y2 + 1;
+                        p.x2 = p.x2 - 1;
+                        p.y3 = p.y3 + 2;
+                        p.x3 = p.x3 - 2;
+                        p.y4 = p.y4 + 3;
+                        p.x4 = p.x4 - 3;
                         break;
                 }
-                if(p.pos==1){
-                    p.pos=0;
-                }else{
+                if (p.pos == 1) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
                 break;
 
             case 4:
-                switch (p.pos){
+                switch (p.pos) {
 
                     case 0:
-                        p.x1=p.x1+1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y2=p.y2+1;
-                        p.x3=p.x3-1;p.y3=p.y3+2;
-                        p.x4=p.x4-1;p.y4=p.y4+0;
+                        p.x1 = p.x1 + 1;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 + 1;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 + 2;
+                        p.x4 = p.x4 - 1;
+                        p.y4 = p.y4 + 0;
                         break;
 
                     case 1:
-                        p.x1=p.x1+1;p.y1=p.y1+1;
-                        p.x2=p.x2+0;p.y2=p.y2+0;
-                        p.x3=p.x3-1;p.y3=p.y3-1;
-                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        p.x1 = p.x1 + 1;
+                        p.y1 = p.y1 + 1;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 + 0;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 - 1;
+                        p.x4 = p.x4 + 1;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 2:
-                        p.x1=p.x1-2;p.y1=p.y1+1;
-                        p.x2=p.x2-1;p.y2=p.y2+0;
-                        p.x3=p.x3+0;p.y3=p.y3-1;
-                        p.x4=p.x4+0;p.y4=p.y4+1;
+                        p.x1 = p.x1 - 2;
+                        p.y1 = p.y1 + 1;
+                        p.x2 = p.x2 - 1;
+                        p.y2 = p.y2 + 0;
+                        p.x3 = p.x3 + 0;
+                        p.y3 = p.y3 - 1;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 + 1;
                         break;
 
                     case 3:
-                        p.x1=p.x1+0;p.y1=p.y1-2;
-                        p.x2=p.x2+1;p.y2=p.y2-1;
-                        p.x3=p.x3+2;p.y3=p.y3+0;
-                        p.x4=p.x4+0;p.y4=p.y4+0;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 - 2;
+                        p.x2 = p.x2 + 1;
+                        p.y2 = p.y2 - 1;
+                        p.x3 = p.x3 + 2;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 + 0;
                         break;
 
 
                 }
-                if(p.pos==3){
-                    p.pos=0;
-                }else{
+                if (p.pos == 3) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
                 break;
 
             case 5:
-                switch (p.pos){
+                switch (p.pos) {
                     case 0:
-                        p.x1=p.x1+0;p.y1=p.y1+1;
-                        p.x2=p.x2-1;p.y2=p.y2+2;
-                        p.x3=p.x3-1;p.y3=p.y3+0;
-                        p.x4=p.x4+0;p.y4=p.y4-1;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 + 1;
+                        p.x2 = p.x2 - 1;
+                        p.y2 = p.y2 + 2;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 1:
-                        p.x1=p.x1+0;p.y1=p.y1-1;
-                        p.x2=p.x2+1;p.y2=p.y2-2;
-                        p.x3=p.x3+1;p.y3=p.y3+0;
-                        p.x4=p.x4+0;p.y4=p.y4+1;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 - 1;
+                        p.x2 = p.x2 + 1;
+                        p.y2 = p.y2 - 2;
+                        p.x3 = p.x3 + 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 + 1;
                         break;
                 }
-                if(p.pos==1){
-                    p.pos=0;
-                }else{
+                if (p.pos == 1) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
                 break;
 
             case 6:
-                switch (p.pos){
+                switch (p.pos) {
                     case 0:
-                        p.x1=p.x1+1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y2=p.y2+1;
-                        p.x3=p.x3-1;p.y3=p.y3+0;
-                        p.x4=p.x4-2;p.y4=p.y4-1;
+                        p.x1 = p.x1 + 1;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 + 1;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 - 2;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 1:
-                        p.x1=p.x1+0;p.y1=p.y1+2;
-                        p.x2=p.x2-1;p.y2=p.y2+1;
-                        p.x3=p.x3+0;p.y3=p.y3+0;
-                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 + 2;
+                        p.x2 = p.x2 - 1;
+                        p.y2 = p.y2 + 1;
+                        p.x3 = p.x3 + 0;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 1;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 2:
-                        p.x1=p.x1-2;p.y1=p.y1-1;
-                        p.x2=p.x2-1;p.y2=p.y2-2;
-                        p.x3=p.x3+0;p.y3=p.y3-1;
-                        p.x4=p.x4+1;p.y4=p.y4+0;
+                        p.x1 = p.x1 - 2;
+                        p.y1 = p.y1 - 1;
+                        p.x2 = p.x2 - 1;
+                        p.y2 = p.y2 - 2;
+                        p.x3 = p.x3 + 0;
+                        p.y3 = p.y3 - 1;
+                        p.x4 = p.x4 + 1;
+                        p.y4 = p.y4 + 0;
                         break;
 
                     case 3:
-                        p.x1=p.x1+1;p.y1=p.y1-1;
-                        p.x2=p.x2+2;p.y2=p.y2+0;
-                        p.x3=p.x3+1;p.y3=p.y3+1;
-                        p.x4=p.x4+0;p.y4=p.y4+2;
+                        p.x1 = p.x1 + 1;
+                        p.y1 = p.y1 - 1;
+                        p.x2 = p.x2 + 2;
+                        p.y2 = p.y2 + 0;
+                        p.x3 = p.x3 + 1;
+                        p.y3 = p.y3 + 1;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 + 2;
                         break;
 
                 }
-                if(p.pos==3){
-                    p.pos=0;
-                }else{
+                if (p.pos == 3) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
                 break;
 
             case 7:
-                switch (p.pos){
+                switch (p.pos) {
                     case 0:
-                        p.x1=p.x1+2;p.y1=p.y1+1;
-                        p.x2=p.x2+1;p.y2=p.y2+2;
-                        p.x3=p.x3+1;p.y3=p.y3+0;
-                        p.x4=p.x4+0;p.y4=p.y4-1;
+                        p.x1 = p.x1 + 2;
+                        p.y1 = p.y1 + 1;
+                        p.x2 = p.x2 + 1;
+                        p.y2 = p.y2 + 2;
+                        p.x3 = p.x3 + 1;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 0;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 1:
-                        p.x1=p.x1-1;p.y1=p.y1+1;
-                        p.x2=p.x2-2;p.y2=p.y2+0;
-                        p.x3=p.x3+0;p.y3=p.y3+0;
-                        p.x4=p.x4+1;p.y4=p.y4-1;
+                        p.x1 = p.x1 - 1;
+                        p.y1 = p.y1 + 1;
+                        p.x2 = p.x2 - 2;
+                        p.y2 = p.y2 + 0;
+                        p.x3 = p.x3 + 0;
+                        p.y3 = p.y3 + 0;
+                        p.x4 = p.x4 + 1;
+                        p.y4 = p.y4 - 1;
                         break;
 
                     case 2:
-                        p.x1=p.x1-1;p.y1=p.y1+0;
-                        p.x2=p.x2+0;p.y2=p.y2-1;
-                        p.x3=p.x3+0;p.y3=p.y3+1;
-                        p.x4=p.x4+1;p.y4=p.y4+2;
+                        p.x1 = p.x1 - 1;
+                        p.y1 = p.y1 + 0;
+                        p.x2 = p.x2 + 0;
+                        p.y2 = p.y2 - 1;
+                        p.x3 = p.x3 + 0;
+                        p.y3 = p.y3 + 1;
+                        p.x4 = p.x4 + 1;
+                        p.y4 = p.y4 + 2;
                         break;
 
                     case 3:
-                        p.x1=p.x1+0;p.y1=p.y1-2;
-                        p.x2=p.x2+1;p.y2=p.y2-1;
-                        p.x3=p.x3-1;p.y3=p.y3-1;
-                        p.x4=p.x4-2;p.y4=p.y4+0;
+                        p.x1 = p.x1 + 0;
+                        p.y1 = p.y1 - 2;
+                        p.x2 = p.x2 + 1;
+                        p.y2 = p.y2 - 1;
+                        p.x3 = p.x3 - 1;
+                        p.y3 = p.y3 - 1;
+                        p.x4 = p.x4 - 2;
+                        p.y4 = p.y4 + 0;
                         break;
 
                 }
-                if(p.pos==3){
-                    p.pos=0;
-                }else{
+                if (p.pos == 3) {
+                    p.pos = 0;
+                } else {
                     p.pos++;
                 }
                 break;
@@ -385,21 +406,21 @@ public class Tablero {
     public void moverPiezas(Pieza pieza, char x) {
         switch (x) {
             case 'i':
-                if (puedeMoverse(pieza, -1, 0,false)) {
+                if (puedeMoverse(pieza, -1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(-1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'd':
-                if (puedeMoverse(pieza, 1, 0,false)) {
+                if (puedeMoverse(pieza, 1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(1, 0);
                     ponerPieza(pieza);
                 }
                 break;
             case 'a':
-                if (puedeMoverse(pieza, 0, 1,false)) {
+                if (puedeMoverse(pieza, 0, 1, false)) {
                     borrarPieza(pieza);
                     pieza.mover(0, 1);
                     ponerPieza(pieza);
@@ -461,7 +482,7 @@ public class Tablero {
             if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && tab[a.x][a.y] == 0) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
-                if(!vengoDeRotar){
+                if (!vengoDeRotar) {
                     n++;
                 }
             }
@@ -517,9 +538,10 @@ public class Tablero {
         return false;
     }
     */
-    public Tablero getTablero(){
+    public Tablero getTablero() {
         return this;
     }
+
     public int getAlturaTablero() {
         return this.alturaTablero;
     }
@@ -530,18 +552,18 @@ public class Tablero {
 
     public void comprobarRotar(Pieza p) {
         Pieza aux = new Pieza(p.idColor);
-        aux.pos=p.pos;
-        aux.x1=p.x1;
-        aux.y1=p.y1;
-        aux.x2=p.x2;
-        aux.y2=p.y2;
-        aux.x3=p.x3;
-        aux.y3=p.y3;
-        aux.x4=p.x4;
-        aux.y4=p.y4;
+        aux.pos = p.pos;
+        aux.x1 = p.x1;
+        aux.y1 = p.y1;
+        aux.x2 = p.x2;
+        aux.y2 = p.y2;
+        aux.x3 = p.x3;
+        aux.y3 = p.y3;
+        aux.x4 = p.x4;
+        aux.y4 = p.y4;
 
         alfredo(aux);
-        if(puedeMoverse(aux,0,0,true)){
+        if (puedeMoverse(aux, 0, 0, true)) {
             alfredo(p);
         }
     }

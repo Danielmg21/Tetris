@@ -30,7 +30,6 @@ public class Juego extends View implements View.OnClickListener {
     private int nivelvar = 1;
     private Timer timer = new Timer();
     private List<Integer> filasPorBorrar;
-    Pieza p;
     private int timerPeriod = 250;
     private VentanaNext ventana;
 
@@ -39,7 +38,7 @@ public class Juego extends View implements View.OnClickListener {
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
         this.ventana=ventana;
-        this.listaPiezas=tablero.listaPiezas;
+        this.listaPiezas=tablero.getListaPiezas();
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
@@ -85,11 +84,10 @@ public class Juego extends View implements View.OnClickListener {
                                 gameLoop();
                                 cont++;
                             } else {
-                                tablero.borrarPieza();
                                 filasPorBorrar = tablero.detectarFilas();
+                                tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
-                                tablero.elDestructor(filasPorBorrar);
                                 invalidate();
                                 tablero.generarPieza();
                                 tablero.ponerPieza(tablero.getPieza());
@@ -129,8 +127,8 @@ public class Juego extends View implements View.OnClickListener {
         pBorde.setStrokeWidth(2);
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
-                canvas.drawLine((x + 1) * getMeasuredWidth() / 10, 0, (x + 1) * getMeasuredWidth() / 10, getMeasuredHeight(), pBorde);
-                canvas.drawLine(0, (y + 1) * getMeasuredHeight() / 20, getMeasuredWidth(), (y + 1) * getMeasuredHeight() / 20, pBorde);
+                canvas.drawLine((x + 1) * getMeasuredWidth() /tablero.getAnchoTablero(), 0, (x + 1) * getMeasuredWidth() / tablero.getAnchoTablero(), getMeasuredHeight(), pBorde);
+                canvas.drawLine(0, (y + 1) * getMeasuredHeight() / tablero.getAlturaTablero(), getMeasuredWidth(), (y + 1) * getMeasuredHeight() / tablero.getAlturaTablero(), pBorde);
             }
         }
     }
