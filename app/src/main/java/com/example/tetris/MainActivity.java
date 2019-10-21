@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
         Pieza p = new Pieza(0);
 
         VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(400,400);
         siguientePieza.setLayoutParams(params1);
+        params1.topMargin=50;
         RelativeLayout relativeNext = (RelativeLayout) findViewById(R.id.ventanaSig);
-        relativeNext.setBackgroundColor(Color.YELLOW);
+        relativeNext.setBackgroundColor(findViewById(R.id.layoutprincipal).getSolidColor());
+        relativeNext.setHorizontalGravity(1);
         relativeNext.addView(siguientePieza);
 
         Juego juego = new Juego(this, tablero, siguientePieza);
