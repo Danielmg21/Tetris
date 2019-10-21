@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView puntosTextView, nivelTextView;
     private Juego juego;
     private Tablero tablero = new Tablero();
+    private Tablero ventana = new Tablero();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +33,49 @@ public class MainActivity extends AppCompatActivity {
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
         botonBajar = (ImageButton) findViewById(R.id.botonBajar);
-        botonRotar =(ImageButton) findViewById(R.id.botonRotar);
+        botonRotar = (ImageButton) findViewById(R.id.botonRotar);
         puntosTextView = (TextView) findViewById(R.id.puntosText);
         nivelTextView = (TextView) findViewById(R.id.nivelText);
+        Pieza p = new Pieza(0);
 
-        Juego juego = new Juego(this,tablero);
+        VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        siguientePieza.setLayoutParams(params1);
+        RelativeLayout relativeNext = (RelativeLayout) findViewById(R.id.ventanaSig);
+        relativeNext.setBackgroundColor(Color.YELLOW);
+        relativeNext.addView(siguientePieza);
+
+        Juego juego = new Juego(this, tablero, siguientePieza);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
+
+
     }
 
-    public ImageButton getBotonDcha() { return findViewById(R.id.botonDcha);}
-    public ImageButton getBotonBajar() { return findViewById(R.id.botonBajar);}
-    public ImageButton getBotonIzda() { return findViewById(R.id.botonIzda);}
-    public ImageButton getBotonRotar() { return findViewById(R.id.botonRotar);}
-    public TextView getPuntos(){return puntosTextView;}
-    public TextView getNivel() {return nivelTextView;}
+    public ImageButton getBotonDcha() {
+        return findViewById(R.id.botonDcha);
+    }
+
+    public ImageButton getBotonBajar() {
+        return findViewById(R.id.botonBajar);
+    }
+
+    public ImageButton getBotonIzda() {
+        return findViewById(R.id.botonIzda);
+    }
+
+    public ImageButton getBotonRotar() {
+        return findViewById(R.id.botonRotar);
+    }
+
+    public TextView getPuntos() {
+        return puntosTextView;
+    }
+
+    public TextView getNivel() {
+        return nivelTextView;
+    }
 }
