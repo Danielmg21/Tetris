@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/Again"
-        style="@android:style/Widget.DeviceDefault.Button.Colored"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="148dp"
         android:layout_height="46dp"
         android:layout_marginStart="73dp"
@@ -26,7 +26,7 @@
 
     <Button
         android:id="@+id/exit"
-        style="@android:style/Widget.DeviceDefault.Button.Colored"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="148dp"
         android:layout_height="46dp"
         android:layout_marginStart="50dp"
