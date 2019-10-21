@@ -41,7 +41,17 @@ public class Tablero {
         if (tab[x][y] == 5) return Color.parseColor("#FF8000"); //naranja
         if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
         if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
+        if (tab[x][y] == 8) return Color.parseColor("#acacac"); //gris pieza bloqueo
         return -1;
+    }
+
+    public void comerTablero(int y){
+        //y=0 sustituir mas tarde por altura variada
+        for(int j =0;j<y;j++){
+            for(int x=0;x<getAnchoTablero();x++){
+                tab[x][j]=8;
+            }
+        }
     }
 
     public void elDestructor(int fila) {
@@ -101,11 +111,11 @@ public class Tablero {
     //crear en clase Piezas atributo entero colorCode
 
 
-    public void ponerPieza(Pieza pieza) {
-        tab[pieza.x1][pieza.y1] = pieza.idColor;
-        tab[pieza.x2][pieza.y2] = pieza.idColor;
-        tab[pieza.x3][pieza.y3] = pieza.idColor;
-        tab[pieza.x4][pieza.y4] = pieza.idColor;
+    public void ponerPieza(Pieza pieza,int y) {
+        tab[pieza.x1][pieza.y1+y] = pieza.idColor;
+        tab[pieza.x2][pieza.y2+y] = pieza.idColor;
+        tab[pieza.x3][pieza.y3+y] = pieza.idColor;
+        tab[pieza.x4][pieza.y4+y] = pieza.idColor;
     }
 
     public void borrarPieza(Pieza pieza) {
@@ -409,21 +419,21 @@ public class Tablero {
                 if (puedeMoverse(pieza, -1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(-1, 0);
-                    ponerPieza(pieza);
+                    ponerPieza(pieza,0);
                 }
                 break;
             case 'd':
                 if (puedeMoverse(pieza, 1, 0, false)) {
                     borrarPieza(pieza);
                     pieza.mover(1, 0);
-                    ponerPieza(pieza);
+                    ponerPieza(pieza,0);
                 }
                 break;
             case 'a':
                 if (puedeMoverse(pieza, 0, 1, false)) {
                     borrarPieza(pieza);
                     pieza.mover(0, 1);
-                    ponerPieza(pieza);
+                    ponerPieza(pieza,0);
                 }
                 break;
         }
