@@ -16,6 +16,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 
 public class Juego extends View implements View.OnClickListener {
 
@@ -78,6 +80,7 @@ public class Juego extends View implements View.OnClickListener {
                         }
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == alturaVariable) {
                             mainActivity.finish();
+                            mainActivity.gameOver();
                         } else {
                             tablero.ponerPieza(tablero.getPieza());
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {

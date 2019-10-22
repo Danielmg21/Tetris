@@ -2,6 +2,7 @@ package com.example.tetris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -79,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     public TextView getNivel() {
         return nivelTextView;
+    }
+
+    public void gameOver(){
+        Intent intentGameOver = new Intent(this,Exit.class);
+        startActivity(intentGameOver);
     }
 }
