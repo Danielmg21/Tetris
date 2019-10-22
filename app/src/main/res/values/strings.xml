@@ -5,4 +5,6 @@
 
     <string name="text_puntos">Puntos:</string>
     <string name="text_nivel">Nivel:</string>
+
+    <string name="text_start">START</string>
 </resources>
