@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Ranking {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Ranking extends AppCompatActivity {
 
 
     private EditText et_nombre, et_puntuacion;
@@ -18,7 +20,7 @@ public class Ranking {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_nombre = (EditText)findViewById(R.id.txt_nombre);
+        et_nombre = (EditText)findViewById(R.id.txt_nombre_jugador);
         et_puntuacion = (EditText)findViewById(R.id.txt_puntuacion);
 
     }

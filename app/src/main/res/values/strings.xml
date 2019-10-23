@@ -9,4 +9,8 @@
     <string name="text_start">START</string>
     <string name="text_go_menu">MENU</string>
     <string name="text_exit">EXIT</string>
+
+    <string name="text_nombre_jugador">Nombre del Jugador</string>
+    <string name="txt_puntuacion">Puntuacion de la partida</string>
+    <string name="boton_registrar">Registrar</string>
 </resources>
