@@ -26,7 +26,6 @@ public class Juego extends View implements View.OnClickListener {
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
     private int puntos = 0;
-    int cont = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     private List<Integer> filasPorBorrar;
@@ -77,25 +76,23 @@ public class Juego extends View implements View.OnClickListener {
                         if (restoContador==0){
                             alturaVariable+=2;
                         }
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura() == alturaVariable) {
+                        tablero.ponerPieza(tablero.getPieza());
+                        checkComerTablero();
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()== alturaVariable+1) {
                             mainActivity.finish();
                         } else {
-                            tablero.ponerPieza(tablero.getPieza());
-                            checkComerTablero();
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 checkComerTablero();
                                 timer.cancel();
                                 timer = new Timer();
                                 gameLoop();
-                                cont++;
                             } else {
                                 filasPorBorrar = tablero.detectarFilas();
                                 cambiarColorLinea(filasPorBorrar.size());
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
-                                invalidate();
                                 checkSiguienteCont();
                                 tablero.ponerPieza(tablero.getPieza());
                                 checkComerTablero();
