@@ -78,8 +78,8 @@ public class Juego extends View implements View.OnClickListener {
                         }
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()== alturaVariable+1) {
-                            mainActivity.finish();
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()== alturaVariable) {
+                            timer.cancel();
                         } else {
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');

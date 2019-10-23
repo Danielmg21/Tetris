@@ -19,12 +19,12 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
     }
 
     public void generarPieza(int a) {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,a));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, a));
     }
 
     public void borrarPieza() {
@@ -45,34 +45,33 @@ public class Tablero {
         return -1;
     }
 
-    public void CambiarColores1Linea(){
-        int aux=random.nextInt(numeroPiezas) + 1;
-        for(int y =19; y>0;y--){
-            for(int x =0; x<10;x++){
-                if(tab[x][y]!=0 && tab[x][y]!=8) {
+    public void CambiarColores1Linea() {
+        int aux = random.nextInt(numeroPiezas) + 1;
+        for (int y = 19; y > 0; y--) {
+            for (int x = 0; x < 10; x++) {
+                if (tab[x][y] != 0 && tab[x][y] != 8) {
                     tab[x][y] = aux;
                 }
             }
         }
     }
 
-    public void CambiarColoresMultiLinea(){
-        for(int y =19; y>0;y--){
-            for(int x =0; x<10;x++){
-                if(tab[x][y]!=0 && tab[x][y]!=8){
-                    tab[x][y]=random.nextInt(numeroPiezas) + 1;
+    public void CambiarColoresMultiLinea() {
+        for (int y = 19; y > 0; y--) {
+            for (int x = 0; x < 10; x++) {
+                if (tab[x][y] != 0 && tab[x][y] != 8) {
+                    tab[x][y] = random.nextInt(numeroPiezas) + 1;
                 }
             }
         }
     }
 
 
-
-    public void comerTablero(int y){
+    public void comerTablero(int y) {
         //y=0 sustituir mas tarde por altura variada
-        for(int j =0;j<y;j++){
-            for(int x=0;x<getAnchoTablero();x++){
-                tab[x][j]=8;
+        for (int j = 0; j < y; j++) {
+            for (int x = 0; x < getAnchoTablero(); x++) {
+                tab[x][j] = 8;
             }
         }
     }
@@ -98,7 +97,7 @@ public class Tablero {
         for (int y = 19; y >= 0; y--) {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
-                if (tab[x][y] != 0 && tab[x][y]!=8) {
+                if (tab[x][y] != 0 && tab[x][y] != 8) {
                     contador++;
                 }
             }
@@ -135,10 +134,10 @@ public class Tablero {
 
 
     public void ponerPieza(Pieza pieza) {
-        tab[pieza.x1][pieza.y1] = pieza.idColor;
-        tab[pieza.x2][pieza.y2] = pieza.idColor;
-        tab[pieza.x3][pieza.y3] = pieza.idColor;
-        tab[pieza.x4][pieza.y4] = pieza.idColor;
+        if (tab[pieza.x1][pieza.y1] == 0) tab[pieza.x1][pieza.y1] = pieza.idColor;
+        if (tab[pieza.x2][pieza.y2] == 0) tab[pieza.x2][pieza.y2] = pieza.idColor;
+        if (tab[pieza.x3][pieza.y3] == 0) tab[pieza.x3][pieza.y3] = pieza.idColor;
+        if (tab[pieza.x4][pieza.y4] == 0) tab[pieza.x4][pieza.y4] = pieza.idColor;
     }
 
     public void borrarPieza(Pieza pieza) {
@@ -476,7 +475,7 @@ public class Tablero {
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y]==8)) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y] == 8)) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
                 if (!vengoDeRotar) {
@@ -500,7 +499,7 @@ public class Tablero {
     }
 
     public void comprobarRotar(Pieza p) {
-        Pieza aux = new Pieza(p.idColor,0);
+        Pieza aux = new Pieza(p.idColor, 0);
         aux.pos = p.pos;
         aux.x1 = p.x1;
         aux.y1 = p.y1;
