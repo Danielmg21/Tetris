@@ -45,6 +45,29 @@ public class Tablero {
         return -1;
     }
 
+    public void CambiarColores1Linea(){
+        int aux=random.nextInt(numeroPiezas) + 1;
+        for(int y =19; y>0;y--){
+            for(int x =0; x<10;x++){
+                if(tab[x][y]!=0 && tab[x][y]!=8) {
+                    tab[x][y] = aux;
+                }
+            }
+        }
+    }
+
+    public void CambiarColoresMultiLinea(){
+        for(int y =19; y>0;y--){
+            for(int x =0; x<10;x++){
+                if(tab[x][y]!=0 && tab[x][y]!=8){
+                    tab[x][y]=random.nextInt(numeroPiezas) + 1;
+                }
+            }
+        }
+    }
+
+
+
     public void comerTablero(int y){
         //y=0 sustituir mas tarde por altura variada
         for(int j =0;j<y;j++){

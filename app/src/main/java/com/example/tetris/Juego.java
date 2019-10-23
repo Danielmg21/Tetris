@@ -92,6 +92,14 @@ public class Juego extends View implements View.OnClickListener {
                                 cont++;
                             } else {
                                 filasPorBorrar = tablero.detectarFilas();
+                                if(!filasPorBorrar.isEmpty()){
+                                    if (filasPorBorrar.size()==1) {
+                                        tablero.CambiarColores1Linea();
+                                    }else{
+                                        tablero.CambiarColoresMultiLinea();
+                                    }
+                                    filasPorBorrar.clear();
+                                }
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
