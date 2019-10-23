@@ -97,7 +97,13 @@ public class Juego extends View implements View.OnClickListener {
                                 puntuacion.setText( ""+ puntos);
                                 invalidate();
                                 tablero.generarPieza(alturaVariable);
-                                tablero.ponerPieza(tablero.getPieza());
+                                if (restoContador==0){
+                                    tablero.comerTablero(alturaVariable);
+                                    tablero.ponerPieza(tablero.getPieza());
+                                }else{
+                                    tablero.ponerPieza(tablero.getPieza());
+                                }
+
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
                             }
