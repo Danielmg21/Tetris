@@ -134,10 +134,10 @@ public class Tablero {
 
 
     public void ponerPieza(Pieza pieza) {
-        if (tab[pieza.x1][pieza.y1] == 0) tab[pieza.x1][pieza.y1] = pieza.idColor;
-        if (tab[pieza.x2][pieza.y2] == 0) tab[pieza.x2][pieza.y2] = pieza.idColor;
-        if (tab[pieza.x3][pieza.y3] == 0) tab[pieza.x3][pieza.y3] = pieza.idColor;
-        if (tab[pieza.x4][pieza.y4] == 0) tab[pieza.x4][pieza.y4] = pieza.idColor;
+        tab[pieza.x1][pieza.y1] = pieza.idColor;
+        tab[pieza.x2][pieza.y2] = pieza.idColor;
+        tab[pieza.x3][pieza.y3] = pieza.idColor;
+        tab[pieza.x4][pieza.y4] = pieza.idColor;
     }
 
     public void borrarPieza(Pieza pieza) {
