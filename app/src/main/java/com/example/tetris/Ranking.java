@@ -20,8 +20,8 @@ public class Ranking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_nombre = (EditText)findViewById(R.id.txt_nombre_jugador);
-        et_puntuacion = (EditText)findViewById(R.id.txt_puntuacion);
+        et_nombre = (EditText)findViewById(R.id.nombre_jugador);
+
 
     }
 
@@ -32,21 +32,19 @@ public class Ranking extends AppCompatActivity {
         SQLiteDatabase BaseDeDatos = BBDD.getWritableDatabase();
 
         String nombre = et_nombre.getText().toString();
-        String puntuacion = et_puntuacion.getText().toString();
 
-        if ( !nombre.isEmpty() && !puntuacion.isEmpty() ){
+        if ( !nombre.isEmpty()){
             ContentValues registro = new ContentValues();
             //guardar en la base de datos los valores
             registro.put("nombre", nombre);
             //registro.put("puntuacion" score);
 
             //insertar valores en la tabla ranking
-            BaseDeDatos.insert("ranking", null, registro);
+            BaseDeDatos.insert("rankingNormal", null, registro);
 
             BaseDeDatos.close();
 
             et_nombre.setText("");
-            et_puntuacion.setText("");
 
             Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 

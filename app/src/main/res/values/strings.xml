@@ -11,6 +11,6 @@
     <string name="text_exit">EXIT</string>
 
     <string name="text_nombre_jugador">Nombre del Jugador</string>
-    <string name="txt_puntuacion">Puntuacion de la partida</string>
+    <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
 </resources>

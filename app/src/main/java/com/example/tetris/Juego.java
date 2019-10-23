@@ -38,6 +38,7 @@ public class Juego extends View implements View.OnClickListener {
     private int restoContador;
     private int alturaVariable;
 
+
     public Juego(Context context, Tablero tablero, VentanaNext ventana) {
         super(context);
         this.mainActivity = (MainActivity) context;
