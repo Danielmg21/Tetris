@@ -91,14 +91,7 @@ public class Juego extends View implements View.OnClickListener {
                                 cont++;
                             } else {
                                 filasPorBorrar = tablero.detectarFilas();
-                                if(!filasPorBorrar.isEmpty()){
-                                    if (filasPorBorrar.size()==1) {
-                                        tablero.CambiarColores1Linea();
-                                    }else{
-                                        tablero.CambiarColoresMultiLinea();
-                                    }
-                                    filasPorBorrar.clear();
-                                }
+                                cambiarColorLinea(filasPorBorrar.size());
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
@@ -129,6 +122,16 @@ public class Juego extends View implements View.OnClickListener {
             tablero.generarPieza(alturaVariable+4);
         }else{
             tablero.generarPieza(alturaVariable+2);
+        }
+    }
+    public void cambiarColorLinea(int i){
+        if(i!=0){
+            if (i==1) {
+                tablero.CambiarColores1Linea();
+            }else{
+                tablero.CambiarColoresMultiLinea();
+            }
+            filasPorBorrar.clear();
         }
     }
     @Override
