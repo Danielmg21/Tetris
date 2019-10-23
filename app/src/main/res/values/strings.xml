@@ -7,4 +7,6 @@
     <string name="text_nivel">Nivel:</string>
 
     <string name="text_start">START</string>
+    <string name="text_go_menu">MENU</string>
+    <string name="text_exit">EXIT</string>
 </resources>
