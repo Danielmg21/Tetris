@@ -8,32 +8,172 @@
     tools:context=".OpcionesActivity"
     tools:showIn="@layout/activity_opciones">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="99dp"
+    <Spinner
+        android:id="@+id/spinnerJPieza"
+        android:layout_width="343dp"
         android:layout_height="35dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/text_sPieza"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_JText" />
+
+    <TextView
+        android:id="@+id/textView_JText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="520dp"
+        android:text="@string/text_ColorJPIeza"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="353dp"
-        android:layout_height="44dp"
+    <Spinner
+        android:id="@+id/spinnerLPieza"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView_LText" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:hint="@string/text_ColorSPieza"
-            android:text="@string/text_ColorSPieza"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="107dp"
-            tools:text="@string/text_ColorSPieza" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/textView_LText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="436dp"
+        android:text="@string/text_ColorLPieza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerSPieza"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_SText" />
+
+    <TextView
+        android:id="@+id/textView_SText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="352dp"
+        android:text="@string/text_ColorSPieza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_TText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="268dp"
+        android:text="@string/text_ColorTPieza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerTPieza"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_TText" />
+
+    <TextView
+        android:id="@+id/textView_IText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="184dp"
+        android:text="@string/text_ColorIPieza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerIPieza"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_IText" />
+
+    <TextView
+        android:id="@+id/textView_CuadradoText"
+        android:layout_width="183dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_ColorCuadrado"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerCuadrado"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_CuadradoText" />
+
+    <TextView
+        android:id="@+id/textView_ZText"
+        android:layout_width="179dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/text_ColorZPieza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerZPieza"
+        android:layout_width="343dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ZText" />
+
+    <Button
+        android:id="@+id/button_Cambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="SetColor"
+        android:text="@string/text_cambios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

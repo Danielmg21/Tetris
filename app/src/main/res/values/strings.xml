@@ -12,19 +12,29 @@
 
     <string name="title_activity_opciones">OPCIONES</string>
     <string name="text_cuadrado">Cuadrado</string>
-    <string name="text_ColorCuadrado">Color Cuadrado</string>
+    <string name="text_ColorCuadrado">Color Cuadrado:</string>
     <string name="text_zPieza">Z Pieza</string>
-    <string name="text_ColorZPieza">Color Z Pieza</string>
+    <string name="text_ColorZPieza">Color Z Pieza:</string>
     <string name="text_iPieza">I Pieza</string>
-    <string name="text_ColorIPieza">Color I Pieza</string>
+    <string name="text_ColorIPieza">Color I Pieza:</string>
     <string name="text_tPieza">T Pieza</string>
-    <string name="text_ColorTPieza">Color T Pieza</string>
-    <string name="text_sPieza">S Pieza</string>
-    <string name="text_ColorSPieza">Color S Pieza</string>
+    <string name="text_ColorTPieza">Color T Pieza:</string>
+    <string name="text_sPieza">S Pieza</string>S
+    <string name="text_ColorSPieza">Color S Pieza:</string>
     <string name="text_lPieza">L Pieza</string>
-    <string name="text_ColorLPieza">Color L Pieza</string>
+    <string name="text_ColorLPieza">Color L Pieza:</string>
     <string name="text_jPIeza">J Pieza</string>
-    <string name="text_ColorJPIeza">Color J Pieza</string>
+    <string name="text_ColorJPIeza">Color J Pieza:</string>
+
+    <string name="text_colorRojo">Rojo</string>
+    <string name="text_colorRosa">Rosa</string>
+    <string name="color_colorAzulClaro">Azul Claro</string>
+    <string name="text_colorAzulOscuro">Azul Oscuro</string>
+    <string name="text_colorVerde">Verde</string>
+    <string name="text_colorNaranja">Naranja</string>
+    <string name="text_colorAmarillo">Amarillo</string>
+
+    <string name="text_cambios">APLICAR CAMBIOS</string>
 
     <string name="text_atras">ATRAS</string>
 
