@@ -131,8 +131,7 @@ public class Tablero {
 
 
     //crear en clase Piezas atributo entero colorCode
-
-
+    
     public void ponerPieza(Pieza pieza) {
         tab[pieza.x1][pieza.y1] = pieza.idColor;
         tab[pieza.x2][pieza.y2] = pieza.idColor;

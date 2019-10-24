@@ -71,16 +71,17 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        contadorRomper++;
-                        restoContador=contadorRomper%10;
-                        if (restoContador==0){
-                            alturaVariable+=2;
-                        }
+
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()== alturaVariable) {
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()-2<= alturaVariable) {
                             timer.cancel();
                         } else {
+                            contadorRomper++;
+                            restoContador=contadorRomper%10;
+                            if (restoContador==0){
+                                alturaVariable+=2;
+                            }
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 checkComerTablero();
