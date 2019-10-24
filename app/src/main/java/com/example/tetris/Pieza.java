@@ -10,6 +10,7 @@ public class Pieza {
     private Pieza pieza;
     public int pos;
 
+    public Pieza(){}
 
     public Pieza(Pieza pieza) {
         this.pieza = pieza;
@@ -19,7 +20,9 @@ public class Pieza {
         this.y3= pieza.y3; this.y4= pieza.y4;
     }
 
-
+    public void setIdColor(int idColor) {
+        this.idColor = idColor;
+    }
 
     public Pieza(int f, int a) {
         switch (f) { // Cuadrado
