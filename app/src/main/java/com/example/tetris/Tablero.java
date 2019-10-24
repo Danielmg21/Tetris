@@ -42,6 +42,7 @@ public class Tablero {
         if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
         if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
         if (tab[x][y] == 8) return Color.parseColor("#acacac"); //gris pieza bloqueo
+
         return -1;
     }
 
@@ -131,7 +132,6 @@ public class Tablero {
 
 
     //crear en clase Piezas atributo entero colorCode
-    
     public void ponerPieza(Pieza pieza) {
         tab[pieza.x1][pieza.y1] = pieza.idColor;
         tab[pieza.x2][pieza.y2] = pieza.idColor;

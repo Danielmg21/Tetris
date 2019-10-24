@@ -71,9 +71,8 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-
-                        tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
+                        tablero.ponerPieza(tablero.getPieza());
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()-2<= alturaVariable) {
                             timer.cancel();
                         } else {
@@ -94,8 +93,8 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText( ""+ puntos);
-                                checkSiguienteCont();
                                 tablero.ponerPieza(tablero.getPieza());
+                                checkSiguienteCont();
                                 checkComerTablero();
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
