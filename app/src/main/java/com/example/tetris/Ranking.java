@@ -30,7 +30,7 @@ public class Ranking extends AppCompatActivity {
         AdminSQLiteOpenHelper BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         //abrir la base de datos modo escritura y lectura
         SQLiteDatabase BaseDeDatos = BBDD.getWritableDatabase();
-
+        et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
 
         if ( !nombre.isEmpty()){

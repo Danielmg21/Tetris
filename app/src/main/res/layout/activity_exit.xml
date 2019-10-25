@@ -43,7 +43,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.727" />
+        app:layout_constraintVertical_bias="0.727"
+        android:onClick="Registrar"/>
 
     <EditText
         android:id="@+id/nombre_jugador"
@@ -61,4 +62,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.113"
         tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/mostrarRanking"
+        android:layout_width="215dp"
+        android:layout_height="303dp"
+        android:text="@string/text_mostrar_ranking"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
 </androidx.constraintlayout.widget.ConstraintLayout>

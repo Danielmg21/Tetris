@@ -13,4 +13,6 @@
     <string name="text_nombre_jugador">Nombre del Jugador</string>
     <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
+
+    <string name = "text_mostrar_ranking">HOLA</string>
 </resources>
