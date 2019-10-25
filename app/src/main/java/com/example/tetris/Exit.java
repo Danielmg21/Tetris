@@ -63,10 +63,11 @@ public class Exit extends AppCompatActivity {
         String nombre = et_nombre.getText().toString();
 
         if ( !nombre.isEmpty()){
+            //permite almacenar las columnas del registro en pares clave-valor
             ContentValues registro = new ContentValues();
-            //guardar en la base de datos los valores
+            //Añade los pares
             registro.put("nombre", nombre);
-            //registro.put("puntuacion" score);
+            registro.put("puntuacion", 10);
 
             //insertar valores en la tabla ranking
             BaseDeDatos.insert("rankingNormal", null, registro);
@@ -83,10 +84,18 @@ public class Exit extends AppCompatActivity {
     }
     public void mostrarTop5 (View view){
         BaseDeDatos = BBDD.getWritableDatabase();
-        Cursor fila = BaseDeDatos.rawQuery("select nombre, puntuacion from rankingNormal", null);
-        if(fila.moveToFirst()){
-            mostrarRanking.setText(fila.getString(0));
-            mostrarRanking.setText(fila.getString(1));
+        String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
+
+        //********************** AMBAS FUNCIONAN
+        //-----1 forma
+            //Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal",null);
+
+        //-----2 forma
+            Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, null);
+        if(fila2.moveToFirst()){
+            //mostrarRanking.setText(fila1.getString(0)+fila1.getString(1));
+            //mostrarRanking.setText(fila2.getString(0)+fila2.getString(1));
+
             Toast.makeText(this, "Muestro", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "No muestro", Toast.LENGTH_SHORT).show();

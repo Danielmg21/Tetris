@@ -3,6 +3,7 @@ package com.example.tetris;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -17,6 +18,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase baseDatos) {
         //crear la base de datos
+        //baseDatos.getPath();
+
         baseDatos.execSQL("create table rankingNormal(nombre varchar(20) primary key, puntuacion int)");
         baseDatos.execSQL("create table rankingHard(nombre varchar(20) primary key, puntuacion int)");
     }
