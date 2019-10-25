@@ -1,5 +1,6 @@
 package com.example.tetris;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class OpcionesActivity extends AppCompatActivity {
     private Spinner sS;
     private Spinner sL;
     private Spinner sJ;
+    private Button aplicarCambios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,14 @@ public class OpcionesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_opciones);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        aplicarCambios = (Button)findViewById(R.id.button_Cambios);
+        aplicarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OpcionesActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tvCuadrado = (TextView) findViewById(R.id.textView_CuadradoText);
         tvZ = (TextView) findViewById(R.id.textView_ZText);
