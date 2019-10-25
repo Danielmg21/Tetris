@@ -15,16 +15,22 @@ import android.widget.Toast;
 
 public class Exit extends AppCompatActivity {
     private EditText et_nombre;
-    private TextView mostrarRanking = findViewById(R.id.mostrarRanking);
+    private Button registrar;
+    private TextView mostrarRanking;
+    private SQLiteDatabase BaseDeDatos;
+    private AdminSQLiteOpenHelper BBDD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exit);
         Button again = findViewById(R.id.Again);
         Button exit = findViewById(R.id.exit);
-        final Button registrar = findViewById(R.id.registrar_puntuacion);
+        registrar = findViewById(R.id.registrar_puntuacion);
         TextView nombre = findViewById(R.id.nombre_jugador);
+        mostrarRanking = findViewById(R.id.mostrarRanking);
 
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
 
@@ -40,7 +46,7 @@ public class Exit extends AppCompatActivity {
             public void onClick(View view) {
                 Registrar(view);
                 mostrarRanking.setVisibility(view.VISIBLE);
-                //mostrarTop5(view);
+                mostrarTop5(view);
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {
@@ -51,9 +57,8 @@ public class Exit extends AppCompatActivity {
         });
     }
     public void Registrar(View view){
-        AdminSQLiteOpenHelper BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         //abrir la base de datos modo escritura y lectura
-        SQLiteDatabase BaseDeDatos = BBDD.getWritableDatabase();
+        BaseDeDatos = BBDD.getWritableDatabase();
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
 
@@ -70,18 +75,18 @@ public class Exit extends AppCompatActivity {
 
             et_nombre.setText("");
 
-            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
         }else{
             Toast.makeText(this, "Debes rellenar el nombre", Toast.LENGTH_SHORT).show();
         }
     }
     public void mostrarTop5 (View view){
-        AdminSQLiteOpenHelper BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
-        SQLiteDatabase BaseDeDatos = BBDD.getWritableDatabase();
+        BaseDeDatos = BBDD.getWritableDatabase();
         Cursor fila = BaseDeDatos.rawQuery("select nombre, puntuacion from rankingNormal", null);
         if(fila.moveToFirst()){
             mostrarRanking.setText(fila.getString(0));
+            mostrarRanking.setText(fila.getString(1));
             Toast.makeText(this, "Muestro", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "No muestro", Toast.LENGTH_SHORT).show();
