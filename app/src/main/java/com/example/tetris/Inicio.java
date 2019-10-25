@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Inicio extends AppCompatActivity {
 
-    Button empezar;
+    Button empezar, colores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,14 @@ public class Inicio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Inicio.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        colores = (Button)findViewById(R.id.colores);
+        colores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Inicio.this,OpcionesActivity.class);
                 startActivity(intent);
             }
         });

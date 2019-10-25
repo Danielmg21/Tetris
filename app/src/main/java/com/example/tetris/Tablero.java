@@ -19,12 +19,12 @@ public class Tablero {
     private final int numeroPiezas = 7;
 
     public Tablero() {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,0));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
     }
 
     public void generarPieza(int a) {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1,a));
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, a));
     }
 
     public void borrarPieza() {
@@ -45,11 +45,11 @@ public class Tablero {
         return -1;
     }
 
-    public void comerTablero(int y){
+    public void comerTablero(int y) {
         //y=0 sustituir mas tarde por altura variada
-        for(int j =0;j<y;j++){
-            for(int x=0;x<getAnchoTablero();x++){
-                tab[x][j]=8;
+        for (int j = 0; j < y; j++) {
+            for (int x = 0; x < getAnchoTablero(); x++) {
+                tab[x][j] = 8;
             }
         }
     }
@@ -75,7 +75,7 @@ public class Tablero {
         for (int y = 19; y >= 0; y--) {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
-                if (tab[x][y] != 0 && tab[x][y]!=8) {
+                if (tab[x][y] != 0 && tab[x][y] != 8) {
                     contador++;
                 }
             }
@@ -477,7 +477,7 @@ public class Tablero {
     }
 
     public void comprobarRotar(Pieza p) {
-        Pieza aux = new Pieza(p.idColor,0);
+        Pieza aux = new Pieza(p.idColor, 0);
         aux.pos = p.pos;
         aux.x1 = p.x1;
         aux.y1 = p.y1;
