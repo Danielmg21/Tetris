@@ -44,6 +44,7 @@ public class Exit extends AppCompatActivity {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //restablecerEstadiaticas();
                 Registrar(view);
                 mostrarRanking.setVisibility(view.VISIBLE);
                 mostrarTop5(view);
@@ -67,7 +68,7 @@ public class Exit extends AppCompatActivity {
             ContentValues registro = new ContentValues();
             //Añade los pares
             registro.put("nombre", nombre);
-            registro.put("puntuacion", 11);
+            registro.put("puntuacion", 20);
 
             //insertar valores en la tabla ranking
             BaseDeDatos.insert("rankingNormal", null, registro);
@@ -76,7 +77,7 @@ public class Exit extends AppCompatActivity {
 
             et_nombre.setText("");
 
-            //Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
         }else{
             Toast.makeText(this, "Debes rellenar el nombre", Toast.LENGTH_SHORT).show();
@@ -108,4 +109,26 @@ public class Exit extends AppCompatActivity {
 
         BaseDeDatos.close();
     }
+
+    public void restablecerEstadiaticas (View view){
+        BaseDeDatos = BBDD.getWritableDatabase();
+
+        BaseDeDatos.execSQL("DELETE FROM rankingNormal");
+        /*
+        Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal",null);
+
+        if (fila1 != null) {
+            fila1.moveToFirst();
+            do{
+                BaseDeDatos.execSQL("DELETE FROM rankingNormal");
+
+            }while (fila1.moveToNext())
+        }
+        fila1.close();
+        */
+        Toast.makeText(this, "Estadisticas restablecidas", Toast.LENGTH_SHORT).show();
+        BaseDeDatos.close();
+    }
+
+
 }

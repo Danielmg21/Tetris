@@ -55,7 +55,7 @@ public class Juego extends View implements View.OnClickListener {
         puntuacion.append(" 0");
         nivel.append(" 1");
 
-        Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
 
         botonDcha.setOnClickListener(this);
         botonBajar.setOnClickListener(this);

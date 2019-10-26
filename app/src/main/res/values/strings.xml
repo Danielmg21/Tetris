@@ -14,5 +14,6 @@
     <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
 
-    <string name = "text_mostrar_ranking">HOLA</string>
+    <string name = "text_mostrar_ranking"></string>
+    <string name = "text_restablecer_estadisticas">Restablecer Estadisticas</string>
 </resources>

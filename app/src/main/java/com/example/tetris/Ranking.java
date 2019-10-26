@@ -26,6 +26,7 @@ public class Ranking extends AppCompatActivity {
     }
 
     //metodo para añadir jugador
+    /*
     public void Registrar (View view){
         AdminSQLiteOpenHelper BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         //abrir la base de datos modo escritura y lectura
@@ -52,7 +53,7 @@ public class Ranking extends AppCompatActivity {
             Toast.makeText(this, "Debes rellenar el nombre", Toast.LENGTH_SHORT).show();
         }
     }
-
+*/
     //metodo para consultar el ranking
     public void Buscar (View view){
         AdminSQLiteOpenHelper BBDD = new AdminSQLiteOpenHelper(this, "ranking", null,1);
