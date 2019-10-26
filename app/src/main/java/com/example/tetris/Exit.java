@@ -30,7 +30,7 @@ public class Exit extends AppCompatActivity {
         Button exit = findViewById(R.id.exit);
         registrar = findViewById(R.id.registrar_puntuacion);
         TextView nombre = findViewById(R.id.nombre_jugador);
-        mostrarRanking = findViewById(R.id.mostrarRanking);
+        mostrarRanking = findViewById(R.id.mostrarRanking1);
 
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
 
@@ -89,18 +89,19 @@ public class Exit extends AppCompatActivity {
 
         //********************** AMBAS FUNCIONAN
         //-----1 forma
-            //Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal order by puntuacion DESC",null);
+            Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal order by puntuacion DESC",null);
 
         //-----2 forma
-            Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, "puntuacion"+" DESC");
-        if(fila2.moveToFirst()){
+            //Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, "puntuacion"+" DESC");
+        if(fila1.moveToFirst()){
             //mostrarRanking.setText(fila1.getString(0)+fila1.getString(1));
 
-            mostrarRanking.setText(fila2.getString(0)+fila2.getString(1));
+            mostrarRanking.setText(fila1.getString(0)+fila1.getString(1));
+            fila1.moveToNext();
+            mostrarRanking.setText(fila1.getString(0)+fila1.getString(1));
+            fila1.moveToNext();
 
-            fila2.moveToNext();
 
-            mostrarRanking.setText(fila2.getString(0)+fila2.getString(1));
 
             Toast.makeText(this, "Muestro", Toast.LENGTH_SHORT).show();
         }else {
