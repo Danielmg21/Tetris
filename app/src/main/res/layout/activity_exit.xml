@@ -63,16 +63,20 @@
         app:layout_constraintVertical_bias="0.113"
         tools:targetApi="o" />
 
-    <TextView
+    <EditText
         android:id="@+id/mostrarRanking"
-        android:layout_width="215dp"
-        android:layout_height="303dp"
-        android:text="@string/text_mostrar_ranking"
+        android:layout_width="210dp"
+        android:layout_height="271dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.308"
+        android:autofillHints="" tools:targetApi="o"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
