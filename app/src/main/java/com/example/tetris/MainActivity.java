@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle b = this.getIntent().getExtras();
+        int modo=b.getInt("MODO");
 
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         relativeNext.setHorizontalGravity(1);
         relativeNext.addView(siguientePieza);
 
-        Juego juego = new Juego(this, tablero, siguientePieza);
+        Juego juego = new Juego(this, tablero, siguientePieza,modo);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);

@@ -31,16 +31,18 @@ public class Juego extends View implements View.OnClickListener {
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
     private VentanaNext ventana;
-    private int contadorRomper=0;
+    private int contadorRomper = 0;
     private int restoContador;
     private int alturaVariable;
+    private int modo;
 
-    public Juego(Context context, Tablero tablero, VentanaNext ventana) {
+    public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
-        this.ventana=ventana;
-        this.listaPiezas=tablero.getListaPiezas();
+        this.ventana = ventana;
+        this.modo = modo;
+        this.listaPiezas = tablero.getListaPiezas();
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
@@ -51,7 +53,6 @@ public class Juego extends View implements View.OnClickListener {
         puntuacion.append(" 0");
         nivel.append(" 1");
 
-        Toast.makeText(mainActivity, "Bienvenido al TETRIS", Toast.LENGTH_SHORT).show();
 
         botonDcha.setOnClickListener(this);
         botonBajar.setOnClickListener(this);
@@ -71,31 +72,35 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-                        checkComerTablero();
                         tablero.ponerPieza(tablero.getPieza());
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1,false) && tablero.getPieza().getAltura()-2<= alturaVariable) {
+                        if (modo == 1) checkComerTablero();
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                         } else {
                             contadorRomper++;
-                            restoContador=contadorRomper%10;
-                            if (restoContador==0){
-                                alturaVariable+=2;
+                            restoContador = contadorRomper % 10;
+                            if (restoContador == 0 && modo==1) {
+                                alturaVariable += 2;
                             }
-                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1,false)) {
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
-                                checkComerTablero();
+                                if (modo == 1) checkComerTablero();
                                 timer.cancel();
                                 timer = new Timer();
                                 gameLoop();
                             } else {
                                 filasPorBorrar = tablero.detectarFilas();
-                                cambiarColorLinea(filasPorBorrar.size());
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
-                                puntuacion.setText( ""+ puntos);
+                                puntuacion.setText("" + puntos);
                                 tablero.ponerPieza(tablero.getPieza());
-                                checkSiguienteCont();
-                                checkComerTablero();
+                                if (modo==1) {
+                                    cambiarColorLinea(filasPorBorrar.size());
+                                    checkSiguienteCont();
+                                    checkComerTablero();
+                                }else{
+                                    tablero.generarPieza(alturaVariable);
+                                }
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
                             }
@@ -106,31 +111,35 @@ public class Juego extends View implements View.OnClickListener {
             }
         }, 1000, timerPeriod);
     }
-    public void checkComerTablero(){
-        if(restoContador==0){
-            while(tablero.getPieza().getAltura()<alturaVariable){
-                tablero.moverPiezas(tablero.getPieza(),'a');
+
+    public void checkComerTablero() {
+        if (restoContador == 0) {
+            while (tablero.getPieza().getAltura() < alturaVariable) {
+                tablero.moverPiezas(tablero.getPieza(), 'a');
             }
             tablero.comerTablero(alturaVariable);
         }
     }
-    public void checkSiguienteCont(){
-        if((contadorRomper+1)%10==0){
-            tablero.generarPieza(alturaVariable+4);
-        }else{
-            tablero.generarPieza(alturaVariable+2);
+
+    public void checkSiguienteCont() {
+        if ((contadorRomper + 1) % 10 == 0) {
+            tablero.generarPieza(alturaVariable + 4);
+        } else {
+            tablero.generarPieza(alturaVariable + 2);
         }
     }
-    public void cambiarColorLinea(int i){
-        if(i!=0){
-            if (i==1) {
+
+    public void cambiarColorLinea(int i) {
+        if (i != 0) {
+            if (i == 1) {
                 tablero.CambiarColores1Linea();
-            }else{
+            } else {
                 tablero.CambiarColoresMultiLinea();
             }
             filasPorBorrar.clear();
         }
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -155,7 +164,7 @@ public class Juego extends View implements View.OnClickListener {
         pBorde.setStrokeWidth(2);
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 20; y++) {
-                canvas.drawLine((x + 1) * getMeasuredWidth() /tablero.getAnchoTablero(), 0, (x + 1) * getMeasuredWidth() / tablero.getAnchoTablero(), getMeasuredHeight(), pBorde);
+                canvas.drawLine((x + 1) * getMeasuredWidth() / tablero.getAnchoTablero(), 0, (x + 1) * getMeasuredWidth() / tablero.getAnchoTablero(), getMeasuredHeight(), pBorde);
                 canvas.drawLine(0, (y + 1) * getMeasuredHeight() / tablero.getAlturaTablero(), getMeasuredWidth(), (y + 1) * getMeasuredHeight() / tablero.getAlturaTablero(), pBorde);
             }
         }
@@ -179,11 +188,11 @@ public class Juego extends View implements View.OnClickListener {
                 break;
             case R.id.botonRotar:
                 Pieza p = tablero.getPieza();
-                if(p.idColor!=1){
+                if (p.idColor != 1) {
                     tablero.borrarPieza(p);
                     tablero.comprobarRotar(p);
                     tablero.ponerPieza(p);
-                }else{
+                } else {
                     //no hace nada
                 }
 
