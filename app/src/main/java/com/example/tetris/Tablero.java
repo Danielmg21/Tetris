@@ -17,6 +17,13 @@ public class Tablero {
     private final Random random = new Random();
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
     private final int numeroPiezas = 7;
+    private static int colorCuadrado = 1;
+    private static int colorZPieza = 2;
+    private static int colorIPieza = 3;
+    private static int colorTPieza = 4;
+    private static int colorSPieza = 5;
+    private static int colorLPieza = 6;
+    private static int colorJPieza = 7;
 
     public Tablero() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
@@ -31,6 +38,35 @@ public class Tablero {
         listaPiezas.remove(0);
     }
     //transforma numeros de matriz a color
+
+
+    public static void setColorCuadrado(int colorCuadrado) { Tablero.colorCuadrado = colorCuadrado; }
+
+    public static void setColorZPieza(int colorZPieza) { Tablero.colorZPieza = colorZPieza; }
+
+    public static void setColorIPieza(int colorIPieza) { Tablero.colorIPieza = colorIPieza; }
+
+    public static void setColorTPieza(int colorTPieza) { Tablero.colorTPieza = colorTPieza; }
+
+    public static void setColorSPieza(int colorSPieza) { Tablero.colorSPieza = colorSPieza; }
+
+    public static void setColorLPieza(int colorLPieza) { Tablero.colorLPieza = colorLPieza; }
+
+    public static void setColorJPieza(int colorJPieza) { Tablero.colorJPieza = colorJPieza; }
+
+    public static int getColorCuadrado() { return colorCuadrado; }
+
+    public static int getColorZPieza() { return colorZPieza; }
+
+    public static int getColorIPieza() { return colorIPieza; }
+
+    public static int getColorTPieza() { return colorTPieza; }
+
+    public static int getColorSPieza() { return colorSPieza; }
+
+    public static int getColorLPieza() { return colorLPieza; }
+
+    public static int getColorJPieza() { return colorJPieza; }
 
     public int parseaColor(int x, int y) {
         if (tab[x][y] == 0) return Color.parseColor("#001c21");// azul oscuro fondo

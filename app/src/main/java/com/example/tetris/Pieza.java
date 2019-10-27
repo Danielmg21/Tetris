@@ -1,5 +1,7 @@
 package com.example.tetris;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class Pieza {
 
     public int idColor;
@@ -32,7 +34,7 @@ public class Pieza {
                 x3 = 4; y3 = 1+a;
                 x4 = 5; y4 = 1+a;
 
-                idColor = 1;
+                idColor = Tablero.getColorCuadrado();
                 pos=0;
                 break;
 
@@ -42,7 +44,7 @@ public class Pieza {
                 x3 = 6;y3 = 1+a;
                 x4 = 7;y4 = 1+a;
 
-                idColor = 2;
+                idColor = Tablero.getColorZPieza();
                 pos=0;
                 break;
 
@@ -52,7 +54,7 @@ public class Pieza {
                 x3 = 4;y3 = 2+a;
                 x4 = 4;y4 = 3+a;
 
-                idColor = 3;
+                idColor = Tablero.getColorIPieza();
                 pos=0;
                 break;
 
@@ -62,7 +64,7 @@ public class Pieza {
                 x3 = 6;y3 = 0+a;
                 x4 = 5;y4 = 1+a;
 
-                idColor = 4;
+                idColor = Tablero.getColorTPieza();
                 pos=0;
                 break;
 
@@ -72,7 +74,7 @@ public class Pieza {
                 x3 = 5;y3 = 1+a;
                 x4 = 4;y4 = 1+a;
 
-                idColor = 5;
+                idColor = Tablero.getColorSPieza();
                 pos=0;
                 break;
 
@@ -82,7 +84,7 @@ public class Pieza {
                 x3 = 7;y3 = 1+a;
                 x4 = 7;y4 = 2+a;
 
-                idColor = 6;
+                idColor = Tablero.getColorLPieza();
                 pos=0;
                 break;
 
@@ -92,7 +94,7 @@ public class Pieza {
                 x3 = 4;y3 = 1+a;
                 x4 = 4;y4 = 2+a;
 
-                idColor = 7;
+                idColor = Tablero.getColorJPieza();
                 pos=0;
                 break;
         }
