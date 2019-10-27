@@ -169,7 +169,7 @@ public class Tablero {
     //añadir el cambio de la posicion de la pieza
 
     public void alfredo(Pieza p) {
-        switch (p.idColor) {
+        switch (p.id) {
 
             case 1:
                 //Cuadrado uso salpicadura

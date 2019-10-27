@@ -30,7 +30,7 @@ public class OpcionesActivity extends AppCompatActivity {
     private Spinner sS;
     private Spinner sL;
     private Spinner sJ;
-    private Button aplicarCambios;
+    private Button atras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,12 @@ public class OpcionesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_opciones);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        aplicarCambios = (Button)findViewById(R.id.button_Cambios);
-        aplicarCambios.setOnClickListener(new View.OnClickListener() {
+
+        atras = (Button)findViewById(R.id.button_atras);
+        atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OpcionesActivity.this,MainActivity.class);
+                Intent intent = new Intent(OpcionesActivity.this,Inicio.class);
                 startActivity(intent);
             }
         });

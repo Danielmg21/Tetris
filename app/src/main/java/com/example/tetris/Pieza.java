@@ -5,6 +5,7 @@ import com.google.android.material.tabs.TabLayout;
 public class Pieza {
 
     public int idColor;
+    public int id;
     public int x1, y1;
     public int x2, y2;
     public int x3, y3;
@@ -35,6 +36,7 @@ public class Pieza {
                 x4 = 5; y4 = 1+a;
 
                 idColor = Tablero.getColorCuadrado();
+                id = 1;
                 pos=0;
                 break;
 
@@ -45,6 +47,7 @@ public class Pieza {
                 x4 = 7;y4 = 1+a;
 
                 idColor = Tablero.getColorZPieza();
+                id = 2;
                 pos=0;
                 break;
 
@@ -55,6 +58,7 @@ public class Pieza {
                 x4 = 4;y4 = 3+a;
 
                 idColor = Tablero.getColorIPieza();
+                id = 3;
                 pos=0;
                 break;
 
@@ -65,6 +69,7 @@ public class Pieza {
                 x4 = 5;y4 = 1+a;
 
                 idColor = Tablero.getColorTPieza();
+                id = 4;
                 pos=0;
                 break;
 
@@ -75,6 +80,7 @@ public class Pieza {
                 x4 = 4;y4 = 1+a;
 
                 idColor = Tablero.getColorSPieza();
+                id = 5;
                 pos=0;
                 break;
 
@@ -85,6 +91,7 @@ public class Pieza {
                 x4 = 7;y4 = 2+a;
 
                 idColor = Tablero.getColorLPieza();
+                id = 6;
                 pos=0;
                 break;
 
@@ -95,6 +102,7 @@ public class Pieza {
                 x4 = 4;y4 = 2+a;
 
                 idColor = Tablero.getColorJPieza();
+                id = 7;
                 pos=0;
                 break;
         }

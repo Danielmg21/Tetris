@@ -22,10 +22,4 @@
 
     <include layout="@layout/content_opciones" />
 
-    <Button
-        android:id="@+id/id_atras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_atras" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

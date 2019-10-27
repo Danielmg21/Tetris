@@ -24,7 +24,7 @@ public class VentanaNext extends View {
 
     public void runVentanaNext(Pieza p) {
         limpiarVentana();
-        Pieza aux = new Pieza(p.idColor,0);
+        Pieza aux = new Pieza(p.id,0);
         getPieza(aux);
         ventana.ponerPieza(aux);
     }
@@ -39,7 +39,7 @@ public class VentanaNext extends View {
 
     public Pieza getPieza(Pieza aux) {
 
-        switch (aux.idColor) { // Cuadrado
+        switch (aux.id) { // Cuadrado
             case 1:
                 aux.x1 = 1;
                 aux.y1 = 1;
@@ -50,7 +50,7 @@ public class VentanaNext extends View {
                 aux.x4 = 2;
                 aux.y4 = 2;
 
-                aux.idColor = 1;
+                aux.idColor = Tablero.getColorCuadrado();
                 aux.pos = 0;
                 break;
 
@@ -64,7 +64,7 @@ public class VentanaNext extends View {
                 aux.x4 = 2;
                 aux.y4 = 2;
 
-                aux.idColor = 2;
+                aux.idColor = Tablero.getColorZPieza();
                 aux.pos = 0;
                 break;
 
@@ -78,7 +78,7 @@ public class VentanaNext extends View {
                 aux.x4 = 1;
                 aux.y4 = 3;
 
-                aux.idColor = 3;
+                aux.idColor = Tablero.getColorIPieza();
                 aux.pos = 0;
                 break;
 
@@ -92,7 +92,7 @@ public class VentanaNext extends View {
                 aux.x4 = 2;
                 aux.y4 = 2;
 
-                aux.idColor = 4;
+                aux.idColor = Tablero.getColorTPieza();
                 aux.pos = 0;
                 break;
 
@@ -106,7 +106,7 @@ public class VentanaNext extends View {
                 aux.x4 = 1;
                 aux.y4 = 2;
 
-                aux.idColor = 5;
+                aux.idColor = Tablero.getColorSPieza();
                 aux.pos = 0;
                 break;
 
@@ -120,7 +120,7 @@ public class VentanaNext extends View {
                 aux.x4 = 2;
                 aux.y4 = 3;
 
-                aux.idColor = 6;
+                aux.idColor = Tablero.getColorJPieza();
                 aux.pos = 0;
                 break;
 
@@ -134,7 +134,7 @@ public class VentanaNext extends View {
                 aux.x4 = 2;
                 aux.y4 = 3;
 
-                aux.idColor = 7;
+                aux.idColor = Tablero.getColorLPieza();
                 aux.pos = 0;
                 break;
         }
