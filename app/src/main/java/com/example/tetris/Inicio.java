@@ -9,19 +9,30 @@ import android.widget.Button;
 
 public class Inicio extends AppCompatActivity {
 
-    Button empezar;
+    Button modoClasico;
+    Button muerteSubita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        empezar = (Button)findViewById(R.id.empezar);
-        empezar.setOnClickListener(new View.OnClickListener() {
+        modoClasico = (Button)findViewById(R.id.clasico);
+        modoClasico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Inicio.this,MainActivity.class);
+                intent.putExtra("MODO",0);
                 startActivity(intent);
+            }
+        });
+        muerteSubita = (Button) findViewById(R.id.subita);
+        muerteSubita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(Inicio.this,MainActivity.class);
+                intent2.putExtra("MODO",1);
+                startActivity(intent2);
             }
         });
     }
