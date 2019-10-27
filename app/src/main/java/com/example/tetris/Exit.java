@@ -26,12 +26,12 @@ public class Exit extends AppCompatActivity {
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Exit.this, MainActivity.class);
+                Intent intent = new Intent(Exit.this, Inicio.class);
                 startActivity(intent);
             }
         });
 
-        again.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
