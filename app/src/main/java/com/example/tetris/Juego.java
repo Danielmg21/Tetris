@@ -37,6 +37,8 @@ public class Juego extends View implements View.OnClickListener {
     private int restoContador;
     private int alturaVariable;
     private int modo;
+    private Pieza troll;
+    private int restoPieza;
 
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -117,17 +119,22 @@ public class Juego extends View implements View.OnClickListener {
                     public void run() {
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && !tablero.puedeMoverse(troll, 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                             mainActivity.gameOver();
                         } else {
                             contadorRomper++;
-                            restoContador = contadorRomper % 10;
+                            restoContador = contadorRomper % 50;
+                            restoPieza = contadorRomper % 30;
                             if (restoContador == 0) {
                                 alturaVariable += 2;
                             }
-                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
+                            if (restoPieza == 0) {
+                                piezaTroll();
+                            }
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && (tablero.puedeMoverse(troll, 0, 1, false))) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                                if (troll != null) tablero.moverPiezas(troll, 'a');
                                 checkComerTablero();
                                 timer.cancel();
                                 timer = new Timer();
@@ -150,6 +157,16 @@ public class Juego extends View implements View.OnClickListener {
                 });
             }
         }, 1000, timerPeriod);
+    }
+
+    public void piezaTroll() {
+        int n = (int) (Math.random() * 1);
+        if (n == 1) {
+            troll = new Pieza(10, alturaVariable);
+        } else {
+            troll = new Pieza(9, alturaVariable);
+        }
+        tablero.ponerPieza(troll);
     }
 
     public void checkComerTablero() {
