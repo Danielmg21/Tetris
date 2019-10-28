@@ -23,4 +23,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/subita"
+        style="@android:style/Widget.Holo.Button.Small"
+        android:layout_width="197dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="656dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginRight="165dp"
+        android:text="Muerte Súbita"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
