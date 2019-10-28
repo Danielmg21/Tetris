@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 public class Exit extends AppCompatActivity {
     private EditText et_nombre;
-    private Button registrar;
-    private TextView mostrarRanking1,mostrarRanking2,mostrarRanking3,mostrarRanking4,mostrarRanking5,mostrarRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
+    //private Button registrar;
+    private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
     private boolean registrado;
@@ -29,16 +29,18 @@ public class Exit extends AppCompatActivity {
         setContentView(R.layout.activity_exit);
         Button again = findViewById(R.id.Again);
         Button exit = findViewById(R.id.exit);
-        registrar = findViewById(R.id.registrar_puntuacion);
-        TextView nombre = findViewById(R.id.nombre_jugador);
+        Button registrar = findViewById(R.id.registrar_puntuacion);
+        Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
+
+        //TextView nombre = findViewById(R.id.nombre_jugador);
         registrado=false;
 
-        mostrarRanking1 = findViewById(R.id.mostrarRanking1);
-        mostrarRanking2 = findViewById(R.id.mostrarRanking2);
-        mostrarRanking3 = findViewById(R.id.mostrarRanking3);
-        mostrarRanking4 = findViewById(R.id.mostrarRanking4);
-        mostrarRanking5 = findViewById(R.id.mostrarRanking5);
-        mostrarRanking6 = findViewById(R.id.mostrarRanking6);
+        textoRanking1 = findViewById(R.id.mostrarRanking1);
+        textoRanking2 = findViewById(R.id.mostrarRanking2);
+        textoRanking3 = findViewById(R.id.mostrarRanking3);
+        textoRanking4 = findViewById(R.id.mostrarRanking4);
+        textoRanking5 = findViewById(R.id.mostrarRanking5);
+        textoRanking6 = findViewById(R.id.mostrarRanking6);
 
         mostrarPunt1= findViewById(R.id.textpunt1);
         mostrarPunt2= findViewById(R.id.textpunt2);
@@ -86,6 +88,12 @@ public class Exit extends AppCompatActivity {
                 finish();
             }
         });
+        restEstadisticas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restablecerEstadiaticas(v);
+            }
+        });
     }
     public void Registrar(View view){
         //abrir la base de datos modo escritura y lectura
@@ -119,7 +127,7 @@ public class Exit extends AppCompatActivity {
         }
     }
     public void mostrarTop5 (){
-        BaseDeDatos = BBDD.getReadableDatabase();
+        BaseDeDatos = BBDD.getWritableDatabase();
         String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
 
         String j1="",j2="",j3="",j4="",j5="",j6="",p1="",p2="",p3="",p4="",p5="",p6="";
@@ -179,12 +187,12 @@ public class Exit extends AppCompatActivity {
             p6="";
         }
 
-        mostrarRanking1.setText(j1);
-        mostrarRanking2.setText(j2);
-        mostrarRanking3.setText(j3);
-        mostrarRanking4.setText(j4);
-        mostrarRanking5.setText(j5);
-        mostrarRanking6.setText(j6);
+        textoRanking1.setText(j1);
+        textoRanking2.setText(j2);
+        textoRanking3.setText(j3);
+        textoRanking4.setText(j4);
+        textoRanking5.setText(j5);
+        textoRanking6.setText(j6);
 
         mostrarPunt1.setText(p1);
         mostrarPunt2.setText(p2);
