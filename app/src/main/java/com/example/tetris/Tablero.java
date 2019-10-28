@@ -41,7 +41,8 @@ public class Tablero {
         if (tab[x][y] == 5) return Color.parseColor("#FF8000"); //naranja
         if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
         if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
-        if (tab[x][y] == 8) return Color.parseColor("#acacac"); //gris pieza bloqueo
+        if (tab[x][y] == 8) return Color.parseColor("#FFFFFF"); //pieza troll
+        if (tab[x][y] == 9) return Color.parseColor("#acacac"); //gris pieza bloqueo
 
         return -1;
     }
@@ -50,7 +51,7 @@ public class Tablero {
         int aux = random.nextInt(numeroPiezas) + 1;
         for (int y = 19; y > 0; y--) {
             for (int x = 0; x < 10; x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 8) {
+                if (tab[x][y] != 0 && tab[x][y] != 9) {
                     tab[x][y] = aux;
                 }
             }
@@ -60,7 +61,7 @@ public class Tablero {
     public void CambiarColoresMultiLinea() {
         for (int y = 19; y > 0; y--) {
             for (int x = 0; x < 10; x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 8) {
+                if (tab[x][y] != 0 && tab[x][y] != 9) {
                     tab[x][y] = random.nextInt(numeroPiezas) + 1;
                 }
             }
@@ -72,7 +73,7 @@ public class Tablero {
         //y=0 sustituir mas tarde por altura variada
         for (int j = 0; j < y; j++) {
             for (int x = 0; x < getAnchoTablero(); x++) {
-                tab[x][j] = 8;
+                tab[x][j] = 9;
             }
         }
     }
@@ -98,7 +99,7 @@ public class Tablero {
         for (int y = 19; y >= 0; y--) {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 8) {
+                if (tab[x][y] != 0 && tab[x][y] != 9) {
                     contador++;
                 }
             }
@@ -474,7 +475,7 @@ public class Tablero {
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y] == 8)) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y] == 9)) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
                 if (!vengoDeRotar) {

@@ -30,6 +30,7 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
+    private Timer timerTroll = new Timer();
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
     private VentanaNext ventana;
@@ -37,6 +38,7 @@ public class Juego extends View implements View.OnClickListener {
     private int restoContador;
     private int alturaVariable;
     private int modo;
+    private Pieza troll;
 
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -63,6 +65,31 @@ public class Juego extends View implements View.OnClickListener {
         gameLoop();
     }
 
+    public void loopTroll() {
+        ventana.runVentanaNext(listaPiezas.get(1));
+        timerTroll.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                mainActivity.runOnUiThread(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        if( contadorRomper%12==0) {
+                            troll = new Pieza(9, alturaVariable);
+                            tablero.ponerPieza(troll);
+                        }
+                            if(tablero.puedeMoverse(troll,0,1,false)){
+                                tablero.moverPiezas(troll,'a');
+                                timerTroll.cancel();
+                                timer = new Timer();
+                                gameLoop();
+                            }
+                    }
+                });
+            }
+        }, 800, timerPeriod);
+    }
 
     public void gameLoop() {
         ventana.runVentanaNext(listaPiezas.get(1));
@@ -74,14 +101,16 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
+
+                        contadorRomper++;
+                        restoContador = contadorRomper % 10;
+
                         tablero.ponerPieza(tablero.getPieza());
                         if (modo == 1) checkComerTablero();
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                             mainActivity.gameOver(puntos);
                         } else {
-                            contadorRomper++;
-                            restoContador = contadorRomper % 10;
                             if (restoContador == 0 && modo==1) {
                                 alturaVariable += 2;
                             }
