@@ -20,10 +20,14 @@ public class Exit extends AppCompatActivity {
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
     private boolean registrado;
+    private int puntosFinal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle p = this.getIntent().getExtras();
+        puntosFinal = p.getInt("puntuacionFinal");
+
         BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exit);
@@ -54,7 +58,7 @@ public class Exit extends AppCompatActivity {
 
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
 
-        //mostrarTop5();
+        mostrarTop5();
 
         again.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +110,7 @@ public class Exit extends AppCompatActivity {
             ContentValues registro = new ContentValues();
             //Añade los pares
             registro.put("nombre", nombre);
-            registro.put("puntuacion", 60);
+            registro.put("puntuacion", puntosFinal);
 
             //insertar valores en la tabla ranking
             BaseDeDatos.insert("rankingNormal", null, registro);
