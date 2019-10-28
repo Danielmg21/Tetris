@@ -92,6 +92,16 @@ public class Pieza {
                 idColor = 7;
                 pos=0;
                 break;
+
+            case 9: // Pieza Troll
+                x1 = 5;y1 = 0+a;
+                x2 = 4;y2 = 1+a;
+                x3 = 6;y3 = 1+a;
+                x4 = 5;y4 = 2+a;
+
+                idColor = 9;
+                pos=0;
+                break;
         }
     }
 

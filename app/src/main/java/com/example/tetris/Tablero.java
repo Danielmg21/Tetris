@@ -42,7 +42,7 @@ public class Tablero {
         if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
         if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
         if (tab[x][y] == 8) return Color.parseColor("#acacac"); //gris pieza bloqueo
-
+        if (tab[x][y] == 9) return Color.parseColor("#FFFFFF"); //gris pieza bloqueo
         return -1;
     }
 
