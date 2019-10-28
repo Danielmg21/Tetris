@@ -23,10 +23,6 @@ public class Pieza {
         this.y3= pieza.y3; this.y4= pieza.y4;
     }
 
-    public void setIdColor(int idColor) {
-        this.idColor = idColor;
-    }
-
     public Pieza(int f, int a) {
         switch (f) { // Cuadrado
             case 1:
