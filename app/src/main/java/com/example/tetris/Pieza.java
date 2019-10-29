@@ -1,8 +1,11 @@
 package com.example.tetris;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class Pieza {
 
     public int idColor;
+    public int id;
     public int x1, y1;
     public int x2, y2;
     public int x3, y3;
@@ -10,6 +13,7 @@ public class Pieza {
     private Pieza pieza;
     public int pos;
 
+    public Pieza(){}
 
     public Pieza(Pieza pieza) {
         this.pieza = pieza;
@@ -23,7 +27,6 @@ public class Pieza {
         this.y4 = pieza.y4;
     }
 
-
     public Pieza(int f, int a) {
         switch (f) { // Cuadrado
             case 1:
@@ -36,8 +39,10 @@ public class Pieza {
                 x4 = 5;
                 y4 = 1 + a;
 
-                idColor = 1;
-                pos = 0;
+                idColor = Tablero.getColorCuadrado();
+                id = 1;
+                pos=0;
+
                 break;
 
             case 2:    // Z Pieza
@@ -50,8 +55,10 @@ public class Pieza {
                 x4 = 7;
                 y4 = 1 + a;
 
-                idColor = 2;
-                pos = 0;
+                idColor = Tablero.getColorZPieza();
+                id = 2;
+                pos=0;
+
                 break;
 
             case 3: // I Pieza
@@ -64,8 +71,10 @@ public class Pieza {
                 x4 = 4;
                 y4 = 3 + a;
 
-                idColor = 3;
-                pos = 0;
+                idColor = Tablero.getColorIPieza();
+                id = 3;
+                pos=0;
+
                 break;
 
             case 4: // T Pieza
@@ -78,8 +87,10 @@ public class Pieza {
                 x4 = 5;
                 y4 = 1 + a;
 
-                idColor = 4;
-                pos = 0;
+                idColor = Tablero.getColorTPieza();
+                id = 4;
+                pos=0;
+
                 break;
 
             case 5: // S Pieza
@@ -92,8 +103,10 @@ public class Pieza {
                 x4 = 4;
                 y4 = 1 + a;
 
-                idColor = 5;
-                pos = 0;
+                idColor = Tablero.getColorSPieza();
+                id = 5;
+                pos=0;
+
                 break;
 
             case 6:  // L Pieza
@@ -106,8 +119,10 @@ public class Pieza {
                 x4 = 7;
                 y4 = 2 + a;
 
-                idColor = 6;
-                pos = 0;
+                idColor = Tablero.getColorLPieza();
+                id = 6;
+                pos=0;
+
                 break;
 
             case 7:  // J Pieza
@@ -120,9 +135,11 @@ public class Pieza {
                 x4 = 4;
                 y4 = 2 + a;
 
-                idColor = 7;
-                pos = 0;
+                idColor = Tablero.getColorJPieza();
+                id = 7;
+                pos=0;
                 break;
+
             case 8:  // Troll Pieza
                 x1 = 2;
                 y1 = 0 + a;
@@ -133,9 +150,11 @@ public class Pieza {
                 x4 = 2;
                 y4 = 2 + a;
 
+                id = 8;
                 idColor = 8;
                 pos = 0;
                 break;
+
         }
     }
 

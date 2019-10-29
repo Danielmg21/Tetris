@@ -17,6 +17,13 @@ public class Tablero {
     private final Random random = new Random();
     public ArrayList<Pieza> listaPiezas = new ArrayList<Pieza>();
     private final int numeroPiezas = 7;
+    private static int colorCuadrado = 1;
+    private static int colorZPieza = 2;
+    private static int colorIPieza = 3;
+    private static int colorTPieza = 4;
+    private static int colorSPieza = 5;
+    private static int colorLPieza = 6;
+    private static int colorJPieza = 7;
 
     public Tablero() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
@@ -31,6 +38,35 @@ public class Tablero {
         listaPiezas.remove(0);
     }
     //transforma numeros de matriz a color
+
+
+    public static void setColorCuadrado(int colorCuadrado) { Tablero.colorCuadrado = colorCuadrado; }
+
+    public static void setColorZPieza(int colorZPieza) { Tablero.colorZPieza = colorZPieza; }
+
+    public static void setColorIPieza(int colorIPieza) { Tablero.colorIPieza = colorIPieza; }
+
+    public static void setColorTPieza(int colorTPieza) { Tablero.colorTPieza = colorTPieza; }
+
+    public static void setColorSPieza(int colorSPieza) { Tablero.colorSPieza = colorSPieza; }
+
+    public static void setColorLPieza(int colorLPieza) { Tablero.colorLPieza = colorLPieza; }
+
+    public static void setColorJPieza(int colorJPieza) { Tablero.colorJPieza = colorJPieza; }
+
+    public static int getColorCuadrado() { return colorCuadrado; }
+
+    public static int getColorZPieza() { return colorZPieza; }
+
+    public static int getColorIPieza() { return colorIPieza; }
+
+    public static int getColorTPieza() { return colorTPieza; }
+
+    public static int getColorSPieza() { return colorSPieza; }
+
+    public static int getColorLPieza() { return colorLPieza; }
+
+    public static int getColorJPieza() { return colorJPieza; }
 
     public int parseaColor(int x, int y) {
         if (tab[x][y] == 0) return Color.parseColor("#001c21");// azul oscuro fondo
@@ -73,7 +109,8 @@ public class Tablero {
         //y=0 sustituir mas tarde por altura variada
         for (int j = 0; j < y; j++) {
             for (int x = 0; x < getAnchoTablero(); x++) {
-                tab[x][j] = 9;
+                tab[x][j] = 8;
+
             }
         }
     }
@@ -100,6 +137,7 @@ public class Tablero {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
                 if (tab[x][y] != 0 && tab[x][y] != 9) {
+
                     contador++;
                 }
             }
@@ -155,7 +193,7 @@ public class Tablero {
     //añadir el cambio de la posicion de la pieza
 
     public void alfredo(Pieza p) {
-        switch (p.idColor) {
+        switch (p.id) {
 
             case 1:
                 //Cuadrado uso salpicadura
@@ -499,7 +537,8 @@ public class Tablero {
     }
 
     public void comprobarRotar(Pieza p) {
-        Pieza aux = new Pieza(p.idColor, 0);
+        Pieza aux = new Pieza(p.id, 0);
+
         aux.pos = p.pos;
         aux.x1 = p.x1;
         aux.y1 = p.y1;

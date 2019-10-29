@@ -11,6 +11,7 @@ public class Inicio extends AppCompatActivity {
 
     Button modoClasico;
     Button muerteSubita;
+    Button colores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +27,24 @@ public class Inicio extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         muerteSubita = (Button) findViewById(R.id.subita);
         muerteSubita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(Inicio.this,MainActivity.class);
-                intent2.putExtra("MODO",1);
+                intent2.putExtra("MODO", 1);
                 startActivity(intent2);
             }
         });
-    }
 
+        colores = (Button)findViewById(R.id.colores);
+        colores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Inicio.this,OpcionesActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }

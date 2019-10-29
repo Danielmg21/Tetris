@@ -12,30 +12,37 @@
         style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="197dp"
         android:layout_height="56dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginLeft="165dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="165dp"
-        android:layout_marginRight="165dp"
-        android:text="Modo Clásico"
+        android:text="@string/text_modo_clasico"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795" />
+
     <Button
         android:id="@+id/subita"
         style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="197dp"
         android:layout_height="56dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginLeft="165dp"
-        android:layout_marginTop="656dp"
-        android:layout_marginEnd="165dp"
-        android:layout_marginRight="165dp"
-        android:text="Muerte Súbita"
+        android:text="@string/text_muerte_subdita"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/clasico"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/colores"
+        style="@android:style/Widget.Holo.Button.Small"
+        android:layout_width="197dp"
+        android:layout_height="56dp"
+        android:text="@string/text_colores"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subita"
+        app:layout_constraintVertical_bias="0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

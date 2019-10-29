@@ -175,7 +175,6 @@ public class Juego extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         //Pintamos el tablero back
         Paint pincel = new Paint();
 
