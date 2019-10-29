@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".OpcionesActivity"
+            android:label="@string/title_activity_opciones"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
 

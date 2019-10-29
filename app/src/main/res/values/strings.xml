@@ -33,6 +33,7 @@
     <string name="text_ColorIPieza">Color I:</string>
     <string name="text_tPieza">T Pieza</string>
     <string name="text_ColorTPieza">Color T:</string>
+    <string name="text_sPieza">S Pieza</string>
     <string name="text_ColorSPieza">Color S:</string>
     <string name="text_lPieza">L Pieza</string>
     <string name="text_ColorLPieza">Color L:</string>
@@ -40,6 +41,7 @@
     <string name="text_ColorJPIeza">Color J:</string>
 
     <string name="text_colorRojo">Red</string>
+    <string name="text_colorRosa">Pink</string>
     <string name="color_colorAzulClaro">Light Blue</string>
     <string name="text_colorAzulOscuro">Dark Blue</string>
     <string name="text_colorVerde">Green</string>
