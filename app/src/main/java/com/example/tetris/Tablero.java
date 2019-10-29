@@ -513,7 +513,7 @@ public class Tablero {
     }
 
     public void comprobarRotar(Pieza p) {
-        Pieza aux = new Pieza(p.idColor, 0);
+        Pieza aux = new Pieza(p.id, 0);
         aux.pos = p.pos;
         aux.x1 = p.x1;
         aux.y1 = p.y1;
