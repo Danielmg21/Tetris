@@ -109,7 +109,7 @@ public class Juego extends View implements View.OnClickListener {
                         if (modo == 1) checkComerTablero();
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
-                            mainActivity.gameOver(puntos);
+                            mainActivity.gameOver(puntos,modo);
                         } else {
                             if (restoContador == 0 && modo==1) {
                                 alturaVariable += 2;

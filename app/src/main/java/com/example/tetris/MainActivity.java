@@ -84,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
         return nivelTextView;
     }
 
-    public void gameOver(int p){
+    public void gameOver(int p,int m){
         Intent intentGameOver = new Intent(this,Exit.class);
         intentGameOver.putExtra("puntuacionFinal",p);
+        intentGameOver.putExtra("Modo",m);
         startActivity(intentGameOver);
     }
+
 }

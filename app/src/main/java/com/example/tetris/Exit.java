@@ -21,12 +21,15 @@ public class Exit extends AppCompatActivity {
     private AdminSQLiteOpenHelper BBDD;
     private boolean registrado;
     private int puntosFinal;
+    private int modo;
+    private String tipoBBDD;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Bundle p = this.getIntent().getExtras();
         puntosFinal = p.getInt("puntuacionFinal");
+        modo = p.getInt("Modo");
 
         BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         super.onCreate(savedInstanceState);
@@ -52,9 +55,6 @@ public class Exit extends AppCompatActivity {
         mostrarPunt4= findViewById(R.id.textpunt4);
         mostrarPunt5= findViewById(R.id.textpunt5);
         mostrarPunt6= findViewById(R.id.textpunt6);
-
-
-
 
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
 
@@ -90,6 +90,7 @@ public class Exit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+                System.exit(0);
             }
         });
         restEstadisticas.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +106,7 @@ public class Exit extends AppCompatActivity {
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
 
+
         if (!nombre.isEmpty() & !registrado){
             //permite almacenar las columnas del registro en pares clave-valor
             ContentValues registro = new ContentValues();
@@ -113,8 +115,11 @@ public class Exit extends AppCompatActivity {
             registro.put("puntuacion", puntosFinal);
 
             //insertar valores en la tabla ranking
-            BaseDeDatos.insert("rankingNormal", null, registro);
-
+            if(modo==0){
+                BaseDeDatos.insert("rankingNormal", null, registro);
+            }else{
+                BaseDeDatos.insert("rankingHard", null, registro);
+            }
             BaseDeDatos.close();
 
             et_nombre.setText("");
@@ -138,7 +143,12 @@ public class Exit extends AppCompatActivity {
 
         //********************** AMBAS FUNCIONAN
         //-----1 forma
-            Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal order by puntuacion DESC",null);
+        if(modo==0){
+            tipoBBDD = "rankingNormal";
+        }else{
+            tipoBBDD = "rankingHard";
+        }
+            Cursor fila1 =BaseDeDatos.rawQuery("select * from "+tipoBBDD+"  order by puntuacion DESC",null);
 
         //-----2 forma
             //Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, "puntuacion"+" DESC");
@@ -229,6 +239,4 @@ public class Exit extends AppCompatActivity {
 
         mostrarTop5();
     }
-
-
 }
