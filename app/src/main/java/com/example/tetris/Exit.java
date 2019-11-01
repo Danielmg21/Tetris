@@ -221,7 +221,12 @@ public class Exit extends AppCompatActivity {
     public void restablecerEstadiaticas (View view){
         BaseDeDatos = BBDD.getWritableDatabase();
 
-        BaseDeDatos.execSQL("DELETE FROM rankingNormal");
+        if(modo==0){
+            tipoBBDD = "rankingNormal";
+        }else{
+            tipoBBDD = "rankingHard";
+        }
+        BaseDeDatos.execSQL("DELETE FROM "+tipoBBDD);
         /*
         Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal",null);
 
