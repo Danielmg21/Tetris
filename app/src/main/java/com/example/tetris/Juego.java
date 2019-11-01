@@ -83,7 +83,7 @@ public class Juego extends View implements View.OnClickListener {
                         tablero.ponerPieza(tablero.getPieza());
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() == 0) {
                             timer.cancel();
-                            mainActivity.gameOver();
+                            mainActivity.gameOver(puntos,modo);
                         } else {
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');

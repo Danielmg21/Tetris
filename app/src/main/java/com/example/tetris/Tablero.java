@@ -137,8 +137,7 @@ public class Tablero {
         for (int y = 19; y >= 0; y--) {
             contador = 0;
             for (int x = 0; x < getAnchoTablero(); x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 9) {
-
+                if (tab[x][y] != 0 && tab[x][y] != 8) {
                     contador++;
                 }
             }
@@ -519,7 +518,7 @@ public class Tablero {
 
         //Recorremos el array de los posibles puntos y controlamos que estamos dentro del tablero o si está ocupada la posicion o no
         for (Point a : puntos) {
-            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y] == 9)) {
+            if (a.x < anchuraTablero && a.x >= 0 && a.y >= 0 && a.y < alturaTablero && (tab[a.x][a.y] == 0 || tab[a.x][a.y] == 8)) {
                 n++;
             } else if (a.equals(xy1) || a.equals(xy2) || a.equals(xy3) || a.equals(xy4)) {
                 if (!vengoDeRotar) {
