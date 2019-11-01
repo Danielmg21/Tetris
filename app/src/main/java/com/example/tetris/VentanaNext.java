@@ -24,7 +24,7 @@ public class VentanaNext extends View {
 
     public void runVentanaNext(Pieza p) {
         limpiarVentana();
-        Pieza aux = new Pieza(p.id,0);
+        Pieza aux = new Pieza(p.id, 0);
         getPieza(aux);
         ventana.ponerPieza(aux);
     }
@@ -112,20 +112,7 @@ public class VentanaNext extends View {
                 break;
 
             case 6:  // J auxieza
-                aux.x1 = 2;
-                aux.y1 = 1;
-                aux.x2 = 2;
-                aux.y2 = 2;
-                aux.x3 = 1;
-                aux.y3 = 3;
-                aux.x4 = 2;
-                aux.y4 = 3;
 
-                aux.idColor = Tablero.getColorJPieza();
-                aux.pos = 0;
-                break;
-
-            case 7:  // L auxieza
                 aux.x1 = 1;
                 aux.y1 = 1;
                 aux.x2 = 1;
@@ -136,6 +123,19 @@ public class VentanaNext extends View {
                 aux.y4 = 3;
 
                 aux.idColor = Tablero.getColorLPieza();
+                aux.pos = 0;
+                break;
+            case 7:  // L auxieza
+                aux.x1 = 2;
+                aux.y1 = 1;
+                aux.x2 = 2;
+                aux.y2 = 2;
+                aux.x3 = 1;
+                aux.y3 = 3;
+                aux.x4 = 2;
+                aux.y4 = 3;
+
+                aux.idColor = Tablero.getColorJPieza();
                 aux.pos = 0;
                 break;
         }
@@ -150,7 +150,7 @@ public class VentanaNext extends View {
             for (int y = 0; y < 4; y++) {
 
                 int color = ventana.parseaColor(x, y);
-                if(color == Color.parseColor("#001c21")) {
+                if (color == Color.parseColor("#001c21")) {
                     color = Color.parseColor("#423F3F");
                 }
                 pincel.setColor(color);
