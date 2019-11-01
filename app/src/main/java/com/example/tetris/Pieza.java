@@ -140,21 +140,24 @@ public class Pieza {
                 pos=0;
                 break;
 
-            case 8:  // Troll Pieza
-                x1 = 2;
-                y1 = 0 + a;
-                x2 = 1;
-                y2 = 1 + a;
-                x3 = 3;
-                y3 = 1 + a;
-                x4 = 2;
-                y4 = 2 + a;
+            case 9: // Pieza Troll
+                x1 = 1;y1 = 0+a;
+                x2 = 0;y2 = 1+a;
+                x3 = 2;y3 = 1+a;
+                x4 = 1;y4 = 2+a;
 
-                id = 8;
-                idColor = 8;
-                pos = 0;
+                idColor = 9;
+                pos=0;
                 break;
+            case 10: // Pieza Troll
+                x1 = 8;y1 = 0+a;
+                x2 = 7;y2 = 1+a;
+                x3 = 9;y3 = 1+a;
+                x4 = 8;y4 = 2+a;
 
+                idColor = 10;
+                pos=0;
+                break;
         }
     }
 

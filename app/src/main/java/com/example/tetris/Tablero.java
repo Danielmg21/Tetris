@@ -30,8 +30,8 @@ public class Tablero {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
     }
 
-    public void generarPieza(int a) {
-        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, a));
+    public void generarPieza(int altura) {
+        listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, altura));
     }
 
     public void borrarPieza() {
@@ -77,8 +77,9 @@ public class Tablero {
         if (tab[x][y] == 5) return Color.parseColor("#FF8000"); //naranja
         if (tab[x][y] == 6) return Color.parseColor("#ffe700"); //amarillo
         if (tab[x][y] == 7) return Color.parseColor("#FF0000"); //rojo
-        if (tab[x][y] == 8) return Color.parseColor("#FFFFFF"); //pieza troll
-        if (tab[x][y] == 9) return Color.parseColor("#acacac"); //gris pieza bloqueo
+        if (tab[x][y] == 8) return Color.parseColor("#acacac"); //gris pieza bloqueo
+        if (tab[x][y] == 9) return Color.parseColor("#FFFFFF"); //pieza troll
+        if (tab[x][y] == 10) return Color.parseColor("#FFFFFF"); //pieza troll
 
         return -1;
     }
@@ -87,7 +88,7 @@ public class Tablero {
         int aux = random.nextInt(numeroPiezas) + 1;
         for (int y = 19; y > 0; y--) {
             for (int x = 0; x < 10; x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 9) {
+                if (tab[x][y] != 0 && tab[x][y] != 8 && tab[x][y] != 9 && tab[x][y] != 10) {
                     tab[x][y] = aux;
                 }
             }
@@ -97,7 +98,7 @@ public class Tablero {
     public void CambiarColoresMultiLinea() {
         for (int y = 19; y > 0; y--) {
             for (int x = 0; x < 10; x++) {
-                if (tab[x][y] != 0 && tab[x][y] != 9) {
+                if (tab[x][y] != 0 && tab[x][y] != 8 && tab[x][y] != 9 && tab[x][y] != 10) {
                     tab[x][y] = random.nextInt(numeroPiezas) + 1;
                 }
             }
@@ -466,34 +467,39 @@ public class Tablero {
     Puede salirse la matriz auxiiar de rangos pero nunca se puede salir la pieza
      */
     public void moverPiezas(Pieza pieza, char x) {
-        switch (x) {
-            case 'i':
-                if (puedeMoverse(pieza, -1, 0, false)) {
-                    borrarPieza(pieza);
-                    pieza.mover(-1, 0);
-                    ponerPieza(pieza);
-                }
-                break;
-            case 'd':
-                if (puedeMoverse(pieza, 1, 0, false)) {
-                    borrarPieza(pieza);
-                    pieza.mover(1, 0);
-                    ponerPieza(pieza);
-                }
-                break;
-            case 'a':
-                if (puedeMoverse(pieza, 0, 1, false)) {
-                    borrarPieza(pieza);
-                    pieza.mover(0, 1);
-                    ponerPieza(pieza);
-                }
-                break;
+        if (pieza != null) {
+            switch (x) {
+                case 'i':
+                    if (puedeMoverse(pieza, -1, 0, false)) {
+                        borrarPieza(pieza);
+                        pieza.mover(-1, 0);
+                        ponerPieza(pieza);
+                    }
+                    break;
+                case 'd':
+                    if (puedeMoverse(pieza, 1, 0, false)) {
+                        borrarPieza(pieza);
+                        pieza.mover(1, 0);
+                        ponerPieza(pieza);
+                    }
+                    break;
+                case 'a':
+                    if (puedeMoverse(pieza, 0, 1, false)) {
+                        borrarPieza(pieza);
+                        pieza.mover(0, 1);
+                        ponerPieza(pieza);
+                    }
+                    break;
+            }
         }
 
     }
 
     public boolean puedeMoverse(Pieza pieza, int x, int y, boolean vengoDeRotar) {
         int n = 0; //contador para saber si la pieza entera puede moverse
+        if (pieza == null) {
+            return true;
+        }
         Point xy1 = new Point(pieza.x1, pieza.y1);
         Point xy2 = new Point(pieza.x2, pieza.y2);
         Point xy3 = new Point(pieza.x3, pieza.y3);
