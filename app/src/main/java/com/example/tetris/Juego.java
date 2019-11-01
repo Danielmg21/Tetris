@@ -130,11 +130,12 @@ public class Juego extends View implements View.OnClickListener {
                                 alturaVariable += 2;
                             }
                             if (restoPieza == 0) {
-                                piezaTroll();
+                                piezaTroll(alturaVariable);
                             }
-                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && (tablero.puedeMoverse(troll, 0, 1, false))) {
+                            if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
-                                if (troll != null) tablero.moverPiezas(troll, 'a');
+                                if ((tablero.puedeMoverse(troll, 0, 1, false)))
+                                    tablero.moverPiezas(troll, 'a');
                                 checkComerTablero();
                                 timer.cancel();
                                 timer = new Timer();
@@ -159,8 +160,8 @@ public class Juego extends View implements View.OnClickListener {
         }, 1000, timerPeriod);
     }
 
-    public void piezaTroll() {
-        int n = (int) (Math.random() * 1);
+    public void piezaTroll(int altura) {
+        int n = (int) (Math.random());
         if (n == 1) {
             troll = new Pieza(10, alturaVariable);
         } else {
@@ -171,14 +172,18 @@ public class Juego extends View implements View.OnClickListener {
 
     public void checkComerTablero() {
         if (restoContador == 0) {
-            while (tablero.getPieza().getAltura() < alturaVariable) {
+            while ((tablero.getPieza().getAltura() < alturaVariable) && (troll.getAltura() < alturaVariable)) {
                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                tablero.moverPiezas(troll, 'a');
             }
             tablero.comerTablero(alturaVariable);
         }
     }
 
     public void checkSiguienteCont() {
+        if ((contadorRomper + 1) % 30 == 0) {
+            piezaTroll(alturaVariable + 4);
+        }
         if ((contadorRomper + 1) % 10 == 0) {
             tablero.generarPieza(alturaVariable + 4);
         } else {
