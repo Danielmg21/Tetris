@@ -13,7 +13,8 @@ public class Pieza {
     private Pieza pieza;
     public int pos;
 
-    public Pieza(){}
+    public Pieza() {
+    }
 
     public Pieza(Pieza pieza) {
         this.pieza = pieza;
@@ -41,7 +42,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorCuadrado();
                 id = 1;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -57,7 +58,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorZPieza();
                 id = 2;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -73,7 +74,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorIPieza();
                 id = 3;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -89,7 +90,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorTPieza();
                 id = 4;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -105,7 +106,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorSPieza();
                 id = 5;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -121,7 +122,7 @@ public class Pieza {
 
                 idColor = Tablero.getColorLPieza();
                 id = 6;
-                pos=0;
+                pos = 0;
 
                 break;
 
@@ -137,26 +138,34 @@ public class Pieza {
 
                 idColor = Tablero.getColorJPieza();
                 id = 7;
-                pos=0;
+                pos = 0;
                 break;
 
             case 9: // Pieza Troll
-                x1 = 1;y1 = 0+a;
-                x2 = 0;y2 = 1+a;
-                x3 = 2;y3 = 1+a;
-                x4 = 1;y4 = 2+a;
+                x1 = 1;
+                y1 = 0 + a;
+                x2 = 0;
+                y2 = 1 + a;
+                x3 = 2;
+                y3 = 1 + a;
+                x4 = 1;
+                y4 = 2 + a;
 
                 idColor = 9;
-                pos=0;
+                pos = 0;
                 break;
             case 10: // Pieza Troll
-                x1 = 8;y1 = 0+a;
-                x2 = 7;y2 = 1+a;
-                x3 = 9;y3 = 1+a;
-                x4 = 8;y4 = 2+a;
+                x1 = 8;
+                y1 = 0 + a;
+                x2 = 7;
+                y2 = 1 + a;
+                x3 = 9;
+                y3 = 1 + a;
+                x4 = 8;
+                y4 = 2 + a;
 
                 idColor = 10;
-                pos=0;
+                pos = 0;
                 break;
         }
     }
@@ -184,13 +193,19 @@ public class Pieza {
         this.pieza.y4 += y;
     }
 
-    public void copiarPieza(Pieza pieza, Pieza pieza2) {
-        pieza.x1 = pieza2.x1;
-        pieza.x2 = pieza2.x2;
-        pieza.x3 = pieza2.x3;
-        pieza.x4 = pieza2.x4;
+    public void copiarPieza(Pieza pieza2) {
+        this.x1 = pieza2.x1;
+        this.x2 = pieza2.x2;
+        this.x3 = pieza2.x3;
+        this.x4 = pieza2.x4;
 
-        pieza.pos = pieza2.pos;
+        this.y1 = pieza2.y1;
+        this.y2 = pieza2.y2;
+        this.y3 = pieza2.y3;
+        this.y4 = pieza2.y4;
+
+
+        this.pos = pieza2.pos;
 
     }
 }

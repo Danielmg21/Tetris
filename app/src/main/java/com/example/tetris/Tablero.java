@@ -24,6 +24,7 @@ public class Tablero {
     private static int colorSPieza = 5;
     private static int colorLPieza = 6;
     private static int colorJPieza = 7;
+    private Pieza aux;
 
     public Tablero() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
@@ -40,33 +41,61 @@ public class Tablero {
     //transforma numeros de matriz a color
 
 
-    public static void setColorCuadrado(int colorCuadrado) { Tablero.colorCuadrado = colorCuadrado; }
+    public static void setColorCuadrado(int colorCuadrado) {
+        Tablero.colorCuadrado = colorCuadrado;
+    }
 
-    public static void setColorZPieza(int colorZPieza) { Tablero.colorZPieza = colorZPieza; }
+    public static void setColorZPieza(int colorZPieza) {
+        Tablero.colorZPieza = colorZPieza;
+    }
 
-    public static void setColorIPieza(int colorIPieza) { Tablero.colorIPieza = colorIPieza; }
+    public static void setColorIPieza(int colorIPieza) {
+        Tablero.colorIPieza = colorIPieza;
+    }
 
-    public static void setColorTPieza(int colorTPieza) { Tablero.colorTPieza = colorTPieza; }
+    public static void setColorTPieza(int colorTPieza) {
+        Tablero.colorTPieza = colorTPieza;
+    }
 
-    public static void setColorSPieza(int colorSPieza) { Tablero.colorSPieza = colorSPieza; }
+    public static void setColorSPieza(int colorSPieza) {
+        Tablero.colorSPieza = colorSPieza;
+    }
 
-    public static void setColorLPieza(int colorLPieza) { Tablero.colorLPieza = colorLPieza; }
+    public static void setColorLPieza(int colorLPieza) {
+        Tablero.colorLPieza = colorLPieza;
+    }
 
-    public static void setColorJPieza(int colorJPieza) { Tablero.colorJPieza = colorJPieza; }
+    public static void setColorJPieza(int colorJPieza) {
+        Tablero.colorJPieza = colorJPieza;
+    }
 
-    public static int getColorCuadrado() { return colorCuadrado; }
+    public static int getColorCuadrado() {
+        return colorCuadrado;
+    }
 
-    public static int getColorZPieza() { return colorZPieza; }
+    public static int getColorZPieza() {
+        return colorZPieza;
+    }
 
-    public static int getColorIPieza() { return colorIPieza; }
+    public static int getColorIPieza() {
+        return colorIPieza;
+    }
 
-    public static int getColorTPieza() { return colorTPieza; }
+    public static int getColorTPieza() {
+        return colorTPieza;
+    }
 
-    public static int getColorSPieza() { return colorSPieza; }
+    public static int getColorSPieza() {
+        return colorSPieza;
+    }
 
-    public static int getColorLPieza() { return colorLPieza; }
+    public static int getColorLPieza() {
+        return colorLPieza;
+    }
 
-    public static int getColorJPieza() { return colorJPieza; }
+    public static int getColorJPieza() {
+        return colorJPieza;
+    }
 
     public int parseaColor(int x, int y) {
         if (tab[x][y] == 0) return Color.parseColor("#001c21");// azul oscuro fondo
@@ -131,7 +160,7 @@ public class Tablero {
         }
     }
 
-    public List<Integer> detectarFilas() {
+    public List<Integer> detectarFilas(Pieza troll) {
         int contador = 0;
         List<Integer> l = new ArrayList<>();
         for (int y = 19; y >= 0; y--) {
@@ -142,12 +171,22 @@ public class Tablero {
                 }
             }
             if (contador == 10) {
+                if (troll != null) {
+                    obtenerPosTroll(troll);
+                    borrarPieza(troll);
+                }
                 l.add(y);
                 elDestructor(y);
                 y++;
             }
         }
+        if (troll != null && aux!=null) ponerPieza(aux);
         return l;
+    }
+
+    private void obtenerPosTroll(Pieza troll) {
+        aux = new Pieza(troll.id, troll.getAltura());
+        aux.copiarPieza(troll);
     }
 
 

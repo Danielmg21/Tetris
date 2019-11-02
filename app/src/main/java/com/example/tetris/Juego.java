@@ -39,6 +39,7 @@ public class Juego extends View implements View.OnClickListener {
     private int modo;
     private Pieza troll;
     private int restoPieza;
+    private Pieza auxTroll;
 
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -90,7 +91,7 @@ public class Juego extends View implements View.OnClickListener {
                                 timer = new Timer();
                                 loopClasico();
                             } else {
-                                filasPorBorrar = tablero.detectarFilas();
+                                filasPorBorrar = tablero.detectarFilas(null);
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
@@ -134,21 +135,23 @@ public class Juego extends View implements View.OnClickListener {
                             }
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
-                                if ((tablero.puedeMoverse(troll, 0, 1, false)))
+                                if ((tablero.puedeMoverse(troll, 0, 1, false))){
                                     tablero.moverPiezas(troll, 'a');
+                                }else{
+                                    troll=null;
+                                }
                                 checkComerTablero();
                                 timer.cancel();
                                 timer = new Timer();
                                 gameLoop();
                             } else {
-                                filasPorBorrar = tablero.detectarFilas();
+                                filasPorBorrar = tablero.detectarFilas(troll);
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
                                 cambiarColorLinea(filasPorBorrar.size());
                                 checkSiguienteCont();
                                 checkComerTablero();
-                                tablero.ponerPieza(tablero.getPieza());
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
                             }
@@ -181,9 +184,6 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void checkSiguienteCont() {
-        if ((contadorRomper + 1) % 30 == 0) {
-            piezaTroll(alturaVariable + 4);
-        }
         if ((contadorRomper + 1) % 10 == 0) {
             tablero.generarPieza(alturaVariable + 4);
         } else {
