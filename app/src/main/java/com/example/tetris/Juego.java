@@ -168,9 +168,9 @@ public class Juego extends View implements View.OnClickListener {
     public void piezaTroll(int altura) {
         int n = (int) (Math.random());
         if (n == 1) {
-            troll = new Pieza(10, altura);
+            troll = new Pieza(10, alturaVariable);
         } else {
-            troll = new Pieza(9, altura);
+            troll = new Pieza(9, alturaVariable);
         }
         tablero.ponerPieza(troll);
     }
