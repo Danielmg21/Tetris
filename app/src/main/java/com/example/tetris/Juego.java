@@ -242,6 +242,8 @@ public class Juego extends View implements View.OnClickListener {
                 break;
             case R.id.botonBajar:
                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                setPuntos(1);
+                puntuacion.setText("" + puntos);
                 invalidate();
                 break;
             case R.id.botonIzda:
