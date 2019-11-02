@@ -30,7 +30,6 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
-    private Timer timerTroll = new Timer();
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
     private VentanaNext ventana;
@@ -118,10 +117,6 @@ public class Juego extends View implements View.OnClickListener {
 
                     @Override
                     public void run() {
-
-                        contadorRomper++;
-                        restoContador = contadorRomper % 10;
-
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && !tablero.puedeMoverse(troll, 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
@@ -168,9 +163,9 @@ public class Juego extends View implements View.OnClickListener {
     public void piezaTroll(int altura) {
         int n = (int) (Math.random());
         if (n == 1) {
-            troll = new Pieza(10, alturaVariable);
+            troll = new Pieza(10, altura);
         } else {
-            troll = new Pieza(9, alturaVariable);
+            troll = new Pieza(9, altura);
         }
         tablero.ponerPieza(troll);
     }
@@ -210,6 +205,7 @@ public class Juego extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         //Pintamos el tablero back
         Paint pincel = new Paint();
 
