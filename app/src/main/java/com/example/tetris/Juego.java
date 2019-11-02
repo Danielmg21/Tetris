@@ -104,7 +104,7 @@ public class Juego extends View implements View.OnClickListener {
                     }
                 });
             }
-        }, 1000, timerPeriod);
+        }, 500, timerPeriod);
     }
 
     public void gameLoop() {
