@@ -140,7 +140,6 @@ public class Tablero {
         for (int j = 0; j < y; j++) {
             for (int x = 0; x < getAnchoTablero(); x++) {
                 tab[x][j] = 8;
-
             }
         }
     }
@@ -192,10 +191,8 @@ public class Tablero {
 
     //todas las posiciones a 0 para Thanos
     public void limpiarTablero() {
-        for (int i = 0; i < alturaTablero; i++) {
-            for (int j = 0; j < anchuraTablero; j++) {
-                tab[i][j] = 0;
-            }
+        for (int y = 0; y < alturaTablero; y++) {
+            ponerFila0(y);
         }
     }
 

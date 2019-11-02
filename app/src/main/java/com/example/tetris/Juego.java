@@ -105,7 +105,7 @@ public class Juego extends View implements View.OnClickListener {
                     }
                 });
             }
-        }, 1000, timerPeriod);
+        }, 500, timerPeriod);
     }
 
     public void gameLoop() {
@@ -164,10 +164,10 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void piezaTroll(int altura) {
-        int n = (int) (Math.random());
+        int n = (int) (Math.random()*2);
         if (n == 1) {
             troll = new Pieza(10, altura);
-        } else {
+        } else if(n==0){
             troll = new Pieza(9, altura);
         }
         tablero.ponerPieza(troll);
