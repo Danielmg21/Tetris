@@ -111,13 +111,13 @@ public class Pieza {
                 break;
 
             case 6:  // L Pieza
-                x1 = 6;
+                x1 = 5;
                 y1 = 0 + a;
-                x2 = 7;
+                x2 = 6;
                 y2 = 0 + a;
-                x3 = 7;
+                x3 = 6;
                 y3 = 1 + a;
-                x4 = 7;
+                x4 = 6;
                 y4 = 2 + a;
 
                 idColor = Tablero.getColorLPieza();

@@ -112,16 +112,14 @@ public class Juego extends View implements View.OnClickListener {
     public void gameLoop() {
         ventana.runVentanaNext(listaPiezas.get(1));
         timer.schedule(new TimerTask() {
-
             @Override
             public void run() {
                 mainActivity.runOnUiThread(new TimerTask() {
-
                     @Override
                     public void run() {
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
-                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && !tablero.puedeMoverse(troll, 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
+                        if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                             mainActivity.gameOver(puntos, modo);
                         } else {
