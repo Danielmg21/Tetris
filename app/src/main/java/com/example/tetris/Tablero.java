@@ -24,7 +24,7 @@ public class Tablero {
     private static int colorSPieza = 5;
     private static int colorLPieza = 6;
     private static int colorJPieza = 7;
-    private Pieza aux;
+    private Pieza auxTroll;
 
     public Tablero() {
         listaPiezas.add(new Pieza(random.nextInt(numeroPiezas) + 1, 0));
@@ -179,13 +179,13 @@ public class Tablero {
                 y++;
             }
         }
-        if (troll != null && aux!=null) ponerPieza(aux);
+        if (troll != null && auxTroll!=null) ponerPieza(auxTroll);
         return l;
     }
 
     private void obtenerPosTroll(Pieza troll) {
-        aux = new Pieza(troll.id, troll.getAltura());
-        aux.copiarPieza(troll);
+        auxTroll = new Pieza(troll.id, troll.getAltura());
+        auxTroll.copiarPieza(troll);
     }
 
 
