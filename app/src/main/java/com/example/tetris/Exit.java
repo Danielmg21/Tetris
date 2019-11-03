@@ -159,27 +159,22 @@ public class Exit extends AppCompatActivity {
             p1 = fila1.getString(1);
 
             if (fila1.moveToNext()) {
-                fila1.moveToNext();
                 j2 = fila1.getString(0);
                 p2 = fila1.getString(1);
             }
             if (fila1.moveToNext()) {
-                fila1.moveToNext();
                 j3 = fila1.getString(0);
                 p3 = fila1.getString(1);
             }
             if (fila1.moveToNext()) {
-                fila1.moveToNext();
                 j4 = fila1.getString(0);
                 p4 = fila1.getString(1);
             }
             if (fila1.moveToNext()) {
-                fila1.moveToNext();
                 j5 = fila1.getString(0);
                 p5 = fila1.getString(1);
             }
             if (fila1.moveToNext()) {
-                fila1.moveToNext();
                 j6 = fila1.getString(0);
                 p6= fila1.getString(1);
             }
