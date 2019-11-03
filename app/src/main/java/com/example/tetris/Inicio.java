@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Inicio extends AppCompatActivity {
 
     Button modoClasico;
     Button muerteSubita;
     Button colores;
+    ImageView settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,12 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        colores = (Button)findViewById(R.id.colores);
-        colores.setOnClickListener(new View.OnClickListener() {
+        settings = (ImageView)findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Inicio.this,OpcionesActivity.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(Inicio.this,OpcionesActivity.class);
+                startActivity(intent3);
             }
         });
     }

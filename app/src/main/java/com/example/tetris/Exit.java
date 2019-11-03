@@ -35,7 +35,6 @@ public class Exit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exit);
         Button again = findViewById(R.id.Again);
-        Button exit = findViewById(R.id.exit);
         Button registrar = findViewById(R.id.registrar_puntuacion);
         Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
 
@@ -87,13 +86,7 @@ public class Exit extends AppCompatActivity {
 
             }
         });
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                System.exit(0);
-            }
-        });
+
         restEstadisticas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -237,7 +230,6 @@ public class Exit extends AppCompatActivity {
         */
         Toast.makeText(this, "Estadisticas restablecidas", Toast.LENGTH_SHORT).show();
         BaseDeDatos.close();
-
         mostrarTop5();
     }
 }

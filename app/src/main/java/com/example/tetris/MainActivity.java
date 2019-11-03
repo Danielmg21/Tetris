@@ -3,21 +3,14 @@ package com.example.tetris;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
@@ -25,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Juego juego;
     private Tablero tablero = new Tablero();
     private Tablero ventana = new Tablero();
+    private Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
 
+        menu = (Button)findViewById(R.id.settings);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Inicio.class);
+                startActivity(intent);
 
+            }
+        }
+        );
     }
 
     public ImageButton getBotonDcha() {

@@ -15,36 +15,25 @@
         android:text="@string/text_go_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.846" />
 
     <Button
         android:id="@+id/restablecerEstadisticas"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="restablecerEstadiaticas"
         android:text="@string/text_restablecer_estadisticas"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
-
-    <Button
-        android:id="@+id/exit"
-        style="@android:style/Widget.Holo.Light.Button.Toggle"
-        android:layout_width="148dp"
-        android:layout_height="46dp"
-        android:text="@string/text_exit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.844" />
 
     <EditText
         android:id="@+id/nombre_jugador"
@@ -65,16 +54,18 @@
 
     <Button
         android:id="@+id/registrar_puntuacion"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="Registrar"
         android:text="@string/boton_registrar"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.095" />
 
     <TextView
         android:id="@+id/text1"
