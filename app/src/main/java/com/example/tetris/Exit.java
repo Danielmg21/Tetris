@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class Exit extends AppCompatActivity {
     private EditText et_nombre;
     //private Button registrar;
-    private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
+    private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6,textPuntActual;
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
     private boolean registrado;
@@ -57,6 +57,7 @@ public class Exit extends AppCompatActivity {
         mostrarPunt6= findViewById(R.id.textpunt6);
 
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
+        textPuntActual= findViewById(R.id.text_puntuacionActual);
 
         mostrarTop5();
 
@@ -138,7 +139,7 @@ public class Exit extends AppCompatActivity {
     public void mostrarTop5 (){
         BaseDeDatos = BBDD.getWritableDatabase();
         String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
-
+        textPuntActual.setText(Integer.toString(puntosFinal));
         String j1="",j2="",j3="",j4="",j5="",j6="",p1="",p2="",p3="",p4="",p5="",p6="";
 
         //********************** AMBAS FUNCIONAN
