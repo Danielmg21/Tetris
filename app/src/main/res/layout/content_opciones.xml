@@ -164,9 +164,11 @@
 
     <Button
         android:id="@+id/button_Cambios"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="183dp"
         android:layout_height="35dp"
         android:layout_marginBottom="16dp"
+        android:background="#acacac"
         android:onClick="SetColor"
         android:text="@string/text_cambios"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -178,8 +180,10 @@
 
     <Button
         android:id="@+id/button_atras"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="90dp"
         android:layout_height="35dp"
+        android:background="#acacac"
         android:text="@string/text_atras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
