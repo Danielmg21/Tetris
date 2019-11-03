@@ -113,6 +113,8 @@ public class Tablero {
         return -1;
     }
 
+
+
     public void CambiarColores1Linea() {
         int aux = random.nextInt(numeroPiezas) + 1;
         for (int y = 19; y > 0; y--) {
@@ -132,6 +134,26 @@ public class Tablero {
                 }
             }
         }
+    }
+
+    public boolean puedePonerse(Pieza pieza) {
+        Point xy1 = new Point(pieza.x1, pieza.y1);
+        Point xy2 = new Point(pieza.x2, pieza.y2);
+        Point xy3 = new Point(pieza.x3, pieza.y3);
+        Point xy4 = new Point(pieza.x4, pieza.y4);
+
+        ArrayList<Point> puntos = new ArrayList<>();
+        puntos.add(xy1);
+        puntos.add(xy2);
+        puntos.add(xy3);
+        puntos.add(xy4);
+        int contador = 0;
+        for (Point a : puntos) {
+            if (this.tab[a.x][a.y] == 0) {
+                contador++;
+            }
+        }
+        return contador == 4;
     }
 
 
@@ -179,7 +201,7 @@ public class Tablero {
                 y++;
             }
         }
-        if (troll != null && auxTroll!=null) ponerPieza(auxTroll);
+        if (troll != null && auxTroll != null) ponerPieza(auxTroll);
         return l;
     }
 

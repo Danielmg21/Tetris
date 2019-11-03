@@ -83,7 +83,7 @@ public class Juego extends View implements View.OnClickListener {
                         tablero.ponerPieza(tablero.getPieza());
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() == 0) {
                             timer.cancel();
-                            mainActivity.gameOver(puntos,modo);
+                            mainActivity.gameOver(puntos, modo);
                         } else {
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
@@ -99,6 +99,7 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.generarPieza(0);
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
+
                             }
                             invalidate();
                         }
@@ -122,7 +123,7 @@ public class Juego extends View implements View.OnClickListener {
                         checkComerTablero();
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && !tablero.puedeMoverse(troll, 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
-                            mainActivity.gameOver(puntos,modo);
+                            mainActivity.gameOver(puntos, modo);
                         } else {
                             contadorRomper++;
                             restoContador = contadorRomper % 50;
@@ -135,10 +136,10 @@ public class Juego extends View implements View.OnClickListener {
                             }
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
-                                if ((tablero.puedeMoverse(troll, 0, 1, false))){
+                                if ((tablero.puedeMoverse(troll, 0, 1, false))) {
                                     tablero.moverPiezas(troll, 'a');
-                                }else{
-                                    troll=null;
+                                } else {
+                                    troll = null;
                                 }
                                 checkComerTablero();
                                 timer.cancel();
@@ -164,10 +165,10 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void piezaTroll(int altura) {
-        int n = (int) (Math.random()*2);
+        int n = (int) (Math.random() * 2);
         if (n == 1) {
             troll = new Pieza(10, altura);
-        } else if(n==0){
+        } else if (n == 0) {
             troll = new Pieza(9, altura);
         }
         tablero.ponerPieza(troll);
@@ -242,6 +243,7 @@ public class Juego extends View implements View.OnClickListener {
                 break;
             case R.id.botonBajar:
                 tablero.moverPiezas(tablero.getPieza(), 'a');
+                tablero.moverPiezas(troll, 'a');
                 setPuntos(1);
                 puntuacion.setText("" + puntos);
                 invalidate();
