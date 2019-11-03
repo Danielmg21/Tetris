@@ -83,7 +83,6 @@ public class Exit extends AppCompatActivity {
 
                 Registrar(view);
                 mostrarTop5();
-
             }
         });
 
@@ -118,7 +117,7 @@ public class Exit extends AppCompatActivity {
 
             et_nombre.setText("");
             registrado=true;
-            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+
 
         }else{
             if (nombre.isEmpty()) {
@@ -173,9 +172,9 @@ public class Exit extends AppCompatActivity {
                 p6= fila1.getString(1);
             }
 
-            Toast.makeText(this, "Muestro", Toast.LENGTH_SHORT).show();
+
         }else {
-            Toast.makeText(this, "Ranking vacio", Toast.LENGTH_SHORT).show();
+            
             j1="";
             j2="";
             j3="";
