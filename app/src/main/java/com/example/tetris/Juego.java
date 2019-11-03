@@ -95,6 +95,7 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
+                                cambiarColorLinea(filasPorBorrar.size());
                                 tablero.ponerPieza(tablero.getPieza());
                                 tablero.generarPieza(0);
                                 ventana.runVentanaNext(listaPiezas.get(1));
