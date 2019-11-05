@@ -132,13 +132,17 @@ public class Juego extends View implements View.OnClickListener {
                             mainActivity.gameOver(puntos, modo);
                         } else {
                             contadorRomper++;
+                            if(getPuntos()==0){
+                                //
+                            }else{
+                                restoSnap=(getPuntos()%200);
+                            }
                             restoContador = contadorRomper % 50;
                             restoPieza = contadorRomper % 30;
-                            restoSnap = 100;
                             if (restoContador == 0) {
                                 alturaVariable += 2;
                             }
-                            if(getPuntos() >= 100){
+                            if(restoSnap==0){
                                 chasquido++;
                                 snap.setVisibility(View.VISIBLE);
                             }
