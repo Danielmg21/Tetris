@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         return findViewById(R.id.botonRotar);
     }
 
+    public ImageButton getSnap() {
+        return findViewById(R.id.snap);
+    }
+
     public TextView getPuntos() {
         return puntosTextView;
     }

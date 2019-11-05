@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +24,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 public class Juego extends View implements View.OnClickListener {
 
-    private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
+    private ImageButton botonDcha, botonBajar, botonIzda, botonRotar, snap;
     private TextView puntuacion, nivel;
     private MainActivity mainActivity;
     private Tablero tablero;
@@ -35,11 +38,13 @@ public class Juego extends View implements View.OnClickListener {
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
+    private int restoSnap=0;
     private int alturaVariable;
     private int modo;
     private Pieza troll;
     private int restoPieza;
     private Pieza auxTroll;
+    private int chasquido;
 
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -52,6 +57,7 @@ public class Juego extends View implements View.OnClickListener {
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
+        snap = mainActivity.getSnap();
         puntuacion = mainActivity.getPuntos();
         nivel = mainActivity.getNivel();
 
@@ -63,6 +69,7 @@ public class Juego extends View implements View.OnClickListener {
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        snap.setOnClickListener(this);
         if (modo == 0) {
             loopClasico();
         } else {
@@ -127,8 +134,13 @@ public class Juego extends View implements View.OnClickListener {
                             contadorRomper++;
                             restoContador = contadorRomper % 50;
                             restoPieza = contadorRomper % 30;
+                            restoSnap = 100;
                             if (restoContador == 0) {
                                 alturaVariable += 2;
+                            }
+                            if(puntos >= 100){
+                                chasquido++;
+                                snap.setVisibility(View.VISIBLE);
                             }
                             if (restoPieza == 0) {
                                 piezaTroll(alturaVariable);
@@ -260,6 +272,19 @@ public class Juego extends View implements View.OnClickListener {
                 }
                 invalidate();
                 break;
+            case R.id.snap:
+                if(chasquido>0){
+                    Toast toast = new Toast(mainActivity.getApplicationContext());
+                    ImageView view = new ImageView(mainActivity.getApplicationContext());
+                    view.setImageResource(R.mipmap.snapthanos);
+                    toast.setGravity(Gravity.FILL, 0, 0);
+                    toast.setView(view); toast.show();
+                    tablero.limpiarTablero();
+                    chasquido--;
+                    if(chasquido<=0){
+                        snap.setVisibility(View.GONE);
+                    }
+                }
         }
     }
 
