@@ -138,7 +138,7 @@ public class Juego extends View implements View.OnClickListener {
                             if (restoContador == 0) {
                                 alturaVariable += 2;
                             }
-                            if(puntos >= 100){
+                            if(getPuntos() >= 100){
                                 chasquido++;
                                 snap.setVisibility(View.VISIBLE);
                             }
