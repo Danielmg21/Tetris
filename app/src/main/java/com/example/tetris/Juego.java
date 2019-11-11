@@ -281,6 +281,7 @@ public class Juego extends View implements View.OnClickListener {
                     toast.setGravity(Gravity.FILL, 0, 0);
                     toast.setView(view); toast.show();
                     tablero.limpiarTablero();
+                    alturaVariable=0;
                     chasquido--;
                     if(chasquido<=0){
                         snap.setVisibility(View.GONE);
