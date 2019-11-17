@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private Tablero tablero = new Tablero();
     private Tablero ventana = new Tablero();
     private Button menu;
-
+    private MediaPlayer mediaPlayer;
+    AudioService as;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        as = new AudioService();
+        as.start(this);
         Bundle b = this.getIntent().getExtras();
         int modo=b.getInt("MODO");
 
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentGameOver = new Intent(this,Exit.class);
         intentGameOver.putExtra("puntuacionFinal",p);
         intentGameOver.putExtra("Modo",m);
+        as.pause();
         startActivity(intentGameOver);
     }
 

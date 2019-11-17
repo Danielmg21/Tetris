@@ -27,6 +27,7 @@ public class Exit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Bundle p = this.getIntent().getExtras();
         puntosFinal = p.getInt("puntuacionFinal");
         modo = p.getInt("Modo");
