@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         as = new AudioService();
-        as.start(this);
+        as.start(this, R.raw.acdcbackinblack);
         Bundle b = this.getIntent().getExtras();
         int modo = b.getInt("MODO");
 
