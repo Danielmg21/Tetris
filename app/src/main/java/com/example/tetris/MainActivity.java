@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Juego juego;
     private Tablero tablero = new Tablero();
     private Tablero ventana = new Tablero();
-    private Button menu;
+    private Button menu, restart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         relativeTetris.addView(juego);
 
         menu = (Button)findViewById(R.id.settings);
+        restart = (Button)findViewById(R.id.restart);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +61,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        );
+        restart = (Button)findViewById(R.id.restart);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                                             Intent mIntent = getIntent();
+                                             finish();
+                                             startActivity(mIntent);
+
+                                         }
+                                     }
         );
     }
 
