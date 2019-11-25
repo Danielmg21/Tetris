@@ -56,5 +56,8 @@
 
     <string name="text_muerte_subdita">Muerte Súbita</string>
     <string name="text_modo_clasico">Modo Clásico</string>
+    <string name="foto_nuevo_jugador">PHOTO</string>
+    <string name="text_hacer_foto">Hacer foto</string>
+    <string name="text_rankings">Ranking</string>
 
 </resources>

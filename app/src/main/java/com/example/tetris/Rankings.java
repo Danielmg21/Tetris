@@ -2,7 +2,9 @@ package com.example.tetris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +13,22 @@ import android.widget.Toast;
 
 public class Rankings extends AppCompatActivity {
     private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
+    private SQLiteDatabase BaseDeDatos;
+    private AdminSQLiteOpenHelper BBDD;
+    private int modo;
+    private String tipoBBDD;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle p = this.getIntent().getExtras();
+        modo = p.getInt("Modo");
+        BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rankings);
-        //Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
-    /*
+
+        Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
+        Button menu= findViewById(R.id.goMenu);
+
         textoRanking1 = findViewById(R.id.mostrarRanking1);
         textoRanking2 = findViewById(R.id.mostrarRanking2);
         textoRanking3 = findViewById(R.id.mostrarRanking3);
@@ -30,17 +42,25 @@ public class Rankings extends AppCompatActivity {
         mostrarPunt4= findViewById(R.id.textpunt4);
         mostrarPunt5= findViewById(R.id.textpunt5);
         mostrarPunt6= findViewById(R.id.textpunt6);
+
+        mostrarTop5();
+
         restEstadisticas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 restablecerEstadiaticas(v);
             }
         });
-
-     */
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Rankings.this, Inicio.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    /*
+
     public void mostrarTop5 (){
         BaseDeDatos = BBDD.getWritableDatabase();
         String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
@@ -131,5 +151,5 @@ public class Rankings extends AppCompatActivity {
         BaseDeDatos.close();
         mostrarTop5();
     }
-    */
+
 }

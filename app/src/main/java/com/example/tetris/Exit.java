@@ -36,7 +36,7 @@ public class Exit extends AppCompatActivity {
         setContentView(R.layout.activity_exit);
         Button again = findViewById(R.id.Again);
         Button registrar = findViewById(R.id.registrar_puntuacion);
-
+        Button rankings = findViewById(R.id.ShowRankings);
 
         //TextView nombre = findViewById(R.id.nombre_jugador);
         registrado=false;
@@ -52,6 +52,13 @@ public class Exit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Exit.this, Inicio.class);
+                startActivity(intent);
+            }
+        });
+        rankings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Exit.this, Rankings.class);
                 startActivity(intent);
             }
         });
