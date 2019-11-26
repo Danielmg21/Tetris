@@ -12,7 +12,6 @@ public class Inicio extends AppCompatActivity {
 
     Button modoClasico;
     Button muerteSubita;
-    Button colores;
     ImageView settings;
 
     @Override
@@ -40,7 +39,7 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        settings = (ImageView)findViewById(R.id.settings);
+        settings = (ImageView)findViewById(R.id.backMenu);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

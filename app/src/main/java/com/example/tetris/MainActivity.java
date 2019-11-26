@@ -2,6 +2,7 @@ package com.example.tetris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,21 +12,23 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
     private TextView puntosTextView, nivelTextView;
+    private Activity myActivity;
     private Juego juego;
     private Tablero tablero = new Tablero();
     private Tablero ventana = new Tablero();
-    private Button menu, restart;
+    private Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle b = this.getIntent().getExtras();
-        int modo=b.getInt("MODO");
+        int modo = b.getInt("MODO");
 
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(400,400);
         siguientePieza.setLayoutParams(params1);
-        params1.topMargin=50;
+        params1.topMargin = 50;
         RelativeLayout relativeNext = (RelativeLayout) findViewById(R.id.ventanaSig);
         relativeNext.setBackgroundColor(findViewById(R.id.layoutprincipal).getSolidColor());
         relativeNext.setHorizontalGravity(1);
@@ -51,28 +54,14 @@ public class MainActivity extends AppCompatActivity {
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
 
-        menu = (Button)findViewById(R.id.settings);
-        restart = (Button)findViewById(R.id.restart);
+        menu = (Button)findViewById(R.id.backMenu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Inicio.class);
-                startActivity(intent);
-
+                Intent menuIntent = new Intent(MainActivity.this, Inicio.class);
+                startActivity(menuIntent);
             }
-        }
-        );
-        restart = (Button)findViewById(R.id.restart);
-        restart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                                             Intent mIntent = getIntent();
-                                             finish();
-                                             startActivity(mIntent);
-
-                                         }
-                                     }
-        );
+        });
     }
 
     public ImageButton getBotonDcha() {
@@ -109,5 +98,16 @@ public class MainActivity extends AppCompatActivity {
         intentGameOver.putExtra("Modo",m);
         startActivity(intentGameOver);
     }
+
+    public void reiniciar(View view){
+        if(Juego.getPuntos()>250){
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Debes tener mas de 250 puntos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

@@ -30,7 +30,7 @@ public class Juego extends View implements View.OnClickListener {
     private Tablero tablero;
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
-    private int puntos = 0;
+    private static int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     private List<Integer> filasPorBorrar;
@@ -288,12 +288,10 @@ public class Juego extends View implements View.OnClickListener {
         }
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = this.puntos + puntos;
-    }
+    public static void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
 
-    public int getPuntos() {
-        return this.puntos;
+    public static int getPuntos() {
+        return puntos;
     }
 
     public int getNivel() {
