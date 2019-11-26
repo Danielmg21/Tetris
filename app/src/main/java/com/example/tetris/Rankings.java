@@ -21,7 +21,7 @@ public class Rankings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Bundle p = this.getIntent().getExtras();
-        modo = p.getInt("Modo");
+        modo = p.getInt("modo");
         BBDD = new AdminSQLiteOpenHelper(this, "RankingJugadores", null, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rankings);
@@ -54,10 +54,11 @@ public class Rankings extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Rankings.this, Inicio.class);
-                startActivity(intent);
+                Intent intentMenu = new Intent(Rankings.this, Inicio.class);
+                startActivity(intentMenu);
             }
         });
+
     }
 
 

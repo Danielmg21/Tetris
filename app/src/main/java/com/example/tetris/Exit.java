@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -41,40 +40,28 @@ public class Exit extends AppCompatActivity {
         //TextView nombre = findViewById(R.id.nombre_jugador);
         registrado=false;
 
-
-
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         textPuntActual= findViewById(R.id.text_puntuacionActual);
         textPuntActual.setText(Integer.toString(puntosFinal));
 
-
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Exit.this, Inicio.class);
-                startActivity(intent);
+                Intent intentAgain = new Intent(Exit.this, Inicio.class);
+                startActivity(intentAgain);
             }
         });
         rankings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Exit.this, Rankings.class);
-                startActivity(intent);
+                Intent intentRankings = new Intent(Exit.this, Rankings.class);
+                intentRankings.putExtra("modo",modo);
+                startActivity(intentRankings);
             }
         });
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //restablecerEstadiaticas();
-
-                /*
-                mostrarRanking1.setVisibility(view.VISIBLE);
-                mostrarRanking2.setVisibility(view.VISIBLE);
-                mostrarRanking3.setVisibility(view.VISIBLE);
-                mostrarRanking4.setVisibility(view.VISIBLE);
-                mostrarRanking5.setVisibility(view.VISIBLE);
-                mostrarRanking6.setVisibility(view.VISIBLE);
-                */
 
                 Registrar(view);
             }
