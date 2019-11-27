@@ -35,18 +35,19 @@ public class Juego extends View implements View.OnClickListener {
     private int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
+    private Timer crono = new Timer();
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
-    private int puntosSnap=100;
+    private int puntosSnap = 100;
     private int alturaVariable;
     private int modo;
     private Pieza troll;
     private int restoPieza;
-    private int chasquido=0;
-
+    private int chasquido = 0;
+    int cronometro = 0;
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
         this.mainActivity = (MainActivity) context;
@@ -65,7 +66,6 @@ public class Juego extends View implements View.OnClickListener {
         puntuacion.append(" 0");
         nivel.append(" 1");
 
-
         botonDcha.setOnClickListener(this);
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
@@ -78,6 +78,21 @@ public class Juego extends View implements View.OnClickListener {
         }
     }
 
+    public void Cronometro() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mainActivity.runOnUiThread(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                     cronometro++;
+                    }
+                });
+            }
+        }, 1000, timerPeriod);
+
+    }
     public void loopClasico() {
         ventana.runVentanaNext(listaPiezas.get(1));
         timer.schedule(new TimerTask() {
@@ -124,6 +139,7 @@ public class Juego extends View implements View.OnClickListener {
             @Override
             public void run() {
                 mainActivity.runOnUiThread(new TimerTask() {
+
                     @Override
                     public void run() {
                         tablero.ponerPieza(tablero.getPieza());

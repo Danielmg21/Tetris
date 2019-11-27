@@ -1,5 +1,6 @@
 package com.example.tetris;
 
+import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
@@ -31,9 +35,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         as = new AudioService();
         as.start(this, R.raw.acdcbackinblack);
+
         Bundle b = this.getIntent().getExtras();
         int modo = b.getInt("MODO");
+        List<Cancion> playlist = new ArrayList<>();
 
+        for(int i =0; i<2;i++){
+            @RawRes int song =(int) b.get("ruta");
+            boolean escogido =  b.getBoolean("b1");
+            boolean disp = b.getBoolean("b2");
+            Cancion cancion = new Cancion(song,escogido,disp);
+            playlist.add(cancion);
+        }
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
         botonBajar = (ImageButton) findViewById(R.id.botonBajar);
