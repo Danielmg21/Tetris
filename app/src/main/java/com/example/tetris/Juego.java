@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import pl.droidsonroids.gif.GifImageView;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
@@ -276,10 +280,11 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.snap:
                 if(chasquido>0){
                     Toast toast = new Toast(mainActivity.getApplicationContext());
-                    ImageView view = new ImageView(mainActivity.getApplicationContext());
-                    view.setImageResource(R.mipmap.snapthanos);
+                    GifImageView view = new GifImageView(mainActivity.getApplicationContext());
+                    view.setImageResource(R.drawable.thanos);
                     toast.setGravity(Gravity.FILL, 0, 0);
-                    toast.setView(view); toast.show();
+                    toast.setView(view);
+                    toast.show();
                     tablero.limpiarTablero();
                     alturaVariable=0;
                     chasquido--;
