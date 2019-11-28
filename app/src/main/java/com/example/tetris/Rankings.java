@@ -51,6 +51,7 @@ public class Rankings extends AppCompatActivity {
                 restablecerEstadiaticas(v);
             }
         });
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
