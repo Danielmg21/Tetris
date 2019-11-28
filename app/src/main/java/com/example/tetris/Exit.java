@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOError;
 import java.io.IOException;
@@ -40,6 +41,8 @@ public class Exit extends AppCompatActivity {
     private String tipoBBDD;
     private TextView textPuntActual;
     private ImageView img;
+    private Bitmap imageBitmap;
+    private byte[] blob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,7 @@ public class Exit extends AppCompatActivity {
         BaseDeDatos = BBDD.getWritableDatabase();
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
+        guardarImagen(imageBitmap);
 
 
         if (!nombre.isEmpty() & !registrado){
@@ -103,12 +107,14 @@ public class Exit extends AppCompatActivity {
             //Añade los pares
             registro.put("nombre", nombre);
             registro.put("puntuacion", puntosFinal);
+            registro.put("foto", blob);
 
-            //insertar valores en la tabla ranking
-            if(modo==0){
-                BaseDeDatos.insert("rankingNormal", null, registro);
-            }else{
-                BaseDeDatos.insert("rankingHard", null, registro);
+
+                //insertar valores en la tabla ranking
+                if(modo==0){
+                    BaseDeDatos.insert("rankingNormal", null, registro);
+                }else{
+                    BaseDeDatos.insert("rankingHard", null, registro);
             }
             BaseDeDatos.close();
 
@@ -173,8 +179,16 @@ public class Exit extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             img.setImageBitmap(imageBitmap);
         }
+    }
+    public void guardarImagen(Bitmap bitmap){
+        // tamaño del baos depende del tamaño de tus imagenes en promedio
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
+        blob = baos.toByteArray();
+        // aqui tenemos el byte[] con el imagen comprimido, ahora lo guardemos en SQLite
+
     }
 }

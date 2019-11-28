@@ -281,7 +281,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.161"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 
     <ImageView
         android:id="@+id/imageJ2"
@@ -294,7 +295,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.251"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 
     <ImageView
         android:id="@+id/imageJ3"
@@ -307,7 +309,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.343"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 
     <ImageView
         android:id="@+id/imageJ4"
@@ -320,7 +323,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.439"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 
     <ImageView
         android:id="@+id/imageJ5"
@@ -333,7 +337,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.531"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 
     <ImageView
         android:id="@+id/imageJ6"
@@ -346,5 +351,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.627"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100" />
 </androidx.constraintlayout.widget.ConstraintLayout>

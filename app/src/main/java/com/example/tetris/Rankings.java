@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+
 public class Rankings extends AppCompatActivity {
     private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
+    private ImageView imageAvatar1,imageAvatar2,imageAvatar3,imageAvatar4,imageAvatar5,imageAvatar6;
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
     private int modo;
@@ -43,6 +49,13 @@ public class Rankings extends AppCompatActivity {
         mostrarPunt5= findViewById(R.id.textpunt5);
         mostrarPunt6= findViewById(R.id.textpunt6);
 
+        imageAvatar1 = findViewById(R.id.imageJ1);
+        imageAvatar2 = findViewById(R.id.imageJ2);
+        imageAvatar3 = findViewById(R.id.imageJ3);
+        imageAvatar4 = findViewById(R.id.imageJ4);
+        imageAvatar5 = findViewById(R.id.imageJ5);
+        imageAvatar6 = findViewById(R.id.imageJ6);
+
         mostrarTop5();
 
         restEstadisticas.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +78,9 @@ public class Rankings extends AppCompatActivity {
 
     public void mostrarTop5 (){
         BaseDeDatos = BBDD.getWritableDatabase();
-        String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
+        String columnas[] = new String[]{"nombre","puntuacion","foto"};//,"puntuacion"
         String j1="",j2="",j3="",j4="",j5="",j6="",p1="",p2="",p3="",p4="",p5="",p6="";
+        Bitmap bitmap1 = null,bitmap2 = null,bitmap3 = null,bitmap4 = null,bitmap5 = null,bitmap6 = null;
 
         //********************** AMBAS FUNCIONAN
         //-----1 forma
@@ -75,7 +89,7 @@ public class Rankings extends AppCompatActivity {
         }else{
             tipoBBDD = "rankingHard";
         }
-        Cursor fila1 =BaseDeDatos.rawQuery("select * from "+tipoBBDD+"  order by puntuacion DESC",null);
+        Cursor fila1 = BaseDeDatos.rawQuery("select * from "+tipoBBDD+"  order by puntuacion DESC",null);
 
         //-----2 forma
         //Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, "puntuacion"+" DESC");
@@ -84,26 +98,44 @@ public class Rankings extends AppCompatActivity {
 
             j1 = fila1.getString(0);
             p1 = fila1.getString(1);
+            byte[] blob1 = fila1.getBlob(2);
+            ByteArrayInputStream bais1 = new ByteArrayInputStream(blob1);
+            bitmap1 = BitmapFactory.decodeStream(bais1);
 
             if (fila1.moveToNext()) {
                 j2 = fila1.getString(0);
                 p2 = fila1.getString(1);
+                byte[] blob2 = fila1.getBlob(2);
+                ByteArrayInputStream bais2 = new ByteArrayInputStream(blob2);
+                bitmap1 = BitmapFactory.decodeStream(bais2);
             }
             if (fila1.moveToNext()) {
                 j3 = fila1.getString(0);
                 p3 = fila1.getString(1);
+                byte[] blob3 = fila1.getBlob(2);
+                ByteArrayInputStream bais3 = new ByteArrayInputStream(blob3);
+                bitmap1 = BitmapFactory.decodeStream(bais3);
             }
             if (fila1.moveToNext()) {
                 j4 = fila1.getString(0);
                 p4 = fila1.getString(1);
+                byte[] blob4 = fila1.getBlob(2);
+                ByteArrayInputStream bais4 = new ByteArrayInputStream(blob4);
+                bitmap1 = BitmapFactory.decodeStream(bais4);
             }
             if (fila1.moveToNext()) {
                 j5 = fila1.getString(0);
                 p5 = fila1.getString(1);
+                byte[] blob5 = fila1.getBlob(2);
+                ByteArrayInputStream bais5 = new ByteArrayInputStream(blob5);
+                bitmap1 = BitmapFactory.decodeStream(bais5);
             }
             if (fila1.moveToNext()) {
                 j6 = fila1.getString(0);
                 p6= fila1.getString(1);
+                byte[] blob6 = fila1.getBlob(2);
+                ByteArrayInputStream bais6 = new ByteArrayInputStream(blob6);
+                bitmap1 = BitmapFactory.decodeStream(bais6);
             }
 
 
@@ -136,6 +168,19 @@ public class Rankings extends AppCompatActivity {
         mostrarPunt4.setText(p4);
         mostrarPunt5.setText(p5);
         mostrarPunt6.setText(p6);
+
+        if(bitmap1 != null)
+        imageAvatar1.setImageBitmap(bitmap1);
+        if(bitmap2 != null)
+        imageAvatar2.setImageBitmap(bitmap2);
+        if(bitmap3 != null)
+        imageAvatar3.setImageBitmap(bitmap3);
+        if(bitmap4 != null)
+        imageAvatar4.setImageBitmap(bitmap4);
+        if(bitmap5 != null)
+        imageAvatar5.setImageBitmap(bitmap5);
+        if(bitmap6 != null)
+        imageAvatar6.setImageBitmap(bitmap6);
 
         BaseDeDatos.close();
     }

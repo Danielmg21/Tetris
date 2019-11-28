@@ -20,8 +20,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         //crear la base de datos
         //baseDatos.getPath();
 
-        baseDatos.execSQL("create table rankingNormal(nombre varchar(20) primary key, puntuacion int)");
-        baseDatos.execSQL("create table rankingHard(nombre varchar(20) primary key, puntuacion int)");
+        baseDatos.execSQL("create table rankingNormal(nombre varchar(20) primary key, puntuacion int, foto BLOB)");
+        baseDatos.execSQL("create table rankingHard(nombre varchar(20) primary key, puntuacion int, foto BLOB)");
     }
 
     @Override
