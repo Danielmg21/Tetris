@@ -78,22 +78,27 @@
 
     <ImageView
         android:id="@+id/NewPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/foto_nuevo_jugador"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:contentDescription="@string/app_name"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@mipmap/avatar140x100"
+        tools:src="@mipmap/avatar140x100"
+        tools:srcCompat="@mipmap/avatar140x100"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/hacerFoto"
         style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="tomarFoto"
         android:text="@string/text_hacer_foto"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
