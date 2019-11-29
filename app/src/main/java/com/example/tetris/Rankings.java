@@ -105,35 +105,35 @@ public class Rankings extends AppCompatActivity {
                 p2 = fila1.getString(1);
                 byte[] blob2 = fila1.getBlob(2);
                 ByteArrayInputStream bais2 = new ByteArrayInputStream(blob2);
-                bitmap1 = BitmapFactory.decodeStream(bais2);
+                bitmap2 = BitmapFactory.decodeStream(bais2);
             }
             if (fila1.moveToNext()) {
                 j3 = fila1.getString(0);
                 p3 = fila1.getString(1);
                 byte[] blob3 = fila1.getBlob(2);
                 ByteArrayInputStream bais3 = new ByteArrayInputStream(blob3);
-                bitmap1 = BitmapFactory.decodeStream(bais3);
+                bitmap3 = BitmapFactory.decodeStream(bais3);
             }
             if (fila1.moveToNext()) {
                 j4 = fila1.getString(0);
                 p4 = fila1.getString(1);
                 byte[] blob4 = fila1.getBlob(2);
                 ByteArrayInputStream bais4 = new ByteArrayInputStream(blob4);
-                bitmap1 = BitmapFactory.decodeStream(bais4);
+                bitmap4 = BitmapFactory.decodeStream(bais4);
             }
             if (fila1.moveToNext()) {
                 j5 = fila1.getString(0);
                 p5 = fila1.getString(1);
                 byte[] blob5 = fila1.getBlob(2);
                 ByteArrayInputStream bais5 = new ByteArrayInputStream(blob5);
-                bitmap1 = BitmapFactory.decodeStream(bais5);
+                bitmap5 = BitmapFactory.decodeStream(bais5);
             }
             if (fila1.moveToNext()) {
                 j6 = fila1.getString(0);
                 p6= fila1.getString(1);
                 byte[] blob6 = fila1.getBlob(2);
                 ByteArrayInputStream bais6 = new ByteArrayInputStream(blob6);
-                bitmap1 = BitmapFactory.decodeStream(bais6);
+                bitmap6 = BitmapFactory.decodeStream(bais6);
             }
 
 
@@ -167,12 +167,17 @@ public class Rankings extends AppCompatActivity {
         mostrarPunt5.setText(p5);
         mostrarPunt6.setText(p6);
 
-
+        if(bitmap1!=null)
         imageAvatar1.setImageBitmap(bitmap1);
+        if(bitmap2!=null)
         imageAvatar2.setImageBitmap(bitmap2);
+        if(bitmap3!=null)
         imageAvatar3.setImageBitmap(bitmap3);
+        if(bitmap4!=null)
         imageAvatar4.setImageBitmap(bitmap4);
+        if(bitmap5!=null)
         imageAvatar5.setImageBitmap(bitmap5);
+        if(bitmap6!=null)
         imageAvatar6.setImageBitmap(bitmap6);
 
         BaseDeDatos.close();
