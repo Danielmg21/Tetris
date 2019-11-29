@@ -74,8 +74,6 @@ public class Rankings extends AppCompatActivity {
         });
 
     }
-
-
     public void mostrarTop5 (){
         BaseDeDatos = BBDD.getWritableDatabase();
         String columnas[] = new String[]{"nombre","puntuacion","foto"};//,"puntuacion"
