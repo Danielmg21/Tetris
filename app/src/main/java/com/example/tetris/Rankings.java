@@ -167,17 +167,12 @@ public class Rankings extends AppCompatActivity {
         mostrarPunt5.setText(p5);
         mostrarPunt6.setText(p6);
 
-        if(bitmap1 != null)
+
         imageAvatar1.setImageBitmap(bitmap1);
-        if(bitmap2 != null)
         imageAvatar2.setImageBitmap(bitmap2);
-        if(bitmap3 != null)
         imageAvatar3.setImageBitmap(bitmap3);
-        if(bitmap4 != null)
         imageAvatar4.setImageBitmap(bitmap4);
-        if(bitmap5 != null)
         imageAvatar5.setImageBitmap(bitmap5);
-        if(bitmap6 != null)
         imageAvatar6.setImageBitmap(bitmap6);
 
         BaseDeDatos.close();

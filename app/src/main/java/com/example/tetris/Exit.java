@@ -119,6 +119,7 @@ public class Exit extends AppCompatActivity {
             BaseDeDatos.close();
 
             et_nombre.setText("");
+            blob = null;
             registrado=true;
 
 
