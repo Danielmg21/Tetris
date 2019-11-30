@@ -1,28 +1,17 @@
 package com.example.tetris;
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class OpcionesActivity extends AppCompatActivity {
-    private TextView tvCuadrado;
-    private TextView tvZ;
-    private TextView tvI;
-    private TextView tvT;
-    private TextView tvS;
-    private TextView tvL;
-    private TextView tvJ;
+public class ColoresActivity extends AppCompatActivity {
+
     private Spinner sCuadrado;
     private Spinner sZ;
     private Spinner sI;
@@ -30,31 +19,11 @@ public class OpcionesActivity extends AppCompatActivity {
     private Spinner sS;
     private Spinner sL;
     private Spinner sJ;
-    private Button atras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        atras = (Button)findViewById(R.id.button_atras);
-        atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OpcionesActivity.this,Inicio.class);
-                startActivity(intent);
-            }
-        });
-
-        tvCuadrado = (TextView) findViewById(R.id.textView_CuadradoText);
-        tvZ = (TextView) findViewById(R.id.textView_ZText);
-        tvI = (TextView) findViewById(R.id.textView_IText);
-        tvT = (TextView) findViewById(R.id.textView_TText);
-        tvS = (TextView) findViewById(R.id.textView_SText);
-        tvL = (TextView) findViewById(R.id.textView_LText);
-        tvJ = (TextView) findViewById(R.id.textView_JText);
+        setContentView(R.layout.activity_colores);
 
         sCuadrado = (Spinner) findViewById(R.id.spinnerCuadrado);
         sZ = (Spinner) findViewById(R.id.spinnerZPieza);
@@ -76,7 +45,7 @@ public class OpcionesActivity extends AppCompatActivity {
         sJ.setAdapter(adapter);
     }
 
-    public void SetColor(View view) {                            //id:4 = verde, id:6 = amarillo, id:5 = naranja, id: 2 = azul claro, id:1 = rosa, id:3 = azul oscuro, id:7 = rojo
+    public void SetColor(View view) {//id:4 = verde, id:6 = amarillo, id:5 = naranja, id: 2 = azul claro, id:1 = rosa, id:3 = azul oscuro, id:7 = rojo
         // Cuadrado
 
         String seleccionC = sCuadrado.getSelectedItem().toString();
@@ -86,240 +55,131 @@ public class OpcionesActivity extends AppCompatActivity {
             // codigo set cuadrado a rojo ID (integer) IDColor (integer)
         }
         if (seleccionC.equals("Pink")) {
-            Tablero.setColorCuadrado(1);
-        }
+            Tablero.setColorCuadrado(1); }
         if (seleccionC.equals("Light Blue")) {
-            Tablero.setColorCuadrado(2);
-        }
+            Tablero.setColorCuadrado(2); }
         if (seleccionC.equals("Dark Blue")) {
-            Tablero.setColorCuadrado(3);
-        }
+            Tablero.setColorCuadrado(3); }
         if (seleccionC.equals("Green")) {
-            Tablero.setColorCuadrado(4);
-        }
+            Tablero.setColorCuadrado(4); }
         if (seleccionC.equals("Orange")) {
-            Tablero.setColorCuadrado(5);
-        }
+            Tablero.setColorCuadrado(5); }
         if (seleccionC.equals("Yellow")) {
-            Tablero.setColorCuadrado(6);
-        }
+            Tablero.setColorCuadrado(6); }
 
         // Z Pieza
         String seleccionZ = sZ.getSelectedItem().toString();
         if (seleccionZ.equals("Red")) {
-            Tablero.setColorZPieza(7);
             // codigo set Z a rojo
+            Tablero.setColorZPieza(7);
         }
         if (seleccionZ.equals("Pink")) {
-            Tablero.setColorZPieza(1);
-        }
+            Tablero.setColorZPieza(1); }
         if (seleccionZ.equals("Light Blue")) {
-            Tablero.setColorZPieza(2);
-        }
+            Tablero.setColorZPieza(2); }
         if (seleccionZ.equals("Dark Blue")) {
-            Tablero.setColorZPieza(3);
-        }
+            Tablero.setColorZPieza(3); }
         if (seleccionZ.equals("Green")) {
-            Tablero.setColorZPieza(4);
-        }
+            Tablero.setColorZPieza(4); }
         if (seleccionZ.equals("Orange")) {
-            Tablero.setColorZPieza(5);
-        }
+            Tablero.setColorZPieza(5); }
         if (seleccionZ.equals("Yellow")) {
-            Tablero.setColorZPieza(6);
-
-
-        }
+            Tablero.setColorZPieza(6); }
 
         // I Pieza
         String seleccionI = sI.getSelectedItem().toString();
         if (seleccionI.equals("Red")) {
             // codigo set I a rojo
             Tablero.setColorIPieza(7);
-
         }
         if (seleccionI.equals("Pink")) {
-            Tablero.setColorIPieza(1);
-
-
-        }
+            Tablero.setColorIPieza(1); }
         if (seleccionI.equals("Light Blue")) {
-            Tablero.setColorIPieza(2);
-
-
-        }
+            Tablero.setColorIPieza(2); }
         if (seleccionI.equals("Dark Blue")) {
-            Tablero.setColorIPieza(3);
-
-
-        }
+            Tablero.setColorIPieza(3); }
         if (seleccionI.equals("Green")) {
-            Tablero.setColorIPieza(4);
-
-
-        }
+            Tablero.setColorIPieza(4); }
         if (seleccionI.equals("Orange")) {
-            Tablero.setColorIPieza(5);
-
-
-        }
+            Tablero.setColorIPieza(5); }
         if (seleccionI.equals("Yellow")) {
-            Tablero.setColorIPieza(6);
-
-
-        }
+            Tablero.setColorIPieza(6); }
 
         // T Pieza
         String seleccionT = sT.getSelectedItem().toString();
         if (seleccionT.equals("Red")) {
             // codigo set T a rojo
             Tablero.setColorTPieza(7);
-
         }
         if (seleccionT.equals("Pink")) {
-            Tablero.setColorTPieza(1);
-
-
-        }
+            Tablero.setColorTPieza(1); }
         if (seleccionT.equals("Light Blue")) {
-            Tablero.setColorTPieza(2);
-
-
-        }
+            Tablero.setColorTPieza(2); }
         if (seleccionT.equals("Dark Blue")) {
-            Tablero.setColorTPieza(3);
-
-
-        }
+            Tablero.setColorTPieza(3); }
         if (seleccionT.equals("Green")) {
-            Tablero.setColorTPieza(4);
-
-
-        }
+            Tablero.setColorTPieza(4); }
         if (seleccionT.equals("Orange")) {
-            Tablero.setColorTPieza(5);
-
-
-        }
+            Tablero.setColorTPieza(5); }
         if (seleccionT.equals("Yellow")) {
-            Tablero.setColorTPieza(6);
-
-
-        }
+            Tablero.setColorTPieza(6); }
 
         // S Pieza
         String seleccionS = sS.getSelectedItem().toString();
         if (seleccionS.equals("Red")) {
             // codigo set S a rojo
             Tablero.setColorSPieza(7);
-
         }
         if (seleccionS.equals("Pink")) {
-            Tablero.setColorSPieza(1);
-
-
-        }
+            Tablero.setColorSPieza(1); }
         if (seleccionS.equals("Light Blue")) {
-            Tablero.setColorSPieza(2);
-
-
-        }
+            Tablero.setColorSPieza(2); }
         if (seleccionS.equals("Dark Blue")) {
-            Tablero.setColorSPieza(3);
-
-
-        }
+            Tablero.setColorSPieza(3); }
         if (seleccionS.equals("Green")) {
-            Tablero.setColorSPieza(4);
-
-
-        }
+            Tablero.setColorSPieza(4); }
         if (seleccionS.equals("Orange")) {
-            Tablero.setColorSPieza(5);
-
-
-        }
+            Tablero.setColorSPieza(5); }
         if (seleccionS.equals("Yellow")) {
-            Tablero.setColorSPieza(6);
-
-
-        }
+            Tablero.setColorSPieza(6); }
 
         // L Pieza
         String seleccionL = sL.getSelectedItem().toString();
         if (seleccionL.equals("Red")) {
             // codigo set L a rojo
             Tablero.setColorLPieza(7);
-
         }
         if (seleccionL.equals("Pink")) {
-            Tablero.setColorLPieza(1);
-
-
-        }
+            Tablero.setColorLPieza(1); }
         if (seleccionL.equals("Light Blue")) {
-            Tablero.setColorLPieza(2);
-
-
-        }
+            Tablero.setColorLPieza(2); }
         if (seleccionL.equals("Dark Blue")) {
-            Tablero.setColorLPieza(3);
-
-
-        }
+            Tablero.setColorLPieza(3); }
         if (seleccionL.equals("Green")) {
-            Tablero.setColorLPieza(4);
-
-
-        }
+            Tablero.setColorLPieza(4); }
         if (seleccionL.equals("Orange")) {
-            Tablero.setColorLPieza(5);
-
-
-        }
+            Tablero.setColorLPieza(5); }
         if (seleccionL.equals("Yellow")) {
-            Tablero.setColorLPieza(6);
-
-
-        }
+            Tablero.setColorLPieza(6); }
 
         // J Pieza
         String seleccionJ = sJ.getSelectedItem().toString();
         if (seleccionJ.equals("Red")) {
             // codigo set cuadrado a rojo
             Tablero.setColorJPieza(7);
-
         }
         if (seleccionJ.equals("Pink")) {
-            Tablero.setColorJPieza(1);
-
-
-        }
+            Tablero.setColorJPieza(1); }
         if (seleccionJ.equals("Light Blue")) {
-            Tablero.setColorJPieza(2);
-
-
-        }
+            Tablero.setColorJPieza(2); }
         if (seleccionJ.equals("Dark Blue")) {
-            Tablero.setColorJPieza(3);
-
-
-        }
+            Tablero.setColorJPieza(3); }
         if (seleccionJ.equals("Green")) {
-            Tablero.setColorJPieza(4);
-
-
-        }
+            Tablero.setColorJPieza(4); }
         if (seleccionJ.equals("Orange")) {
-            Tablero.setColorJPieza(5);
-
-
-        }
+            Tablero.setColorJPieza(5); }
         if (seleccionJ.equals("Yellow")) {
-            Tablero.setColorJPieza(6);
-
-
-        }
+            Tablero.setColorJPieza(6); }
 
 
     }

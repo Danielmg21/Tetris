@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
 
-        menu = (Button)findViewById(R.id.backMenu);
+        menu = (Button)findViewById(R.id.buttonAjustes);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

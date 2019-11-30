@@ -39,11 +39,11 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        settings = (ImageView)findViewById(R.id.backMenu);
+        settings = (ImageView)findViewById(R.id.buttonAjustes);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(Inicio.this,OpcionesActivity.class);
+                Intent intent3 = new Intent(Inicio.this,AjustesActivity.class);
                 startActivity(intent3);
             }
         });

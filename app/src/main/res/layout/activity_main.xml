@@ -206,7 +206,7 @@
                 android:visibility="gone" />
 
             <Button
-                android:id="@+id/backMenu"
+                android:id="@+id/buttonAjustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -223,7 +223,7 @@
                 android:id="@+id/restart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/backMenu"
+                android:layout_above="@+id/buttonAjustes"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="14dp"
