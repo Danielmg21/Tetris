@@ -32,6 +32,7 @@ public class Juego extends View implements View.OnClickListener {
     private Random random = new Random();
     private static int puntos = 0;
     private int nivelvar = 0;
+    public int nivelActual = 0;
     private Timer timer = new Timer();
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
@@ -103,15 +104,15 @@ public class Juego extends View implements View.OnClickListener {
                                 puntuacion.setText("" + puntos);
                                 setNivel();
                                 nivel.setText("" + nivelvar);
-                                if(getNivel()>=1){
-                                timerPeriod = timerPeriod - (getNivel()*20);}
-
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());
+                                }
                                 cambiarColorLinea(filasPorBorrar.size());
                                 tablero.ponerPieza(tablero.getPieza());
                                 tablero.generarPieza(0);
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
-
                             }
                             invalidate();
                         }
@@ -167,6 +168,9 @@ public class Juego extends View implements View.OnClickListener {
                                 puntuacion.setText("" + puntos);
                                 setNivel();
                                 nivel.setText("" + nivelvar);
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());}
                                 cambiarColorLinea(filasPorBorrar.size());
                                 checkSiguienteCont();
                                 checkComerTablero();
