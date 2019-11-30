@@ -97,43 +97,55 @@ public class Rankings extends AppCompatActivity {
             j1 = fila1.getString(0);
             p1 = fila1.getString(1);
             byte[] blob1 = fila1.getBlob(2);
-            ByteArrayInputStream bais1 = new ByteArrayInputStream(blob1);
-            bitmap1 = BitmapFactory.decodeStream(bais1);
+            if(blob1!=null) {
+                ByteArrayInputStream bais1 = new ByteArrayInputStream(blob1);
+                bitmap1 = BitmapFactory.decodeStream(bais1);
+            }
 
             if (fila1.moveToNext()) {
                 j2 = fila1.getString(0);
                 p2 = fila1.getString(1);
                 byte[] blob2 = fila1.getBlob(2);
-                ByteArrayInputStream bais2 = new ByteArrayInputStream(blob2);
-                bitmap2 = BitmapFactory.decodeStream(bais2);
+                if(blob2!=null) {
+                    ByteArrayInputStream bais2 = new ByteArrayInputStream(blob2);
+                    bitmap2 = BitmapFactory.decodeStream(bais2);
+                }
             }
             if (fila1.moveToNext()) {
                 j3 = fila1.getString(0);
                 p3 = fila1.getString(1);
                 byte[] blob3 = fila1.getBlob(2);
-                ByteArrayInputStream bais3 = new ByteArrayInputStream(blob3);
-                bitmap3 = BitmapFactory.decodeStream(bais3);
+                if(blob3!=null) {
+                    ByteArrayInputStream bais3 = new ByteArrayInputStream(blob3);
+                    bitmap3 = BitmapFactory.decodeStream(bais3);
+                }
             }
             if (fila1.moveToNext()) {
                 j4 = fila1.getString(0);
                 p4 = fila1.getString(1);
                 byte[] blob4 = fila1.getBlob(2);
-                ByteArrayInputStream bais4 = new ByteArrayInputStream(blob4);
-                bitmap4 = BitmapFactory.decodeStream(bais4);
+                if(blob4!=null) {
+                    ByteArrayInputStream bais4 = new ByteArrayInputStream(blob4);
+                    bitmap4 = BitmapFactory.decodeStream(bais4);
+                }
             }
             if (fila1.moveToNext()) {
                 j5 = fila1.getString(0);
                 p5 = fila1.getString(1);
                 byte[] blob5 = fila1.getBlob(2);
-                ByteArrayInputStream bais5 = new ByteArrayInputStream(blob5);
-                bitmap5 = BitmapFactory.decodeStream(bais5);
+                if(blob5!=null) {
+                    ByteArrayInputStream bais5 = new ByteArrayInputStream(blob5);
+                    bitmap5 = BitmapFactory.decodeStream(bais5);
+                }
             }
             if (fila1.moveToNext()) {
                 j6 = fila1.getString(0);
                 p6= fila1.getString(1);
                 byte[] blob6 = fila1.getBlob(2);
-                ByteArrayInputStream bais6 = new ByteArrayInputStream(blob6);
-                bitmap6 = BitmapFactory.decodeStream(bais6);
+                if(blob6!=null) {
+                    ByteArrayInputStream bais6 = new ByteArrayInputStream(blob6);
+                    bitmap6 = BitmapFactory.decodeStream(bais6);
+                }
             }
 
 
