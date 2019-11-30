@@ -10,10 +10,8 @@ import android.widget.ImageView;
 
 public class Inicio extends AppCompatActivity {
 
-    Button modoClasico;
-    Button muerteSubita;
-    Button colores;
-    ImageView settings;
+    Button modoClasico,muerteSubita;
+    ImageView settings,creditos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,15 @@ public class Inicio extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent3 = new Intent(Inicio.this,OpcionesActivity.class);
                 startActivity(intent3);
+            }
+        });
+
+        creditos = (ImageView)findViewById(R.id.boton_creditos);
+        creditos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent4 = new Intent(Inicio.this,creditos.class);
+                startActivity(intent4);
             }
         });
     }

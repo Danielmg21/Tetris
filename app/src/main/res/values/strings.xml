@@ -13,15 +13,15 @@
     <string name="text_nombre_jugador">Nombre del Jugador</string>
     <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
-    <string name = "text_mostrar_ranking"></string>
-    <string name = "text_restablecer_estadisticas">Restablecer\nEstadisticas</string>
-    <string name = "text_1ranking">1º</string>
-    <string name = "text_2ranking">2º</string>
-    <string name = "text_3ranking">3º</string>
-    <string name = "text_4ranking">4º</string>
-    <string name = "text_5ranking">5º</string>
-    <string name = "text_6ranking">6º</string>
-    <string name = "text_puntos_actual">Tu puntuacion:</string>
+    <string name="text_mostrar_ranking"></string>
+    <string name="text_restablecer_estadisticas">Restablecer\nEstadisticas</string>
+    <string name="text_1ranking">1º</string>
+    <string name="text_2ranking">2º</string>
+    <string name="text_3ranking">3º</string>
+    <string name="text_4ranking">4º</string>
+    <string name="text_5ranking">5º</string>
+    <string name="text_6ranking">6º</string>
+    <string name="text_puntos_actual">Tu puntuacion:</string>
 
     <string name="title_activity_opciones">Colores</string>
     <string name="text_cuadrado">Cuadrado</string>
@@ -57,4 +57,15 @@
     <string name="text_muerte_subdita">Muerte Súbita</string>
     <string name="text_modo_clasico">Modo Clásico</string>
 
+    <string name="creditos">CREDITOS</string>
+    <string name="creditos_Alicia">Alicia Merino Martínez</string>
+    <string name="creditos_DMG">Daniel Moreno Godoy</string>
+    <string name="creditos_DM">Daniel Murillo Garzón </string>
+    <string name="creditos_Diego">Diego Pascual Ferrer</string>
+    <string name="creditos_Miguel">Miguel Rodríguez Álvarez</string>
+    <string name="creditos_Oscar">Óscar Rivas Melar</string>
+    <string name="creditos_Alfonso">Víctor Alfonso Pajuelo Aguirre</string>
+    <string name="creditos_procesos_software">Procesos del Software\nGrado em Ingeniería del Software\nUniversidad Rey Juan Carlos 2019-2020</string>
+
+    <string name="boton_creditos">boton creditos</string>
 </resources>
