@@ -98,7 +98,9 @@ public class Exit extends AppCompatActivity {
         BaseDeDatos = BBDD.getWritableDatabase();
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
-        guardarImagen(imageBitmap);
+        if(imageBitmap!=null) {
+            guardarImagen(imageBitmap);
+        }
 
 
         if (!nombre.isEmpty() & !registrado){
@@ -107,7 +109,9 @@ public class Exit extends AppCompatActivity {
             //Añade los pares
             registro.put("nombre", nombre);
             registro.put("puntuacion", puntosFinal);
-            registro.put("foto", blob);
+            if(blob!=null) {
+                registro.put("foto", blob);
+            }
 
 
                 //insertar valores en la tabla ranking
