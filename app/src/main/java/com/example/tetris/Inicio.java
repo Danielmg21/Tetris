@@ -14,6 +14,7 @@ public class Inicio extends AppCompatActivity {
     Button muerteSubita;
     ImageView settings;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,5 +48,7 @@ public class Inicio extends AppCompatActivity {
                 startActivity(intent3);
             }
         });
+
+
     }
 }

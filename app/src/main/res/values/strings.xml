@@ -18,6 +18,7 @@
     <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
     <string name="text_mostrar_ranking">mostrar ranking</string>
+
     <string name="text_restablecer_estadisticas">Restablecer\nEstadisticas</string>
     <string name="text_1ranking">1º</string>
     <string name="text_2ranking">2º</string>
@@ -100,4 +101,15 @@
     </string>
     <string name="action_settings">Settings</string>
 
+    <string name="creditos">CREDITOS</string>
+    <string name="creditos_Alicia">Alicia Merino Martínez</string>
+    <string name="creditos_DMG">Daniel Moreno Godoy</string>
+    <string name="creditos_DM">Daniel Murillo Garzón </string>
+    <string name="creditos_Diego">Diego Pascual Ferrer</string>
+    <string name="creditos_Miguel">Miguel Rodríguez Álvarez</string>
+    <string name="creditos_Oscar">Óscar Rivas Melar</string>
+    <string name="creditos_Alfonso">Víctor Alfonso Pajuelo Aguirre</string>
+    <string name="creditos_procesos_software">Procesos del Software\nGrado em Ingeniería del Software\nUniversidad Rey Juan Carlos 2019-2020</string>
+
+    <string name="boton_creditos">boton creditos</string>
 </resources>

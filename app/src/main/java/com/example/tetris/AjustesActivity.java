@@ -41,7 +41,7 @@ public class AjustesActivity extends AppCompatActivity {
         creditos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(AjustesActivity.this,CreditosActivity.class);
+                Intent intent3 = new Intent(AjustesActivity.this, CreditosActivity.class);
                 startActivity(intent3);
             }
         });

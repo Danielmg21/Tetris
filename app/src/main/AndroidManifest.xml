@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ColoresActivity"
+            android:name=".CreditosActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
-            android:name=".CreditosActivity"
+            android:name=".ColoresActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".InstruccionesActivity"
