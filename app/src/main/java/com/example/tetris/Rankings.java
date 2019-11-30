@@ -18,6 +18,7 @@ import java.io.ByteArrayInputStream;
 
 public class Rankings extends AppCompatActivity {
     private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6;
+    private TextView num_1,num_2,num_3,num_4,num_5,num_6;
     private ImageView imageAvatar1,imageAvatar2,imageAvatar3,imageAvatar4,imageAvatar5,imageAvatar6;
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
@@ -34,6 +35,13 @@ public class Rankings extends AppCompatActivity {
 
         Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
         Button menu= findViewById(R.id.goMenu);
+
+        num_1 = findViewById(R.id.primero);
+        num_2 = findViewById(R.id.segundo);
+        num_3 = findViewById(R.id.tercero);
+        num_4 = findViewById(R.id.cuarto);
+        num_5 = findViewById(R.id.quinto);
+        num_6 = findViewById(R.id.sexto);
 
         textoRanking1 = findViewById(R.id.mostrarRanking1);
         textoRanking2 = findViewById(R.id.mostrarRanking2);
@@ -99,6 +107,8 @@ public class Rankings extends AppCompatActivity {
             byte[] blob1 = fila1.getBlob(2);
             ByteArrayInputStream bais1 = new ByteArrayInputStream(blob1);
             bitmap1 = BitmapFactory.decodeStream(bais1);
+            imageAvatar1.setVisibility(View.VISIBLE);
+            num_1.setVisibility(View.VISIBLE);
 
             if (fila1.moveToNext()) {
                 j2 = fila1.getString(0);
@@ -106,6 +116,8 @@ public class Rankings extends AppCompatActivity {
                 byte[] blob2 = fila1.getBlob(2);
                 ByteArrayInputStream bais2 = new ByteArrayInputStream(blob2);
                 bitmap2 = BitmapFactory.decodeStream(bais2);
+                imageAvatar2.setVisibility(View.VISIBLE);
+                num_2.setVisibility(View.VISIBLE);
             }
             if (fila1.moveToNext()) {
                 j3 = fila1.getString(0);
@@ -113,6 +125,8 @@ public class Rankings extends AppCompatActivity {
                 byte[] blob3 = fila1.getBlob(2);
                 ByteArrayInputStream bais3 = new ByteArrayInputStream(blob3);
                 bitmap3 = BitmapFactory.decodeStream(bais3);
+                imageAvatar3.setVisibility(View.VISIBLE);
+                num_3.setVisibility(View.VISIBLE);
             }
             if (fila1.moveToNext()) {
                 j4 = fila1.getString(0);
@@ -120,6 +134,8 @@ public class Rankings extends AppCompatActivity {
                 byte[] blob4 = fila1.getBlob(2);
                 ByteArrayInputStream bais4 = new ByteArrayInputStream(blob4);
                 bitmap4 = BitmapFactory.decodeStream(bais4);
+                imageAvatar4.setVisibility(View.VISIBLE);
+                num_4.setVisibility(View.VISIBLE);
             }
             if (fila1.moveToNext()) {
                 j5 = fila1.getString(0);
@@ -127,6 +143,8 @@ public class Rankings extends AppCompatActivity {
                 byte[] blob5 = fila1.getBlob(2);
                 ByteArrayInputStream bais5 = new ByteArrayInputStream(blob5);
                 bitmap5 = BitmapFactory.decodeStream(bais5);
+                imageAvatar5.setVisibility(View.VISIBLE);
+                num_5.setVisibility(View.VISIBLE);
             }
             if (fila1.moveToNext()) {
                 j6 = fila1.getString(0);
@@ -134,6 +152,8 @@ public class Rankings extends AppCompatActivity {
                 byte[] blob6 = fila1.getBlob(2);
                 ByteArrayInputStream bais6 = new ByteArrayInputStream(blob6);
                 bitmap6 = BitmapFactory.decodeStream(bais6);
+                imageAvatar6.setVisibility(View.VISIBLE);
+                num_6.setVisibility(View.VISIBLE);
             }
 
 
@@ -194,6 +214,21 @@ public class Rankings extends AppCompatActivity {
         BaseDeDatos.execSQL("DELETE FROM "+tipoBBDD);
         Toast.makeText(this, "Estadisticas restablecidas", Toast.LENGTH_SHORT).show();
         BaseDeDatos.close();
+
+        imageAvatar1.setVisibility(View.INVISIBLE);
+        num_1.setVisibility(View.INVISIBLE);
+        imageAvatar2.setVisibility(View.INVISIBLE);
+        num_2.setVisibility(View.INVISIBLE);
+        imageAvatar3.setVisibility(View.INVISIBLE);
+        num_3.setVisibility(View.INVISIBLE);
+        imageAvatar4.setVisibility(View.INVISIBLE);
+        num_4.setVisibility(View.INVISIBLE);
+        imageAvatar5.setVisibility(View.INVISIBLE);
+        num_5.setVisibility(View.INVISIBLE);
+        imageAvatar6.setVisibility(View.INVISIBLE);
+        num_6.setVisibility(View.INVISIBLE);
+
+
         mostrarTop5();
     }
 
