@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         relativeNext.setHorizontalGravity(1);
         relativeNext.addView(siguientePieza);
 
-        Juego juego = new Juego(this, tablero, siguientePieza, modo);
+        final Juego juego = new Juego(this, tablero, siguientePieza, modo, as);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 as.pause();
+                juego.getNewAS().pause();
                 Intent intent = new Intent(MainActivity.this, Inicio.class);
                 startActivity(intent);
             }
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentGameOver = new Intent(this, Exit.class);
         intentGameOver.putExtra("puntuacionFinal", p);
         intentGameOver.putExtra("Modo", m);
+        juego.getNewAS().pause();
         as.pause();
         startActivity(intentGameOver);
     }

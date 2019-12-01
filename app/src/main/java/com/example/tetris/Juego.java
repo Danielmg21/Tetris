@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.content.ContentValues.TAG;
 import static androidx.core.content.ContextCompat.startActivity;
 
 
@@ -32,13 +34,12 @@ public class Juego extends View implements View.OnClickListener {
     private MainActivity mainActivity;
     private Tablero tablero;
     private ArrayList<Pieza> listaPiezas;
-    private Random random = new Random();
     private int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     private Timer crono = new Timer();
     private List<Integer> filasPorBorrar;
-    private int timerPeriod = 250;
+    private int timerPeriod = 1000;
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
@@ -48,15 +49,17 @@ public class Juego extends View implements View.OnClickListener {
     private Pieza troll;
     private int restoPieza;
     private int chasquido = 0;
-    Calendar c = Calendar.getInstance();
-
+    private AudioService as;
+    private AudioService newas;
     int cronometro = 0;
-    public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
+
+    public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo, AudioService as) {
         super(context);
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
         this.ventana = ventana;
         this.modo = modo;
+        this.as = as;
         this.listaPiezas = tablero.getListaPiezas();
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
@@ -75,7 +78,7 @@ public class Juego extends View implements View.OnClickListener {
         botonRotar.setOnClickListener(this);
         snap.setOnClickListener(this);
 
-
+        Cronometro();
         if (modo == 0) {
             loopClasico();
         } else {
@@ -84,7 +87,7 @@ public class Juego extends View implements View.OnClickListener {
     }
 
     public void Cronometro() {
-        timer.schedule(new TimerTask() {
+        crono.schedule(new TimerTask() {
             @Override
             public void run() {
                 mainActivity.runOnUiThread(new TimerTask() {
@@ -131,15 +134,14 @@ public class Juego extends View implements View.OnClickListener {
 
                             }
                             invalidate();
-                            int x = c.get(Calendar.SECOND);
-                            if((x % 20) == 0){
+                            if(cronometro % 20 == 0){
                                 cambiarCancion20s();
                             }
                         }
                     }
                 });
             }
-        }, 500, timerPeriod);
+        }, 1000, timerPeriod);
     }
 
     public void gameLoop() {
@@ -225,24 +227,23 @@ public class Juego extends View implements View.OnClickListener {
 
     public void cambiarCancion20s(){
         int n = (int) (Math.random() * 5);
-
-        AudioService asIni = mainActivity.getAudio();
-        asIni.pause();
+        as.pause();
+        newas = new AudioService();
         switch (n){
             case 0:
-                asIni.start(mainActivity,R.raw.tetrisoriginal);
+                newas.start(mainActivity,R.raw.tetrisoriginal);
                 break;
             case 1:
-                asIni.start(mainActivity,R.raw.acdcbackinblack);
+                newas.start(mainActivity,R.raw.acdcbackinblack);
                 break;
             case 2:
-                asIni.start(mainActivity,R.raw.inmigrant);
+                newas.start(mainActivity,R.raw.inmigrant);
                 break;
             case 3:
-                asIni.start(mainActivity,R.raw.thunderstruck);
+                newas.start(mainActivity,R.raw.thunderstruck);
                 break;
             case 4:
-                asIni.start(mainActivity,R.raw.cumbiaavengers);
+                newas.start(mainActivity,R.raw.cumbiaavengers);
                 break;
         }
     }
@@ -345,7 +346,7 @@ public class Juego extends View implements View.OnClickListener {
     public void setPuntos(int puntos) {
         this.puntos = this.puntos + puntos;
     }
-
+    public AudioService getNewAS(){return newas;};
     public int getPuntos() {
         return this.puntos;
     }
