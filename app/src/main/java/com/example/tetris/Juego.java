@@ -31,14 +31,15 @@ public class Juego extends View implements View.OnClickListener {
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
     private static int puntos = 0;
-    private int nivelvar = 1;
+    private int nivelvar = 0;
+    public int nivelActual = 0;
     private Timer timer = new Timer();
     private List<Integer> filasPorBorrar;
     private int timerPeriod = 250;
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
-    private int restoSnap=0;
+    private int restoSnap = 0;
     private int alturaVariable;
     private int modo;
     private Pieza troll;
@@ -62,8 +63,7 @@ public class Juego extends View implements View.OnClickListener {
         nivel = mainActivity.getNivel();
 
         puntuacion.append(" 0");
-        nivel.append(" 1");
-
+        nivel.append(" 0");
 
         botonDcha.setOnClickListener(this);
         botonBajar.setOnClickListener(this);
@@ -102,12 +102,17 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
+                                setNivel();
+                                nivel.setText("" + nivelvar);
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());
+                                }
                                 cambiarColorLinea(filasPorBorrar.size());
                                 tablero.ponerPieza(tablero.getPieza());
                                 tablero.generarPieza(0);
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
-
                             }
                             invalidate();
                         }
@@ -161,6 +166,11 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
+                                setNivel();
+                                nivel.setText("" + nivelvar);
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());}
                                 cambiarColorLinea(filasPorBorrar.size());
                                 checkSiguienteCont();
                                 checkComerTablero();
@@ -298,6 +308,48 @@ public class Juego extends View implements View.OnClickListener {
         return this.nivelvar;
     }
 
+    public void setNivel() {
+
+        if(puntos>=100) {
+            this.nivelvar = 1;
+        }
+
+        if(puntos>=200) {
+            this.nivelvar = 2;
+        }
+
+        if(puntos>=300) {
+            this.nivelvar = 3;
+        }
+
+        if(puntos>=400) {
+            this.nivelvar = 4;
+        }
+
+        if(puntos>=500) {
+            this.nivelvar = 5;
+        }
+
+        if(puntos>=600) {
+            this.nivelvar = 6;
+        }
+
+        if(puntos>=700) {
+            this.nivelvar = 7;
+        }
+
+        if(puntos>=800) {
+            this.nivelvar = 8;
+        }
+
+        if(puntos>=900) {
+            this.nivelvar = 9;
+        }
+
+        if(puntos>=1000) {
+            this.nivelvar = 10;
+        }
+    }
 }
 
 
