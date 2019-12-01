@@ -63,13 +63,13 @@ public class Pieza {
                 break;
 
             case 3: // I Pieza
-                x1 = 4;
+                x1 = 5;
                 y1 = 0 + a;
-                x2 = 4;
+                x2 = 5;
                 y2 = 1 + a;
-                x3 = 4;
+                x3 = 5;
                 y3 = 2 + a;
-                x4 = 4;
+                x4 = 5;
                 y4 = 3 + a;
 
                 idColor = Tablero.getColorIPieza();
@@ -111,13 +111,13 @@ public class Pieza {
                 break;
 
             case 6:  // L Pieza
-                x1 = 5;
+                x1 = 4;
                 y1 = 0 + a;
-                x2 = 6;
+                x2 = 5;
                 y2 = 0 + a;
-                x3 = 6;
+                x3 = 5;
                 y3 = 1 + a;
-                x4 = 6;
+                x4 = 5;
                 y4 = 2 + a;
 
                 idColor = Tablero.getColorLPieza();
