@@ -9,11 +9,13 @@
     <string name="text_start">START</string>
     <string name="text_go_menu">MENU</string>
     <string name="text_reiniciar">REINICIAR</string>
+
     <string name="text_exit">EXIT</string>
 
     <string name="text_nombre_jugador">Nombre del Jugador</string>
     <string name="text_puntuacion">Puntuacion de la partida</string>
     <string name="boton_registrar">Registrar</string>
+
     <string name = "text_mostrar_ranking">mostrar ranking</string>
     <string name = "text_restablecer_estadisticas">Restablecer\nEstadisticas</string>
     <string name = "text_1ranking">1º</string>
@@ -57,6 +59,11 @@
 
     <string name="text_muerte_subdita">Muerte Súbita</string>
     <string name="text_modo_clasico">Modo Clásico</string>
+
     <string name="text_snap">Snap</string>
 
+    <string name="foto_nuevo_jugador">PHOTO</string>
+    <string name="text_hacer_foto">Hacer foto</string>
+    <string name="text_rankings">Ranking</string>
+    <string name="text_top6">TOP 6 mejores jugadores</string>
 </resources>
