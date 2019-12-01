@@ -46,7 +46,6 @@ public class Exit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Bundle p = this.getIntent().getExtras();
         puntosFinal = p.getInt("puntuacionFinal");
         modo = p.getInt("Modo");
@@ -68,10 +67,8 @@ public class Exit extends AppCompatActivity {
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fin();
-                Intent intent = new Intent(Exit.this, Inicio.class);
-                startActivity(intent);
-
+                Intent intentAgain = new Intent(Exit.this, Inicio.class);
+                startActivity(intentAgain);
             }
         });
         rankings.setOnClickListener(new View.OnClickListener() {
@@ -95,14 +92,6 @@ public class Exit extends AppCompatActivity {
             ActivityCompat.requestPermissions(Exit.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1000);
         }
 
-    }
-    void fin(){
-        this.finish();
-    }
-    @Override
-    public void onBackPressed() {
-
-        Toast.makeText(this, "Para volver a jugar pulsa MENU", Toast.LENGTH_SHORT).show();
     }
     public void Registrar(View view){
         //abrir la base de datos modo escritura y lectura
