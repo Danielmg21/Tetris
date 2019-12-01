@@ -1,12 +1,15 @@
 package com.example.tetris;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +19,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pl.droidsonroids.gif.GifImageView;
+import static androidx.core.content.ContextCompat.startActivity;
 
 
 public class Juego extends View implements View.OnClickListener {
@@ -36,12 +39,13 @@ public class Juego extends View implements View.OnClickListener {
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
-    private int puntosSnap=100;
+    private int restoSnap = 0;
     private int alturaVariable;
     private int modo;
     private Pieza troll;
     private int restoPieza;
-    private int chasquido=0;
+    private Pieza auxTroll;
+    private int chasquido;
 
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -128,12 +132,24 @@ public class Juego extends View implements View.OnClickListener {
                     public void run() {
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
-                        tablero.comerTablero(alturaVariable);
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                             mainActivity.gameOver(puntos, modo);
                         } else {
-                            checkContador();
+                            contadorRomper++;
+                            restoContador = contadorRomper % 50;
+                            restoPieza = contadorRomper % 30;
+                            restoSnap = 100;
+                            if (restoContador == 0) {
+                                alturaVariable += 2;
+                            }
+                            if(puntos >= 100){
+                                chasquido++;
+                                snap.setVisibility(View.VISIBLE);
+                            }
+                            if (restoPieza == 0) {
+                                piezaTroll(alturaVariable);
+                            }
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 if ((tablero.puedeMoverse(troll, 0, 1, false))) {
@@ -149,11 +165,6 @@ public class Juego extends View implements View.OnClickListener {
                                 filasPorBorrar = tablero.detectarFilas(troll);
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
-                                if(puntos>puntosSnap){
-                                    snap.setVisibility(View.VISIBLE);
-                                    chasquido++;
-                                    puntosSnap+=100;
-                                }
                                 puntuacion.setText("" + puntos);
                                 setNivel();
                                 nivel.setText("" + nivelvar);
@@ -173,17 +184,7 @@ public class Juego extends View implements View.OnClickListener {
             }
         }, 1000, timerPeriod);
     }
-    public void checkContador(){
-        contadorRomper++;
-        restoContador = contadorRomper % 50;
-        restoPieza = contadorRomper % 30;
-        if (restoContador == 0) {
-            alturaVariable += 2;
-        }
-        if (restoPieza == 0) {
-            piezaTroll(alturaVariable);
-        }
-    }
+
     public void piezaTroll(int altura) {
         int n = (int) (Math.random() * 2);
         if (n == 1) {
@@ -200,14 +201,15 @@ public class Juego extends View implements View.OnClickListener {
                 tablero.moverPiezas(tablero.getPieza(), 'a');
                 tablero.moverPiezas(troll, 'a');
             }
+            tablero.comerTablero(alturaVariable);
         }
     }
 
     public void checkSiguienteCont() {
         if ((contadorRomper + 1) % 10 == 0) {
-            tablero.generarPieza(alturaVariable + 2);
+            tablero.generarPieza(alturaVariable + 4);
         } else {
-            tablero.generarPieza(alturaVariable+1);
+            tablero.generarPieza(alturaVariable + 2);
         }
     }
 
@@ -283,13 +285,11 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.snap:
                 if(chasquido>0){
                     Toast toast = new Toast(mainActivity.getApplicationContext());
-                    GifImageView view = new GifImageView(mainActivity.getApplicationContext());
-                    view.setImageResource(R.drawable.thanos);
+                    ImageView view = new ImageView(mainActivity.getApplicationContext());
+                    view.setImageResource(R.mipmap.snapthanos);
                     toast.setGravity(Gravity.FILL, 0, 0);
-                    toast.setView(view);
-                    toast.show();
+                    toast.setView(view); toast.show();
                     tablero.limpiarTablero();
-                    alturaVariable=0;
                     chasquido--;
                     if(chasquido<=0){
                         snap.setVisibility(View.GONE);
