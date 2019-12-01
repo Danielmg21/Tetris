@@ -1,11 +1,14 @@
 package com.example.tetris;
 
+import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +16,9 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
@@ -22,13 +28,20 @@ public class MainActivity extends AppCompatActivity {
     private Tablero tablero = new Tablero();
     private Tablero ventana = new Tablero();
     private Button menu;
+    private MediaPlayer mediaPlayer;
+    AudioService as;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        as = new AudioService();
+        as.start(this, R.raw.acdcbackinblack);
+
         Bundle b = this.getIntent().getExtras();
         int modo = b.getInt("MODO");
+
+
 
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
@@ -36,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         botonRotar = (ImageButton) findViewById(R.id.botonRotar);
         puntosTextView = (TextView) findViewById(R.id.puntosText);
         nivelTextView = (TextView) findViewById(R.id.nivelText);
-        Pieza p = new Pieza(0,0);
+        Pieza p = new Pieza(0, 0);
 
         VentanaNext siguientePieza = new VentanaNext(this, ventana, p);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(400,400);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(400, 400);
         siguientePieza.setLayoutParams(params1);
         params1.topMargin = 50;
         RelativeLayout relativeNext = (RelativeLayout) findViewById(R.id.ventanaSig);
@@ -47,21 +60,28 @@ public class MainActivity extends AppCompatActivity {
         relativeNext.setHorizontalGravity(1);
         relativeNext.addView(siguientePieza);
 
-        Juego juego = new Juego(this, tablero, siguientePieza,modo);
+        final Juego juego = new Juego(this, tablero, siguientePieza, modo, as);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         juego.setLayoutParams(params);
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.layoutTablero);
         juego.setBackgroundColor(Color.LTGRAY);
         relativeTetris.addView(juego);
 
-        menu = (Button)findViewById(R.id.buttonAjustes);
+        menu = (Button) findViewById(R.id.settings);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent menuIntent = new Intent(MainActivity.this, Inicio.class);
-                startActivity(menuIntent);
+                as.pause();
+                juego.getNewAS().pause();
+                Intent intent = new Intent(MainActivity.this, Inicio.class);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Para huir pulsa MENU", Toast.LENGTH_SHORT).show();
     }
 
     public ImageButton getBotonDcha() {
@@ -92,13 +112,18 @@ public class MainActivity extends AppCompatActivity {
         return nivelTextView;
     }
 
-    public void gameOver(int p,int m){
-        Intent intentGameOver = new Intent(this,Exit.class);
-        intentGameOver.putExtra("puntuacionFinal",p);
-        intentGameOver.putExtra("Modo",m);
+    public void gameOver(int p, int m) {
+        Intent intentGameOver = new Intent(this, Exit.class);
+        intentGameOver.putExtra("puntuacionFinal", p);
+        intentGameOver.putExtra("Modo", m);
+        juego.getNewAS().pause();
+        as.pause();
         startActivity(intentGameOver);
     }
 
+    public AudioService getAudio(){
+        return as;
+    }
     public void reiniciar(View view){
         if(Juego.getPuntos()>250){
             Intent intent = getIntent();
