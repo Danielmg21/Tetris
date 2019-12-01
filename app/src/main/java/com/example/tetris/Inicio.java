@@ -22,19 +22,14 @@ public class Inicio extends AppCompatActivity {
     Button colores;
     ImageView settings;
     AudioService asIni;
-    List<Cancion> playlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         asIni = new AudioService();
-        playlist = new ArrayList<>();
-
-        playlist.add(new Cancion(R.raw.acdcbackinblack,false,true));
-        playlist.add(new Cancion(R.raw.tetrisoriginal,false,true));
 
         asIni.start(this,R.raw.tetrisoriginal);
-        playlist.get(1).escogida=true;
+
 
         modoClasico = (Button)findViewById(R.id.clasico);
         modoClasico.setOnClickListener(new View.OnClickListener() {
@@ -42,11 +37,7 @@ public class Inicio extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Inicio.this,MainActivity.class);
                 intent.putExtra("MODO",0);
-                for(int i = 0; i<playlist.size();i++){
-                    intent.putExtra("ruta",playlist.get(i).ruta);
-                    intent.putExtra("b1", playlist.get(i).escogida);
-                    intent.putExtra("b2", playlist.get(i).disp);
-                }
+
                 startActivity(intent);
                 asIni.pause();
             }

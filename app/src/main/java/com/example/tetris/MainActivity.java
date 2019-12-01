@@ -38,15 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle b = this.getIntent().getExtras();
         int modo = b.getInt("MODO");
-        List<Cancion> playlist = new ArrayList<>();
 
-        for(int i =0; i<2;i++){
-            @RawRes int song =(int) b.get("ruta");
-            boolean escogido =  b.getBoolean("b1");
-            boolean disp = b.getBoolean("b2");
-            Cancion cancion = new Cancion(song,escogido,disp);
-            playlist.add(cancion);
-        }
+
+
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
         botonBajar = (ImageButton) findViewById(R.id.botonBajar);
@@ -124,4 +118,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentGameOver);
     }
 
+    public AudioService getAudio(){
+        return as;
+    }
 }

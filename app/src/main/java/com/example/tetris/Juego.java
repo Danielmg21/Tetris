@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -47,6 +48,8 @@ public class Juego extends View implements View.OnClickListener {
     private Pieza troll;
     private int restoPieza;
     private int chasquido = 0;
+    Calendar c = Calendar.getInstance();
+
     int cronometro = 0;
     public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
         super(context);
@@ -71,6 +74,8 @@ public class Juego extends View implements View.OnClickListener {
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
         snap.setOnClickListener(this);
+
+
         if (modo == 0) {
             loopClasico();
         } else {
@@ -126,6 +131,10 @@ public class Juego extends View implements View.OnClickListener {
 
                             }
                             invalidate();
+                            int x = c.get(Calendar.SECOND);
+                            if((x % 20) == 0){
+                                cambiarCancion20s();
+                            }
                         }
                     }
                 });
@@ -211,6 +220,30 @@ public class Juego extends View implements View.OnClickListener {
                 tablero.moverPiezas(tablero.getPieza(), 'a');
                 tablero.moverPiezas(troll, 'a');
             }
+        }
+    }
+
+    public void cambiarCancion20s(){
+        int n = (int) (Math.random() * 5);
+
+        AudioService asIni = mainActivity.getAudio();
+        asIni.pause();
+        switch (n){
+            case 0:
+                asIni.start(mainActivity,R.raw.tetrisoriginal);
+                break;
+            case 1:
+                asIni.start(mainActivity,R.raw.acdcbackinblack);
+                break;
+            case 2:
+                asIni.start(mainActivity,R.raw.inmigrant);
+                break;
+            case 3:
+                asIni.start(mainActivity,R.raw.thunderstruck);
+                break;
+            case 4:
+                asIni.start(mainActivity,R.raw.cumbiaavengers);
+                break;
         }
     }
 
