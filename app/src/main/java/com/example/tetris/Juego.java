@@ -34,9 +34,7 @@ public class Juego extends View implements View.OnClickListener {
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
     private static int puntos = 0;
-    private int nivelvar = 0;
     public int nivelActual = 0;
-    private int puntos = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
     private Timer crono = new Timer();
@@ -202,6 +200,9 @@ public class Juego extends View implements View.OnClickListener {
                                 ventana.invalidate();
                             }
                             invalidate();
+                            if(cronometro % 20 == 0){
+                                cambiarCancion20s();
+                            }
                         }
                     }
                 });
@@ -241,6 +242,7 @@ public class Juego extends View implements View.OnClickListener {
     public void cambiarCancion20s(){
         int n = (int) (Math.random() * 5);
         as.pause();
+        if(newas!=null) newas.pause();
         newas = new AudioService();
         switch (n){
             case 0:
@@ -357,13 +359,10 @@ public class Juego extends View implements View.OnClickListener {
         }
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = this.puntos + puntos;
-    }
+
     public AudioService getNewAS(){return newas;};
-    public int getPuntos() {
-        return this.puntos;
-    public static void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
+
+    public  void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
 
     public static int getPuntos() {
         return puntos;

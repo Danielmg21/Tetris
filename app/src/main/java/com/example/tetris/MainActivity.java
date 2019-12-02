@@ -72,9 +72,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 as.pause();
-                juego.getNewAS().pause();
+                if(juego.getNewAS()!=null) juego.getNewAS().pause();
                 Intent intent = new Intent(MainActivity.this, Inicio.class);
                 startActivity(intent);
+            }
+        });
+        Button reiniciar = (Button) findViewById(R.id.restart);
+        reiniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(juego.getPuntos()>250){
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Debes tener mas de 250 puntos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -116,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentGameOver = new Intent(this, Exit.class);
         intentGameOver.putExtra("puntuacionFinal", p);
         intentGameOver.putExtra("Modo", m);
-        juego.getNewAS().pause();
+        if(juego.getNewAS()!=null)juego.getNewAS().pause();
         as.pause();
         startActivity(intentGameOver);
     }
@@ -124,15 +137,7 @@ public class MainActivity extends AppCompatActivity {
     public AudioService getAudio(){
         return as;
     }
-    public void reiniciar(View view){
-        if(Juego.getPuntos()>250){
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
-        }else{
-            Toast.makeText(this, "Debes tener mas de 250 puntos", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
 
 }
