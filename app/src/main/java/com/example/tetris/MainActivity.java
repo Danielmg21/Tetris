@@ -126,13 +126,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameOver(int p, int m) {
+        as.pause();
         Intent intentGameOver = new Intent(this, Exit.class);
         intentGameOver.putExtra("puntuacionFinal", p);
         intentGameOver.putExtra("Modo", m);
-        if(juego.getNewAS()!=null){
-            juego.getNewAS().pause();
-        }
-        as.pause();
         startActivity(intentGameOver);
     }
 

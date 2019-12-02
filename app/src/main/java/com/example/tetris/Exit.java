@@ -101,7 +101,6 @@ public class Exit extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-
         Toast.makeText(this, "Para volver a jugar pulsa MENU", Toast.LENGTH_SHORT).show();
     }
     public void Registrar(View view){

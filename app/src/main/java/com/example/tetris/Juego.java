@@ -115,6 +115,7 @@ public class Juego extends View implements View.OnClickListener {
                         tablero.ponerPieza(tablero.getPieza());
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() == 0) {
                             timer.cancel();
+                            if(newas!=null)newas.pause();
                             mainActivity.gameOver(puntos, modo);
                         } else {
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
@@ -360,7 +361,7 @@ public class Juego extends View implements View.OnClickListener {
     }
 
 
-    public AudioService getNewAS(){return newas;};
+    public AudioService getNewAS(){return newas;}
 
     public  void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
 
