@@ -2,7 +2,6 @@ package com.example.tetris;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,9 +9,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +22,7 @@ import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
 import static androidx.core.content.ContextCompat.startActivity;
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class Juego extends View implements View.OnClickListener {
@@ -38,6 +36,8 @@ public class Juego extends View implements View.OnClickListener {
     private static int puntos = 0;
     private int nivelvar = 0;
     public int nivelActual = 0;
+    private int puntos = 0;
+    private int nivelvar = 1;
     private Timer timer = new Timer();
     private Timer crono = new Timer();
     private List<Integer> filasPorBorrar;
@@ -342,10 +342,11 @@ public class Juego extends View implements View.OnClickListener {
             case R.id.snap:
                 if(chasquido>0){
                     Toast toast = new Toast(mainActivity.getApplicationContext());
-                    ImageView view = new ImageView(mainActivity.getApplicationContext());
-                    view.setImageResource(R.mipmap.snapthanos);
+                    GifImageView view = new GifImageView(mainActivity.getApplicationContext());
+                    view.setImageResource(R.drawable.thanos);
                     toast.setGravity(Gravity.FILL, 0, 0);
-                    toast.setView(view); toast.show();
+                    toast.setView(view);
+                    toast.show();
                     tablero.limpiarTablero();
                     alturaVariable=0;
                     chasquido--;
@@ -362,6 +363,10 @@ public class Juego extends View implements View.OnClickListener {
     public AudioService getNewAS(){return newas;};
     public int getPuntos() {
         return this.puntos;
+    public static void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
+
+    public static int getPuntos() {
+        return puntos;
     }
 
     public int getNivel() {
