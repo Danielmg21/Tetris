@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tetris">
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Rankings"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
         <activity
-            android:name=".OpcionesActivity"
-            android:label="@string/title_activity_opciones"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".CreditosActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
-
+            android:name=".ColoresActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".InstruccionesActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".AjustesActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
             android:name=".Exit"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -26,9 +41,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".AudioService"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>

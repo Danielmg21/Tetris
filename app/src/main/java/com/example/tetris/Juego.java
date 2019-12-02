@@ -1,68 +1,85 @@
 package com.example.tetris;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.content.ContentValues.TAG;
 import static androidx.core.content.ContextCompat.startActivity;
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class Juego extends View implements View.OnClickListener {
 
-    private ImageButton botonDcha, botonBajar, botonIzda, botonRotar;
+    private ImageButton botonDcha, botonBajar, botonIzda, botonRotar, snap;
     private TextView puntuacion, nivel;
     private MainActivity mainActivity;
     private Tablero tablero;
     private ArrayList<Pieza> listaPiezas;
     private Random random = new Random();
-    private int puntos = 0;
+    private static int puntos = 0;
+    public int nivelActual = 0;
     private int nivelvar = 1;
     private Timer timer = new Timer();
+    private Timer crono = new Timer();
     private List<Integer> filasPorBorrar;
-    private int timerPeriod = 250;
+    private int timerPeriod = 1000;
     private VentanaNext ventana;
     private int contadorRomper = 0;
     private int restoContador;
+    private int restoSnap = 0;
+    private int puntosSnap = 100;
     private int alturaVariable;
     private int modo;
     private Pieza troll;
     private int restoPieza;
-    private Pieza auxTroll;
+    private int chasquido = 0;
+    private AudioService as;
+    private AudioService newas;
+    int cronometro = 0;
 
-    public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo) {
+    public Juego(Context context, Tablero tablero, VentanaNext ventana, int modo, AudioService as) {
         super(context);
         this.mainActivity = (MainActivity) context;
         this.tablero = tablero;
         this.ventana = ventana;
         this.modo = modo;
+        this.as = as;
         this.listaPiezas = tablero.getListaPiezas();
         botonRotar = mainActivity.getBotonRotar();
         botonDcha = mainActivity.getBotonDcha();
         botonBajar = mainActivity.getBotonBajar();
         botonIzda = mainActivity.getBotonIzda();
+        snap = mainActivity.getSnap();
         puntuacion = mainActivity.getPuntos();
         nivel = mainActivity.getNivel();
 
         puntuacion.append(" 0");
-        nivel.append(" 1");
-
+        nivel.append(" 0");
 
         botonDcha.setOnClickListener(this);
         botonBajar.setOnClickListener(this);
         botonIzda.setOnClickListener(this);
         botonRotar.setOnClickListener(this);
+        snap.setOnClickListener(this);
+
+        Cronometro();
         if (modo == 0) {
             loopClasico();
         } else {
@@ -70,6 +87,21 @@ public class Juego extends View implements View.OnClickListener {
         }
     }
 
+    public void Cronometro() {
+        crono.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mainActivity.runOnUiThread(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                     cronometro++;
+                    }
+                });
+            }
+        }, 1000, timerPeriod);
+
+    }
     public void loopClasico() {
         ventana.runVentanaNext(listaPiezas.get(1));
         timer.schedule(new TimerTask() {
@@ -83,6 +115,7 @@ public class Juego extends View implements View.OnClickListener {
                         tablero.ponerPieza(tablero.getPieza());
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() == 0) {
                             timer.cancel();
+                            if(newas!=null)newas.pause();
                             mainActivity.gameOver(puntos, modo);
                         } else {
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
@@ -95,19 +128,27 @@ public class Juego extends View implements View.OnClickListener {
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
                                 puntuacion.setText("" + puntos);
+                                setNivel();
+                                nivel.setText("" + nivelvar);
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());
+                                }
                                 cambiarColorLinea(filasPorBorrar.size());
                                 tablero.ponerPieza(tablero.getPieza());
                                 tablero.generarPieza(0);
                                 ventana.runVentanaNext(listaPiezas.get(1));
                                 ventana.invalidate();
-
                             }
                             invalidate();
+                            if(cronometro % 20 == 0){
+                                cambiarCancion20s();
+                            }
                         }
                     }
                 });
             }
-        }, 500, timerPeriod);
+        }, 1000, timerPeriod);
     }
 
     public void gameLoop() {
@@ -116,23 +157,17 @@ public class Juego extends View implements View.OnClickListener {
             @Override
             public void run() {
                 mainActivity.runOnUiThread(new TimerTask() {
+
                     @Override
                     public void run() {
                         tablero.ponerPieza(tablero.getPieza());
                         checkComerTablero();
+                        tablero.comerTablero(alturaVariable);
                         if (!tablero.puedeMoverse(tablero.getPieza(), 0, 1, false) && tablero.getPieza().getAltura() - 2 <= alturaVariable) {
                             timer.cancel();
                             mainActivity.gameOver(puntos, modo);
                         } else {
-                            contadorRomper++;
-                            restoContador = contadorRomper % 50;
-                            restoPieza = contadorRomper % 30;
-                            if (restoContador == 0) {
-                                alturaVariable += 2;
-                            }
-                            if (restoPieza == 0) {
-                                piezaTroll(alturaVariable);
-                            }
+                            checkContador();
                             if (tablero.puedeMoverse(tablero.getPieza(), 0, 1, false)) {
                                 tablero.moverPiezas(tablero.getPieza(), 'a');
                                 if ((tablero.puedeMoverse(troll, 0, 1, false))) {
@@ -148,7 +183,17 @@ public class Juego extends View implements View.OnClickListener {
                                 filasPorBorrar = tablero.detectarFilas(troll);
                                 tablero.borrarPieza();
                                 setPuntos(filasPorBorrar.size() * 30);
+                                if(puntos>puntosSnap){
+                                    snap.setVisibility(View.VISIBLE);
+                                    chasquido++;
+                                    puntosSnap+=100;
+                                }
                                 puntuacion.setText("" + puntos);
+                                setNivel();
+                                nivel.setText("" + nivelvar);
+                                if(getNivel() > nivelActual){
+                                    nivelActual = getNivel();
+                                    timerPeriod = timerPeriod - (getNivel());}
                                 cambiarColorLinea(filasPorBorrar.size());
                                 checkSiguienteCont();
                                 checkComerTablero();
@@ -156,13 +201,26 @@ public class Juego extends View implements View.OnClickListener {
                                 ventana.invalidate();
                             }
                             invalidate();
+                            if(cronometro % 20 == 0){
+                                cambiarCancion20s();
+                            }
                         }
                     }
                 });
             }
         }, 1000, timerPeriod);
     }
-
+    public void checkContador(){
+        contadorRomper++;
+        restoContador = contadorRomper % 50;
+        restoPieza = contadorRomper % 30;
+        if (restoContador == 0) {
+            alturaVariable += 2;
+        }
+        if (restoPieza == 0) {
+            piezaTroll(alturaVariable);
+        }
+    }
     public void piezaTroll(int altura) {
         int n = (int) (Math.random() * 2);
         if (n == 1) {
@@ -179,15 +237,38 @@ public class Juego extends View implements View.OnClickListener {
                 tablero.moverPiezas(tablero.getPieza(), 'a');
                 tablero.moverPiezas(troll, 'a');
             }
-            tablero.comerTablero(alturaVariable);
+        }
+    }
+
+    public void cambiarCancion20s(){
+        int n = (int) (Math.random() * 5);
+        as.pause();
+        if(newas!=null) newas.pause();
+        newas = new AudioService();
+        switch (n){
+            case 0:
+                newas.start(mainActivity,R.raw.tetrisoriginal);
+                break;
+            case 1:
+                newas.start(mainActivity,R.raw.acdcbackinblack);
+                break;
+            case 2:
+                newas.start(mainActivity,R.raw.inmigrant);
+                break;
+            case 3:
+                newas.start(mainActivity,R.raw.thunderstruck);
+                break;
+            case 4:
+                newas.start(mainActivity,R.raw.cumbiaavengers);
+                break;
         }
     }
 
     public void checkSiguienteCont() {
         if ((contadorRomper + 1) % 10 == 0) {
-            tablero.generarPieza(alturaVariable + 4);
-        } else {
             tablero.generarPieza(alturaVariable + 2);
+        } else {
+            tablero.generarPieza(alturaVariable+1);
         }
     }
 
@@ -201,6 +282,7 @@ public class Juego extends View implements View.OnClickListener {
             filasPorBorrar.clear();
         }
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -260,21 +342,83 @@ public class Juego extends View implements View.OnClickListener {
                 }
                 invalidate();
                 break;
+            case R.id.snap:
+                if(chasquido>0){
+                    Toast toast = new Toast(mainActivity.getApplicationContext());
+                    GifImageView view = new GifImageView(mainActivity.getApplicationContext());
+                    view.setImageResource(R.drawable.thanos);
+                    toast.setGravity(Gravity.FILL, 0, 0);
+                    toast.setView(view);
+                    toast.show();
+                    tablero.limpiarTablero();
+                    alturaVariable=0;
+                    chasquido--;
+                    if(chasquido<=0){
+                        snap.setVisibility(View.GONE);
+                    }
+                }
         }
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = this.puntos + puntos;
+
+    public AudioService getNewAS(){return newas;}
+
+    public  void setPuntos(int nuevosPuntos) { puntos = puntos + nuevosPuntos; }
+
+    public static int getPuntos() {
+        return puntos;
     }
 
-    public int getPuntos() {
-        return this.puntos;
+    public static void reiniciarPuntos() {
+        puntos = 0;
     }
 
     public int getNivel() {
         return this.nivelvar;
     }
 
+    public void setNivel() {
+
+        if(puntos>=100) {
+            this.nivelvar = 1;
+        }
+
+        if(puntos>=200) {
+            this.nivelvar = 2;
+        }
+
+        if(puntos>=300) {
+            this.nivelvar = 3;
+        }
+
+        if(puntos>=400) {
+            this.nivelvar = 4;
+        }
+
+        if(puntos>=500) {
+            this.nivelvar = 5;
+        }
+
+        if(puntos>=600) {
+            this.nivelvar = 6;
+        }
+
+        if(puntos>=700) {
+            this.nivelvar = 7;
+        }
+
+        if(puntos>=800) {
+            this.nivelvar = 8;
+        }
+
+        if(puntos>=900) {
+            this.nivelvar = 9;
+        }
+
+        if(puntos>=1000) {
+            this.nivelvar = 10;
+        }
+    }
 }
 
 

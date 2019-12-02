@@ -1,32 +1,52 @@
 package com.example.tetris;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Exit extends AppCompatActivity {
     private EditText et_nombre;
     //private Button registrar;
-    private TextView textoRanking1,textoRanking2,textoRanking3,textoRanking4,textoRanking5,textoRanking6,mostrarPunt1,mostrarPunt2,mostrarPunt3,mostrarPunt4,mostrarPunt5,mostrarPunt6,textPuntActual;
+
     private SQLiteDatabase BaseDeDatos;
     private AdminSQLiteOpenHelper BBDD;
     private boolean registrado;
     private int puntosFinal;
     private int modo;
     private String tipoBBDD;
-
+    private TextView textPuntActual;
+    private ImageView img;
+    private Bitmap imageBitmap;
+    private byte[] blob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Bundle p = this.getIntent().getExtras();
         puntosFinal = p.getInt("puntuacionFinal");
         modo = p.getInt("Modo");
@@ -36,68 +56,61 @@ public class Exit extends AppCompatActivity {
         setContentView(R.layout.activity_exit);
         Button again = findViewById(R.id.Again);
         Button registrar = findViewById(R.id.registrar_puntuacion);
-        Button restEstadisticas =  findViewById(R.id.restablecerEstadisticas);
+        Button rankings = findViewById(R.id.ShowRankings);
 
         //TextView nombre = findViewById(R.id.nombre_jugador);
         registrado=false;
 
-        textoRanking1 = findViewById(R.id.mostrarRanking1);
-        textoRanking2 = findViewById(R.id.mostrarRanking2);
-        textoRanking3 = findViewById(R.id.mostrarRanking3);
-        textoRanking4 = findViewById(R.id.mostrarRanking4);
-        textoRanking5 = findViewById(R.id.mostrarRanking5);
-        textoRanking6 = findViewById(R.id.mostrarRanking6);
-
-        mostrarPunt1= findViewById(R.id.textpunt1);
-        mostrarPunt2= findViewById(R.id.textpunt2);
-        mostrarPunt3= findViewById(R.id.textpunt3);
-        mostrarPunt4= findViewById(R.id.textpunt4);
-        mostrarPunt5= findViewById(R.id.textpunt5);
-        mostrarPunt6= findViewById(R.id.textpunt6);
-
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         textPuntActual= findViewById(R.id.text_puntuacionActual);
-
-        mostrarTop5();
+        textPuntActual.setText(Integer.toString(puntosFinal));
 
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fin();
                 Intent intent = new Intent(Exit.this, Inicio.class);
                 startActivity(intent);
+
+            }
+        });
+        rankings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentRankings = new Intent(Exit.this, Rankings.class);
+                intentRankings.putExtra("modo",modo);
+                startActivity(intentRankings);
             }
         });
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //restablecerEstadiaticas();
-
-                /*
-                mostrarRanking1.setVisibility(view.VISIBLE);
-                mostrarRanking2.setVisibility(view.VISIBLE);
-                mostrarRanking3.setVisibility(view.VISIBLE);
-                mostrarRanking4.setVisibility(view.VISIBLE);
-                mostrarRanking5.setVisibility(view.VISIBLE);
-                mostrarRanking6.setVisibility(view.VISIBLE);
-                */
-
                 Registrar(view);
-                mostrarTop5();
             }
         });
 
-        restEstadisticas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                restablecerEstadiaticas(v);
-            }
-        });
+        img = (ImageView)findViewById(R.id. NewPhoto);
+
+        if (ContextCompat.checkSelfPermission(Exit.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Exit.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(Exit.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1000);
+        }
+
+    }
+    void fin(){
+        this.finish();
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Para volver a jugar pulsa MENU", Toast.LENGTH_SHORT).show();
     }
     public void Registrar(View view){
         //abrir la base de datos modo escritura y lectura
         BaseDeDatos = BBDD.getWritableDatabase();
         et_nombre = (EditText)findViewById(R.id.nombre_jugador);
         String nombre = et_nombre.getText().toString();
+        if(imageBitmap!=null) {
+            guardarImagen(imageBitmap);
+        }
 
 
         if (!nombre.isEmpty() & !registrado){
@@ -106,16 +119,21 @@ public class Exit extends AppCompatActivity {
             //Añade los pares
             registro.put("nombre", nombre);
             registro.put("puntuacion", puntosFinal);
+            if(blob!=null) {
+                registro.put("foto", blob);
+            }
 
-            //insertar valores en la tabla ranking
-            if(modo==0){
-                BaseDeDatos.insert("rankingNormal", null, registro);
-            }else{
-                BaseDeDatos.insert("rankingHard", null, registro);
+
+                //insertar valores en la tabla ranking
+                if(modo==0){
+                    BaseDeDatos.insert("rankingNormal", null, registro);
+                }else{
+                    BaseDeDatos.insert("rankingHard", null, registro);
             }
             BaseDeDatos.close();
 
             et_nombre.setText("");
+            blob = null;
             registrado=true;
 
 
@@ -128,107 +146,64 @@ public class Exit extends AppCompatActivity {
             }
         }
     }
-    public void mostrarTop5 (){
-        BaseDeDatos = BBDD.getWritableDatabase();
-        String columnas[] = new String[]{"nombre","puntuacion"};//,"puntuacion"
-        textPuntActual.setText(Integer.toString(puntosFinal));
-        String j1="",j2="",j3="",j4="",j5="",j6="",p1="",p2="",p3="",p4="",p5="",p6="";
 
-        //********************** AMBAS FUNCIONAN
-        //-----1 forma
-        if(modo==0){
-            tipoBBDD = "rankingNormal";
-        }else{
-            tipoBBDD = "rankingHard";
-        }
-            Cursor fila1 =BaseDeDatos.rawQuery("select * from "+tipoBBDD+"  order by puntuacion DESC",null);
+    String currentPhotoPath;
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "Backup_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
 
-        //-----2 forma
-            //Cursor fila2 = BaseDeDatos.query("rankingNormal", columnas, null, null, null, null, "puntuacion"+" DESC");
-        if(fila1.moveToFirst()){
-            //mostrarRanking.setText(fila1.getString(0)+fila1.getString(1));
-
-            j1 = fila1.getString(0);
-            p1 = fila1.getString(1);
-
-            if (fila1.moveToNext()) {
-                j2 = fila1.getString(0);
-                p2 = fila1.getString(1);
-            }
-            if (fila1.moveToNext()) {
-                j3 = fila1.getString(0);
-                p3 = fila1.getString(1);
-            }
-            if (fila1.moveToNext()) {
-                j4 = fila1.getString(0);
-                p4 = fila1.getString(1);
-            }
-            if (fila1.moveToNext()) {
-                j5 = fila1.getString(0);
-                p5 = fila1.getString(1);
-            }
-            if (fila1.moveToNext()) {
-                j6 = fila1.getString(0);
-                p6= fila1.getString(1);
-            }
-
-
-        }else {
-            
-            j1="";
-            j2="";
-            j3="";
-            j4="";
-            j5="";
-            j6="";
-            p1="";
-            p2="";
-            p3="";
-            p4="";
-            p5="";
-            p6="";
-        }
-
-        textoRanking1.setText(j1);
-        textoRanking2.setText(j2);
-        textoRanking3.setText(j3);
-        textoRanking4.setText(j4);
-        textoRanking5.setText(j5);
-        textoRanking6.setText(j6);
-
-        mostrarPunt1.setText(p1);
-        mostrarPunt2.setText(p2);
-        mostrarPunt3.setText(p3);
-        mostrarPunt4.setText(p4);
-        mostrarPunt5.setText(p5);
-        mostrarPunt6.setText(p6);
-
-        BaseDeDatos.close();
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
-    public void restablecerEstadiaticas (View view){
-        BaseDeDatos = BBDD.getWritableDatabase();
 
-        if(modo==0){
-            tipoBBDD = "rankingNormal";
-        }else{
-            tipoBBDD = "rankingHard";
+    static final int REQUEST_TAKE_PHOTO = 1;
+    public void tomarFoto(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI.toString());
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
         }
-        BaseDeDatos.execSQL("DELETE FROM "+tipoBBDD);
-        /*
-        Cursor fila1 =BaseDeDatos.rawQuery("select * from rankingNormal",null);
+    }
 
-        if (fila1 != null) {
-            fila1.moveToFirst();
-            do{
-                BaseDeDatos.execSQL("DELETE FROM rankingNormal");
-
-            }while (fila1.moveToNext())
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            img.setImageBitmap(imageBitmap);
         }
-        fila1.close();
-        */
-        Toast.makeText(this, "Estadisticas restablecidas", Toast.LENGTH_SHORT).show();
-        BaseDeDatos.close();
-        mostrarTop5();
+    }
+    public void guardarImagen(Bitmap bitmap){
+        // tamaño del baos depende del tamaño de tus imagenes en promedio
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
+        blob = baos.toByteArray();
+        // aqui tenemos el byte[] con el imagen comprimido, ahora lo guardemos en SQLite
+
     }
 }
