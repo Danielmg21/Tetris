@@ -368,6 +368,10 @@ public class Juego extends View implements View.OnClickListener {
         return puntos;
     }
 
+    public static void reiniciarPuntos() {
+        puntos = 0;
+    }
+
     public int getNivel() {
         return this.nivelvar;
     }

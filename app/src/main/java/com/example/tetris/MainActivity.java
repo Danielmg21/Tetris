@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         int modo = b.getInt("MODO");
 
-
+        Juego.reiniciarPuntos();
 
         botonDcha = (ImageButton) findViewById(R.id.botonDcha);
         botonIzda = (ImageButton) findViewById(R.id.botonIzda);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         reiniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(juego.getPuntos()>250){
+                if(Juego.getPuntos()>250){
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
@@ -129,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentGameOver = new Intent(this, Exit.class);
         intentGameOver.putExtra("puntuacionFinal", p);
         intentGameOver.putExtra("Modo", m);
-        if(juego.getNewAS()!=null)juego.getNewAS().pause();
+        if(juego.getNewAS()!=null){
+            juego.getNewAS().pause();
+        }
         as.pause();
         startActivity(intentGameOver);
     }
